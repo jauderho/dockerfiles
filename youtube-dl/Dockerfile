@@ -1,7 +1,7 @@
-FROM alpine:3.12
+FROM alpine:latest
 
 # https://github.com/Yelp/dumb-init/releases
-ARG DUMB_INIT_VERSION=1.2.2
+ARG DUMB_INIT_VERSION=1.2.4
 
 RUN set -x \
  && apk add --no-cache \
