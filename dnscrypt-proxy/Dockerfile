@@ -1,15 +1,16 @@
-FROM golang:1.13.7-alpine as build
+#FROM golang:1.13.7-alpine as build
+FROM golang:1-alpine as build
 
 WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
-ARG BUILD_VERSION
+ARG BUILD_VERSION=2.0.45
 
 ARG ARCHIVE_URL=https://github.com/DNSCrypt/dnscrypt-proxy/archive/
 
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
-	&& apk add --no-cache ca-certificates=20191127-r0 curl=7.67.0-r3 \
+	&& apk add --no-cache ca-certificates curl \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	&& go build -v -ldflags="-s -w"
