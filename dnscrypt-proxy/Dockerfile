@@ -2,7 +2,7 @@ FROM golang:1-alpine as build
 
 WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
-ARG BUILD_VERSION=2.0.45
+ARG BUILD_VERSION
 
 ARG ARCHIVE_URL=https://github.com/DNSCrypt/dnscrypt-proxy/archive/
 
