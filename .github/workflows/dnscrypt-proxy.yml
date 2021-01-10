@@ -30,7 +30,7 @@ jobs:
         run: docker buildx create --use --driver docker-container
 
       - name: image build
-        run: docker buildx build . --pull --platform ${{ matrix.PLATFORM }} --tag ${REPOSITORY} --load --build-arg BUILD_VERSION
+        run: docker buildx build "${GITHUB_WORKFLOW}" --pull --platform ${{ matrix.PLATFORM }} --tag ${REPOSITORY} --load --build-arg BUILD_VERSION
 
       - name: image test
         run: |
@@ -64,7 +64,7 @@ jobs:
 
       - name: manifest build
         run: >-
-            docker buildx build . --pull --push
+            docker buildx build "${GITHUB_WORKFLOW}" --pull --push
             --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6
             --build-arg BUILD_VERSION
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
