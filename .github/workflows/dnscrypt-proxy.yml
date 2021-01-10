@@ -5,7 +5,7 @@ on: push
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: "${GITHUB_ACTOR}"/dnscrypt-proxy
+  REPOSITORY: jauderho/dnscrypt-proxy
 
 jobs:
 
