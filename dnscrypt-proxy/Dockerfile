@@ -1,41 +1,44 @@
-# syntax = docker/dockerfile:experimental
-# 1st build 
-FROM golang:alpine as build
+FROM golang:1.13.7-alpine as build
 
-# https://golang.org/doc/install/source#environment
+WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
+
+ARG BUILD_VERSION
+
+ARG ARCHIVE_URL=https://github.com/DNSCrypt/dnscrypt-proxy/archive/
+
 ENV CGO_ENABLED 0
-ENV GOOS linux
-#ENV GOARCH arm64
-ARG VERSION=2.0.39
-WORKDIR /go/src/github.com/jedisct1/
-RUN --mount=type=cache,target=/root/.cache/go-build \
-  apk add --update --no-cache git
-RUN git clone -b ${VERSION} --depth=1 https://github.com/jedisct1/dnscrypt-proxy /go/src/github.com/jedisct1/
-RUN cd /go/src/github.com/jedisct1/dnscrypt-proxy \
-  && go build -v -tags "osusergo netgo" -ldflags '-extldflags "-static -s -w"' -o /go/bin/dnscrypt-proxy
 
-# 2nd build
+RUN test -n "${BUILD_VERSION}" \
+	&& apk add --no-cache ca-certificates=20191127-r0 curl=7.67.0-r3 \
+	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
+	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
+	&& go build -v -ldflags="-s -w"
+
+WORKDIR /config
+
+RUN cp -a /go/src/github.com/DNSCrypt/dnscrypt-proxy/example-* ./
+
+COPY dnscrypt-proxy.toml ./
+
+# ----------------------------------------------------------------------------
+
 FROM scratch
-LABEL maintainer="kometchtech <kometch@gmail.com>" \
-      description="A flexible DNS proxy, with support for modern encrypted DNS protocols \
-                  such as DNSCrypt v2 and DNS-over-HTTP/2." \
-      url="https://github.com/jedisct1/dnscrypt-proxy"
 
-# Environmet
-#ENV TZ Asia/Tokyo
+LABEL org.opencontainers.image.authors "Kyle Harding <https://klutchell.dev>"
+LABEL org.opencontainers.image.url "https://github.com/klutchell/dnscrypt-proxy"
+LABEL org.opencontainers.image.documentation "https://github.com/klutchell/dnscrypt-proxy"
+LABEL org.opencontainers.image.source "https://github.com/klutchell/dnscrypt-proxy"
+LABEL org.opencontainers.image.title "klutchell/dnscrypt-proxy"
+LABEL org.opencontainers.image.description "dnscrypt-proxy is a flexible DNS proxy, with support for encrypted DNS protocols"
 
-# publish port DNS over UDP & TCP
-EXPOSE 53/TCP 53/UDP
-#EXPOSE 5300/TCP 5300/UDP
-
-# service running
-STOPSIGNAL SIGTERM
-
-# command
-CMD [ "dnscrypt-proxy", "-config", "/etc/dnscrypt-proxy/example-dnscrypt-proxy.toml"]
-
-# Multi stage build
-WORKDIR /etc/dnscrypt-proxy/
+COPY --from=build /etc/passwd /etc/group /etc/
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=build /go/bin/dnscrypt-proxy /usr/local/bin/
-COPY --from=build /go/src/github.com/jedisct1/dnscrypt-proxy/example-* /etc/dnscrypt-proxy/
+
+COPY --from=build /go/src/github.com/DNSCrypt/dnscrypt-proxy/dnscrypt-proxy /usr/local/bin/
+COPY --from=build --chown=nobody:nogroup /config /config
+
+USER nobody
+
+ENTRYPOINT ["dnscrypt-proxy", "-config", "/config/dnscrypt-proxy.toml"]
+
+RUN ["dnscrypt-proxy", "-version"]
