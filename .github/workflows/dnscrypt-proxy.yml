@@ -51,17 +51,17 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ${REPOSITORY}
-          label-custom: |
-            org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-            org.opencontainers.image.version=${BUILD_VERSION}
-            org.opencontainers.image.revision=$(git describe --tags --always --dirty)
-          tag-sha: true
-          tag-custom-only: true
-          tag-custom: |
-            docker.io/${REPOSITORY}:${BUILD_VERSION}
-            docker.io/${REPOSITORY}:latest
-            ghcr.io/${REPOSITORY}:${BUILD_VERSION}
-            ghcr.io/${REPOSITORY}:latest
+          #label-custom: |
+          #  org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          #  org.opencontainers.image.version=${BUILD_VERSION}
+          #  org.opencontainers.image.revision=$(git describe --tags --always --dirty)
+          #tag-sha: true
+          #tag-custom-only: true
+          #tag-custom: |
+          #  docker.io/${REPOSITORY}:${BUILD_VERSION}
+          #  docker.io/${REPOSITORY}:latest
+          #  ghcr.io/${REPOSITORY}:${BUILD_VERSION}
+          #  ghcr.io/${REPOSITORY}:latest
           
       - name: Available metadata
         run: echo ${{ steps.docker_meta.outputs.tags }} ${{ steps.docker_meta.outputs.labels }}
@@ -81,5 +81,9 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/386
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${REPOSITORY}:${BUILD_VERSION}
+            docker.io/${REPOSITORY}:latest
+            ghcr.io/${REPOSITORY}:${BUILD_VERSION}
+            ghcr.io/${REPOSITORY}:latest
