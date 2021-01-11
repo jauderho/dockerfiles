@@ -69,7 +69,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${REPOSITORY}:${BUILD_VERSION}
-            docker.io/${REPOSITORY}:latest
-            ghcr.io/${REPOSITORY}:${BUILD_VERSION}
-            ghcr.io/${REPOSITORY}:latest
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:latest
