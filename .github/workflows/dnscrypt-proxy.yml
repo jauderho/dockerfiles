@@ -54,8 +54,7 @@ jobs:
           tag-sha: true # add git short SHA as Docker tag
           
       - name: Available metadata
-        run: echo ${{ steps.docker_meta.outputs.tags }}
-        run: echo ${{ steps.docker_meta.outputs.labels }}
+        run: echo ${{ steps.docker_meta.outputs.tags }} ${{ steps.docker_meta.outputs.labels }}
 
       - name: Cache docker layers
         uses: actions/cache@v2
