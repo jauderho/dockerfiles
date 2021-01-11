@@ -20,8 +20,8 @@ jobs:
 
     strategy:
       matrix:
-        PLATFORM: [linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x,linux/386,windows/amd64]
-        OS: [macos-latest, windows-latest, ubuntu-latest]
+        PLATFORM: [linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x,linux/386]
+        OS: [ubuntu-latest]
 
     steps:
       - name: docker install
