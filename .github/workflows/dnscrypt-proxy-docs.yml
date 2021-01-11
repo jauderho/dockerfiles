@@ -6,11 +6,10 @@ on:
       - main
     paths:
       - README.md
-      - dnscrypt-proxy/
+      - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy-docs.yml
 
 env:
-  BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: jauderho/dnscrypt-proxy
 
@@ -21,7 +20,7 @@ jobs:
 
     steps:
       - name: dockerhub description
-        uses: peter-evans/dockerhub-description@v2.1.0
+        uses: peter-evans/dockerhub-description@v2
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
