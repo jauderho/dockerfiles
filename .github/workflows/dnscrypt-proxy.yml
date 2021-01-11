@@ -1,11 +1,11 @@
-name: dnscrypt-proxy
+name: "${GITHUB_WORKFLOW}"
 
 on: push
 
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: jauderho/dnscrypt-proxy
+  REPOSITORY: "${GITHUB_ACTOR}/${GITHUB_WORKFLOW}"
 
 jobs:
 
