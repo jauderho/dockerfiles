@@ -62,7 +62,7 @@ jobs:
       - name: source checkout
         uses: actions/checkout@v2
 
-       - name: github login
+      - name: github login
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
