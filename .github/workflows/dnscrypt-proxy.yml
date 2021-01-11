@@ -51,9 +51,6 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: jauderho/dnscrypt-proxy
-          
-      - name: Available metadata
-        run: echo ${{ steps.docker_meta.outputs.tags }} ${{ steps.docker_meta.outputs.labels }}
 
       - name: Cache docker layers
         uses: actions/cache@v2
