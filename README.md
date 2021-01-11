@@ -1,6 +1,6 @@
 ## dockerfiles
 
-This is a repo to hold various Dockerfiles for images I create.
+This is a repo to hold various Dockerfiles for images I create/forked.
 
 **Table of Contents**
 
