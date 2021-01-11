@@ -16,23 +16,18 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/lego.tar.gz --strip 1 -C /go/src/github.com/go-acme/lego \
 	&& make build
 
-#RUN ls -l /go/src/github.com/go-acme/lego
-#RUN make build
-
 RUN cp dist/lego /go/bin/lego
-#RUN go build -v -ldflags="-s -w"
-
-# Download go modules
-##COPY go.mod .
-#COPY go.sum .
-#RUN go mod download
-
-#COPY . .
-#RUN make build
 
 # ----------------------------------------------------------------------------
 
 FROM alpine
+
+LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title "jauderho/lego"
+LABEL org.opencontainers.image.description "Let's Encrypt client and ACME library written in Go"
 
 RUN apk update \
     && apk add --no-cache ca-certificates tzdata \
