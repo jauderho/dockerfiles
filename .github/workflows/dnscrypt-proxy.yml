@@ -35,18 +35,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
  
-      - name: qemu register
+      - name: Setup QEMU
         id: qemu
         uses: docker/setup-qemu-action@v1
       
-      - name: buildx create
+      - name: Setup Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
       
-      - name: available platforms
+      - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: cache docker layers
+      - name: Cache docker layers
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
@@ -58,7 +58,7 @@ jobs:
         run: >-
             docker buildx build "${GITHUB_WORKFLOW}" --pull --push
             --platform=linux/amd64,linux/386
-            --build-arg ${BUILD_VERSION}
+            --build-arg BUILD_VERSION
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             --label "org.opencontainers.image.version=${BUILD_VERSION}"
             --label "org.opencontainers.image.revision=$(git describe --tags --always --dirty)"
