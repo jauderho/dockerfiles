@@ -3,7 +3,7 @@ name: dnscrypt-proxy
 on:
   push:
     paths:
-      - ${GITHUB_WORKFLOW}
+      - ./dnscrypt-proxy
 
 env:
   BUILD_VERSION: "2.0.45"
