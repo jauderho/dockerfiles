@@ -1,0 +1,83 @@
+name: dnscontrol
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - dnscontrol
+      - .github/workflows/dnscontrol.yml
+
+env:
+  BUILD_VERSION: "3.5.0"
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: jauderho/dnscontrol
+
+jobs:
+
+  test:
+    runs-on: ${{ matrix.OS }}
+
+    strategy:
+      matrix:
+        PLATFORM: [linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/386]
+        OS: [ubuntu-latest]
+
+    steps:
+      - name: docker install
+        run: curl -fsSL get.docker.com | sh
+
+      - name: source checkout
+        uses: actions/checkout@v1
+
+      - name: qemu register
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      
+      - name: buildx create
+        run: docker buildx create --use --driver docker-container
+
+      - name: image build
+        run: docker buildx build "${GITHUB_WORKFLOW}" --pull --platform ${{ matrix.PLATFORM }} --tag ${REPOSITORY} --load --build-arg BUILD_VERSION
+
+      - name: image test
+        run: |
+          docker run --rm -d --name dnscontrol ${REPOSITORY}
+          docker stop dnscontrol
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ${{ matrix.OS }}
+
+    steps:
+      - name: docker install
+        run: curl -fsSL get.docker.com | sh
+
+      - name: source checkout
+        uses: actions/checkout@v1
+
+      - name: github login
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u "${GITHUB_ACTOR}" --password-stdin
+
+      - name: dockerhub login
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login docker.io -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      
+      - name: qemu register
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      
+      - name: buildx create
+        run: docker buildx create --use --driver docker-container
+
+      - name: manifest build
+        run: >-
+            docker buildx build "${GITHUB_WORKFLOW}" --pull --push
+            --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6
+            --build-arg BUILD_VERSION
+            --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            --label "org.opencontainers.image.version=${BUILD_VERSION}"
+            --label "org.opencontainers.image.revision=$(git describe --tags --always --dirty)"
+            --tag docker.io/${REPOSITORY}:${BUILD_VERSION}
+            --tag docker.io/${REPOSITORY}:latest
+            --tag ghcr.io/${REPOSITORY}:${BUILD_VERSION}
+            --tag ghcr.io/${REPOSITORY}:latest
+
