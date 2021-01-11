@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - dnscrypt-proxy/
+      - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy.yml
 
 env:
@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        PLATFORM: [linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6]
+        PLATFORM: [darwin/amd64,darwin/arm64,darwin/universal,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x,linux/386,windows/amd64]
 
     steps:
       - name: docker install
