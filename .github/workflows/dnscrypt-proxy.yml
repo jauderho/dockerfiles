@@ -1,4 +1,4 @@
-name: "${GITHUB_WORKFLOW}"
+name: dnscrypt-proxy
 
 on: push
 
