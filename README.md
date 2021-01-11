@@ -14,7 +14,7 @@ This is a repo to hold various Dockerfiles for images I create/forked.
 
 ## About
 
-Almost all of these live on Docker Hub under [jauderho](https://hub.docker.com/u/jauderho/).
+Almost all of these images live on Docker Hub under [jauderho](https://hub.docker.com/u/jauderho/). Images are also available on GitHub Container Registtry.
 
 ## Resources
 
