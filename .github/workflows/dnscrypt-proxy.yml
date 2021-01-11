@@ -19,20 +19,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: docker install
-        run: curl -fsSL get.docker.com | sh
-
-      - name: source checkout
+      - name: Source checkout
         uses: actions/checkout@v2
 
-      - name: github login
+      - name: GitHub login
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: "${GITHUB_ACTOR}"
+          username: ${GITHUB_ACTOR}
           password: ${{ secrets.CR_PAT }}
 
-      - name: dockerhub login
+      - name: DockerHub login
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -61,7 +58,7 @@ jobs:
         run: >-
             docker buildx build "${GITHUB_WORKFLOW}" --pull --push
             --platform=linux/amd64,linux/386
-            --build-arg BUILD_VERSION
+            --build-arg ${BUILD_VERSION}
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             --label "org.opencontainers.image.version=${BUILD_VERSION}"
             --label "org.opencontainers.image.revision=$(git describe --tags --always --dirty)"
