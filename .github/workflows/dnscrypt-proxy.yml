@@ -16,11 +16,12 @@ env:
 jobs:
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.OS }}
 
     strategy:
       matrix:
         PLATFORM: [linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x,linux/386,windows/amd64]
+        OS: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
       - name: docker install
@@ -47,7 +48,7 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.OS }}
 
     steps:
       - name: docker install
