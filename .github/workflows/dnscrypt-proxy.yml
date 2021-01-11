@@ -1,6 +1,9 @@
 name: dnscrypt-proxy
 
-on: push
+on:
+  push:
+    paths:
+      - ${GITHUB_WORKFLOW}
 
 env:
   BUILD_VERSION: "2.0.45"
@@ -75,10 +78,3 @@ jobs:
             --tag ghcr.io/${REPOSITORY}:${BUILD_VERSION}
             --tag ghcr.io/${REPOSITORY}:latest
 
-      - name: dockerhub description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: ${REPOSITORY}
-          readme-filepath: ./dnscrypt-proxy/README.md
