@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - README.md
-      - dnscrypt-proxy
+      - dnscrypt-proxy/
       - .github/workflows/dnscrypt-proxy-docs.yml
 
 env:
