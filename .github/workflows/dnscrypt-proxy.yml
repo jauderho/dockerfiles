@@ -5,7 +5,7 @@ on: push
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${GITHUB_ACTOR}/${GITHUB_WORKFLOW}
+  REPOSITORY: jauderho/dnscrypt-proxy
 
 jobs:
 
@@ -76,8 +76,9 @@ jobs:
             --tag ghcr.io/${REPOSITORY}:latest
 
       - name: dockerhub description
-        uses: peter-evans/dockerhub-description@v2.1.0
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-          DOCKERHUB_REPOSITORY: ${REPOSITORY}
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: ${REPOSITORY}
+          readme-filepath: ./dnscrypt-proxy/README.md
