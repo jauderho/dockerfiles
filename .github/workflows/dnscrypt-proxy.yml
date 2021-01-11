@@ -49,7 +49,7 @@ jobs:
       - name: Build
         run: >-
             docker buildx build "${GITHUB_WORKFLOW}" --pull --push
-            --platform=linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/386
+            --platform=linux/amd64,linux/arm64,linux/riscv64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
             --build-arg BUILD_VERSION
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             --label "org.opencontainers.image.version=${BUILD_VERSION}"
