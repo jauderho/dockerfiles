@@ -15,44 +15,7 @@ env:
 
 jobs:
 
-  test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        PLATFORM: [linux/amd64,linux/386]
-        OS: [ubuntu-latest]
-
-    steps:
-      - name: docker install
-        run: curl -fsSL get.docker.com | sh
-
-      - name: source checkout
-        uses: actions/checkout@v2
-
-      - name: qemu register
-        id: qemu
-        uses: docker/setup-qemu-action@v1
-      
-      - name: buildx create
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-      
-      - name: available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
-
-      - name: image build
-        run: docker buildx build "${GITHUB_WORKFLOW}" --pull --platform ${{ matrix.PLATFORM }} --tag ${REPOSITORY} --load --build-arg BUILD_VERSION
-
-      - name: image test
-        run: |
-          docker run --rm -d --name dnscrypt ${REPOSITORY}
-          docker run --rm --link dnscrypt uzyexe/drill -p 5053 dnscrypt.info @dnscrypt | tee /dev/stderr | grep -q NOERROR
-          docker stop dnscrypt
-
   deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -76,10 +39,23 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
  
       - name: qemu register
-        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        id: qemu
+        uses: docker/setup-qemu-action@v1
       
       - name: buildx create
-        run: docker buildx create --use --driver docker-container
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      - name: cache docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: manifest build
         run: >-
