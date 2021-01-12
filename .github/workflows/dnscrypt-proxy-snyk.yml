@@ -18,14 +18,15 @@ on:
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/dnscrypt-proxy 
+  APP: dnscrypt-proxy
+  REPOSITORY: ${{ github.actor }}/${{ env.APP }}
 jobs:
   snyk:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Build a Docker image
-      run: docker build -t ${{ env.REPOSITORY }} dnscrypt-proxy --build-arg BUILD_VERSION
+      run: docker build -t ${{ env.REPOSITORY }} ${{ env.APP }} --build-arg BUILD_VERSION
     - name: Run Snyk to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
@@ -38,7 +39,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: ${{ env.REPOSITORY }}
-        args: --file=dnscrypt-proxy/Dockerfile
+        args: --file=${{ env.APP }}/Dockerfile
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v1
       with:
