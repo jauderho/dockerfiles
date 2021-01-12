@@ -65,11 +65,9 @@ jobs:
           label-custom: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
-          tag-sha: true
-          tag-latest: true
 
-      - name: Show Docker metadata
-        run: echo ${{ steps.docker_meta.outputs.tags }}
+#      - name: Show Docker metadata
+#        run: echo ${{ steps.docker_meta.outputs.tags }}
 
       - name: Build and push
         uses: docker/build-push-action@v2
