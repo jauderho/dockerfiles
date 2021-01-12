@@ -14,6 +14,7 @@ on:
     paths:
       - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy.yml
+      - .github/workflows/dnscrypt-proxy-snyk.yml
 env:
   REPOSITORY: ${{ github.actor }}/dnscrypt-proxy 
 jobs:
