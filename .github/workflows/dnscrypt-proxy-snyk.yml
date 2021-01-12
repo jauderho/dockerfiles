@@ -16,6 +16,8 @@ on:
       - .github/workflows/dnscrypt-proxy.yml
       - .github/workflows/dnscrypt-proxy-snyk.yml
 env:
+  BUILD_VERSION: "2.0.45"
+  DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/dnscrypt-proxy 
 jobs:
   snyk:
@@ -23,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build a Docker image
-      run: docker build -t ${{ env.REPOSITORY }} .
+      run: docker build -t ${{ env.REPOSITORY }} dnscrypt-proxy
     - name: Run Snyk to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
