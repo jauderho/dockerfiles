@@ -76,8 +76,8 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           build-args: BUILD_VERSION
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+#          cache-from: type=local,src=/tmp/.buildx-cache
+#          cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
