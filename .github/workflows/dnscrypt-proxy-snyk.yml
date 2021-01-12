@@ -19,7 +19,7 @@ env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
   APP: dnscrypt-proxy
-  REPOSITORY: ${{ github.actor }}/${{ env.APP }}
+  REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
 jobs:
   snyk:
     runs-on: ubuntu-20.04
