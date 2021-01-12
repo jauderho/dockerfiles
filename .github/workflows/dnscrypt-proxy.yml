@@ -33,7 +33,7 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-      - name: Cache docker layers
+      - name: Cache Docker layers
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
@@ -53,9 +53,6 @@ jobs:
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
 
-#      - name: Show Docker metadata
-#        run: echo ${{ steps.docker_meta.outputs.tags }}
-
       - name: GitHub login
         uses: docker/login-action@v1
         with:
@@ -72,12 +69,12 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
+          push: true
           context: ${{ github.workflow }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6
           build-args: BUILD_VERSION
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-          push: true
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
