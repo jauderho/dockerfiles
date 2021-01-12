@@ -69,9 +69,6 @@ jobs:
           tag-latest: true
 
       - name: Show Docker metadata
-        run: echo ${{ steps.docker_meta.outputs.labels }}
-
-      - name: Show Docker metadata
         run: echo ${{ steps.docker_meta.outputs.tags }}
 
       - name: Build and push
