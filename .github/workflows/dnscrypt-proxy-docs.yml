@@ -1,3 +1,6 @@
+#
+# Disabled for now due to the inability to pass tokens instead of passwords to Docker Hub
+#
 name: dnscrypt-proxy-docs
 
 on:
