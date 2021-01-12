@@ -6,25 +6,26 @@ on:
       - main
     paths:
       - README.md
-      - dnscrypt-proxy/
+      - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy-docs.yml
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: jauderho/dnscrypt-proxy
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
 jobs:
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Source checkout
+        uses: actions/checkout@v2 
         
-      - name: dockerhub description
+      - name: Update DockerHub description
         uses: peter-evans/dockerhub-description@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: jauderho/dnscrypt-proxy
-          readme-filepath: ./dnscrypt-proxy/README.md
+          repository: ${{ env.REPOSITORY }}
+          readme-filepath: ${{ github.workflow }}/README.md
