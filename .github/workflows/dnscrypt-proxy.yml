@@ -11,7 +11,7 @@ on:
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
 jobs:
 
@@ -56,7 +56,7 @@ jobs:
             --build-arg BUILD_VERSION
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             --label "org.opencontainers.image.version=${BUILD_VERSION}"
-            --label "org.opencontainers.image.revision=$(git describe --tags --always --dirty)"
+            --label "org.opencontainers.image.revision=${{ github.sha }}"
             --tag docker.io/${REPOSITORY}:${BUILD_VERSION}
             --tag docker.io/${REPOSITORY}:latest
             --tag ghcr.io/${REPOSITORY}:${BUILD_VERSION}
