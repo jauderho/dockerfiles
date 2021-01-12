@@ -11,7 +11,7 @@ on:
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: jauderho/dnscrypt-proxy
+  REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
 
 jobs:
 
@@ -26,7 +26,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${GITHUB_ACTOR}
+          username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
 
       - name: DockerHub login
@@ -48,7 +48,7 @@ jobs:
  
       - name: Build
         run: >-
-            docker buildx build "${GITHUB_WORKFLOW}" --pull --push
+            docker buildx build ${{ github.workflow }} --pull --push
             --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6
             --build-arg BUILD_VERSION
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
