@@ -29,9 +29,6 @@ jobs:
       - name: Setup Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
-      
-      - name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: Cache Docker layers
         uses: actions/cache@v2
@@ -40,11 +37,8 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-
-      - name: Show commit SHA
-        run: echo ${{ github.sha }}
         
-      - name: Docker metadata
+      - name: Set Docker metadata
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
