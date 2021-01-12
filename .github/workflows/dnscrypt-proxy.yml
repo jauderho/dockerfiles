@@ -45,19 +45,46 @@ jobs:
       
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
- 
+
+      - name: Cache docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
       - name: Show commit SHA
         run: echo ${{ github.sha }}
         
-      - name: Build
-        run: >-
-            docker buildx build ${{ github.workflow }} --pull --push
-            --platform=linux/amd64
-            --build-arg BUILD_VERSION
-            --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            --label "org.opencontainers.image.version=${{ env.BUILD_VERSION }}"
-            --label "org.opencontainers.image.revision=${{ github.sha }}"
-            --tag docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            --tag docker.io/${{ env.REPOSITORY }}:latest
-            --tag ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            --tag ghcr.io/${{ env.REPOSITORY }}:latest
+      - name: Docker metadata
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: ${{ env.REPOSITORY }}
+          label-custom: |
+            org.opencontainers.image.version=${{ env.BUILD_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          tag-sha: true
+          tag-latest: true
+
+      - name: Show Docker metadata
+        run: |
+          echo ${{ steps.docker_meta.outputs.labels }}
+          echo ${{ steps.docker_meta.outputs.tags }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.workflow }}
+          file: ./Dockerfile
+          platforms: linux/amd64
+          build-args: BUILD_VERSION
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:latest
