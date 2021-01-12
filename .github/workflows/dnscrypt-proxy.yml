@@ -69,9 +69,10 @@ jobs:
           tag-latest: true
 
       - name: Show Docker metadata
-        run: |
-          echo ${{ steps.docker_meta.outputs.labels }}
-          echo ${{ steps.docker_meta.outputs.tags }}
+        run: echo ${{ steps.docker_meta.outputs.labels }}
+
+      - name: Show Docker metadata
+        run: echo ${{ steps.docker_meta.outputs.tags }}
 
       - name: Build and push
         uses: docker/build-push-action@v2
@@ -83,6 +84,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           push: ${{ github.event_name != 'pull_request' }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             docker.io/${{ env.REPOSITORY }}:latest
