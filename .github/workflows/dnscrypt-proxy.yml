@@ -16,7 +16,7 @@ env:
 jobs:
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Source checkout
@@ -46,6 +46,9 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
  
+      - name: Show commit SHA
+        run: echo ${{ github.sha }}
+        
       - name: Build
         run: >-
             docker buildx build ${{ github.workflow }} --pull --push
