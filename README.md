@@ -1,5 +1,7 @@
 ## dockerfiles
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This is a repo to hold various Dockerfiles for images I create/forked.
 
 **Table of Contents**
