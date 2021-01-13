@@ -11,3 +11,15 @@ updates:
     directory: /dnscontrol
     schedule:
       interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /dnscrypt-proxy
+    schedule:
+      interval: "daily"
+      
+   # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /lego
+    schedule:
+      interval: "daily"
