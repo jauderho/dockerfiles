@@ -6,8 +6,11 @@ updates:
     schedule:
       interval: "daily"
 
-  # Maintain dependencies for GitHub Actions
+  # Maintain dependencies for Docker
   - package-ecosystem: "docker"
-    directory: "/*"
+    directory: |
+      /dnscontrol
+      /dnscrypt-proxy
+      /lego
     schedule:
       interval: "daily"
