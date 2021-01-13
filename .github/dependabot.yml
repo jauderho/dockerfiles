@@ -8,9 +8,6 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
-    directory: |
-      /dnscontrol
-      /dnscrypt-proxy
-      /lego
+    directory: /dnscontrol
     schedule:
       interval: "daily"
