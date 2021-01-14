@@ -1,0 +1,19 @@
+#FROM golang:1.13.5-alpine
+#FROM golang:1.12-alpine
+FROM golang:alpine
+
+COPY . /go/src/github.com/matt1484/bl3_auto_vip
+WORKDIR /go/src/github.com/matt1484/bl3_auto_vip
+
+ENV GO111MODULE=on
+
+#RUN echo -e "http://nl.alpinelinux.org/alpine/v3.10/main\nhttp://nl.alpinelinux.org/alpine/v3.10/community" > /etc/apk/repositories
+#RUN apk update && apk upgrade && apk add git
+#RUN apk add --no-cache git
+#RUN apk update && apk add --no-cache git
+
+#RUN printf "nameserver 192.168.1.1" > /etc/resolv.conf && apk update && apk add --no-cache git
+RUN apk update && apk add git
+RUN go mod download && go mod verify
+
+CMD go run cmd/main.go
