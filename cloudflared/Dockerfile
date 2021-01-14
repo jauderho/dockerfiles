@@ -14,7 +14,8 @@ RUN apk update \
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
 #RUN GOARCH=${GOARCH} GOARM=${GOARM} go build ./
-RUN go build ./
+#RUN go build ./
+RUN go build -v -ldflags="-s -w" . 
 
 #FROM multiarch/alpine:${ARCH}-edge
 FROM alpine:latest
