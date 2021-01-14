@@ -1,0 +1,64 @@
+# pick Ubuntu or Alpine
+#
+# FROM alpine
+FROM ubuntu:16.04
+LABEL maintainer "Jauder Ho"
+
+# Requirements
+# 64bit
+# SSE4.2
+
+# Features
+# nginx
+# 	Hardening compile flags
+# 	HTTP/2
+#	TLSv1.3
+#	Dynamic TLS records patch
+#	Server = Hai
+# Corresponding OpenSSL branch w/ TLSv1.3 draft18 support
+# 	enable-ec_nistp_64_gcc_128 (64bit)
+# 	no-ssl2
+# 	no-ssl3
+# 	no-weak-ssl-ciphers
+# 	enable-tls1_3
+# ngx_brotli
+# Cloudflare zlib (compile will fail without SSE4.2 support)
+#	-march=native
+
+# https://hub.docker.com/r/funkygibbon/nginx/
+# 
+# https://www.maxcdn.com/blog/nginx-application-performance-optimization/
+
+# http://nginx.org/en/download.html
+ENV NGINX_VERSION 1.13.0
+
+# https://www.openssl.org/source
+#ENV OPENSSL_VERSION 1.1.0e
+
+# PCRE
+#ENV PCRE_VERSION 8.40
+
+
+
+# NGINX ASSEMBLY
+
+
+
+
+
+
+# Parameters
+# expose appropriate ports
+EXPOSE 80
+EXPOSE 443
+
+ENV DEFAULT_APP_USER www-data
+ENV DEFAULT_APP_GROUP www-data
+ENV DEFAULT_APP_UID 33
+ENV DEFAULT_APP_GID 33
+ENV DEFAULT_UPLOAD_MAX_SIZE 30M
+ENV DEFAULT_NGINX_MAX_WORKER_PROCESSES 8
+ENV DEFAULT_CHOWN_APP_DIR true
+
+ENV SSL_ENABLED true
+
