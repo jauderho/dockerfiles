@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - dnscontrol
+      - dnscontrol/*
       - .github/workflows/dnscontrol.yml
   workflow_dispatch:
 

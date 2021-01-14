@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - youtube-dl
+      - youtube-dl/*
       - .github/workflows/youtube-dl.yml
   workflow_dispatch:
   schedule:

@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - lego
+      - lego/*
       - .github/workflows/lego.yml
   workflow_dispatch:
 

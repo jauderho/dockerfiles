@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - dnscrypt-proxy
+      - dnscrypt-proxy/*
       - .github/workflows/dnscrypt-proxy.yml
   workflow_dispatch:
 
