@@ -5,11 +5,9 @@ on:
     branches: 
       - main
     paths:
-      - cloudflared
+      - cloudflared/*
       - .github/workflows/cloudflared.yml
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * 1"
 
 env:
   BUILD_VERSION: "2021.1.2"
