@@ -1,24 +1,21 @@
 FROM golang:alpine as build
 
+#ARG ARCH
+#ARG GOARCH
+#ARG GOARM
+ARG BUILD_VERSION
+
+#WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
+
+RUN apk update \
+	&& apk --no-cache add git gcc build-base \ 
+	&& go get -d -v github.com/cloudflare/cloudflared/cmd/cloudflared
+
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
-ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/cloudflare/cloudflared/archive/
-
-ENV GO111MODULE on
-
-RUN test -n "${BUILD_VERSION}" \
-	&& apk update \
-	&& apk add --no-cache ca-certificates curl gcc build-base \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
-	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
-	&& go build -v -ldflags="-s -w"
-
-# Validation check
-RUN cp cloudflared /go/bin/cloudflared
-RUN cloudflared -v
-
-# ----------------------------------------------------------------------------
+#RUN GOARCH=${GOARCH} GOARM=${GOARM} go build ./
+#RUN go build ./
+RUN go build -v -ldflags="-s -w" . 
 
 #FROM multiarch/alpine:${ARCH}-edge
 FROM alpine:latest
@@ -39,8 +36,8 @@ ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8080
 
 RUN apk add --no-cache ca-certificates bind-tools libcap \
-        && rm -rf /var/cache/apk/* \
-	&& adduser -S cloudflared
+	&& adduser -S cloudflared \
+        && rm -rf /var/cache/apk/*;
 
 COPY --from=build /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
 
@@ -52,3 +49,4 @@ USER cloudflared
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
 
+#CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address 0.0.0.0 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query"]
