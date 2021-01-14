@@ -20,7 +20,12 @@ RUN go build -v -ldflags="-s -w" .
 #FROM multiarch/alpine:${ARCH}-edge
 FROM alpine:latest
 
-LABEL maintainer="Jauder Ho"
+LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title "jauderho/cloudflared"
+LABEL org.opencontainers.image.description "Command line client for Cloudflare's Argo Tunnel"
 
 ENV DNS1 1.1.1.1
 ENV DNS2 1.0.0.1

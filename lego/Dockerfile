@@ -33,6 +33,8 @@ RUN apk update \
     && apk add --no-cache ca-certificates tzdata \
     && update-ca-certificates
 
-COPY --from=build /go/bin/lego /usr/bin/lego
+COPY --from=build /go/bin/lego /usr/local/bin/lego
 
-ENTRYPOINT [ "/usr/bin/lego" ]
+#RUN lego --version
+
+ENTRYPOINT [ "/usr/local/bin/lego" ]
