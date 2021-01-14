@@ -1,4 +1,4 @@
-FROM golang:1-alpine as build
+FROM golang:alpine as build
 
 #ARG ARCH
 #ARG GOARCH

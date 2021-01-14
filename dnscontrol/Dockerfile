@@ -1,4 +1,4 @@
-FROM golang:1-alpine as build
+FROM golang:alpine as build
 
 WORKDIR /go/src/github.com/StackExchange/dnscontrol/
 
@@ -24,7 +24,7 @@ RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 
 # ----------------------------------------------------------------------------
 
-FROM alpine
+FROM alpine:latest
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
