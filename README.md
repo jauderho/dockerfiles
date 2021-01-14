@@ -2,23 +2,46 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This is a repo to hold various Dockerfiles for images I create/forked.
+This repo contains various Dockerfiles for images I create/forked.
 
 **Table of Contents**
 
 <!-- toc -->
 
 - [About](#about)
-- [Resources](#resources)
+- [Status](#status)
 - [Contributing](#contributing)
 
 <!-- tocstop -->
 
 ## About
 
-Images can be found on Docker Hub under [jauderho](https://hub.docker.com/u/jauderho/). Most images are also available on [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles).
+Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles).
 
-## Resources
+## Status
+
+[![Version](https://img.shields.io/docker/v/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/visibilityspots/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscontrol)](https://hub.docker.com/r/jauderho/dnscontrol/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscrypt-proxy/badge.svg)](https://github.com/visibilityspots/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/lego/badge.svg)](https://github.com/visibilityspots/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
+
+[![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
 
 ## Contributing
 
