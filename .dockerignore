@@ -10,6 +10,6 @@ docker-compose.yml
 docs
 test
 goss.yaml
-Dockerfile
+#Dockerfile
 *.md
 !README.md
