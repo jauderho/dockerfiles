@@ -1,6 +1,6 @@
 ## dockerfiles
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 This repo contains various Dockerfiles for images I create/forked.
 
