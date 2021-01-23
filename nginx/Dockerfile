@@ -22,6 +22,7 @@ FROM ubuntu:rolling as build
 #	-march=native
 
 # https://hub.docker.com/r/funkygibbon/nginx/
+# https://github.com/27Bslash6/docker/blob/master/nginx/Dockerfile
 # https://www.maxcdn.com/blog/nginx-application-performance-optimization/
 
 # http://nginx.org/en/download.html
