@@ -1,4 +1,4 @@
-FROM ubuntu:rolling
+FROM ubuntu:rolling as build
 
 # Requirements
 # 64bit
@@ -34,7 +34,7 @@ ENV OPENSSL_VERSION 1.1.1i
 ENV PCRE_VERSION 8.44
 
 # NGINX ASSEMBLY
-RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx
+#RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx
 RUN	apt-get update && \
 	apt-get -y install wget git-core perl libc6-dev autoconf automake libtool build-essential zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgeoip-dev libgoogle-perftools-dev libperl-dev && \
 	echo "Downloading nginx v${NGINX_VERSION} from http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz ..." && \
@@ -92,8 +92,16 @@ RUN	apt-get update && \
 	rm -Rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
+# ----------------------------------------------------------------------------
 
+FROM ubuntu:rolling
 
+LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title "jauderho/nginx"
+LABEL org.opencontainers.image.description "nginx is a web server"
 
 # Parameters
 # expose appropriate ports
@@ -110,8 +118,9 @@ ENV DEFAULT_CHOWN_APP_DIR true
 
 ENV SSL_ENABLED true
 
-COPY . /app/
+COPY --from=build . /app/
 
+RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx
 RUN chmod 750 /app/bin/*.sh
 
 RUN /app/bin/init_nginx.sh
