@@ -37,10 +37,11 @@ ENV PCRE_VERSION 8.44
 RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx
 RUN	apt-get update && \
 	apt-get -y install wget git-core perl libc6-dev autoconf automake libtool build-essential zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgeoip-dev libgoogle-perftools-dev libperl-dev && \
-	echo "Downloading nginx v${NGINX_VERSION} from http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz ..." && wget -O - http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz --progress=bar --tries=3 | tar zxf - -C /tmp && \
-    echo "Downloading headers-more v${HEADERS_MORE_VERSION} from https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz ..." && wget -O - https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz --progress=bar --tries=3 | tar zxf - -C /tmp && \
-    echo "Downloading openssl v${OPENSSL_VERSION} from https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz ..." && wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --progress=bar --tries=3 | tar xzf  - -C /tmp && \
-    cd /tmp/nginx-${NGINX_VERSION} && \
+	echo "Downloading nginx v${NGINX_VERSION} from http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz ..." && \
+	wget -O - http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz --progress=bar --tries=3 | tar zxf - -C /tmp && \
+	echo "Downloading openssl v${OPENSSL_VERSION} from https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz ..." && \
+	wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --progress=bar --tries=3 | tar xzf  - -C /tmp && \
+	cd /tmp/nginx-${NGINX_VERSION} && \
 	./configure \
 		--prefix=/etc/nginx  \
 		--sbin-path=/usr/sbin/nginx  \
