@@ -1,7 +1,7 @@
 # pick Ubuntu or Alpine
 #
 # FROM alpine
-FROM ubuntu:16.04
+FROM ubuntu:rolling
 LABEL maintainer "Jauder Ho"
 
 # Requirements
