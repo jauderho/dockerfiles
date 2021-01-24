@@ -12,6 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
+  BUILD_VERSION: "2021.01.16"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -73,5 +74,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
