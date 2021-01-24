@@ -86,7 +86,7 @@ RUN	apt-get update && \
 		--with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
 		--with-ipv6 \
 		--with-pcre-jit \
-		--with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
+		--with-openssl=/tmp/openssl-${OPENSSL_VERSION} && \
 	make && \
 	make install && \
 	apt-get purge -yqq build-essential autoconf automake libtool git-core zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgeoip-dev libgoogle-perftools-dev libperl-dev && \
