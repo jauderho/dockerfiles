@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_VERSION: "1.2.0"
+  BUILD_VERSION: "1.2.10"
   BUILD_VERSION_LONG: "1.2.10-te480f8ddf"
   BUILD_VERSION_COMMIT: "e480f8ddf6f7334fda1b3d0dd1b500f2f01f961b"
   DOCKER_CLI_EXPERIMENTAL: enabled
