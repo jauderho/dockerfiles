@@ -11,8 +11,6 @@ on:
 
 env:
   BUILD_VERSION: "1.2.10"
-  BUILD_VERSION_LONG: "1.2.10-te480f8ddf"
-  BUILD_VERSION_COMMIT: "e480f8ddf6f7334fda1b3d0dd1b500f2f01f961b"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -68,16 +66,21 @@ jobs:
         with:
           push: true
           context: ${{ github.workflow }}
-          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
-          build-args: | 
-            BUILD_VERSION
-            BUILD_VERSION_LONG
-            BUILD_VERSION_COMMIT
+#          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
+          build-args: BUILD_VERSION
           cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
+
+      # Temporary cache workaround
+      # See https://github.com/docker/build-push-action/issues/252#issuecomment-744400434
+      - name: Move cache
+        run:
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
