@@ -3,8 +3,6 @@ FROM golang:alpine as build
 WORKDIR /go/src/github.com/tailscale/tailscale
 
 ARG BUILD_VERSION
-ARG BUILD_VERSION_LONG
-ARG BUILD_VERSION_COMMIT
 ARG ARCHIVE_URL=https://github.com/tailscale/tailscale/archive/
 
 ENV GO111MODULE on
@@ -16,8 +14,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates curl \
 	&& curl -L "${ARCHIVE_URL}v${BUILD_VERSION}.tar.gz" -o /tmp/tailscale.tar.gz \
 	&& tar xzf /tmp/tailscale.tar.gz --strip 1 -C /go/src/github.com/tailscale/tailscale \ 
-	&& go build -v -tags xversion -ldflags="-s -w -X tailscale.com/version.Long=${BUILD_VERSION_LONG} -X tailscale.com/version.Short=${BUILD_VERSION} -X tailscale.com/version.GitCommit=${BUILD_VERSION_COMMIT}" tailscale.com/cmd/tailscale \
-	&& go build -v -tags xversion -ldflags="-s -w -X tailscale.com/version.Long=${BUILD_VERSION_LONG} -X tailscale.com/version.Short=${BUILD_VERSION} -X tailscale.com/version.GitCommit=${BUILD_VERSION_COMMIT}" tailscale.com/cmd/tailscaled 
+	&& go build -v -tags xversion -ldflags="-s -w -X tailscale.com/version.Short=${BUILD_VERSION}" tailscale.com/cmd/tailscale \
+	&& go build -v -tags xversion -ldflags="-s -w -X tailscale.com/version.Short=${BUILD_VERSION}" tailscale.com/cmd/tailscaled 
 
 RUN cp tailscale /go/bin/tailscale
 RUN cp tailscaled /go/bin/tailscaled
