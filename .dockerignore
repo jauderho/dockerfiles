@@ -5,11 +5,10 @@
 .dockerignore
 .travis.yml
 dist
-Dockerfile
+#Dockerfile
 docker-compose.yml
 docs
 test
 goss.yaml
-#Dockerfile
 *.md
 !README.md
