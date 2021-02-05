@@ -20,12 +20,12 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 
 ## Status
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/cloudflared/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/cloudflared/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Acloudflared)
 [![Version](https://img.shields.io/docker/v/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscontrol))
 [![Version](https://img.shields.io/docker/v/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscontrol)](https://hub.docker.com/r/jauderho/dnscontrol/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
