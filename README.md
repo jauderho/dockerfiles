@@ -25,12 +25,12 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscontrol))
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscontrol)
 [![Version](https://img.shields.io/docker/v/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscontrol)](https://hub.docker.com/r/jauderho/dnscontrol/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscrypt-proxy/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscrypt-proxy))
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscrypt-proxy/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscrypt-proxy)
 [![Version](https://img.shields.io/docker/v/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
