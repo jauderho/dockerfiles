@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # https://github.com/Yelp/dumb-init/releases
-ARG DUMB_INIT_VERSION=1.2.4
+ARG DUMB_INIT_VERSION=1.2.5
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/ytdl-org/youtube-dl/archive/
