@@ -39,7 +39,10 @@ COPY --from=build /go/bin/tailscaled /usr/local/bin
 
 WORKDIR /tailscale
 
-#RUN dnscontrol version
-RUN ["tailscale", "version"]
+#RUN ["tailscale", "version"]
+#CMD tailscale
 
-CMD tailscale
+COPY entrypoint.sh /entrypoint.sh
+
+# From https://gist.github.com/hamishforbes/2ac7ae9d7ea47cad4e3a813c9b45c10f
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
