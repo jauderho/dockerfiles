@@ -1,4 +1,4 @@
-FROM ubuntu:rolling as build
+FROM ubuntu:20.10 as build
 
 # Requirements
 # 64bit
@@ -97,7 +97,7 @@ RUN	apt-get update && \
 
 # ----------------------------------------------------------------------------
 
-FROM ubuntu:rolling
+FROM ubuntu:20.10
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
