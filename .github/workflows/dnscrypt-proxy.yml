@@ -44,7 +44,7 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ${{ env.REPOSITORY }}
-          label-custom: |
+          labels: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
 
@@ -53,7 +53,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: DockerHub login
         uses: docker/login-action@v1
