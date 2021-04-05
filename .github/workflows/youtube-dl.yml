@@ -46,7 +46,7 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v2
         with:
           images: ${{ env.REPOSITORY }}
-          label-custom: |
+          labels: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
 
