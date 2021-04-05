@@ -43,7 +43,7 @@ jobs:
         
       - name: Set Docker metadata
         id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v2
+        uses: crazy-max/ghaction-docker-meta@v2.2.0
         with:
           images: ${{ env.REPOSITORY }}
           label-custom: |
