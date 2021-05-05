@@ -10,6 +10,7 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache ca-certificates curl \
+	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	&& go build -v -ldflags="-s -w"
@@ -32,7 +33,7 @@ LABEL org.opencontainers.image.title "klutchell/dnscrypt-proxy"
 LABEL org.opencontainers.image.description "dnscrypt-proxy is a flexible DNS proxy, with support for encrypted DNS protocols"
 
 COPY --from=build /etc/passwd /etc/group /etc/
-COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/src/github.com/DNSCrypt/dnscrypt-proxy/dnscrypt-proxy /usr/local/bin/
 COPY --from=build --chown=nobody:nogroup /config /config
