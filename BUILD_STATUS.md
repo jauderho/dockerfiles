@@ -6,6 +6,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/coredns/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Acoredns)
+[![Version](https://img.shields.io/docker/v/jauderho/coredns/latest)](https://hub.docker.com/r/jauderho/coredns/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/coredns)](https://hub.docker.com/r/jauderho/coredns/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/coredns/latest)](https://hub.docker.com/r/jauderho/coredns/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/dnscontrol/latest)](https://hub.docker.com/r/jauderho/dnscontrol/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscontrol)](https://hub.docker.com/r/jauderho/dnscontrol/)
