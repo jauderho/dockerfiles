@@ -49,6 +49,7 @@ jobs:
           labels: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
 
       - name: GitHub login
         if: github.event_name != 'pull_request' 
