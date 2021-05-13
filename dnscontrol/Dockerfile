@@ -17,6 +17,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/dnscontrol.tar.gz --strip 1 -C /go/src/github.com/StackExchange/dnscontrol \
 	&& go build -v -ldflags="-s -w"
 
+# Validation check
 RUN cp dnscontrol /go/bin/dnscontrol
 RUN dnscontrol version
 
@@ -44,6 +45,6 @@ COPY --from=build /go/bin/convertzone /usr/local/bin
 WORKDIR /dns
 
 #RUN dnscontrol version
-RUN ["dnscontrol", "version"]
+RUN ["/usr/local/bin/dnscontrol", "version"]
 
 CMD dnscontrol
