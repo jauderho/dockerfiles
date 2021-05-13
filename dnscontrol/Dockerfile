@@ -26,8 +26,8 @@ RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 
 # ----------------------------------------------------------------------------
 
-#FROM alpine:latest
-FROM scratch
+FROM alpine:latest
+#FROM scratch
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
