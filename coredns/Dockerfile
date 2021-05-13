@@ -1,4 +1,3 @@
-#FROM debian:stable-slim as build
 FROM golang:alpine as build
 
 WORKDIR /go/src/github.com/coredns/coredns/
@@ -7,7 +6,6 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/coredns/coredns/archive/
 
 ENV GO111MODULE on
-#ENV CGO_ENABLED 0
 
 ADD . .
 
@@ -19,10 +17,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/coredns.tar.gz --strip 1 -C /go/src/github.com/coredns/coredns \
 	&& make
 
-#RUN apt-get update \
-#    && apt-get -uy upgrade \
-#    && apt-get -y install ca-certificates \
-#    && update-ca-certificates
+# Validation check
+RUN cp coredns /go/bin/coredns
+RUN coredns -version
 
 # ----------------------------------------------------------------------------
 
@@ -36,9 +33,8 @@ LABEL org.opencontainers.image.title "jauderho/coredns"
 LABEL org.opencontainers.image.description "CoreDNS is a DNS server"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-
 COPY --from=build /go/src/github.com/coredns/coredns/coredns /usr/local/bin/
-#ADD coredns /coredns
 
 EXPOSE 53/tcp 53/udp
+
 ENTRYPOINT ["/usr/local/bin/coredns"]
