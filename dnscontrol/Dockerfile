@@ -26,8 +26,8 @@ RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 
 # ----------------------------------------------------------------------------
 
-FROM alpine:latest
-#FROM scratch
+#FROM alpine:latest
+FROM scratch
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
@@ -36,15 +36,11 @@ LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title "jauderho/dnscontrol"
 LABEL org.opencontainers.image.description "DNSControl is an opinionated platform for seamlessly managing your DNS configuration"
 
-#RUN apk add --no-cache ca-certificates
-
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/dnscontrol /usr/local/bin
 COPY --from=build /go/bin/convertzone /usr/local/bin
 
 WORKDIR /dns
 
-#RUN dnscontrol version
-RUN ["/usr/local/bin/dnscontrol", "version"]
-
-CMD dnscontrol
+ENTRYPOINT ["/usr/local/bin/dnscontrol"]
+#CMD ["version"]
