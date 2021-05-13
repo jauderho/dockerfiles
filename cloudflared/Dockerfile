@@ -10,6 +10,7 @@ ENV GO111MODULE on
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache ca-certificates curl gcc build-base \
+	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
 	&& go build -v -ldflags="-s -w"
@@ -21,6 +22,7 @@ RUN cloudflared -v
 # ----------------------------------------------------------------------------
 
 #FROM multiarch/alpine:${ARCH}-edge
+#FROM scratch
 FROM alpine:latest
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
@@ -39,7 +41,8 @@ ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8080
 
 RUN apk add --no-cache ca-certificates bind-tools libcap \
-        && rm -rf /var/cache/apk/* \
+	&& update-ca-certificates \
+    && rm -rf /var/cache/apk/* \
 	&& adduser -S cloudflared
 
 COPY --from=build /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
@@ -51,4 +54,3 @@ HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT
 USER cloudflared
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
-
