@@ -8,6 +8,8 @@ on:
       - dnscontrol/*
       - .github/workflows/dnscontrol.yml
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
 
 env:
   BUILD_VERSION: "v3.8.1"
@@ -41,7 +43,7 @@ jobs:
         
       - name: Set Docker metadata
         id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v2
+        uses: docker/metadata-action@v3
         with:
           images: ${{ env.REPOSITORY }}
           labels: |
