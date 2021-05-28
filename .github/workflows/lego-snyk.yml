@@ -15,8 +15,9 @@ on:
       - lego
       - .github/workflows/lego.yml
       - .github/workflows/lego-snyk.yml
+  workflow_dispatch:
 env:
-  BUILD_VERSION: "2.0.45"
+  BUILD_VERSION: "v4.3.1"
   DOCKER_CLI_EXPERIMENTAL: enabled
   APP: lego
   REPOSITORY: ${{ github.actor }}/lego

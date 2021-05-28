@@ -15,6 +15,7 @@ on:
       - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy.yml
       - .github/workflows/dnscrypt-proxy-snyk.yml
+  workflow_dispatch:
 env:
   BUILD_VERSION: "2.0.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
