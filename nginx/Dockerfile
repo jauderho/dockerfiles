@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-FROM ubuntu:21.04 as build
-=======
 FROM ubuntu:hirsute-20210422 as build
->>>>>>> 8d1ab7469f0c631350835de8456417d5d381d36c
 
 # Requirements
 # 64bit
@@ -99,11 +95,7 @@ RUN	apt-get update && \
 
 # ----------------------------------------------------------------------------
 
-<<<<<<< HEAD
-FROM ubuntu:21.04
-=======
 FROM ubuntu:hirsute-20210422
->>>>>>> 8d1ab7469f0c631350835de8456417d5d381d36c
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
