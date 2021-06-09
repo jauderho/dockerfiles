@@ -1,4 +1,4 @@
-FROM ubuntu:20.10 as build
+FROM ubuntu:21.04 as build
 
 # Requirements
 # 64bit
@@ -11,25 +11,25 @@ FROM ubuntu:20.10 as build
 #	TLSv1.3
 #	Dynamic TLS records patch
 #	Server = Hai
-# Corresponding OpenSSL branch w/ TLSv1.3 draft18 support
+#	Corresponding OpenSSL branch w/ TLSv1.3 draft18 support
 # 	enable-ec_nistp_64_gcc_128 (64bit)
 # 	no-ssl2
 # 	no-ssl3
 # 	no-weak-ssl-ciphers
 # 	enable-tls1_3
-# ngx_brotli
-# Cloudflare zlib (compile will fail without SSE4.2 support)
+#	ngx_brotli
+#	Cloudflare zlib (compile will fail without SSE4.2 support)
 #	-march=native
 
 # https://hub.docker.com/r/funkygibbon/nginx/
 # https://github.com/27Bslash6/docker/blob/master/nginx/Dockerfile
 # https://www.maxcdn.com/blog/nginx-application-performance-optimization/
 
-# http://nginx.org/en/download.html
-ENV NGINX_VERSION 1.19.6
+# https://nginx.org/en/download.html
+ENV NGINX_VERSION 1.21.0
 
 # https://www.openssl.org/source
-ENV OPENSSL_VERSION 1.1.1i
+ENV OPENSSL_VERSION 1.1.1k
 
 # PCRE
 ENV PCRE_VERSION 8.44
@@ -37,9 +37,10 @@ ENV PCRE_VERSION 8.44
 # NGINX ASSEMBLY
 #RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx
 RUN	apt-get update && \
+	apt-get -y dist-upgrade && \
 	apt-get -y install wget git-core perl libc6-dev autoconf automake libtool build-essential zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgeoip-dev libgoogle-perftools-dev libperl-dev && \
 	echo "Downloading nginx v${NGINX_VERSION} ..." && \
-	wget -O - http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz --progress=bar --tries=3 | tar zxf - -C /tmp && \
+	wget -O - http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz --progress=bar --tries=3 | tar zxf - -C /tmp && \
 	echo "Downloading openssl v${OPENSSL_VERSION} ..." && \
 	wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --progress=bar --tries=3 | tar xzf  - -C /tmp && \
 	echo "Downloading pcre v${PCRE_VERSION} ..." && \
@@ -78,13 +79,10 @@ RUN	apt-get update && \
 		--with-threads  \
 		--with-stream  \
 		--with-stream_ssl_module  \
-		--with-mail  \
-		--with-mail_ssl_module  \
 		--with-file-aio  \
 		--with-http_v2_module \
 		--with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2'  \
 		--with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
-		--with-ipv6 \
 		--with-pcre-jit \
 		--with-openssl=/tmp/openssl-${OPENSSL_VERSION} && \
 	make && \
@@ -97,7 +95,7 @@ RUN	apt-get update && \
 
 # ----------------------------------------------------------------------------
 
-FROM ubuntu:20.10
+FROM ubuntu:21.04
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
@@ -127,3 +125,4 @@ RUN useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/
 RUN chmod 750 /app/bin/*.sh
 
 RUN /app/bin/init_nginx.sh
+#ENTRYPOINT ["/app/bin/init_nginx.sh"]
