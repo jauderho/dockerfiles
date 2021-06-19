@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute-20210422 as build
+FROM ubuntu:rolling as build
 
 # Requirements
 # 64bit
@@ -95,7 +95,7 @@ RUN	apt-get update && \
 
 # ----------------------------------------------------------------------------
 
-FROM ubuntu:hirsute-20210422
+FROM ubuntu:rolling
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
