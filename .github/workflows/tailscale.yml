@@ -12,7 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "v1.10.0"
+  BUILD_VERSION: "v1.10.1"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -53,7 +53,7 @@ jobs:
             
       - name: GitHub login
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1.10.0
+        uses: docker/login-action@v1.10.1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -61,7 +61,7 @@ jobs:
 
       - name: DockerHub login
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1.10.0
+        uses: docker/login-action@v1.10.1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
