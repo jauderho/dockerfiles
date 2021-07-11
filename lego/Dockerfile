@@ -7,7 +7,7 @@ ARG ARCHIVE_URL=https://github.com/go-acme/lego/archive/
 
 ENV GO111MODULE on
 
-ADD . .
+COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

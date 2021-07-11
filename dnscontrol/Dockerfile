@@ -7,7 +7,7 @@ ARG ARCHIVE_URL=https://github.com/StackExchange/dnscontrol/archive/
 
 ENV GO111MODULE on
 
-ADD . .
+COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
