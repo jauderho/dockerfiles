@@ -21,12 +21,12 @@ RUN test -n "${BUILD_VERSION}" \
 
 FROM scratch
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/lego"
-LABEL org.opencontainers.image.description "Let's Encrypt client and ACME library written in Go"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/lego"
+LABEL org.opencontainers.image.description="Let's Encrypt client and ACME library written in Go"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/go-acme/lego/dist/lego /usr/local/bin/lego

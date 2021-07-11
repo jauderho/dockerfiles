@@ -25,16 +25,16 @@ RUN coredns -version
 
 FROM scratch
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/coredns"
-LABEL org.opencontainers.image.description "CoreDNS is a DNS server"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/coredns"
+LABEL org.opencontainers.image.description="CoreDNS is a DNS server"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/coredns/coredns/coredns /usr/local/bin/
 
-EXPOSE 53/tcp 53/udp
+#EXPOSE 53/tcp 53/udp
 
 ENTRYPOINT ["/usr/local/bin/coredns"]

@@ -28,12 +28,12 @@ RUN cloudflared -v
 #FROM alpine:latest
 FROM alpine:3.14.0
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/cloudflared"
-LABEL org.opencontainers.image.description "Command line client for Cloudflare's Argo Tunnel"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/cloudflared"
+LABEL org.opencontainers.image.description="Command line client for Cloudflare's Argo Tunnel"
 
 # Default to Cloudflare and Quad9
 ENV DNS1 1.1.1.1

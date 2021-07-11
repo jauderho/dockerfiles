@@ -27,12 +27,12 @@ RUN tailscale version
 
 FROM alpine:latest
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/tailscale"
-LABEL org.opencontainers.image.description "Tailscale is Wireguard made easy"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/tailscale"
+LABEL org.opencontainers.image.description="Tailscale is Wireguard made easy"
 
 RUN apk add --no-cache ca-certificates iptables iproute2 \
 	&& update-ca-certificates \
