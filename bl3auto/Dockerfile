@@ -1,5 +1,6 @@
 FROM golang:alpine as build
 
+COPY . /go/src/github.com/jauderho/bl3auto/
 WORKDIR /go/src/github.com/jauderho/bl3auto/
 
 ARG BUILD_VERSION
@@ -7,7 +8,7 @@ ARG ARCHIVE_URL=https://github.com/jauderho/bl3auto/archive/
 
 ENV GO111MODULE on
 
-COPY . .
+#COPY . .
 
 RUN echo $GOROOT
 
@@ -19,7 +20,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto
 #	&& go build -v -ldflags="-s -w" ./cmd/bl3auto.go
 
-RUN go build -v -ldflags="-s -w" ./cmd/bl3auto.go
+RUN ls -l /go/src/github.com/jauderho/bl3auto
+
+RUN go build -v -x -ldflags="-s -w" ./cmd/bl3auto.go
+#RUN go build -v -ldflags="-s -w" 
 
 # Validation check
 RUN cp bl3auto /go/bin/bl3auto
