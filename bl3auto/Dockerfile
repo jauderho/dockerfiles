@@ -7,7 +7,7 @@ ARG ARCHIVE_URL=https://github.com/jauderho/bl3auto/archive/
 
 ENV GO111MODULE on
 
-ADD . .
+COPY . .
 
 RUN echo $GOROOT
 
@@ -28,12 +28,12 @@ RUN cp bl3auto /go/bin/bl3auto
 
 FROM scratch
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/bl3auto"
-LABEL org.opencontainers.image.description "Borderlands3 Auto SHiFT Code Redemption System"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/bl3auto"
+LABEL org.opencontainers.image.description="Borderlands3 Auto SHiFT Code Redemption System"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/jauderho/bl3auto/bl3auto /usr/local/bin/
