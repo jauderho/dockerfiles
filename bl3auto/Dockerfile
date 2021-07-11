@@ -16,8 +16,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates curl make git \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/bl3auto.tar.gz \
-	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto \
-	&& go build -v -ldflags="-s -w" ./cmd/bl3auto.go
+	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto
+#	&& go build -v -ldflags="-s -w" ./cmd/bl3auto.go
+
+RUN go build -v -ldflags="-s -w" ./cmd/bl3auto.go
 
 # Validation check
 RUN cp bl3auto /go/bin/bl3auto
