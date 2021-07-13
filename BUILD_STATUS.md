@@ -1,5 +1,5 @@
 
-## Build Status
+# Build Status
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/bl3auto/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/bl3auto/latest)](https://hub.docker.com/r/jauderho/bl3auto/)
