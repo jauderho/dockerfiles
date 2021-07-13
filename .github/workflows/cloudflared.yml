@@ -31,16 +31,12 @@ jobs:
       
       - name: Setup Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1.5.1
-
-      - name: Cache Docker layers
-        uses: actions/cache@v2.1.6
+        uses: docker/setup-buildx-action@v1
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-        
+          version: "https://github.com/docker/buildx.git#67bd6f4dc82a9cd96f34133dab3f6f7af803bb14"
+          driver-opts: image=moby/buildkit:master
+          buildkitd-flags: --debug
+      
       - name: Set Docker metadata
         id: docker_meta
         uses: docker/metadata-action@v3
@@ -73,18 +69,11 @@ jobs:
           context: ${{ github.workflow }}
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v7,linux/arm/v6
           build-args: BUILD_VERSION
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          cache-from: type=gha
+          cache-to: type=gha
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
-      
-      # Temporary cache workaround
-      # See https://github.com/docker/build-push-action/issues/252#issuecomment-744400434
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
