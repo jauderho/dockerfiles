@@ -31,6 +31,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx-distroless/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/nginx-distroless/latest)](https://hub.docker.com/r/jauderho/nginx-distroless/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx-distroless)](https://hub.docker.com/r/jauderho/nginx-distroless/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx-distroless/latest)](https://hub.docker.com/r/jauderho/nginx-distroless/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/tailscale/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atailscale)
 [![Version](https://img.shields.io/docker/v/jauderho/tailscale/latest)](https://hub.docker.com/r/jauderho/tailscale/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tailscale)](https://hub.docker.com/r/jauderho/tailscale/)
