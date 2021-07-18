@@ -45,3 +45,11 @@
 [![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
+
+---
+
+The final based image used will have varying levels of OS/arch/platform support. Additionally, some platforms may have flaky implementations resulting in randomly failing builds. To the extent possible, the widest range of platforms will be used.
+
+This command shows what the image is capable of supporting (which does differ from possible qemu support)
+
+> docker buildx imagetools inspect docker.io/library/golang:alpine
