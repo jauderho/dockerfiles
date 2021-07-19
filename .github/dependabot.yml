@@ -14,9 +14,9 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
-  ¦ directory: /cf-warp
-  ¦ schedule:
-  ¦ ¦ interval: "daily"
+    directory: /cf-warp
+    schedule:
+      interval: "daily"
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
