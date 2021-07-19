@@ -1,7 +1,7 @@
 FROM node:14-alpine3.14 AS build
 
 WORKDIR /app
-COPY package.json .
+#COPY package.json .
 RUN yarn
 COPY . .
 
