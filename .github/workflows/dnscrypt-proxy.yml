@@ -33,9 +33,7 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
         with:
-          version: v0.6.0-rc1
-          driver-opts: image=moby/buildkit:master
-          buildkitd-flags: --debug
+          version: v0.6.0
 
       - name: Set Docker metadata
         id: docker_meta
