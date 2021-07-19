@@ -6,6 +6,12 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/bl3auto)](https://hub.docker.com/r/jauderho/bl3auto/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/bl3auto/latest)](https://hub.docker.com/r/jauderho/bl3auto/)
 
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/cf-warp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/cf-warp/latest)](https://hub.docker.com/r/jauderho/cf-warp/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cf-warp)](https://hub.docker.com/r/jauderho/cf-warp/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/cf-warp/latest)](https://hub.docker.com/r/jauderho/cf-warp/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/cloudflared/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Acloudflared)
 [![Version](https://img.shields.io/docker/v/jauderho/cloudflared/latest)](https://hub.docker.com/r/jauderho/cloudflared/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)
