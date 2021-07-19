@@ -20,7 +20,7 @@ COPY . .
 # ----------------------------------------------------------------------------
 
 #FROM gcr.io/distroless/nodejs:14
-FROM nnode:16-alpine3.14
+FROM node:16-alpine3.14
 
 WORKDIR /app
 COPY --from=build /app .
