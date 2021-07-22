@@ -53,3 +53,5 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 ## Contributing
 
 Pull requests are welcome.
+
+[![GitHub Super-Linter](https://github.com/jauderho/dockerfiles/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/jauderho/dockerfiles/actions/workflows/linter.yml)
