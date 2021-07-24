@@ -1,9 +1,8 @@
 FROM ubuntu:21.04
 
-#ARG BUILD_VERSION
+ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
 
-#ENV TZ="America/Los_Angeles"
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
 
@@ -27,13 +26,7 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-#RUN python3 -m pip install --upgrade pip && \
-#    pip3 install ansible==${BUILD_VERSION} && \
-#    pip3 install mitogen ansible-lint jmespath && \
-#    pip3 install --upgrade pywinrm && \
-#    rm -rf /root/.cache/pip
-
-RUN pip3 freeze > requirements.txt && cat requirements.txt
+#RUN pip3 freeze > requirements.txt && cat requirements.txt
 
 RUN mkdir /ansible && \
     mkdir -p /etc/ansible && \
