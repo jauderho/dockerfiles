@@ -13,3 +13,9 @@ Container contents:
 * ansible-lint
 * mitogen (disabled for now pending support for ansible 2.10+)
 * pywinrm
+
+---
+
+TODO:
+* Convert to use virtualenv inside container?
+* Define alternate user?
