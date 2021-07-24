@@ -13,7 +13,7 @@ idna==3.2
 Jinja2==3.0.1
 jmespath==0.10.0
 MarkupSafe==2.0.1
-mitogen==0.2.9
+#mitogen==0.2.9
 ntlm-auth==1.5.0
 packaging==21.0
 pycparser==2.20
