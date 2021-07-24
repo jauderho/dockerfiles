@@ -1,4 +1,11 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.04
+
+#ARG BUILD_VERSION
+ARG DEBIAN_FRONTEND=noninteractive
+
+#ENV TZ="America/Los_Angeles"
+#ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+ENV PIP_NO_CACHE_DIR=1
 
 # Labels.
 LABEL maintainer="will@willhallonline.co.uk" \
@@ -12,16 +19,21 @@ LABEL maintainer="will@willhallonline.co.uk" \
     org.label-schema.vendor="Will Hall Online" \
     org.label-schema.docker.cmd="docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/id_rsa willhallonline/ansible:2.10-ubuntu-20.04"
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get install -y gnupg2 python3-pip sshpass git openssh-client && \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends gnupg2 python3-pip sshpass git openssh-client && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
-    
-RUN python3 -m pip install --upgrade pip cffi && \
-    pip install ansible==2.10.7 && \
-    pip install mitogen ansible-lint jmespath && \
-    pip install --upgrade pywinrm && \
-    rm -rf /root/.cache/pip
+
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+#RUN python3 -m pip install --upgrade pip && \
+#    pip3 install ansible==${BUILD_VERSION} && \
+#    pip3 install mitogen ansible-lint jmespath && \
+#    pip3 install --upgrade pywinrm && \
+#    rm -rf /root/.cache/pip
+
+RUN pip3 freeze > requirements.txt && cat requirements.txt
 
 RUN mkdir /ansible && \
     mkdir -p /etc/ansible && \
