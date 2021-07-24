@@ -6,6 +6,18 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for Python 
+  - package-ecosystem: "pip"
+    directory: /ansible
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /ansible
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /bl3auto
