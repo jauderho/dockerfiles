@@ -1,12 +1,13 @@
 FROM ubuntu:21.04
 
+WORKDIR /ansible
+
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
 
-# Labels.
 LABEL maintainer="will@willhallonline.co.uk" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.build-date=$BUILD_DATE \
@@ -19,25 +20,26 @@ LABEL maintainer="will@willhallonline.co.uk" \
     org.label-schema.docker.cmd="docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/id_rsa willhallonline/ansible:2.10-ubuntu-20.04"
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends gnupg2 python3-pip sshpass git openssh-client && \
+    DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends gnupg2 gcc libkrb5-dev libssl-dev python3-dev python3-pip sshpass git openssh-client && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+#COPY requirements.txt .
+#RUN pip3 install --no-cache-dir -r requirements.txt
 
-#RUN python3 -m pip install --upgrade pip && \
-#    pip3 install ansible==${BUILD_VERSION} && \
-#    pip3 install mitogen ansible-lint jmespath && \
-#    pip3 install --upgrade pywinrm && \
-#    rm -rf /root/.cache/pip
+RUN python3 -m pip install --upgrade pip && \
+    pip3 install ansible==${BUILD_VERSION} && \
+    pip3 install ansible-lint jmespath && \
+    pip3 install pywinrm[kerberos] pywinrm[credssp] && \
+    pip3 install --upgrade pywinrm && \
+    rm -rf /root/.cache/pip
 
-#RUN pip3 freeze > requirements.txt && cat requirements.txt
+RUN pip3 freeze > requirements.txt && cat requirements.txt
 
 RUN mkdir /ansible && \
     mkdir -p /etc/ansible && \
     echo 'localhost' > /etc/ansible/hosts
 
-WORKDIR /ansible
+#WORKDIR /ansible
 
 CMD [ "ansible-playbook", "--version" ]
