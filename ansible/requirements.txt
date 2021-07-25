@@ -16,12 +16,17 @@ MarkupSafe==2.0.1
 #mitogen==0.2.9
 ntlm-auth==1.5.0
 packaging==21.0
+pyasn1==0.4.8
 pycparser==2.20
 Pygments==2.9.0
+pykerberos==1.2.1
+pyOpenSSL==20.0.1
 pyparsing==2.4.7
+pyspnego==0.1.6
 pywinrm==0.4.2
 PyYAML==5.4.1
 requests==2.26.0
+requests-credssp==1.2.0
 requests-ntlm==1.1.0
 resolvelib==0.5.4
 rich==10.6.0
