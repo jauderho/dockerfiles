@@ -28,7 +28,7 @@ PyYAML==5.4.1
 requests==2.26.0
 requests-credssp==1.2.0
 requests-ntlm==1.1.0
-resolvelib==0.5.4
+resolvelib==0.7.1
 rich==10.6.0
 ruamel.yaml==0.17.10
 ruamel.yaml.clib==0.2.6
