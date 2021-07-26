@@ -12,7 +12,7 @@ Container contents:
 * ansible
 * ansible-lint
 * mitogen (disabled for now pending support for ansible 2.10+)
-* pywinrm
+* pywinrm (kerberos & credssp)
 
 ---
 
