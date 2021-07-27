@@ -24,14 +24,14 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
+# requirements.txt now generated from Pipfile
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 #RUN python3 -m pip install --upgrade pip && \
 #    pip3 install ansible==${BUILD_VERSION} && \
 #    pip3 install ansible-lint jmespath && \
-#    pip3 install pywinrm[kerberos] pywinrm[credssp] && \
-#    pip3 install --upgrade pywinrm && \
+#    pip3 install pywinrm[kerberos,credssp] && \
 #    rm -rf /root/.cache/pip
 
 #RUN pip3 freeze > requirements.txt && cat requirements.txt
