@@ -10,6 +10,7 @@ jmespath = "*"
 pywinrm = {extras = ["kerberos", "credssp"], version = "*"}
 requests-credssp = "*"
 requests-kerberos = "*"
+storops = "*"
 
 [dev-packages]
 
