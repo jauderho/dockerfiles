@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub Super-Linter](https://github.com/jauderho/dockerfiles/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/jauderho/dockerfiles/actions/workflows/linter.yml)
 
-This repo contains various Dockerfiles for images I create/forked.
+This repo contains various Dockerfiles for images I have created/forked.
 
 **Table of Contents**
 
