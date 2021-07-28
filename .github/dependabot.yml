@@ -65,10 +65,15 @@ updates:
     directory: /nginx-distroless
     schedule:
       interval: "daily"
-      
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /terraform
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /youtube-dl
     schedule:
       interval: "daily"
-

@@ -11,11 +11,11 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl make git \
+	&& apk add --no-cache ca-certificates bash curl make git \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
-	&& make build
+	&& go build -v -ldflags="-s -w"
 
 # ----------------------------------------------------------------------------
 
@@ -26,10 +26,10 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/terraform"
-LABEL org.opencontainers.image.description="Let's Encrypt client and ACME library written in Go"
+LABEL org.opencontainers.image.description="Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-COPY --from=build /go/src/github.com/hashicorp/terraform/dist/terraform /usr/local/bin/terraform
+COPY --from=build /go/src/github.com/hashicorp/terraform/terraform /usr/local/bin/terraform
 
 #RUN terraform --version
 

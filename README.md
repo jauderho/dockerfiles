@@ -51,6 +51,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/terraform/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/terraform/latest)](https://github.com/hashicorp/terraform)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/terraform)](https://hub.docker.com/r/jauderho/terraform/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/terraform/latest)](https://hub.docker.com/r/jauderho/terraform/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/tailscale/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atailscale)
 [![Version](https://img.shields.io/docker/v/jauderho/tailscale/latest)](https://github.com/tailscale/tailscale)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tailscale)](https://hub.docker.com/r/jauderho/tailscale/)
