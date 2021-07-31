@@ -26,7 +26,7 @@ RUN cloudflared -v
 #FROM multiarch/alpine:${ARCH}-edge
 #FROM scratch
 #FROM alpine:latest
-FROM alpine:3.14.0
+FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
