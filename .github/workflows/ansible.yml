@@ -63,8 +63,8 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
-          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
