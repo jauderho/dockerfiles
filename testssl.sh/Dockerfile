@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.14.1
 
 WORKDIR /home/testssl
 
@@ -14,13 +14,6 @@ RUN test -n "${BUILD_VERSION}" \
     && adduser -G testssl -g "testssl user" -s /bin/bash -D testssl \
     && ln -s /home/testssl/testssl.sh /usr/local/bin/ \
     && mkdir -m 755 -p /home/testssl/etc /home/testssl/bin
-
-RUN ls -lrt
-
-#COPY /etc/ssl/certs /etc/ssl/certs
-#COPY --chown=testssl:testssl etc/. /home/testssl/etc/
-#COPY --chown=testssl:testssl bin/. /home/testssl/bin/
-#COPY --chown=testssl:testssl testssl.sh /home/testssl/
 
 USER testssl
 
