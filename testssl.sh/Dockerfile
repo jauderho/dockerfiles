@@ -9,7 +9,7 @@ RUN test -n "${BUILD_VERSION}" \
     && apk update \
     && apk add --no-cache bash procps drill git coreutils libidn curl socat openssl xxd \
     && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/testssl.tar.gz \
-	&& tar xzf /tmp/testssl.tar.gz --strip 1 -C /home/testssl \
+    && tar xzf /tmp/testssl.tar.gz --strip 1 -C /home/testssl \
     && addgroup testssl \
     && adduser -G testssl -g "testssl user" -s /bin/bash -D testssl \
     && ln -s /home/testssl/testssl.sh /usr/local/bin/ \
