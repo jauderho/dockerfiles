@@ -10,7 +10,7 @@ ENV GO111MODULE on
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl make git \
+	&& apk add --no-cache ca-certificates curl make git gcc build-base \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/bl3auto.tar.gz \
 	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto \
