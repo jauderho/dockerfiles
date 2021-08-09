@@ -57,12 +57,12 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/terraform/latest)](https://hub.docker.com/r/jauderho/terraform/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/testssl.sh/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
-[![Version](https://img.shields.io/docker/v/jauderho/testssl.sh/latest)](https://github.com/drwetter/testssl.sh)
+[![Version](https://img.shields.io/docker/v/jauderho/testssl.sh/stable)](https://github.com/drwetter/testssl.sh)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/testssl.sh)](https://hub.docker.com/r/jauderho/testssl.sh/)
-[![Image Size](https://img.shields.io/docker/image-size/jauderho/testssl.sh/latest)](https://hub.docker.com/r/jauderho/testssl.sh/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/testssl.sh/stable)](https://hub.docker.com/r/jauderho/testssl.sh/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/youtube-dl/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ayoutube-dl)
-[![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
+[![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://github.com/ytdl-org/youtube-dl)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
 
