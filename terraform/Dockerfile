@@ -19,7 +19,8 @@ RUN test -n "${BUILD_VERSION}" \
 
 # ----------------------------------------------------------------------------
 
-FROM scratch
+#FROM scratch
+FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
