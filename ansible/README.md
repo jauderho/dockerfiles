@@ -13,9 +13,10 @@ Container contents:
 * ansible-lint
 * mitogen (disabled for now pending support for ansible 2.10+)
 * pywinrm (kerberos & credssp)
+* storops
 
 ---
 
 TODO:
-* Convert to use virtualenv inside container?
+* Convert to use virtualenv/pipenv inside container?
 * Define alternate user?
