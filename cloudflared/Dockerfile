@@ -14,7 +14,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
-	&& go build -v -ldflags="-s -w"
+	&& go build -v -ldflags="-s -w -X main.Version=${BUILD_VERSION}" \
+	&& adduser -S cloudflared \
+	&& mkdir /etc/cloudflared
 
 # Validation check
 RUN cp cloudflared /go/bin/cloudflared
@@ -43,12 +45,12 @@ ENV PORT 5454
 ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8888
 
-RUN apk add --no-cache ca-certificates bind-tools libcap \
-	&& update-ca-certificates \
-  && rm -rf /var/cache/apk/* \
-	&& adduser -S cloudflared
+#RUN apk add --no-cache ca-certificates bind-tools libcap \
+#	&& update-ca-certificates \
+#  && rm -rf /var/cache/apk/* \
+#	&& adduser -S cloudflared
 
-#COPY --from=build /etc/passwd /etc/group /etc/
+COPY --from=build /etc/passwd /etc/group /etc/cloudflared /etc/
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 #COPY --from=build /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
@@ -61,6 +63,5 @@ COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
 
 USER cloudflared
 
-#CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
-
-CMD ["/usr/local/bin/cloudflared", "proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
+ENTRYPOINT ["/usr/local/bin/cloudflared"]
+CMD ["proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
