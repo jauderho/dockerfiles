@@ -46,7 +46,7 @@ ENV METRICS 127.0.0.1:8888
 
 RUN apk add --no-cache ca-certificates bind-tools libcap \
 	&& update-ca-certificates \
-    && rm -rf /var/cache/apk/* \
+  && rm -rf /var/cache/apk/* \
 	&& adduser -S cloudflared
 
 COPY --from=build /etc/passwd /etc/group /etc/
