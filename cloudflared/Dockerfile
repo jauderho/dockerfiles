@@ -25,7 +25,6 @@ RUN cloudflared -v
 
 #FROM multiarch/alpine:${ARCH}-edge
 #FROM scratch
-#FROM alpine:latest
 FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
@@ -49,7 +48,7 @@ RUN apk add --no-cache ca-certificates bind-tools libcap \
   && rm -rf /var/cache/apk/* \
 	&& adduser -S cloudflared
 
-COPY --from=build /etc/passwd /etc/group /etc/
+#COPY --from=build /etc/passwd /etc/group /etc/
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 #COPY --from=build /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
@@ -62,4 +61,6 @@ COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
 
 USER cloudflared
 
-CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
+#CMD ["/bin/sh", "-c", "/usr/local/bin/cloudflared proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
+
+CMD ["/usr/local/bin/cloudflared", "proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
