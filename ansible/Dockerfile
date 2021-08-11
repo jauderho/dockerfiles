@@ -36,6 +36,9 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 #RUN pip3 freeze > requirements.txt && cat requirements.txt
 
+# Maybe it is possible to remove -dev packages post-installation. More testing needed
+#RUN apt-get purge libkrb5-dev libssl-dev python3-dev
+
 #RUN mkdir /ansible && \
 RUN mkdir -p /etc/ansible && \
     echo 'localhost' > /etc/ansible/hosts
