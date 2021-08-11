@@ -11,6 +11,7 @@ pywinrm = {extras = ["kerberos", "credssp"], version = "*"}
 requests-credssp = "*"
 requests-kerberos = "*"
 storops = "*"
+wheel = "*"
 
 [dev-packages]
 
