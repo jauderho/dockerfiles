@@ -21,7 +21,7 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 
 ## Status
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/ansible/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/ansible/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Aansible)
 [![Version](https://img.shields.io/docker/v/jauderho/ansible/latest)](https://github.com/ansible/ansible/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ansible)](https://hub.docker.com/r/jauderho/ansible/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ansible/latest)](https://hub.docker.com/r/jauderho/ansible/)
@@ -56,12 +56,12 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tailscale)](https://hub.docker.com/r/jauderho/tailscale/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/tailscale/latest)](https://hub.docker.com/r/jauderho/tailscale/)
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/terraform/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/terraform/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Aterraform)
 [![Version](https://img.shields.io/docker/v/jauderho/terraform/latest)](https://github.com/hashicorp/terraform)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/terraform)](https://hub.docker.com/r/jauderho/terraform/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/terraform/latest)](https://hub.docker.com/r/jauderho/terraform/)
 
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/testssl.sh/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/testssl.sh/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atestssl.sh)
 [![Version](https://img.shields.io/docker/v/jauderho/testssl.sh/stable)](https://github.com/drwetter/testssl.sh)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/testssl.sh)](https://hub.docker.com/r/jauderho/testssl.sh/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/testssl.sh/stable)](https://hub.docker.com/r/jauderho/testssl.sh/)
