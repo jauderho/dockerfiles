@@ -44,7 +44,7 @@ resolvelib==0.5.4
 retryz==0.1.9
 rich==10.7.0; python_version >= '3.6' and python_version < '4.0'
 ruamel.yaml.clib==0.2.6; python_version < '3.10' and platform_python_implementation == 'CPython'
-ruamel.yaml==0.17.11; python_version >= '3.7'
+ruamel.yaml==0.17.13; python_version >= '3.7'
 six==1.16.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 storops==1.2.10
 tenacity==8.0.1; python_version >= '3.6'
