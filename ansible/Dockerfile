@@ -1,4 +1,5 @@
-FROM ubuntu:21.04
+#FROM ubuntu:21.04
+FROM python:3.9-slim
 
 WORKDIR /ansible
 
