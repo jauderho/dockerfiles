@@ -1,12 +1,22 @@
-FROM python:3.9-slim
+FROM ubuntu:21.04
+#FROM python:3.9-slim
 #FROM python:3.9-alpine
 
 ARG BUILD_VERSION
+ARG DEBIAN_FRONTEND=noninteractive
 
 COPY requirements.txt . 
 
+RUN apt-get update && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip && \
+	pip3 install --no-cache-dir -r requirements.txt && \
+	apt-get autoremove -y --purge && \
+	rm -rf /var/lib/apt/lists/* && \
+	apt-get clean
+
+#	apt-get purge -y python3-dev && \
 #RUN pip install sslyze==${BUILD_VERSION}
-RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip3 install --no-cache-dir -r requirements.txt
 
 ENTRYPOINT ["sslyze"]
 CMD ["-h"]
