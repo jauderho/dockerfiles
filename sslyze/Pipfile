@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 sslyze = "*"
+wheel = "*"
 
 [dev-packages]
 mypy = "*"
