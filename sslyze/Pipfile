@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sslyze = "*"
+
+[dev-packages]
+mypy = "*"
+flake8 = "*"
+invoke = "*"
+pytest = "<6.0.0"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+twine = "*"
+sphinx-autodoc-typehints = "*"
+black = "==19.10b0"
+pytest-cov = "*"
+faker = "*"
+
+[requires]
+python_version = "3.9"
