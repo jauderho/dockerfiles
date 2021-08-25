@@ -64,4 +64,4 @@ COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
 USER cloudflared
 
 ENTRYPOINT ["/usr/local/bin/cloudflared"]
-CMD ["proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2}"]
+CMD ["proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2} --no-autoupdate"]
