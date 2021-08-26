@@ -106,3 +106,9 @@ updates:
     directory: /youtube-dl
     schedule:
       interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /yt-dlp
+    schedule:
+      interval: "daily"

@@ -71,6 +71,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/youtube-dl/latest)](https://hub.docker.com/r/jauderho/youtube-dl/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/yt-dlp/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ayt-dlp)
+[![Version](https://img.shields.io/docker/v/jauderho/yt-dlp/latest)](https://github.com/yt-dlp/yt-dlp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/yt-dlp)](https://hub.docker.com/r/jauderho/yt-dlp/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/yt-dlp/latest)](https://hub.docker.com/r/jauderho/yt-dlp/)
+
 ---
 
 The final based image used will have varying levels of OS/arch/platform support. Additionally, some platforms may have flaky implementations resulting in randomly failing builds. To the extent possible, the widest range of platforms will be used.
