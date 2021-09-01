@@ -15,8 +15,14 @@ RUN test -n "${BUILD_VERSION}" \
     && ln -s /home/testssl/testssl.sh /usr/local/bin/ \
     && mkdir -m 755 -p /home/testssl/etc /home/testssl/bin
 
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/testssl.sh"
+LABEL org.opencontainers.image.description="testssl.sh is a free command line tool which checks a server on any port for TLS/SSL ciphers"
+
 USER testssl
 
 ENTRYPOINT ["testssl.sh"]
-
 CMD ["--help"]

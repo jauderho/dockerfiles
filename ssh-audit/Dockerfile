@@ -15,6 +15,13 @@ RUN test -n "${BUILD_VERSION}" \
     && addgroup ssh-audit \
     && adduser -G ssh-audit -g "ssh-audit user" -s /bin/bash -D ssh-audit 
 
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/ssh-audit"
+LABEL org.opencontainers.image.description="ssh-audit is a tool for ssh server & client configuration auditing"
+
 EXPOSE 2222
 USER ssh-audit
 
