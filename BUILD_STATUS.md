@@ -36,6 +36,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/gobgp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/gobgp/latest)](https://github.com/osrg/gobgp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gobgp)](https://hub.docker.com/r/jauderho/gobgp/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/gobgp/latest)](https://hub.docker.com/r/jauderho/gobgp/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/lego/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Alego)
 [![Version](https://img.shields.io/docker/v/jauderho/lego/latest)](https://github.com/go-acme/lego)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
