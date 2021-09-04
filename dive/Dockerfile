@@ -34,6 +34,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dive"
 LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering way to shrink your image size"
 
+RUN echo $(uname -m)
+RUN echo ${DOCKER_CLI_VERSION}
+
 RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m)/docker-${DOCKER_CLI_VERSION}.tgz | \
 	tar -xzf - docker/docker --strip-component=1 && \
 	mv docker /usr/local/bin
