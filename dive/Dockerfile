@@ -30,7 +30,7 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dive"
-LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering way to shrink your image size"
+LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering ways to shrink your image size"
 
 #RUN echo $(uname -m)
 #RUN echo ${DOCKER_CLI_VERSION}
@@ -42,7 +42,7 @@ RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m)/docker-
 COPY --from=build /go/src/github.com/wagoodman/dive/dive-bin /usr/local/bin/dive
 COPY --from=build --chown=nobody:nogroup /config /config
 
-USER nobody
+#USER docker
 
 ENTRYPOINT ["/usr/local/bin/dive"]
 
