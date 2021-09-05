@@ -93,7 +93,7 @@
 
 ---
 
-The final based image used will have varying levels of OS/arch/platform support. Additionally, some platforms may have flaky implementations resulting in randomly failing builds. To the extent possible, the widest range of platforms will be used.
+The final base image used will have varying levels of OS/arch/platform support. Additionally, some platforms may have flaky implementations resulting in randomly failing builds. To the extent possible, the widest range of platforms will be used.
 
 This command shows what the image is capable of supporting (which does differ from possible qemu support)
 
