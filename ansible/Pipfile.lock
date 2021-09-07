@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0c87abb44cd2f1c88549cc28f8dd7215d3dcd097a52e84753db745515bc2dc79"
+            "sha256": "b0896a9af2038eab357545fd465ddc4bd2f3d3a1d54d822d7b8e4898a32efd2c"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.9"
+            "python_version": "3"
         },
         "sources": [
             {
@@ -272,10 +272,10 @@
         },
         "persist-queue": {
             "hashes": [
-                "sha256:b7a6a6e642bed23076f03d15d08d87aebad32029f3e702cc10f5b86d6fbd0cb7",
-                "sha256:e73dd62545d37e519247d96368bfa5c510fde66999a338d6d2d44790dc10f89b"
+                "sha256:2571f1c235daf5ebda7bd826de010cc1a867fc14ae6c223f86199f3a0c96c09c",
+                "sha256:e85452d204536fdfc707a72290008dca376b636088a9d5de5eab52cdfde06142"
             ],
-            "version": "==0.6.0"
+            "version": "==0.7.0"
         },
         "pyasn1": {
             "hashes": [
@@ -458,7 +458,7 @@
                 "sha256:2c84d9b3459c16bf413fe0f9644c7ae1791971e0bb944dfae56e7c7634b187ab",
                 "sha256:ba285f1c519519490034284e6a9d2e6e3f16dc7690f2de3d9140737d81304d22"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==10.9.0"
         },
         "ruamel.yaml": {
@@ -525,7 +525,7 @@
                 "sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4",
                 "sha256:f57b4c16c62fa2760b7e3d97c35b255512fb6b59a259730f36ba32ce9f8e342f"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "version": "==1.26.6"
         },
         "wcmatch": {
