@@ -71,7 +71,7 @@ RUN \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre-${PCRE_VERSION} \
-    --with-zlib=/tmp/zlibPCRE_VERSION} \
+    --with-zlib=/tmp/zlib \
     && \
   make && \
   make install && \
