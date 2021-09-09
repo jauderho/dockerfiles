@@ -21,9 +21,9 @@ RUN \
   runtime_pkgs="ca-certificates openssl pcre zlib tzdata git" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   cd /tmp && \
-	wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
-	wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
-	wget -O - https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
+  wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   cd /tmp/nginx-${BUILD_VERSION} && \
   ./configure \
     --prefix=/etc/nginx \
@@ -53,8 +53,8 @@ RUN \
     --with-http_secure_link_module \
     --with-http_stub_status_module \
     --with-http_auth_request_module \
-		--without-http_autoindex_module \
-		--without-http_ssi_module \
+    --without-http_autoindex_module \
+    --without-http_ssi_module \
     --with-file-aio \
     --with-threads \
     --with-stream \
@@ -62,11 +62,11 @@ RUN \
     --with-stream_realip_module \
     --with-http_slice_module \
     --with-http_v2_module \
-		--with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2'  \
-		--with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
-		--with-pcre-jit \
-		--with-pcre=/tmp/pcre-${PCRE_VERSION} \
-		--with-openssl=/tmp/openssl-${OPENSSL_VERSION} && \
+    --with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2'  \
+    --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
+    --with-pcre-jit \
+    --with-pcre=/tmp/pcre-${PCRE_VERSION} \
+    --with-openssl=/tmp/openssl-${OPENSSL_VERSION} && \
   make && \
   make install && \
   sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
