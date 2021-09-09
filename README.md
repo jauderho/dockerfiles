@@ -66,6 +66,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/nginx/latest)](https://github.com/nginx/nginx)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx)](https://hub.docker.com/r/jauderho/nginx/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx/latest)](https://hub.docker.com/r/jauderho/nginx/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/ssh-audit/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Assh-audit)
 [![Version](https://img.shields.io/docker/v/jauderho/ssh-audit/latest)](https://github.com/jtesta/ssh-audit)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ssh-audit)](https://hub.docker.com/r/jauderho/ssh-audit/)
