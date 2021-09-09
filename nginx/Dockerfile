@@ -1,4 +1,4 @@
-FROM ubuntu:21.04 AS build
+FROM ubuntu:21.10 AS build
 
 COPY . /app/
 
@@ -102,7 +102,7 @@ RUN	apt-get update && \
 
 # ----------------------------------------------------------------------------
 
-FROM ubuntu:21.04
+FROM ubuntu:21.10
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
