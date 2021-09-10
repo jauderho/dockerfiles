@@ -64,6 +64,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
+          file: ${{ github.workflow }}/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/s390x
           #platforms: linux/amd64
           build-args: BUILD_VERSION
@@ -92,8 +93,8 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.title=${{ env.REPOSITORY }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_STABLE_VERSION }}
             docker.io/${{ env.REPOSITORY }}:stable
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_STABLE_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:stable
 
