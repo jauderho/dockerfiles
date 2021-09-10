@@ -1,4 +1,4 @@
-FROM nginx:1.21.1 AS base
+FROM nginx:1.21.3 AS base
 
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 ARG TIME_ZONE
