@@ -16,7 +16,7 @@ ARG ZLIB_URL=https://github.com/cloudflare/zlib.git
 ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
 
 RUN \
-  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld" && \
+  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache" && \
   runtime_pkgs="ca-certificates openssl pcre zlib tzdata git" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   cd /tmp && \
@@ -75,7 +75,8 @@ RUN \
     --with-pcre=/tmp/pcre-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  make && \
+  PATH="/usr/lib/ccache:${PATH}" make && \
+  ccache -s && \
   make install && \
   sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
   addgroup -S nginx && \
