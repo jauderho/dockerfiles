@@ -68,15 +68,17 @@ RUN \
     --with-http_slice_module \
     --with-http_v2_module \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=lld -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2' \
-    --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
+    --with-cc-opt='-fuse-ld=lld -O3 -march=native -m64 -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Werror -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+    --with-ld-opt='-lrt -O3 -march=native -m64 -flto -ffat-lto-objects -fPIE -pie -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
+    --with-openssl-opt="enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
   PATH="/usr/lib/ccache:${PATH}" make && \
   ccache -s && \
+  strip objs/nginx && \
   make install && \
   sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
   addgroup -S nginx && \

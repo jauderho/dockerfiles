@@ -80,12 +80,8 @@ jobs:
             BUILD_VERSION
             OPENSSL_VERSION
             PCRE_VERSION
-          cache-from: |
-            type=gha,scope=${{ github.workflow }}
-#            type=local,src=~/.cache/ccache
-          cache-to: |
-            type=gha,scope=${{ github.workflow }},mode=max
-#            type=local,dest=~/.cache/ccache-cache-new,mode=max
+          cache-from: type=gha,scope=${{ github.workflow }}
+          cache-to: type=gha,scope=${{ github.workflow }},mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
