@@ -13,6 +13,7 @@ on:
 
 env:
   BUILD_VERSION: "1.21.3"
+  BUILD_STABLE_VERSION: "1.20.1"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -58,12 +59,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
-      - name: Build and push
+      - name: Build and push (latest)
         uses: docker/build-push-action@v2.7.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/s390x
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
@@ -74,3 +75,25 @@ jobs:
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
+
+      - name: Build and push (stable)
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          file: ${{ github.workflow }}/Dockerfile.stable
+          platforms: linux/amd64,linux/arm64,linux/s390x
+          #platforms: linux/amd64
+          build-args: BUILD_STABLE_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}
+          labels: |
+            org.opencontainers.image.version=${{ env.BUILD_STABLE_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:stable
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:stable
+
