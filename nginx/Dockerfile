@@ -24,6 +24,8 @@ RUN \
   wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   wget -O - https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   git clone --depth 1 ${ZLIB_URL} /tmp/zlib && \
+  cd /tmp/zlib && \
+  ./configure && \
   git clone --depth 1 ${BROTLI_URL} /tmp/ngx_brotli && \
   cd /tmp/ngx_brotli && \
   git submodule update --init && \
@@ -66,11 +68,12 @@ RUN \
     --with-http_slice_module \
     --with-http_v2_module \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=lld -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2'  \
+    --with-cc-opt='-fuse-ld=lld -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2' \
     --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre-${PCRE_VERSION} \
+    --with-zlib=/tmp/zlib \
     && \
   make && \
   make install && \
