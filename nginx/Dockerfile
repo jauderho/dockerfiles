@@ -14,10 +14,11 @@ ARG OPENSSL_VERSION
 ARG PCRE_VERSION
 ARG ZLIB_URL=https://github.com/cloudflare/zlib.git
 ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
+ARG PATCHES_URL=https://github.com/jauderho/patches.git
 
 RUN \
-  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache" && \
-  runtime_pkgs="ca-certificates openssl pcre zlib tzdata git" && \
+  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl pcre zlib git" && \
+  runtime_pkgs="ca-certificates tzdata" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   cd /tmp && \
   wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
@@ -29,7 +30,12 @@ RUN \
   git clone --depth 1 ${BROTLI_URL} /tmp/ngx_brotli && \
   cd /tmp/ngx_brotli && \
   git submodule update --init && \
+  git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
+  echo "Patching..." && \
+  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1015008.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.15.3.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx-1.15.4-reprioritize-chacha-openssl-1.1.1.patch && \
   ./configure \
     --prefix=/etc/nginx \
     --sbin-path=/usr/sbin/nginx \
@@ -47,29 +53,21 @@ RUN \
     --group=nginx \
     --with-http_ssl_module \
     --with-http_realip_module \
-    --with-http_addition_module \
-    --with-http_sub_module \
-    --with-http_dav_module \
-    --with-http_flv_module \
-    --with-http_mp4_module \
+    --with-http_v2_module \
+    --with-http_v2_hpack_enc \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
-    --with-http_random_index_module \
     --with-http_secure_link_module \
+    --with-http_slice_module \
     --with-http_stub_status_module \
     --with-http_auth_request_module \
     --without-http_autoindex_module \
     --without-http_ssi_module \
     --with-file-aio \
     --with-threads \
-    --with-stream \
-    --with-stream_ssl_module \
-    --with-stream_realip_module \
-    --with-http_slice_module \
-    --with-http_v2_module \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=lld -O3 -march=native -m64 -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Werror -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
-    --with-ld-opt='-lrt -O3 -march=native -m64 -flto -ffat-lto-objects -fPIE -pie -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' \
+    --with-cc-opt='-fuse-ld=lld -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+    --with-ld-opt='-O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-openssl-opt="enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
@@ -87,6 +85,8 @@ RUN \
   apk del ${build_pkgs} && \
   rm -rf /var/cache/apk/*
 
+#    --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
+
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
@@ -102,3 +102,11 @@ VOLUME ["/var/cache/nginx"]
 EXPOSE 80 443
 
 ENTRYPOINT ["nginx"]
+
+# Notes
+#
+# Use the following to enable streaming
+#    --with-stream \
+#    --with-stream_ssl_module \
+#    --with-stream_ssl_preread_module \
+#    --with-stream_realip_module \
