@@ -21,8 +21,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-#FROM scratch
-FROM alpine:3.14
+FROM scratch
+#FROM alpine:3.14
 
 ARG DOCKER_CLI_VERSION
 
@@ -34,7 +34,7 @@ LABEL org.opencontainers.image.title="jauderho/miller"
 LABEL org.opencontainers.image.description="Miller is like awk, sed, cut, join, and sort for data formats such as CSV, TSV, tabular JSON and positionally-indexed"
 
 COPY --from=build /go/src/github.com/johnkerl/miller/go/mlr /usr/local/bin/mlr
-COPY --from=build --chown=nobody:nogroup /config /config
+COPY --from=build /config /config
 
 #USER docker
 
