@@ -434,11 +434,11 @@
         },
         "keyring": {
             "hashes": [
-                "sha256:b32397fd7e7063f8dd74a26db910c9862fc2109285fa16e3b5208bcb42a3e579",
-                "sha256:b7e0156667f5dcc73c1f63a518005cd18a4eb23fe77321194fefcc03748b21a4"
+                "sha256:6334aee6073db2fb1f30892697b1730105b5e9a77ce7e61fca6b435225493efe",
+                "sha256:bd2145a237ed70c8ce72978b497619ddfcae640b6dcf494402d5143e37755c6e"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==23.1.0"
+            "version": "==23.2.1"
         },
         "markupsafe": {
             "hashes": [
@@ -752,11 +752,11 @@
         },
         "sphinx": {
             "hashes": [
-                "sha256:3092d929cd807926d846018f2ace47ba2f3b671b309c7a89cd3306e80c826b13",
-                "sha256:46d52c6cee13fec44744b8c01ed692c18a640f6910a725cbb938bc36e8d64544"
+                "sha256:94078db9184491e15bce0a56d9186e0aec95f16ac20b12d00e06d4e36f1058a6",
+                "sha256:98a535c62a4fcfcc362528592f69b26f7caec587d32cd55688db580be0287ae0"
             ],
             "index": "pypi",
-            "version": "==4.1.2"
+            "version": "==4.2.0"
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
