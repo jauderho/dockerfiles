@@ -97,9 +97,9 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/terraform/latest)](https://hub.docker.com/r/jauderho/terraform/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/testssl.sh/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atestssl.sh)
-[![Version](https://img.shields.io/docker/v/jauderho/testssl.sh/stable)](https://github.com/drwetter/testssl.sh)
+[![Version](https://img.shields.io/docker/v/jauderho/testssl.sh/latest)](https://github.com/drwetter/testssl.sh)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/testssl.sh)](https://hub.docker.com/r/jauderho/testssl.sh/)
-[![Image Size](https://img.shields.io/docker/image-size/jauderho/testssl.sh/stable)](https://hub.docker.com/r/jauderho/testssl.sh/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/testssl.sh/latest)](https://hub.docker.com/r/jauderho/testssl.sh/)
 
 ## Contributing
 
