@@ -35,7 +35,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/tailscale"
 LABEL org.opencontainers.image.description="Tailscale is Wireguard made easy"
 
-RUN apk add --no-cache ca-certificates iptables iproute2 \
+RUN apk add --no-cache ca-certificates iptables ip6tables iproute2 \
 	&& update-ca-certificates \
     && rm -rf /var/cache/apk/*
 
