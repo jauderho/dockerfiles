@@ -13,9 +13,9 @@ ENV PIP_NO_CACHE_DIR=1
 COPY requirements.txt .
 
 RUN apt-get update && \
-	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends cargo gnupg2 gcc libkrb5-dev libssl-dev python3-dev python3-pip sshpass git openssh-client && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends cargo gcc libkrb5-dev libssl-dev python3-dev python3-pip sshpass git openssh-client gnupg2 && \
 	pip3 install --no-cache-dir -r requirements.txt && \
-	apt-get purge -y cargo libkrb5-dev libssl-dev python3-dev && \
+	apt-get purge -y cargo gcc libkrb5-dev libssl-dev python3-dev && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean
