@@ -58,7 +58,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
-      - name: Build and push
+      - name: Build and push (Alpine)
         uses: docker/build-push-action@v2.7.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
@@ -66,11 +66,13 @@ jobs:
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}
+          cache-from: type=gha, scope=${{ github.workflow }}-alpine
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             ghcr.io/${{ env.REPOSITORY }}:latest
