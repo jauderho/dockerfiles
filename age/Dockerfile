@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/age.tar.gz \
 	&& tar xzf /tmp/age.tar.gz --strip 1 -C /go/src/github.com/FiloSottile/age \
-	&& go build -o . -v -ldflags="-s -w" filippo.io/age/cmd/... 
+	&& go build -o . -v -ldflags="-s -w -X main.Version=${BUILD_VERSION}" filippo.io/age/cmd/... 
 
 WORKDIR /config
 
@@ -23,8 +23,6 @@ WORKDIR /config
 
 FROM scratch
 #FROM alpine:3.14
-
-ARG DOCKER_CLI_VERSION
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -38,8 +36,6 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/FiloSottile/age/age /usr/local/bin/age
 COPY --from=build /go/src/github.com/FiloSottile/age/age-keygen /usr/local/bin/age-keygen
 COPY --from=build /config /config
-
-#USER docker
 
 ENTRYPOINT ["/usr/local/bin/age"]
 
