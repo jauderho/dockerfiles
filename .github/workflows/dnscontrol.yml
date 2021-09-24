@@ -70,9 +70,9 @@ jobs:
           cache-to: type=gha, scope=${{ github.workflow }}-alpine
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             docker.io/${{ env.REPOSITORY }}:latest
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
             ghcr.io/${{ env.REPOSITORY }}:latest
