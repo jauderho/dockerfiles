@@ -71,6 +71,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/miller)](https://hub.docker.com/r/jauderho/miller/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/miller/latest)](https://hub.docker.com/r/jauderho/miller/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/nebula/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/nebula/latest)](https://github.com/slackhq/age)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/nebula/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/nebula/latest)](https://hub.docker.com/r/jauderho/nebula/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/nginx/latest)](https://github.com/nginx/nginx)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx)](https://hub.docker.com/r/jauderho/nginx/)
