@@ -38,6 +38,6 @@ LABEL org.opencontainers.image.title="jauderho/ansible"
 LABEL org.opencontainers.image.description="Ansible is a radically simple IT automation platform"
 
 RUN mkdir -p /etc/ansible && \
-    echo 'localhost' > /etc/ansible/hosts
+  echo 'localhost' > /etc/ansible/hosts
 
 CMD [ "ansible-playbook", "--version" ]
