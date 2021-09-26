@@ -3,7 +3,6 @@ FROM alpine:3.14
 WORKDIR /ansible
 
 ARG BUILD_VERSION
-#ARG DEBIAN_FRONTEND=noninteractive
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
@@ -12,17 +11,21 @@ ENV PIP_NO_CACHE_DIR=1
 # pipenv lock -r > requirements.txt
 COPY requirements.txt .
 
+# workaround needed to prevent conflicts for six and packaging
 RUN \
   apk update && \
   build_pkgs="cargo build-base libffi-dev krb5-dev openssl-dev python3-dev py3-pip" && \
   runtime_pkgs="sshpass git openssh-client gnupg" && \
-  apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
+  apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
+  apk --no-cache add ${runtime_pkgs} && \
 	ln -s /usr/bin/python3 /usr/bin/python && \
 	pip3 install --no-cache-dir wheel && \
 	pip3 install --no-cache-dir six packaging --ignore-installed && \
 	pip3 install --no-cache-dir -r requirements.txt  && \
-	apk del ${build_pkgs} && \
-	rm -rf /var/cache/apk/*
+	apk del build-dependencies && \
+	rm -rf /var/cache/apk/* && \
+	rm -rf /root/.cache/pip && \
+	rm -rf /root/.cargo
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -32,6 +35,6 @@ LABEL org.opencontainers.image.title="jauderho/ansible"
 LABEL org.opencontainers.image.description="Ansible is a radically simple IT automation platform"
 
 RUN mkdir -p /etc/ansible && \
-    echo 'localhost' > /etc/ansible/hosts
+  echo 'localhost' > /etc/ansible/hosts
 
 CMD [ "ansible-playbook", "--version" ]
