@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 sslyze = "*"
+nassl = "*"
 wheel = "*"
 
 [dev-packages]
@@ -21,4 +22,4 @@ pytest-cov = "*"
 faker = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3"
