@@ -41,6 +41,7 @@ COPY --from=build --chown=nobody:nogroup /config /config
 EXPOSE 179
 USER nobody
 
-ENTRYPOINT ["/usr/local/bin/gobgpd"]
-CMD ["-f", "/config/gobgp.toml"]
+#ENTRYPOINT ["/usr/local/bin/gobgpd"]
+#CMD ["-f", "/config/gobgp.toml"]
 
+CMD ["/usr/local/bin/gobgpd", "-f", "/config/gobgp.toml"]
