@@ -18,6 +18,8 @@ RUN apt-get update && \
 	apt-get purge -y cargo gcc libkrb5-dev libssl-dev python3-dev && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /root/.cache/pip && \
+	rm -rf /root/.cargo && \
 	apt-get clean
 
 #RUN pip3 install --no-cache-dir -r requirements.txt
