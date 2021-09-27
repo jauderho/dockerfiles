@@ -14,18 +14,20 @@ COPY requirements.txt .
 # workaround needed to prevent conflicts for six and packaging
 RUN \
   apk update && \
-  build_pkgs="cargo build-base libffi-dev krb5-dev openssl-dev python3-dev py3-pip" && \
-  runtime_pkgs="sshpass git openssh-client gnupg" && \
+  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
+  runtime_pkgs="ca-certificates openssl openssh-client" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
-	ln -s /usr/bin/python3 /usr/bin/python && \
-	pip3 install --no-cache-dir wheel && \
-	pip3 install --no-cache-dir six packaging --ignore-installed && \
-	pip3 install --no-cache-dir -r requirements.txt  && \
-	apk del build-dependencies && \
-	rm -rf /var/cache/apk/* && \
-	rm -rf /root/.cache/pip && \
-	rm -rf /root/.cargo
+  ln -s /usr/bin/python3 /usr/bin/python && \
+  pip3 install --no-cache-dir --upgrade wheel && \
+  pip3 install --no-cache-dir --upgrade cryptography cffi certifi && \
+  pip3 install --no-cache-dir ansible==${BUILD_VERSION} && \
+  pip3 install --no-cache-dir ansible-lint && \
+  pip3 install --no-cache-dir --upgrade pywinrm && \
+  apk del build-dependencies && \
+  rm -rf /var/cache/apk/* && \
+  rm -rf /root/.cache/pip && \
+  rm -rf /root/.cargo
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -38,3 +40,14 @@ RUN mkdir -p /etc/ansible && \
   echo 'localhost' > /etc/ansible/hosts
 
 CMD [ "ansible-playbook", "--version" ]
+
+#	pip3 install --no-cache-dir six packaging --ignore-installed && \
+# pip3 install --no-cache-dir --upgrade pywinrm[credssp,kerberos] && \
+#  apk update && \
+#  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
+#  runtime_pkgs="ca-certificates sshpass git openssh-client" && \
+#  pip3 install --no-cache-dir ansible==${BUILD_VERSION} && \
+#  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip musl-dev gcc libressl-dev" && \
+#  runtime_pkgs="ca-certificates sshpass git openssh-client sudo python3 openssl" && \
+#  pip3 install --no-cache-dir ansible-core==2.11.5 && \
+
