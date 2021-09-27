@@ -19,6 +19,9 @@ env:
 jobs:
 
   deploy:
+    strategy:
+      matrix:
+        distro: [ubuntu, alpine]
     runs-on: ubuntu-20.04
 
     steps:
@@ -59,6 +62,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
       - name: Build and push (Ubuntu)
+        if: ${{ matrix.distro == 'ubuntu' }}
         uses: docker/build-push-action@v2.7.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
@@ -80,6 +84,7 @@ jobs:
             ghcr.io/${{ env.REPOSITORY }}:latest
 
       - name: Build and push (Alpine)
+        if: ${{ matrix.distro == 'alpine' }}
         uses: docker/build-push-action@v2.7.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
