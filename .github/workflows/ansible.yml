@@ -20,6 +20,7 @@ jobs:
 
   deploy:
     strategy:
+      fail-fast: false
       matrix:
         distro: [ubuntu, alpine]
     runs-on: ubuntu-20.04
@@ -72,15 +73,15 @@ jobs:
           #platforms: linux/amd64,linux/arm64
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}-ubuntu
-          cache-to: type=gha, scope=${{ github.workflow }}-ubuntu
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-ubuntu
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-ubuntu
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
             ghcr.io/${{ env.REPOSITORY }}:latest
 
       - name: Build and push (Alpine)
@@ -89,15 +90,15 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          file: ${{ github.workflow }}/Dockerfile.alpine
+          file: ${{ github.workflow }}/Dockerfile.${{ matrix.distro }}
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
-          #platforms: linux/amd64,linux/arm64
-          platforms: linux/amd64,linux/arm64,linux/ppc64le
+          platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}-alpine
-          cache-to: type=gha, scope=${{ github.workflow }}-alpine
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
 
