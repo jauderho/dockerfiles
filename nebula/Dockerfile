@@ -38,5 +38,5 @@ COPY --from=build /go/src/github.com/slackhq/nebula/nebula /usr/local/bin/nebula
 COPY --from=build /go/src/github.com/slackhq/nebula/nebula-cert /usr/local/bin/nebula-cert
 COPY --from=build /config /config
 
-ENTRYPOINT ["/usr/local/bin/nebula"]
+CMD ["/usr/local/bin/nebula"]
 
