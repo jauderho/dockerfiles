@@ -22,7 +22,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [ubuntu, alpine]
+        #distro: [ubuntu, alpine]
+        distro: [ubuntu]
     runs-on: ubuntu-20.04
 
     steps:
