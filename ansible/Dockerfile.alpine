@@ -41,6 +41,7 @@ RUN mkdir -p /etc/ansible && \
 
 CMD [ "ansible-playbook", "--version" ]
 
+# scratch space
 #	pip3 install --no-cache-dir six packaging --ignore-installed && \
 # pip3 install --no-cache-dir --upgrade pywinrm[credssp,kerberos] && \
 #  apk update && \

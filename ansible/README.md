@@ -4,16 +4,24 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ansible)](https://hub.docker.com/r/jauderho/ansible/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ansible/latest)](https://hub.docker.com/r/jauderho/ansible/)
 
-This is an ansible build forked from https://github.com/willhallonline/docker-ansible/blob/master/ansible210/ubuntu2004/Dockerfile
+This is an ansible build forked from:
+* *https://github.com/willhallonline/docker-ansible/blob/master/ansible210/ubuntu2004/Dockerfile
+* https://github.com/willhallonline/docker-ansible/blob/master/ansible211/alpine314/Dockerfile
 
 ---
 
-Container contents:
+Container contents of Ubuntu image:
 * ansible
 * ansible-lint
-* mitogen (disabled for now pending support for ansible 2.10+)
-* pywinrm (kerberos & credssp)
+* pywinrm
 * storops
+
+---
+
+Container contents of Alpine image:
+* ansible
+* ansible-lint
+* pywinrm
 
 ---
 

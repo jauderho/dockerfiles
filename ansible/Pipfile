@@ -6,10 +6,11 @@ name = "pypi"
 [packages]
 ansible = "*"
 ansible-lint = "*"
-jmespath = "*"
-pywinrm = {extras = ["kerberos", "credssp"], version = "*"}
-requests-credssp = "*"
-requests-kerberos = "*"
+#jmespath = "*"
+pywinrm = "*"
+#pywinrm = {extras = ["kerberos", "credssp"], version = "*"}
+#requests-credssp = "*"
+#requests-kerberos = "*"
 storops = "*"
 wheel = "*"
 
