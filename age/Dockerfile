@@ -37,5 +37,5 @@ COPY --from=build /go/src/github.com/FiloSottile/age/age /usr/local/bin/age
 COPY --from=build /go/src/github.com/FiloSottile/age/age-keygen /usr/local/bin/age-keygen
 COPY --from=build /config /config
 
-ENTRYPOINT ["/usr/local/bin/age"]
+CMD ["/usr/local/bin/age"]
 
