@@ -19,6 +19,10 @@ env:
 jobs:
 
   deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6, linux/ppc64le]        
     runs-on: ubuntu-20.04
 
     steps:
@@ -63,14 +67,15 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
+          #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
+          platforms: ${{ matrix.arch }}
           build-args: |
             BUILD_VERSION
             DOCKER_CLI_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}, mode=max
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.arch }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.arch }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
