@@ -14,6 +14,7 @@ COPY requirements.txt .
 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends cargo gcc libssl-dev python3-dev python3-pip openssh-client && \
+	python3 -m pip install --upgrade pip && \
 	pip3 install --no-cache-dir -r requirements.txt && \
 	apt-get purge -y cargo gcc libssl-dev python3-dev && \
 	apt-get autoremove -y --purge && \

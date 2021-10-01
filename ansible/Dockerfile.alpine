@@ -19,6 +19,7 @@ RUN \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
   ln -s /usr/bin/python3 /usr/bin/python && \
+  python3 -m pip install --upgrade pip && \
   pip3 install --no-cache-dir --upgrade wheel && \
   pip3 install --no-cache-dir --upgrade cryptography cffi certifi && \
   pip3 install --no-cache-dir ansible==${BUILD_VERSION} && \
