@@ -366,11 +366,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:2649789e3e0c354dde1b8257d2ba7ed663fc3201e41277581de65c17e8aab10a",
-                "sha256:7b116034973a9a977a34a8a380354028150edf69f6cfbe55c03a852dd0a4116b"
+                "sha256:17225e20fed6b958108ad278974b5eb63a797496e43d5c337366fa128473d94f",
+                "sha256:30e10d959191b30fd89f7a180940b930bafcaf371c41cfb740d9cefacfe3555f"
             ],
             "index": "pypi",
-            "version": "==8.14.0"
+            "version": "==8.14.1"
         },
         "flake8": {
             "hashes": [
