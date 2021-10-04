@@ -24,12 +24,12 @@ WORKDIR /config
 FROM scratch
 #FROM alpine:3.14
 
-LABEL org.opencontainers.imspicedb.authors="Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.imspicedb.url="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imspicedb.documentation="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imspicedb.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imspicedb.title="jauderho/spicedb"
-LABEL org.opencontainers.imspicedb.description="SpiceDB is a Zanzibar-inspired database that stores, computes, and validates application permissions."
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/spicedb"
+LABEL org.opencontainers.image.description="SpiceDB is a Zanzibar-inspired database that stores, computes, and validates application permissions."
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
