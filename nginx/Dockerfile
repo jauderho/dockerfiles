@@ -20,6 +20,7 @@ RUN \
   build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl pcre zlib git" && \
   runtime_pkgs="ca-certificates tzdata" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
+  update-ca-certificates && \
   cd /tmp && \
   wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
   wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
