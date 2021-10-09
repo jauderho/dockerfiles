@@ -11,6 +11,7 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache curl git \ 
+	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/johnkerl/miller \
 	&& cd /go/src/github.com/johnkerl/miller/go \
 	&& go build -v -ldflags="-s -w" 
