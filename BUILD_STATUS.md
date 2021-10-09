@@ -46,6 +46,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/excalidraw/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/excalidraw/latest)](https://github.com/excalidraw/excalidraw/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/excalidraw/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/excalidraw/latest)](https://hub.docker.com/r/jauderho/excalidraw/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/gobgp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/gobgp/latest)](https://github.com/osrg/gobgp)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gobgp)](https://hub.docker.com/r/jauderho/gobgp/)
