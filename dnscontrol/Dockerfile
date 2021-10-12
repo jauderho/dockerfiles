@@ -15,7 +15,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscontrol.tar.gz \
 	&& tar xzf /tmp/dnscontrol.tar.gz --strip 1 -C /go/src/github.com/StackExchange/dnscontrol \
-	&& GOPROXY="direct" go get -v github.com/Azure/azure-sdk-for-go \
 	&& go build -v -ldflags="-s -w"
 
 # Validation check
