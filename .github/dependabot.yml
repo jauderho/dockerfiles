@@ -83,10 +83,22 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /excalidraw
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /gobgp
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /headscale
+    schedule:
+      interval: "daily"
+      
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /lego
@@ -101,6 +113,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /nebula
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /nginx-distroless
     schedule:
       interval: "daily"
@@ -111,6 +129,12 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /spicedb
+    schedule:
+      interval: "daily"
+      
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /ssh-audit
