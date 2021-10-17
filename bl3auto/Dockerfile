@@ -30,10 +30,10 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/bl3auto"
-LABEL org.opencontainers.image.description="Borderlands3 Auto SHiFT Code Redemption System"
+LABEL org.opencontainers.image.description="Borderlands Auto SHiFT Code Redemption System"
 
 COPY --from=build /go/src/github.com/jauderho/bl3auto/bl3auto /usr/local/bin/
 
-#ENTRYPOINT ["/usr/local/bin/bl3auto"]
+ENTRYPOINT ["/usr/local/bin/bl3auto"]
 
-CMD bl3auto
+#CMD ["/usr/local/bin/bl3auto"]
