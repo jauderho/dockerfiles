@@ -1,6 +1,6 @@
 FROM golang:alpine AS build
 
-COPY . /go/src/github.com/jauderho/bl3auto/
+#COPY . /go/src/github.com/jauderho/bl3auto/
 WORKDIR /go/src/github.com/jauderho/bl3auto/
 
 ARG BUILD_VERSION
