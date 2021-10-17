@@ -16,12 +16,16 @@ updates:
     directory: /ansible
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: MAINT
 
   # Maintain dependencies for Python 
   - package-ecosystem: "pip"
     directory: /sslyze
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: MAINT
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
