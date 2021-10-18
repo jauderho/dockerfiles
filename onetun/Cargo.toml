@@ -1,0 +1,21 @@
+[package]
+name = "onetun"
+version = "0.1.11"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+boringtun = { git = "https://github.com/cloudflare/boringtun", branch = "master" }
+clap = { version = "2.33", default-features = false, features = ["suggestions"] }
+log = "0.4"
+pretty_env_logger = "0.3"
+anyhow = "1"
+smoltcp = { git = "https://github.com/smoltcp-rs/smoltcp", branch = "master" }
+tokio = { version = "1", features = ["full"] }
+lockfree = "0.5.1"
+futures = "0.3.17"
+rand = "0.8.4"
+
+[profile.release]
+lto = thin
