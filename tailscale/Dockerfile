@@ -37,17 +37,12 @@ LABEL org.opencontainers.image.description="Tailscale is Wireguard made easy"
 
 RUN apk add --no-cache ca-certificates iptables ip6tables iproute2 \
 	&& update-ca-certificates \
-    && rm -rf /var/cache/apk/*
+  && rm -rf /var/cache/apk/*
 
 COPY --from=build /go/bin/tailscale /usr/local/bin
 COPY --from=build /go/bin/tailscaled /usr/local/bin
 
 WORKDIR /tailscale
 
-#RUN ["tailscale", "version"]
-#CMD tailscale
+CMD ["tailscaled"]
 
-COPY entrypoint.sh /entrypoint.sh
-
-# From https://gist.github.com/hamishforbes/2ac7ae9d7ea47cad4e3a813c9b45c10f
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
