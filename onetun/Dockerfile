@@ -37,9 +37,10 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /usr/src/github.com/aramperes/onetun/target/release/onetun /usr/local/bin/onetun
 COPY --from=build /config /config
 
-#EXPOSE 8080/tcp
+RUN apk update \
+	&& apk add --no-cache dumb-init
+
 USER 1000
 
-ENTRYPOINT ["/usr/local/bin/onetun"]
-CMD ["help"]
+ENTRYPOINT ["dumb-init", "/usr/local/bin/onetun"]
 
