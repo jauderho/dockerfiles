@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:21.10
 #FROM python:3.9-slim
 #FROM python:3.9-alpine
 
