@@ -26,14 +26,13 @@ WORKDIR /config
 
 
 #FROM scratch
-#FROM alpine:3.14
 FROM ubuntu:21.10 
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title="jauderho/miller"
+LABEL org.opencontainers.image.title="jauderho/pwru"
 LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for tracing network packets in the Linux kernel with advanced filtering capabilities."
 
 COPY --from=build /go/src/github.com/cilium/pwru/pwru /usr/local/bin/pwru
