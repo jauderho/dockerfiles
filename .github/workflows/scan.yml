@@ -9,7 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [cloudflared]
+        #image: [cloudflared]
+        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, sync, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
