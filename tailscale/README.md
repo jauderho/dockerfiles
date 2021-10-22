@@ -13,7 +13,6 @@ services:
   tailscale:
     container_name: tailscale
     image: jauderho/tailscale:latest
-
     restart: unless-stopped
     command:
       - tailscaled
