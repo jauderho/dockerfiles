@@ -1,0 +1,45 @@
+#FROM ubuntu:21.10 AS build
+#FROM golang:alpine AS build
+FROM alpine:edge AS build
+
+WORKDIR /go/src/github.com/cilium/pwru/
+
+ARG BUILD_VERSION
+ARG ARCHIVE_URL=https://github.com/cilium/pwru/archive/
+ARG GIT_URL=https://github.com/cilium/pwru.git
+
+ENV CGO_ENABLED 1
+
+RUN test -n "${BUILD_VERSION}" \
+	&& apk update \
+	&& apk add --no-cache git ca-certificates build-base clang go \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
+	&& cd /go/src/github.com/cilium/pwru \
+	&& go generate \
+	&& go build -v -ldflags="-s -w" 
+
+WORKDIR /config
+
+
+
+# ----------------------------------------------------------------------------
+
+
+
+#FROM scratch
+#FROM alpine:3.14
+FROM alpine:edge
+#FROM ubuntu:21.10 
+
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/miller"
+LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for tracing network packets in the Linux kernel with advanced filtering capabilities."
+
+COPY --from=build /go/src/github.com/cilium/pwru/pwru /usr/local/bin/pwru
+COPY --from=build /config /config
+
+ENTRYPOINT ["/usr/local/bin/pwru"]
+
