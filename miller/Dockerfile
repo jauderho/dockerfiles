@@ -24,8 +24,6 @@ WORKDIR /config
 FROM scratch
 #FROM alpine:3.14
 
-ARG DOCKER_CLI_VERSION
-
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
@@ -35,8 +33,6 @@ LABEL org.opencontainers.image.description="Miller is like awk, sed, cut, join, 
 
 COPY --from=build /go/src/github.com/johnkerl/miller/go/mlr /usr/local/bin/mlr
 COPY --from=build /config /config
-
-#USER docker
 
 ENTRYPOINT ["/usr/local/bin/mlr"]
 
