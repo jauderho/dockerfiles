@@ -2,7 +2,7 @@ name: Scan
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * 1"
+    - cron: "0 18 * * *"
 
 jobs:
   trivy:
@@ -33,6 +33,7 @@ jobs:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
   snyk:
+    needs: trivy
     strategy:
       fail-fast: false
       matrix:
@@ -63,3 +64,29 @@ jobs:
         with:
           sarif_file: snyk.sarif
 
+  anchore:
+    needs: snyk
+    strategy:
+      fail-fast: false
+      matrix:
+        #image: [cloudflared]
+        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+    runs-on: ubuntu-20.04
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
+        uses: anchore/scan-action@v3
+        id: anchore-scan
+        with:
+          image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          acs-report-enable: true
+          fail-build: false
+          severity-cutoff: high
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
