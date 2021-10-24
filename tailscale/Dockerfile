@@ -23,9 +23,12 @@ RUN cp tailscale /go/bin/tailscale
 RUN cp tailscaled /go/bin/tailscaled
 RUN tailscale version
 
+
+
 # ----------------------------------------------------------------------------
 
-#FROM alpine:latest
+
+
 FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
