@@ -3,14 +3,6 @@ FROM nginx:1.21.3 AS base
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 ARG TIME_ZONE
 
-#RUN ls -l /lib
-#RUN uname -m
-#RUN dpkg --print-architecture
-#RUN arch
-#RUN lscpu | grep Architecture | awk '{print $2}'
-#RUN echo $MACHTYPE
-#RUN echo $HOSTTYPE
-
 RUN mkdir -p /opt/var/cache/nginx && \
     cp -a --parents /usr/lib/nginx /opt && \
     cp -a --parents /usr/share/nginx /opt && \
