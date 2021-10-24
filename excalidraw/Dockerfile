@@ -13,13 +13,17 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& yarn set version berry \
-	&& yarn \
+	&& yarn install \
 	&& npx browserslist@latest --update-db
 
 COPY . .
 RUN yarn build:app:docker
 
+
+
 # ----------------------------------------------------------------------------
+
+
 
 FROM nginx:1.21-alpine
 
