@@ -5,7 +5,7 @@ on:
     - cron: "0 8 * * 1"
 
 jobs:
-  scan:
+  trivy:
     strategy:
       fail-fast: false
       matrix:
@@ -31,4 +31,39 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results-${{ matrix.image }}.sarif'
+
+  snyk:
+    strategy:
+      fail-fast: false
+      matrix:
+        #image: [cloudflared]
+        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build a Docker image
+        run: docker build -t ${{ env.REPOSITORY }} ${{ env.APP }} --build-arg BUILD_VERSION
+
+      - name: Run Snyk to check Docker image for vulnerabilities
+      # Snyk can be used to break the build when it detects vulnerabilities.
+      # In this case we want to upload the issues to GitHub Code Scanning
+        continue-on-error: true
+        uses: snyk/actions/docker@master
+        env:
+          # In order to use the Snyk Action you will need to have a Snyk API token.
+          # More details in https://github.com/snyk/actions#getting-your-snyk-token
+          # or you can signup for free at https://snyk.io/login
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          #image: ${{ env.REPOSITORY }}
+          image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          args: --file=${{ matrix.image }}/Dockerfile
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
 
