@@ -6,6 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/cloudflare/cloudflared/archive/
 
 ENV GO111MODULE on
+ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -13,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
-	&& go build -v -ldflags="-s -w -X main.Version=${BUILD_VERSION}" \
+	&& go build -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" \
 	&& adduser -S cloudflared \
 	&& mkdir /etc/cloudflared
 
@@ -28,7 +29,6 @@ RUN cloudflared -v
 
 
 
-#FROM multiarch/alpine:${ARCH}-edge
 #FROM scratch
 FROM alpine:3.14
 
@@ -62,3 +62,4 @@ USER cloudflared
 
 ENTRYPOINT ["/usr/local/bin/cloudflared"]
 CMD ["proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2} --no-autoupdate"]
+
