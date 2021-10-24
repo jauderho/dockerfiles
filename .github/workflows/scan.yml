@@ -36,8 +36,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [cloudflared]
-        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        #image: [cloudflared]
+        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -57,13 +57,12 @@ jobs:
         with:
           image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           json: true
-          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --json-file-output=snyk-${{ matrix.image }}.json
+          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high
           #args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --sarif-file-output=snyk-${{ matrix.image }}.sarif
 
       - name: Snyk JSON to SARIF
         uses: garethr/snyk-to-sarif@master
         with:
-          input: snyk-${{ matrix.image }}.json 
           output: snyk-${{ matrix.image }}.sarif 
 
       - name: Upload result to GitHub Code Scanning
