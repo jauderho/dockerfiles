@@ -27,7 +27,6 @@ RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 # ----------------------------------------------------------------------------
 
 #FROM scratch
-#FROM alpine:latest
 FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
