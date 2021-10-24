@@ -5,6 +5,7 @@ WORKDIR /go/src/github.com/wagoodman/dive/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/wagoodman/dive/archive/
 
+ENV GO111MODULE on
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
