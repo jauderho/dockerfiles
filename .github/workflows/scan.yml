@@ -9,8 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #image: [cloudflared]
-        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        image: [cloudflared]
+        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -23,21 +23,21 @@ jobs:
           image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           format: 'template'
           template: '@/contrib/sarif.tpl'
-          output: 'trivy-results-${{ matrix.image }}.sarif'
+          output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
           hide-progress: false
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: 'trivy-results-${{ matrix.image }}.sarif'
+          sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
   snyk:
     strategy:
       fail-fast: false
       matrix:
-        #image: [cloudflared]
-        image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        image: [cloudflared]
+        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, headscale, lego, miller, nebula, nginx, nginx-distroless, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -45,8 +45,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Snyk to check Docker image for vulnerabilities
-      # Snyk can be used to break the build when it detects vulnerabilities.
-      # In this case we want to upload the issues to GitHub Code Scanning
+        # Snyk can be used to break the build when it detects vulnerabilities.
+        # In this case we want to upload the issues to GitHub Code Scanning
         continue-on-error: true
         uses: snyk/actions/docker@master
         env:
@@ -55,12 +55,11 @@ jobs:
           # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          #image: ${{ env.REPOSITORY }}
           image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --sarif-file-output=snyk-results-${{ matrix.image }}.sarif
+          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --sarif-file-output=snyk-${{ matrix.image }}.sarif
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: snyk-results-${{ matrix.image }}.sarif
+          sarif_file: snyk-${{ matrix.image }}.sarif
 
