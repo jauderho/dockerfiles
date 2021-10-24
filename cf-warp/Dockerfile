@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cf-warp.tar.gz \
 	&& tar xzf /tmp/cf-warp.tar.gz --strip 1 -C /app \
 	&& yarn install \
-	&& yarn upgrade \
+	&& yarn upgrade --latest \
 	&& yarn --ignore-optional \
 	&& yarn outdated
 
