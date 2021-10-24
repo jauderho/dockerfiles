@@ -1,6 +1,4 @@
 FROM golang:alpine AS build
-#FROM golang:1.16-alpine AS build
-#FROM golang:1.16.5-alpine3.14 AS build
 
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 
@@ -24,7 +22,11 @@ RUN cp cloudflared /go/bin/cloudflared
 RUN setcap CAP_NET_BIND_SERVICE+eip /go/bin/cloudflared
 RUN cloudflared -v
 
+
+
 # ----------------------------------------------------------------------------
+
+
 
 #FROM multiarch/alpine:${ARCH}-edge
 #FROM scratch
@@ -46,15 +48,9 @@ ENV PORT 5454
 ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8888
 
-#RUN apk add --no-cache ca-certificates bind-tools libcap \
-#	&& update-ca-certificates \
-#  && rm -rf /var/cache/apk/* \
-#	&& adduser -S cloudflared
-
 COPY --from=build /etc/passwd /etc/group /etc/cloudflared /etc/
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
-#COPY --from=build /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
 COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
 
 #RUN setcap CAP_NET_BIND_SERVICE+eip /usr/local/bin/cloudflared
