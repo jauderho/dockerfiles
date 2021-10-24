@@ -5,6 +5,7 @@ WORKDIR /app
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
 ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
+#ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 ARG NODE_ENV=production
 
 RUN test -n "${BUILD_VERSION}" \
@@ -14,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& yarn set version berry \
 	&& yarn install \
+	&& yarn up -R eslint \
 	&& npx browserslist@latest --update-db
 
 COPY . .
