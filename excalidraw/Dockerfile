@@ -36,6 +36,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/excalidraw"
 LABEL org.opencontainers.image.description="Excalidraw is a virtual whiteboard for sketching hand-drawn like diagrams."
 
+# temp fix for curl CVEs
+RUN apk update && apk upgrade curl libcurl
+
 COPY --from=build /app/build /usr/share/nginx/html
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
