@@ -57,12 +57,13 @@ jobs:
         with:
           image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           json: true
-          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high 
+          args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --json-file-output=snyk-${{ matrix.image }}.json
           #args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high --sarif-file-output=snyk-${{ matrix.image }}.sarif
 
       - name: Snyk JSON to SARIF
         uses: garethr/snyk-to-sarif@master
         with:
+          input: snyk-${{ matrix.image }}.json 
           output: snyk-${{ matrix.image }}.sarif 
 
       - name: Upload result to GitHub Code Scanning
