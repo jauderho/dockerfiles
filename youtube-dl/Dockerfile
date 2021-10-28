@@ -7,6 +7,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/ytdl-org/youtube-dl/archive/
 
 RUN set -x \
+ && apk update  \
  && apk add --no-cache \
         ca-certificates \
         curl \
