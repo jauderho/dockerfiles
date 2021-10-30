@@ -12,8 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.21.3"
-  BUILD_STABLE_VERSION: "1.20.1"
+  BUILD_VERSION: "git"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -65,7 +64,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
