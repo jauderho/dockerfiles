@@ -42,14 +42,14 @@ LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin
-
 COPY --from=build /src/files/index.html /etc/nginx/html/
 COPY --from=build /src/files/nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 VOLUME ["/var/cache/nginx"]
 
 EXPOSE 80 443
 
-#RUN /usr/sbin/nginx -V > /dev/stderr
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
