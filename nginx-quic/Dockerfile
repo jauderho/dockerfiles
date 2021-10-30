@@ -2,6 +2,9 @@
 FROM ubuntu:21.10 AS build
 
 WORKDIR /src
+
+COPY . .
+
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc make g++ cmake perl libunwind-dev golang ca-certificates && \
     git clone --depth 1 https://boringssl.googlesource.com/boringssl && \
@@ -18,10 +21,35 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
                    --build=nginx-quic \
                    --with-http_v3_module --with-http_quic_module --with-stream_quic_module \
                    --with-cc-opt="-I/src/boringssl/include" --with-ld-opt="-L/src/boringssl/build/ssl -L/src/boringssl/build/crypto" && \
-    make
+    make && \
+    strip objs/nginx && \
+    make install
+
+
+
+# ----------------------------------------------------------------------------
+
+
 
 #FROM nginx
 FROM ubuntu:21.10
+
+LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title "jauderho/nginx-quic"
+LABEL org.opencontainers.image.description "nginx is a web server"
+
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin
-RUN /usr/sbin/nginx -V > /dev/stderr
+
+COPY --from=build /src/files/index.html /etc/nginx/html/
+COPY --from=build /src/files/nginx.conf /etc/nginx/nginx.conf
+
+VOLUME ["/var/cache/nginx"]
+
 EXPOSE 80 443
+
+#RUN /usr/sbin/nginx -V > /dev/stderr
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
