@@ -81,6 +81,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx-distroless)](https://hub.docker.com/r/jauderho/nginx-distroless/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx-distroless/latest)](https://hub.docker.com/r/jauderho/nginx-distroless/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx-quic/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/nginx-quic/latest)](https://hg.nginx.org/nginx-quic/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx-quic)](https://hub.docker.com/r/jauderho/nginx-quic/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx-quic/latest)](https://hub.docker.com/r/jauderho/nginx-quic/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/nginx/latest)](https://github.com/nginx/nginx)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx)](https://hub.docker.com/r/jauderho/nginx/)
