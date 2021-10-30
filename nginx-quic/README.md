@@ -1,5 +1,5 @@
 
-## WARNING: This is experimental and built off of tip. It is not guaranteed to be working or reliable. YMMV
+## WARNING: This is experimental and built off of tip. 
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx-quic/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/nginx-quic/latest)](https://hg.nginx.org/nginx-quic/)
