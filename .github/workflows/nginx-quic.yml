@@ -103,6 +103,6 @@ jobs:
           cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
 
