@@ -6,10 +6,9 @@ COPY . .
 
 RUN apk update && \
     apk add --no-cache git gcc make g++ cmake perl libunwind-dev ca-certificates linux-headers build-base && \
-    git clone --depth 1 https://boringssl.googlesource.com/boringssl && \
-    mkdir boringssl/build && \
-    cd boringssl/build && \
-    cmake .. && \
+    git clone --depth 1 https://github.com/quictls/openssl && \
+    cd openssl && \
+    ./Configure && \
     make
 
 RUN apk add --no-cache mercurial perl-dev pcre-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre zlib && \
@@ -46,8 +45,8 @@ RUN apk add --no-cache mercurial perl-dev pcre-dev zlib-dev libxslt-dev gd-dev g
       --without-http_ssi_module \
       --with-file-aio \
       --with-threads \
-      --with-cc-opt='-I/src/boringssl/include -fuse-ld=lld -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
-      --with-ld-opt='-L/src/boringssl/build/ssl -L/src/boringssl/build/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
+      --with-cc-opt='-I/src/openssl/include -fuse-ld=lld -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+      --with-ld-opt='-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
     make && \
     strip objs/nginx && \
     make install
@@ -68,6 +67,11 @@ LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
+RUN apk update && \
+    apk add --no-cache pcre
+
+COPY --from=build /src/openssl/libcrypto* /usr/lib/
+COPY --from=build /src/openssl/libssl* /usr/lib/
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin
 COPY --from=build /src/files/index.html /etc/nginx/html/
 COPY --from=build /src/files/nginx.conf /etc/nginx/nginx.conf
