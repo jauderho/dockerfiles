@@ -29,7 +29,7 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/gocannon"
-LABEL org.opencontainers.image.description="Gocannon is a lightweight HTTP benchmarking tool,"
+LABEL org.opencontainers.image.description="Gocannon is a lightweight HTTP benchmarking tool"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
