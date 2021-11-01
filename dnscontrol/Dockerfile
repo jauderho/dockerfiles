@@ -15,13 +15,13 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscontrol.tar.gz \
 	&& tar xzf /tmp/dnscontrol.tar.gz --strip 1 -C /go/src/github.com/StackExchange/dnscontrol \
-	&& go build -v -ldflags="-s -w"
+	&& go build -v -trimpath -ldflags="-s -w"
 
 # Validation check
 RUN cp dnscontrol /go/bin/dnscontrol
 RUN dnscontrol version
 
-RUN go build -v -o cmd/convertzone/convertzone cmd/convertzone/main.go
+RUN go build -v -trimpath -o cmd/convertzone/convertzone cmd/convertzone/main.go
 RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 
 # ----------------------------------------------------------------------------
@@ -42,5 +42,5 @@ COPY --from=build /go/bin/convertzone /usr/local/bin
 
 WORKDIR /dns
 
-ENTRYPOINT ["/usr/local/bin/dnscontrol"]
-#CMD ["version"]
+#ENTRYPOINT ["/usr/local/bin/dnscontrol"]
+CMD ["/usr/local/bin/dnscontrol"]

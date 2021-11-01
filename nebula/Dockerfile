@@ -13,8 +13,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/nebula.tar.gz \
 	&& tar xzf /tmp/nebula.tar.gz --strip 1 -C /go/src/github.com/slackhq/nebula \
-	&& go build -o ./nebula -v -ldflags="-s -w -X main.Build=${BUILD_VERSION}" ./cmd/nebula \
-	&& go build -o ./nebula-cert -v -ldflags="-s -w -X main.Build=${BUILD_VERSION}" ./cmd/nebula-cert
+	&& go build -o ./nebula -v -trimpath -ldflags="-s -w -X main.Build=${BUILD_VERSION}" ./cmd/nebula \
+	&& go build -o ./nebula-cert -v -trimpath -ldflags="-s -w -X main.Build=${BUILD_VERSION}" ./cmd/nebula-cert
 
 WORKDIR /config
 

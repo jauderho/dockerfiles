@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/johnkerl/miller \
 	&& cd /go/src/github.com/johnkerl/miller/go \
-	&& go build -v -ldflags="-s -w" 
+	&& go build -v -trimpath -ldflags="-s -w" 
 
 WORKDIR /config
 
