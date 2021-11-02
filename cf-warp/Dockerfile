@@ -31,6 +31,7 @@ COPY --from=build /app .
 
 # Fix security issues with base image
 RUN yarn upgrade --latest \
-	&& yarn upgrade ansi-regex@5.0.1
+	&& yarn upgrade ansi-regex@5.0.1 \
+	&& yarn upgrade cookie@0.4.1
 
 ENTRYPOINT ["node", "cli.js"]
