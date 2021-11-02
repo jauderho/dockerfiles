@@ -29,4 +29,8 @@ FROM node:17-alpine3.14
 WORKDIR /app
 COPY --from=build /app .
 
+# Fix security issues with base image
+RUN yarn upgrade --latest \
+	&& yarn upgrade ansi-regex@5.0.1
+
 ENTRYPOINT ["node", "cli.js"]
