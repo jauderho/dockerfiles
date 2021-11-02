@@ -6,4 +6,4 @@
 
 Forked from https://github.com/kyos0109/nginx-distroless/ and updated to latest build with Debian Bullseye base image.
 
-Given the number of issues flagged by Snyk about the distroless base image, it is unclear if this is a better solution.
+Given the number of issues flagged by Trivy, Snyk and Anchore about the distroless base image, it is best to NOT use this image and use my nginx image instead.
