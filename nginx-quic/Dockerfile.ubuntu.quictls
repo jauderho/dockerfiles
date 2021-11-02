@@ -12,7 +12,7 @@ RUN apt-get update && \
     ./Configure && \
     make
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mercurial libperl-dev libpcre3-dev zlib1g-dev libxslt1-dev libgd-ocaml-dev libgeoip-dev && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mercurial libperl-dev libpcre3-dev zlib1g-dev libxslt1-dev libgd-ocaml-dev libgeoip-dev lld && \
     hg clone https://hg.nginx.org/nginx-quic && \
     cd nginx-quic && \
     hg update quic && \
@@ -33,8 +33,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
       --with-http_v3_module \
       --with-http_quic_module \
       --with-stream_quic_module \
-      --with-cc-opt="-I/src/openssl/include" \
-      --with-ld-opt="-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto" && \
+      --with-cc-opt='-I/src/openssl/include -fuse-ld=lld -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+      --with-ld-opt='-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
     make && \
     strip objs/nginx && \
     make install
