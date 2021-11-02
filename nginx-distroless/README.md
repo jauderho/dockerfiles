@@ -1,5 +1,5 @@
 
-# DEPRECATED
+# DEPRECATED - DONOTUSE
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx-distroless/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/nginx-distroless/latest)](https://hub.docker.com/r/jauderho/nginx-distroless/)
