@@ -35,7 +35,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
       --with-stream_quic_module \
       --with-cc-opt='-I/src/openssl/include -fuse-ld=lld -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
       --with-ld-opt='-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
-    make && \
+    NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
+    make -j $NB_PROC && \
     strip objs/nginx && \
     make install
 
