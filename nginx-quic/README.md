@@ -6,3 +6,4 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx-quic)](https://hub.docker.com/r/jauderho/nginx-quic/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx-quic/latest)](https://hub.docker.com/r/jauderho/nginx-quic/)
 
+Hardened build of nginx-quic
