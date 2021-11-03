@@ -33,6 +33,7 @@ RUN \
   git submodule update --init && \
   git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
+	NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   echo "Patching..." && \
   patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1015008.patch && \
   patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.15.3.patch && \
@@ -75,7 +76,7 @@ RUN \
     --with-pcre=/tmp/pcre-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make && \
+  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC && \
   ccache -s && \
   strip objs/nginx && \
   make install && \
