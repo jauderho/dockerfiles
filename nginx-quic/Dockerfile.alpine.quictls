@@ -5,7 +5,7 @@ WORKDIR /src
 COPY . .
 
 RUN apk update && \
-    apk add --no-cache git gcc make g++ cmake perl libunwind-dev ca-certificates linux-headers build-base && \
+    apk add --no-cache git gcc make g++ perl ca-certificates linux-headers build-base && \
     git clone --depth 1 https://github.com/quictls/openssl && \
     cd openssl && \
     ./Configure && \
