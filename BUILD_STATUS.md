@@ -46,6 +46,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/driftctl/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/driftctl/latest)](https://github.com/cloudskiff/driftctl/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/driftctl/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/driftctl/latest)](https://hub.docker.com/r/jauderho/driftctl/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/excalidraw/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/excalidraw/latest)](https://github.com/excalidraw/excalidraw/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/excalidraw/)
