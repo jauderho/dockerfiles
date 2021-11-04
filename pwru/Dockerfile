@@ -1,4 +1,4 @@
-FROM ubuntu:21.10 AS build
+FROM ubuntu:22.04 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -26,7 +26,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ubuntu:21.10 
+FROM ubuntu:22.04 
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
