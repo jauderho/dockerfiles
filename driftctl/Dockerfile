@@ -31,7 +31,7 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/driftctl"
-LABEL org.opencontainers.image.description="driftctl measures infrastructure as code coverage, and tracks infrastructure drift`"
+LABEL org.opencontainers.image.description="driftctl measures infrastructure as code coverage, and tracks infrastructure drift"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
