@@ -1,5 +1,6 @@
 #FROM rust:1 AS build
-FROM rust:alpine AS build
+#FROM rust:alpine AS build
+FROM rust:bullseye AS build
 
 WORKDIR /usr/src/github.com/aramperes/onetun/
 COPY Cargo.toml Cargo.toml
@@ -8,9 +9,8 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/aramperes/onetun/archive/
 
 RUN test -n "${BUILD_VERSION}" \
-	&& apk update \
-	&& apk add --no-cache ca-certificates curl cargo \
-	&& update-ca-certificates \
+	&& apt-get update \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl cargo \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/onetun.tar.gz \
 	&& tar xzf /tmp/onetun.tar.gz --strip 1 -C /usr/src/github.com/aramperes/onetun \
 	&& cargo build --release
