@@ -21,8 +21,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-#FROM scratch
-FROM alpine:3.14
+FROM scratch
+#FROM alpine:3.14
 #FROM debian:11-slim
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
@@ -37,10 +37,12 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /usr/src/github.com/aramperes/onetun/target/release/onetun /usr/local/bin/onetun
 COPY --from=build /config /config
 
-RUN apk update \
-	&& apk add --no-cache dumb-init
+#RUN apk update \
+#	&& apk add --no-cache dumb-init
 
 USER 1000
 
-ENTRYPOINT ["dumb-init", "/usr/local/bin/onetun"]
+#ENTRYPOINT ["dumb-init", "/usr/local/bin/onetun"]
+ENTRYPOINT ["/usr/local/bin/onetun"]
+CMD ["--help"]
 
