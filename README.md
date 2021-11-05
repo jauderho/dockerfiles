@@ -26,6 +26,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/age/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/age/latest)](https://hub.docker.com/r/jauderho/age/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/ali/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/ali/latest)](https://github.com/nakabonne/ali/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/ali/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/ali/latest)](https://hub.docker.com/r/jauderho/ali/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/ansible/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Aansible)
 [![Version](https://img.shields.io/docker/v/jauderho/ansible/latest)](https://github.com/ansible/ansible/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ansible)](https://hub.docker.com/r/jauderho/ansible/)
