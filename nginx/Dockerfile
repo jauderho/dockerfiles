@@ -24,7 +24,7 @@ RUN \
   cd /tmp && \
   wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
   wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
-  wget -O - https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - https://pilotfiber.dl.sourceforge.net/project/pcre/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   git clone --depth 1 ${ZLIB_URL} /tmp/zlib && \
   cd /tmp/zlib && \
   ./configure && \
