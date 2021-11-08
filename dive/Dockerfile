@@ -36,7 +36,8 @@ LABEL org.opencontainers.image.description="A tool for exploring a docker image,
 RUN echo $(uname -m)
 #RUN echo ${DOCKER_CLI_VERSION}
 
-RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m)/docker-${DOCKER_CLI_VERSION}.tgz | \
+# Include a workaround for arch naming mismatch
+RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m | sed -e s/armv7l/armhf/)/docker-${DOCKER_CLI_VERSION}.tgz | \
 	tar -xzf - docker/docker --strip-component=1 && \
 	mv docker /usr/local/bin
 
