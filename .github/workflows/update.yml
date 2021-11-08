@@ -1,0 +1,42 @@
+# updatebot
+#
+# This runs every hour to check if upstream repos have had a new release
+#
+name: Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+env:
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
+      - name: Source checkout
+        uses: actions/checkout@v2.4.0 
+        with:
+          token: ${{ secrets.UPDATE_SECRET }} 
+          fetch-depth: 1
+ 
+#      - name: Add packages
+#        run: |
+#          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends git curl jq
+#          ls -la
+#          pwd
+
+      - name: Update dependencies
+        run: |
+          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
+
