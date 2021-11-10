@@ -40,6 +40,7 @@ REPO=(
 # setup git
 git config user.name "updatebot"
 git config user.email "jauderho+update@users.noreply.github.com"
+git config pull.rebase false
 
 # 
 # Pull in the latest version from GitHub and if there is a newer version, update GitHub Actions to trigger a new build
