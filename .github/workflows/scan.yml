@@ -13,8 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, yt-dlp]
-   runs-on: ubuntu-20.04
+        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-distroless, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout code
@@ -41,7 +42,8 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, yt-dlp]
+        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-distroless, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -73,7 +75,8 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, yt-dlp]
+        #image: [age, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-distroless, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, excalidraw, gobgp, gocannon, headscale, lego, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, spicedb, ssh-audit, sslyze, tailscale, terraform, testssl.sh, youtube-dl, yt-dlp]
     runs-on: ubuntu-20.04
     
     steps:
