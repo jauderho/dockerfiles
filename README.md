@@ -9,13 +9,10 @@ This repo contains Dockerfiles for applications that I find useful. Upstream rep
 
 <!-- toc -->
 
-- [About](#about)
 - [Status](#status)
 - [Contributing](#contributing)
 
 <!-- tocstop -->
-
-## About
 
 Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles).
 
