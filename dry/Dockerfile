@@ -21,20 +21,18 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-FROM scratch
-#FROM alpine:3.14
+#FROM scratch
+FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dry"
-LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering ways to shrink your image size"
+LABEL org.opencontainers.image.description="Dry is a terminal application to manage Docker and Docker Swarm."
 
 COPY --from=build /go/src/github.com/moncho/dry/dry-bin /usr/local/bin/dry
-COPY --from=build --chown=nobody:nogroup /config /config
-
-#USER docker
+COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/dry"]
 

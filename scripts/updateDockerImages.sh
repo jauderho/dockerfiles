@@ -20,6 +20,7 @@ REPO=(
 	"StackExchange/dnscontrol" \
 	"DNSCrypt/dnscrypt-proxy" \
 	"cloudskiff/driftctl" \
+	"moncho/dry" \
 	"osrg/gobgp" \
 	"kffl/gocannon" \
 	"juanfont/headscale" \

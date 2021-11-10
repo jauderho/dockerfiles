@@ -95,6 +95,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /dry
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /excalidraw
     schedule:
       interval: "daily"

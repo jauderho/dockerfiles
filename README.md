@@ -66,6 +66,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/driftctl/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/driftctl/latest)](https://hub.docker.com/r/jauderho/driftctl/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dry/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/dry/latest)](https://github.com/moncho/dry)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dry)](https://hub.docker.com/r/jauderho/dry/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dry/latest)](https://hub.docker.com/r/jauderho/dry/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/excalidraw/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/excalidraw/latest)](https://github.com/excalidraw/excalidraw/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/excalidraw/)
