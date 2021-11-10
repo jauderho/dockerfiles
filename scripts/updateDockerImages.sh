@@ -74,7 +74,8 @@ do
 
 		sed -i -e "s/$dver/$rver/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
-		git commit -m "Updated ${prog} to ${rver}"
+		git commit -m "Updated ${prog} to ${rver}" && \
+		git push
 
 	else
 		echo "No update needed ..."
@@ -85,5 +86,3 @@ do
 	echo
 done
 
-# Make it so
-git push
