@@ -10,7 +10,7 @@ ARG ARCHIVE_URL=https://github.com/aramperes/onetun/archive/
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl cargo \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl cargo lld \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/onetun.tar.gz \
 	&& tar xzf /tmp/onetun.tar.gz --strip 1 -C /usr/src/github.com/aramperes/onetun \
 	&& cargo build --release
