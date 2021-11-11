@@ -27,6 +27,22 @@ updates:
     commit-message:
       prefix: MAINT
 
+  # Maintain dependencies for Rust
+  - package-ecosystem: "cargo"
+    directory: /onetun
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: MAINT
+
+   # Maintain dependencies for Rust
+  - package-ecosystem: "cargo"
+    directory: /rustybgp
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: MAINT
+ 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /age
