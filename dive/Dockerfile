@@ -10,7 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache curl \
+	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dive.tar.gz \
 	&& tar xzf /tmp/dive.tar.gz --strip 1 -C /go/src/github.com/wagoodman/dive \
 	&& go build -o dive-bin -v -trimpath -buildmode=pie -ldflags="-s -w" 
