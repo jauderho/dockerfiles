@@ -1,8 +1,12 @@
+[package]
+edition = "2021"
+
 [workspace]
 members = ["daemon"]
 
 [profile.release]
-lto = thin
+#lto = thin
+lto = fat
 
 [target.x86_64-unknown-linux-gnu]
 rustflags = [
