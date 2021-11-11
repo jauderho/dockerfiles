@@ -4,5 +4,5 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/onetun/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/onetun/latest)](https://hub.docker.com/r/jauderho/onetun/)
 
-This was built on Alpine instead of Bullseye. Please confirm if it works as I have not had the chance to test it.
+Please confirm if it works as I have not had the chance to test it.
 
