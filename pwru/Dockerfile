@@ -10,7 +10,7 @@ ENV CGO_ENABLED 1
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q git ca-certificates llvm-13 clang-13 golang-go \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q git ca-certificates llvm-13 clang-13 golang-go gcc \
 	&& ln -s /usr/bin/clang-13 /usr/bin/clang \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
