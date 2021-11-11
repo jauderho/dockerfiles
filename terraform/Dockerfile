@@ -11,11 +11,11 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates bash curl make git gcc build-base \
+	&& apk add --no-cache ca-certificates bash curl make git gcc build-base musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
-	&& go build -v -trimpath -ldflags="-s -w"
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
 
 # ----------------------------------------------------------------------------
 
