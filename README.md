@@ -128,6 +128,11 @@ Images can be found on [Docker Hub](https://hub.docker.com/u/jauderho/) and [Git
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/pwru)](https://hub.docker.com/r/jauderho/pwru/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/pwru/latest)](https://hub.docker.com/r/jauderho/pwru/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/rustybgp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/rustybgp/latest)](https://github.com/osrg/rustybgp/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/rustybgp/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/rustybgp/latest)](https://hub.docker.com/r/jauderho/rustybgp/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/spicedb/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/spicedb/latest)](https://github.com/authzed/spicedb/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/spicedb/)
