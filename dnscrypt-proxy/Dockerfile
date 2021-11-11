@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
-	&& go build -v -trimpath -ldflags="-s -w"
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
 
 WORKDIR /config
 
