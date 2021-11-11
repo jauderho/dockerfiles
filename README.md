@@ -3,7 +3,10 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub Super-Linter](https://github.com/jauderho/dockerfiles/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/jauderho/dockerfiles/actions/workflows/linter.yml)
 
-This repo contains Dockerfiles for applications that I find useful. Upstream repos are monitored and new images will be built an hour after a new release is tagged. Whenever possible, images will be optimized for size.
+This repo contains Dockerfiles for applications that I find useful. 
+
+- Upstream repos are monitored and new images will be built an hour after a new release is tagged. 
+- Whenever possible, binaries are hardened and images will be optimized for size.
 
 **Table of Contents**
 
