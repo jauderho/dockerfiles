@@ -11,8 +11,7 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl cargo \
-	#&& git clone --depth 1 ${GIT_URL} /usr/src/github.com/osrg/rustybgp \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates lld cargo \
 	&& git clone --depth 1 ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	&& rustup component add rustfmt \
