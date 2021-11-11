@@ -10,6 +10,8 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "gha:"
 
   # Maintain dependencies for Python 
   - package-ecosystem: "pip"
@@ -17,7 +19,7 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: MAINT
+      prefix: "python:"
 
   # Maintain dependencies for Python 
   - package-ecosystem: "pip"
@@ -25,7 +27,7 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: MAINT
+      prefix: "python:"
 
   # Maintain dependencies for Rust
   - package-ecosystem: "cargo"
@@ -33,7 +35,7 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: MAINT
+      prefix: "rust:"
 
    # Maintain dependencies for Rust
   - package-ecosystem: "cargo"
@@ -41,7 +43,7 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: MAINT
+      prefix: "rust:"
  
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
