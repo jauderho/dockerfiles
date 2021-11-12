@@ -10,10 +10,10 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache git \ 
+	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/johnkerl/miller \
 	&& cd /go/src/github.com/johnkerl/miller/go \
-	&& go build -v -trimpath -ldflags="-s -w" 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
 

@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 RUN cp dnscontrol /go/bin/dnscontrol
 RUN dnscontrol version
 
-RUN go build -v -trimpath -o cmd/convertzone/convertzone cmd/convertzone/main.go
+RUN go build -v -trimpath -buildmode=pie -ldflags="-s -w" -o cmd/convertzone/convertzone cmd/convertzone/main.go
 RUN cp cmd/convertzone/convertzone /go/bin/convertzone
 
 # ----------------------------------------------------------------------------

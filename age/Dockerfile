@@ -9,11 +9,11 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/age.tar.gz \
 	&& tar xzf /tmp/age.tar.gz --strip 1 -C /go/src/github.com/FiloSottile/age \
-	&& go build -o . -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" filippo.io/age/cmd/... 
+	&& go build -o . -v -trimpath -buildmode=pie -ldflags="-s -w -X main.Version=${BUILD_VERSION}" filippo.io/age/cmd/... 
 
 WORKDIR /config
 

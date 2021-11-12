@@ -9,13 +9,13 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/driftctl.tar.gz \
 	&& tar xzf /tmp/driftctl.tar.gz --strip 1 -C /go/src/github.com/cloudskiff/driftctl \
 	&& echo "after" \
 	&& ls -l \
-	&& go build -v -trimpath -ldflags="-s -w -X github.com/cloudskiff/driftctl/pkg/version.version=${BUILD_VERSION}" . 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/cloudskiff/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
 

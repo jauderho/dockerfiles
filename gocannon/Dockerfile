@@ -9,11 +9,11 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/gocannon.tar.gz \
 	&& tar xzf /tmp/gocannon.tar.gz --strip 1 -C /go/src/github.com/kffl/gocannon \
-	&& go build -v -trimpath -ldflags="-s -w" . 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" . 
 
 WORKDIR /config
 

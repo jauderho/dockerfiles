@@ -9,13 +9,13 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ali.tar.gz \
 	&& tar xzf /tmp/ali.tar.gz --strip 1 -C /go/src/github.com/nakabonne/ali \
 	&& echo "after" \
 	&& ls -l \
-	&& go build -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
 

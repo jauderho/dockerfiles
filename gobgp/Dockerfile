@@ -9,12 +9,12 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/gobgp.tar.gz \
 	&& tar xzf /tmp/gobgp.tar.gz --strip 1 -C /go/src/github.com/osrg/gobgp \
-	&& go build -v -trimpath -ldflags="-s -w" ./cmd/gobgp/ \
-	&& go build -v -trimpath -ldflags="-s -w" ./cmd/gobgpd/ 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/gobgp/ \
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/gobgpd/ 
 
 WORKDIR /config
 
