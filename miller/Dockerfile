@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/johnkerl/miller \
-	&& cd /go/src/github.com/johnkerl/miller/go \
+	&& cd /go/src/github.com/johnkerl/miller \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
@@ -31,7 +31,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/miller"
 LABEL org.opencontainers.image.description="Miller is like awk, sed, cut, join, and sort for data formats such as CSV, TSV, tabular JSON and positionally-indexed"
 
-COPY --from=build /go/src/github.com/johnkerl/miller/go/mlr /usr/local/bin/mlr
+COPY --from=build /go/src/github.com/johnkerl/miller/mlr /usr/local/bin/mlr
 COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/mlr"]
