@@ -245,6 +245,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /wuzz
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /youtube-dl
     schedule:
       interval: "daily"
@@ -254,3 +260,4 @@ updates:
     directory: /yt-dlp
     schedule:
       interval: "daily"
+
