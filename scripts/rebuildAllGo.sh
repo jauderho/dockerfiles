@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script to check and start new image builds if the source repos have new releases
+# Script to kick off rebuilding of all Go based images
 #
 set -euo pipefail
 IFS=$'\n\t'
