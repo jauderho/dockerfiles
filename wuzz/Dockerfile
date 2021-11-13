@@ -10,7 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl git \
+	&& apk add --no-cache ca-certificates curl git gcc musl-dev \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/asciimoo/wuzz \
 	&& cd /go/src/github.com/asciimoo/wuzz \
