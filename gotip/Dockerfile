@@ -15,9 +15,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& gotip clean \
 	&& apk del ${build_pkgs} \
 	&& rm -rf /root/sdk/gotip/test \
+	&& rm -rf /root/sdk/gotip/.git \
 	&& rm -rf /var/cache/apk/*
-
-RUN du -sh /root/sdk/gotip/*
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
