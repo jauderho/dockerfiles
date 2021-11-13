@@ -362,11 +362,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:22e53b8082890cca9b595ec22f9b01676b9d96c5f2f1890bcb49e4d612aa40a2",
-                "sha256:810182ef3597e0dfc4999a29f7cf17b99c70b361aae0f16743de6b926619ae21"
+                "sha256:b9ea5970f43c1fa05443d1885fbed822aba816facefa053d3d20168bfef4ae84",
+                "sha256:cfe4eed0309cd5325c40817519f8fbb18281a3f43a9a23fe03e3e7f091a9775b"
             ],
             "index": "pypi",
-            "version": "==9.8.0"
+            "version": "==9.8.1"
         },
         "flake8": {
             "hashes": [
@@ -765,14 +765,6 @@
             ],
             "markers": "sys_platform == 'linux'",
             "version": "==3.3.1"
-        },
-        "setuptools": {
-            "hashes": [
-                "sha256:a481fbc56b33f5d8f6b33dce41482e64c68b668be44ff42922903b03872590bf",
-                "sha256:dae6b934a965c8a59d6d230d3867ec408bb95e73bd538ff77e71fedf1eaca729"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==58.5.3"
         },
         "six": {
             "hashes": [
