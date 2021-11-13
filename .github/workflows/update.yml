@@ -5,6 +5,11 @@
 name: Update
 
 on:
+  push:
+    branches: 
+      - main
+    paths:
+      - scripts/updateDockerImages.sh
   workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
