@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/johnkerl/miller \
 	&& cd /go/src/github.com/johnkerl/miller \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/mlr 
 
 WORKDIR /config
 
@@ -21,8 +21,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-FROM scratch
-#FROM alpine:3.14
+#FROM scratch
+FROM alpine:3.14
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
