@@ -5,9 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# $PAT variable needs to be passed into the script as an env variable
-# PAT is only used to avoid API rate limits
-
 REPO=( 
         "age" \
         "ali" \
