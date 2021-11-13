@@ -76,6 +76,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/gocannon/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/gocannon/latest)](https://hub.docker.com/r/jauderho/gocannon/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/gotip/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/gotip/latest)](https://github.com/jauderho/dockerfiles/gotip/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gotip)](https://hub.docker.com/r/jauderho/gotip/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/gotip/latest)](https://hub.docker.com/r/jauderho/gotip/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/headscale/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/headscale/latest)](https://github.com/juanfont/headscale/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/headscale/)
