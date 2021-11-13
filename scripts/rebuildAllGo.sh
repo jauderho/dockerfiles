@@ -19,7 +19,6 @@ REPO=(
         "dnscrypt-proxy" \
         "driftctl" \
         "dry" \
-        "excalidraw" \
         "gobgp" \
         "gocannon" \
         "headscale" \
