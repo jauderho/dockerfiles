@@ -22,6 +22,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/ali/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ali/latest)](https://hub.docker.com/r/jauderho/ali/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/amass/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/amass/latest)](https://github.com/owasp/amass/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/amass/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/amass/latest)](https://hub.docker.com/r/jauderho/amass/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/ansible/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Aansible)
 [![Version](https://img.shields.io/docker/v/jauderho/ansible/latest)](https://github.com/ansible/ansible/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ansible)](https://hub.docker.com/r/jauderho/ansible/)

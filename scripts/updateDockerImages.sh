@@ -12,6 +12,7 @@ REPO=(
 	"FiloSottile/age" \
 	"nakabonne/ali" \
 	"ansible/ansible" \
+	"OWASP/amass" \
 	"jauderho/bl3auto" \
 	"jauderho/cf-warp" \
 	"cloudflare/cloudflared" \

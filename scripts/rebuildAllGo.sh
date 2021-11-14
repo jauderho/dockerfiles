@@ -8,6 +8,7 @@ IFS=$'\n\t'
 REPO=( 
         "age" \
         "ali" \
+        "amass" \
         "bl3auto" \
         "cloudflared" \
         "coredns" \
