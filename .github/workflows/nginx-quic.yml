@@ -148,7 +148,7 @@ jobs:
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
             ghcr.io/${{ env.REPOSITORY }}:latest
 
-      - name: Build and push (${{ matrix.distro }}-${{ matrix.quic }})
+      - name: Build and push (${{ matrix.quic }})
         if: ${{ matrix.quic != 'boringssl' }}
         uses: docker/build-push-action@v2.7.0
         with:
