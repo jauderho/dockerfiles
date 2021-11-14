@@ -18,6 +18,10 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
 
   deploy-ubuntu:
@@ -75,12 +79,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}, mode=max
+          cache-from: type=gha, scope=${{ github.workflow }}-ubuntu-${{ matrix.quic }}
+          cache-to: type=gha, scope=${{ github.workflow }}-ubuntu-${{ matrix.quic }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-ubuntu-${{ matrix.quic }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-ubuntu-${{ matrix.quic }}
 
   deploy-alpine:
     strategy:
@@ -137,15 +141,15 @@ jobs:
           platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}, mode=max
+          cache-from: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
             docker.io/${{ env.REPOSITORY }}:latest
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
             ghcr.io/${{ env.REPOSITORY }}:latest
 
       - name: Build and push (${{ matrix.quic }})
@@ -160,10 +164,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           build-args: BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.quic }}, mode=max
+          cache-from: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.quic }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
 
