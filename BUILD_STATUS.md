@@ -81,6 +81,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/gocannon/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/gocannon/latest)](https://hub.docker.com/r/jauderho/gocannon/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/goplay2/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/goplay2/latest)](https://github.com/openairplay/goplay2/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/goplay2/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/goplay2/latest)](https://hub.docker.com/r/jauderho/goplay2/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/gotip/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/gotip/latest)](https://github.com/golang/go/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gotip)](https://hub.docker.com/r/jauderho/gotip/)

@@ -19,6 +19,8 @@ REPO=(
         "dry" \
         "gobgp" \
         "gocannon" \
+        "goplay2" \
+        "gotip" \
         "headscale" \
         "lego" \
         "miller" \
