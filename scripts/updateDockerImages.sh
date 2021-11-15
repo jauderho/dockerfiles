@@ -35,7 +35,6 @@ REPO=(
 	"nabla-c0d3/sslyze" \
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \
-	"asciimoo/wuzz" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
 )
