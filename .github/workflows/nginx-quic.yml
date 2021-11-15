@@ -74,7 +74,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.ubuntu.${{ matrix.quic }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
@@ -138,7 +138,7 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.alpine.${{ matrix.quic }}
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           build-args: BUILD_VERSION
@@ -161,7 +161,7 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.alpine.${{ matrix.quic }}
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
