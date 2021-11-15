@@ -34,4 +34,7 @@ RUN yarn upgrade --latest \
 	&& yarn upgrade ansi-regex@5.0.1 \
 	&& yarn upgrade cookie@0.4.1
 
+RUN apk update \
+	&& apk upgrade --no-cache busybox ssl_client
+
 ENTRYPOINT ["node", "cli.js"]
