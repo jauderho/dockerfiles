@@ -21,7 +21,9 @@ RUN test -n "${BUILD_VERSION}" \
 RUN cp coredns /go/bin/coredns
 RUN coredns -version
 
+
 # ----------------------------------------------------------------------------
+
 
 FROM scratch
 

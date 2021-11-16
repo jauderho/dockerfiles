@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/ali.tar.gz --strip 1 -C /go/src/github.com/nakabonne/ali \
 	&& echo "after" \
 	&& ls -l \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
+	&& go build -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
 
