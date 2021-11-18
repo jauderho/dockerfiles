@@ -23,11 +23,11 @@ idna==3.3; python_version >= '3'
 jinja2==3.0.3; python_version >= '3.6'
 markupsafe==2.0.1; python_version >= '3.6'
 ntlm-auth==1.5.0; python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'
-packaging==21.2; python_version >= '3.6'
+packaging==21.3; python_version >= '3.6'
 persist-queue==0.7.0
 pycparser==2.21; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 pygments==2.10.0; python_version >= '3.5'
-pyparsing==2.4.7; python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'
+pyparsing==3.0.6; python_version >= '3.6'
 python-dateutil==2.8.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 pywinrm==0.4.2
 pyyaml==6.0; python_version >= '3.6'
