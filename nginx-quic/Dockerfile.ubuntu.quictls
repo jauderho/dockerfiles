@@ -9,7 +9,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc make g++ cmake perl ca-certificates && \
     git clone --depth 1 https://github.com/quictls/openssl && \
     cd openssl && \
-    ./Configure && \
+    ./Configure enable-ktls && \
     make
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mercurial libperl-dev libpcre3-dev zlib1g-dev libxslt1-dev libgd-ocaml-dev libgeoip-dev lld && \
