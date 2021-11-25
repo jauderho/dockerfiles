@@ -1,5 +1,6 @@
 #FROM golang:alpine AS build
-FROM alpine:edge AS build
+#FROM alpine:edge AS build
+FROM alpine:3.15 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -27,7 +28,8 @@ WORKDIR /config
 
 #FROM scratch
 #FROM alpine:3.14
-FROM alpine:edge
+FROM alpine:3.15
+#FROM alpine:edge
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
