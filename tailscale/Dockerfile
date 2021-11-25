@@ -30,7 +30,7 @@ RUN tailscale version
 
 
 
-FROM alpine:3.14
+FROM alpine:3.15.0
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
