@@ -434,11 +434,11 @@
         },
         "keyring": {
             "hashes": [
-                "sha256:6334aee6073db2fb1f30892697b1730105b5e9a77ce7e61fca6b435225493efe",
-                "sha256:bd2145a237ed70c8ce72978b497619ddfcae640b6dcf494402d5143e37755c6e"
+                "sha256:0adeca86beb3a2f79362d92c7fb71949be751e72463f2c1350e2ab5c0fbd3701",
+                "sha256:3842db6b5f660d3c0a0b5aeb3bd5aa60241fe313bcfc7828f8df41b1e6fb1e51"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==23.2.1"
+            "version": "==23.3.0"
         },
         "markupsafe": {
             "hashes": [
