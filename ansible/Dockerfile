@@ -13,10 +13,12 @@ ENV PIP_NO_CACHE_DIR=1
 COPY requirements.txt .
 
 RUN apt-get update && \
-	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends cargo gcc libssl-dev python3-dev python3-pip openssh-client && \
+	build_pkgs="cargo gcc libssl-dev python3-dev git" && \
+	runtime_pkgs="python3-pip openssh-client" && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir -r requirements.txt && \
-	apt-get purge -y cargo gcc libssl-dev python3-dev && \
+	apt-get purge -y ${build_pkgs} && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /root/.cache/pip && \
