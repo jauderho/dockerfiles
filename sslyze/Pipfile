@@ -4,11 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-wheel = "*"
 sslyze = "*"
 nassl = "*"
 #nassl = ">=4.0.0,<5.0.0"
 #cryptography = ">=2.6,<3.4"
+cryptography = "*"
+tls-parser = "*"
+pydantic = "*"
+wheel = "*"
 
 [dev-packages]
 mypy = "*"
