@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "833699840ee86ca954cfc4c66b52e0897e881a659c6086d403115bf4e03ae54b"
+            "sha256": "f40064b8259553f47987eae7fdbf08f853171ecd0b6c17c32ccc795bd243d68a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -269,11 +269,6 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2.0.1"
-        },
-        "mitogen": {
-            "editable": true,
-            "git": "https://github.com/mitogen-hq/mitogen.git",
-            "ref": "c61c063b4f9b2b63dcaa86443631a268c9f72870"
         },
         "ntlm-auth": {
             "hashes": [

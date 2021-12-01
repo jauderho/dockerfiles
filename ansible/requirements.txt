@@ -6,7 +6,6 @@
 #
 
 -i https://pypi.org/simple
--e git+https://github.com/mitogen-hq/mitogen.git@c61c063b4f9b2b63dcaa86443631a268c9f72870#egg=mitogen
 ansible-core==2.12.0; python_version >= '3.8'
 ansible-lint==5.2.1
 ansible==5.0.0
