@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
     && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ssh-audit.tar.gz \
     && tar xvzf /tmp/ssh-audit.tar.gz --strip 1 -C /home/ssh-audit \
     && addgroup ssh-audit \
-    && adduser -G ssh-audit -g "ssh-audit user" -s /bin/bash -D ssh-audit 
+    && adduser -G ssh-audit -g "ssh-audit user" -s /bin/bash -D ssh-audit \ 
     && apk del build-dependencies \
     && rm -rf /var/cache/apk/*
 
