@@ -35,6 +35,13 @@ EXPOSE 1069/udp
 # User-provided boot items, e.g. kernels
 VOLUME /tftpboot/boot
 
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/tftpd"
+LABEL org.opencontainers.image.description="A simple tftp docker container"
+
 # The daemon doesn't seem to work if container is not run as root, but it still drops the root
 # privileges with the -u option.
 # Note that the main process still runs as root, but files are being served as non-root.
