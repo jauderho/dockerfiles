@@ -30,6 +30,7 @@ REPO=(
 	"cube2222/octosql" \
 	"aramperes/onetun" \
 	"cilium/pwru" \
+	"rclone/rclone" \
 	"authzed/spicedb" \
 	"jtesta/ssh-audit" \
 	"nabla-c0d3/sslyze" \

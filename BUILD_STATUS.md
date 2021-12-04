@@ -141,6 +141,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/pwru)](https://hub.docker.com/r/jauderho/pwru/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/pwru/latest)](https://hub.docker.com/r/jauderho/pwru/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/rclone/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/rclone/latest)](https://github.com/rclone/rclone)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/rclone)](https://hub.docker.com/r/jauderho/rclone/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/rclone/latest)](https://hub.docker.com/r/jauderho/rclone/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/rustybgp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/rustybgp/latest)](https://github.com/osrg/rustybgp/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/rustybgp/)

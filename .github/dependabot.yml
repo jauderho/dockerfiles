@@ -215,6 +215,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /rclone
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /rustybgp
     schedule:
       interval: "daily"

@@ -27,6 +27,7 @@ REPO=(
         "nebula" \
         "octosql" \
         "pwru" \
+        "rclone" \
         "spicedb" \
         "tailscale" \
         "terraform" \
