@@ -147,6 +147,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/rustybgp/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/rustybgp/latest)](https://hub.docker.com/r/jauderho/rustybgp/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/sftpd/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Asftpd)
+[![Version](https://img.shields.io/docker/v/jauderho/sftpd/latest)](https://github.com/atmoz/sftp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/sftpd)](https://hub.docker.com/r/jauderho/sftpd/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/sftpd/latest)](https://hub.docker.com/r/jauderho/sftpd/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/spicedb/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/spicedb/latest)](https://github.com/authzed/spicedb/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/spicedb/)
