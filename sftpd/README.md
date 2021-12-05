@@ -5,3 +5,9 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/sftpd/latest)](https://hub.docker.com/r/jauderho/sftpd/)
 
 Dockerfile forked from https://github.com/atmoz/sftp
+
+Changes from atmoz/sftp:
+- Modern SSH crypto (see files/sshd_config)
+- Alter default listening port to 2222
+- Only allow auth via SSH keys
+

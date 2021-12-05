@@ -1,5 +1,4 @@
 FROM alpine:3.15
-MAINTAINER Adrian Dvergsdal [atmoz.net]
 
 # Steps done in one RUN layer:
 # - Install packages
@@ -16,6 +15,14 @@ COPY files/sshd_config /etc/ssh/sshd_config
 COPY files/create-sftp-user /usr/local/bin/
 COPY files/entrypoint /
 
-EXPOSE 22
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/sftpd"
+LABEL org.opencontainers.image.description="A minimal sftpd docker container"
+
+EXPOSE 2222
+#EXPOSE 22
 
 ENTRYPOINT ["/entrypoint"]
