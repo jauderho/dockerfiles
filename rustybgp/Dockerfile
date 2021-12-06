@@ -24,7 +24,7 @@ WORKDIR /config
 
 
 #FROM scratch
-#FROM alpine:3.14
+#FROM alpine:3.15
 FROM debian:11-slim
 #FROM rust:bullseye
 
@@ -42,6 +42,9 @@ COPY --from=build /config /config
 
 #RUN apk update \
 #	&& apk add --no-cache dumb-init
+
+RUN apt-get update \
+	&& apt-get dist-upgrade
 
 USER 1000
 
