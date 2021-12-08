@@ -32,11 +32,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:2e568943ab99f6474df262bc35808d8b055754aa6b3204649d57884733bace2e",
-                "sha256:7b23a770cbff5493753553d3a665a1fabf6ca4d71b44d55a61bc32e5aede0bbb"
+                "sha256:4793ce6862ef7f85b3aaa7fa21887fd3e45bae43505640523c9b25928ac992de",
+                "sha256:7d7bc74b9b90c5982be5c274c2afcba5b8073ec88cce793fab463fe6418a25f6"
             ],
             "index": "pypi",
-            "version": "==5.3.0"
+            "version": "==5.3.1"
         },
         "bitmath": {
             "hashes": [
