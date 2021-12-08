@@ -1,6 +1,7 @@
 #FROM rust:1 AS build
-FROM rust:alpine AS build
 #FROM rust:bullseye AS build
+#FROM rust:alpine AS build
+FROM alpine:3.15.0 AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 COPY Cargo.toml Cargo.toml
@@ -11,12 +12,14 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add ca-certificates lld cargo git protoc \
+	&& apk add ca-certificates curl lld gcc protoc git musl-dev \
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert CPU requirement
 	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
 	&& git reset HEAD . \
+	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+	&& source $HOME/.cargo/env \
 	&& rustup component add rustfmt \
 	&& cargo build --release
 
