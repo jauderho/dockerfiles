@@ -1,6 +1,6 @@
 #FROM rust:1 AS build
-#FROM rust:alpine AS build
-FROM rust:bullseye AS build
+FROM rust:alpine AS build
+#FROM rust:bullseye AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 COPY Cargo.toml Cargo.toml
@@ -10,10 +10,13 @@ ARG ARCHIVE_URL=https://github.com/osrg/rustybgp/archive/
 ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
-	&& apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates lld cargo \
-	&& git clone --depth 1 ${GIT_URL} \
+	&& apk update \
+	&& apk add ca-certificates lld cargo git protoc \
+	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
+	# revert CPU requirement
+	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
+	&& git reset HEAD . \
 	&& rustup component add rustfmt \
 	&& cargo build --release
 
@@ -24,8 +27,8 @@ WORKDIR /config
 
 
 #FROM scratch
-#FROM alpine:3.15
-FROM debian:11-slim
+FROM alpine:3.15
+#FROM debian:11-slim
 #FROM rust:bullseye
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
@@ -42,9 +45,6 @@ COPY --from=build /config /config
 
 #RUN apk update \
 #	&& apk add --no-cache dumb-init
-
-RUN apt-get update \
-	&& apt-get dist-upgrade
 
 USER 1000
 
