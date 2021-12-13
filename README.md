@@ -102,6 +102,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/lego/latest)](https://hub.docker.com/r/jauderho/lego/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/log4j-scan/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Alog4j-scan)
+[![Version](https://img.shields.io/docker/v/jauderho/log4j-scan/latest)](https://github.com/fullhunt/log4j-scan)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/log4j-scan)](https://hub.docker.com/r/jauderho/log4j-scan/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/log4j-scan/latest)](https://hub.docker.com/r/jauderho/log4j-scan/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/miller/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/miller/latest)](https://github.com/johnkerl/miller)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/miller)](https://hub.docker.com/r/jauderho/miller/)

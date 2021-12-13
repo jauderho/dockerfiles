@@ -167,6 +167,12 @@ updates:
 
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /log4j-scan
+    schedule:
+      interval: "daily"
+
+   # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /miller
     schedule:
       interval: "daily"
