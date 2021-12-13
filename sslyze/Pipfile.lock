@@ -716,11 +716,11 @@
         },
         "readme-renderer": {
             "hashes": [
-                "sha256:03b3cca3d1a8ef9d2200258c282eae4b8b60bc53b674c0588cb214785465213a",
-                "sha256:8ceeb608a1bc6f474430db890a4b9b6006e16d9d26b81a84a1e2e2aae4454f9b"
+                "sha256:a50a0f2123a4c1145ac6f420e1a348aafefcc9211c846e3d51df05fe3d865b7d",
+                "sha256:b512beafa6798260c7d5af3e1b1f097e58bfcd9a575da7c4ddd5e037490a5b85"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==31.0"
+            "version": "==32.0"
         },
         "requests": {
             "hashes": [
