@@ -21,6 +21,7 @@ REPO=(
         "gocannon" \
         "goplay2" \
         "gotip" \
+        "hakrawler" \
         "headscale" \
         "httpx" \
         "lego" \
