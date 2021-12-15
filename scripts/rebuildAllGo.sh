@@ -23,6 +23,7 @@ REPO=(
         "gotip" \
         "hakrawler" \
         "headscale" \
+        "httprobe" \
         "httpx" \
         "lego" \
         "miller" \

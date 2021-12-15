@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -77,7 +77,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
+        image: [age, ali, ansible, bl3auto, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, yt-dlp]
     runs-on: ubuntu-20.04
     
     steps:
