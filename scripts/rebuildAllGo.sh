@@ -31,6 +31,7 @@ REPO=(
         "pwru" \
         "rclone" \
         "spicedb" \
+        "subfinder" \
         "tailscale" \
         "terraform" \
         "wuzz" \

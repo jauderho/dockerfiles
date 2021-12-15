@@ -35,6 +35,7 @@ REPO=(
 	"authzed/spicedb" \
 	"jtesta/ssh-audit" \
 	"nabla-c0d3/sslyze" \
+	"projectdiscovery/subfinder" \
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \
 	"ytdl-org/youtube-dl" \

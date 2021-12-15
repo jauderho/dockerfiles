@@ -182,6 +182,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/sslyze)](https://hub.docker.com/r/jauderho/sslyze/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/sslyze/latest)](https://hub.docker.com/r/jauderho/sslyze/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/subfinder/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/subfinder/latest)](https://github.com/projectdiscovery/subfinder)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/subfinder)](https://hub.docker.com/r/jauderho/subfinder/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/subfinder/latest)](https://hub.docker.com/r/jauderho/subfinder/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/tailscale/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atailscale)
 [![Version](https://img.shields.io/docker/v/jauderho/tailscale/latest)](https://github.com/tailscale/tailscale)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tailscale)](https://hub.docker.com/r/jauderho/tailscale/)
