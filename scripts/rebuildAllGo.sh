@@ -22,6 +22,7 @@ REPO=(
         "goplay2" \
         "gotip" \
         "headscale" \
+        "httpx" \
         "lego" \
         "miller" \
         "nebula" \

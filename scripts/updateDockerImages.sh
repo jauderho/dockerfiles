@@ -25,6 +25,7 @@ REPO=(
 	"osrg/gobgp" \
 	"kffl/gocannon" \
 	"juanfont/headscale" \
+	"projectdiscovery/httpx" \
 	"go-acme/lego" \
 	"slackhq/nebula" \
 	"cube2222/octosql" \

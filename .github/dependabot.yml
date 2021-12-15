@@ -159,6 +159,12 @@ updates:
     schedule:
       interval: "daily"
       
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /httpx
+    schedule:
+      interval: "daily"
+      
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /lego

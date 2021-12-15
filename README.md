@@ -97,6 +97,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/headscale/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/headscale/latest)](https://hub.docker.com/r/jauderho/headscale/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/httpx/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/httpx/latest)](https://github.com/projectdiscovery/httpx)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/httpx)](https://hub.docker.com/r/jauderho/httpx/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/httpx/latest)](https://hub.docker.com/r/jauderho/httpx/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/lego/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Alego)
 [![Version](https://img.shields.io/docker/v/jauderho/lego/latest)](https://github.com/go-acme/lego)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
