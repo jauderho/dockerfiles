@@ -14,6 +14,7 @@ pywinrm = "*"
 storops = "*"
 wheel = "*"
 #mitogen = { git = "https://github.com/mitogen-hq/mitogen.git", editable = true, ref = "c61c063b4f9b2b63dcaa86443631a268c9f72870" }
+mitogen = { git = "https://github.com/mitogen-hq/mitogen.git", editable = true, ref = "5b505f524a7ae170fe68613841ab92b299613d3f" }
 
 [dev-packages]
 
