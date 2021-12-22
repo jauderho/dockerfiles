@@ -5,7 +5,7 @@
 #    pipenv lock --requirements
 #
 
--i https://pypi.org/simple
+-i https://pypi.org/simple/
 cffi==1.15.0
 cryptography==36.0.1
 nassl==4.0.1
@@ -14,4 +14,4 @@ pydantic==1.8.2
 sslyze==5.0.1
 tls-parser==1.2.2
 typing-extensions==4.0.1; python_version >= '3.6'
-wheel==0.37.0
+wheel==0.37.1
