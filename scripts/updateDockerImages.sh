@@ -80,7 +80,7 @@ do
 	if [ "$dver" != "$rver" ]; then
 		echo "Updating to ${rver} ..." 
 
-		sed -i -e "s/$dver/$rver/" ".github/workflows/${prog}.yml" && \
+		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
 		git commit -m "Updated ${prog} to ${rver}" && \
 		git push
