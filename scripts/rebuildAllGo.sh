@@ -35,6 +35,7 @@ REPO=(
         "subfinder" \
         "tailscale" \
         "terraform" \
+        "toxiproxy" \
         "wuzz" \
 )
 

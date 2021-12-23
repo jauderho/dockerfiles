@@ -38,6 +38,7 @@ REPO=(
 	"projectdiscovery/subfinder" \
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \
+	"shopify/toxiproxy" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
 )

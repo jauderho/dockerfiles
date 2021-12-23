@@ -216,6 +216,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tftpd)](https://hub.docker.com/r/jauderho/tftpd/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/tftpd/latest)](https://hub.docker.com/r/jauderho/tftpd/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/toxiproxy/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Atoxiproxy)
+[![Version](https://img.shields.io/docker/v/jauderho/toxiproxy/latest)](https://github.com/shopify/toxiproxy)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/toxiproxy)](https://hub.docker.com/r/jauderho/toxiproxy/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/toxiproxy/latest)](https://hub.docker.com/r/jauderho/toxiproxy/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/youtube-dl/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ayoutube-dl)
 [![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://github.com/ytdl-org/youtube-dl)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
