@@ -26,6 +26,7 @@ REPO=(
         "httprobe" \
         "httpx" \
         "lego" \
+        "logmepwn" \
         "miller" \
         "nebula" \
         "octosql" \

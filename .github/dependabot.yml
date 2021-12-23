@@ -191,6 +191,12 @@ updates:
 
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /logmepwn
+    schedule:
+      interval: "daily"
+
+   # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /miller
     schedule:
       interval: "daily"

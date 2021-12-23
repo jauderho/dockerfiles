@@ -27,6 +27,7 @@ REPO=(
 	"juanfont/headscale" \
 	"projectdiscovery/httpx" \
 	"go-acme/lego" \
+	"0xInfection/logmepwn" \
 	"slackhq/nebula" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \
