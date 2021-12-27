@@ -22,6 +22,7 @@ REPO=(
 	"DNSCrypt/dnscrypt-proxy" \
 	"cloudskiff/driftctl" \
 	"moncho/dry" \
+	"wader/fq" \
 	"osrg/gobgp" \
 	"kffl/gocannon" \
 	"juanfont/headscale" \

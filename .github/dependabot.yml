@@ -131,6 +131,12 @@ updates:
       
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /fq
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /gobgp
     schedule:
       interval: "daily"

@@ -17,6 +17,7 @@ REPO=(
         "dnscrypt-proxy" \
         "driftctl" \
         "dry" \
+        "fq" \
         "gobgp" \
         "gocannon" \
         "goplay2" \
