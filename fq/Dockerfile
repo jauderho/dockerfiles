@@ -35,7 +35,7 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/fq"
-LABEL org.opencontainers.image.description="fq is a tool for inspecing binary data"
+LABEL org.opencontainers.image.description="fq is a tool for inspecting binary data"
 
 COPY --from=build /go/bin/fq /fq
 
