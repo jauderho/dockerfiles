@@ -14,6 +14,7 @@ REPO=(
 	"ansible/ansible" \
 	"OWASP/amass" \
 	"jauderho/bl3auto" \
+	"psf/black" \
 	"jauderho/cf-warp" \
 	"cloudflare/cloudflared" \
 	"coredns/coredns" \

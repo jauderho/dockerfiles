@@ -26,6 +26,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/bl3auto)](https://hub.docker.com/r/jauderho/bl3auto/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/bl3auto/latest)](https://hub.docker.com/r/jauderho/bl3auto/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/black/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ablack)
+[![Version](https://img.shields.io/docker/v/jauderho/black/latest)](https://github.com/psf/black)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/black)](https://hub.docker.com/r/jauderho/black/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/black/latest)](https://hub.docker.com/r/jauderho/black/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/cf-warp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/cf-warp/latest)](https://github.com/jauderho/cf-warp/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cf-warp)](https://hub.docker.com/r/jauderho/cf-warp/)
