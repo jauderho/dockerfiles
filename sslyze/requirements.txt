@@ -5,7 +5,7 @@
 #    pipenv lock --requirements
 #
 
--i https://pypi.org/simple/
+-i https://pypi.org/simple
 cffi==1.15.0
 cryptography==36.0.1
 nassl==4.0.1
