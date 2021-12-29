@@ -1,5 +1,5 @@
 
-Usage: `docker run --rm -i jauderho/latest:latest - < <FILE>`
+Usage: `docker run --rm -v $(pwd):/data -i jauderho/black:latest .`
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/black/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ablack)
 [![Version](https://img.shields.io/docker/v/jauderho/black/latest)](https://github.com/psf/black)
