@@ -1,13 +1,13 @@
 FROM alpine:3.15.0
 
 # https://nginx.org/en/download.html
-#ENV BUILD_VERSION 1.21.3
+#ENV BUILD_VERSION 1.21.5
 
 # https://www.openssl.org/source
-#ENV OPENSSL_VERSION 3.0.0
+#ENV OPENSSL_VERSION 3.0.1
 
 # https://www.pcre.org/
-#ENV PCRE_VERSION 8.45
+#ENV PCRE_VERSION 10.39
 
 ARG BUILD_VERSION
 ARG OPENSSL_VERSION
@@ -24,7 +24,7 @@ RUN \
   cd /tmp && \
   wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
   wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
-  wget -O - https://sourceforge.net/projects/pcre/files/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz/download --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - https://github.com/PhilipHazel/pcre2/releases/download/pcre2-${PCRE_VERSION}/pcre2-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   git clone --depth 1 ${ZLIB_URL} /tmp/zlib && \
   cd /tmp/zlib && \
   ./configure && \
@@ -73,7 +73,7 @@ RUN \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-openssl-opt="enable-ec_nistp_64_gcc_128 enable-ktls threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
-    --with-pcre=/tmp/pcre-${PCRE_VERSION} \
+    --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
   PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC && \
