@@ -18,7 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/ntfy.tar.gz --strip 1 -C /go/src/github.com/binwiederhier/ntfy \ 
 	&& mkdir server/docs \ 
 	&& touch server/docs/dummy \ 
-	&& go build -o ntfy -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
+	&& go build -o ntfy -v -trimpath -buildmode=pie -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check
 RUN cp ntfy /go/bin/ntfy
