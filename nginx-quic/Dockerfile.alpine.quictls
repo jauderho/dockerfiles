@@ -11,7 +11,7 @@ RUN apk update && \
     ./Configure && \
     make
 
-RUN apk add --no-cache mercurial perl-dev pcre-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre zlib && \
+RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre2 zlib && \
     hg clone https://hg.nginx.org/nginx-quic && \
     cd nginx-quic && \
     hg update quic && \
@@ -68,7 +68,7 @@ LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
 RUN apk update && \
-    apk add --no-cache pcre
+    apk add --no-cache pcre2
 
 COPY --from=build /src/openssl/libcrypto* /usr/lib/
 COPY --from=build /src/openssl/libssl* /usr/lib/

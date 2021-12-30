@@ -12,7 +12,7 @@ RUN apk update && \
     cmake .. && \
     make
 
-RUN apk add --no-cache mercurial perl-dev pcre-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre zlib && \
+RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre2 zlib && \
     hg clone https://hg.nginx.org/nginx-quic && \
     cd nginx-quic && \
     hg update quic && \

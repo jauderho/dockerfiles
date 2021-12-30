@@ -12,7 +12,7 @@ RUN apk update && \
     cmake .. && \
     make
 
-RUN apk add --no-cache mercurial perl-dev pcre-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre zlib && \
+RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev geoip-dev lld pcre2 zlib && \
     hg clone https://hg.nginx.org/nginx-quic && \
     cd nginx-quic && \
     hg update quic && \
@@ -69,7 +69,7 @@ LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
 RUN apk update && \
-    apk add --no-cache pcre
+    apk add --no-cache pcre2
 
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin
 COPY --from=build /src/files/index.html /etc/nginx/html/

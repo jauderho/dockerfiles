@@ -12,7 +12,7 @@ RUN apt-get update && \
     ./Configure enable-ktls && \
     make
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mercurial libperl-dev libpcre3-dev zlib1g-dev libxslt1-dev libgd-ocaml-dev libgeoip-dev lld && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mercurial libperl-dev libpcre2-dev zlib1g-dev libxslt1-dev libgd-ocaml-dev libgeoip-dev lld && \
     hg clone https://hg.nginx.org/nginx-quic && \
     cd nginx-quic && \
     hg update quic && \
