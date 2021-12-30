@@ -31,6 +31,7 @@ REPO=(
 	"go-acme/lego" \
 	"0xInfection/logmepwn" \
 	"slackhq/nebula" \
+	"binwiederhier/ntfy" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \
 	"cilium/pwru" \

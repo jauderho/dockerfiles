@@ -157,6 +157,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/nginx)](https://hub.docker.com/r/jauderho/nginx/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx/latest)](https://hub.docker.com/r/jauderho/nginx/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/ntfy/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Antfy)
+[![Version](https://img.shields.io/docker/v/jauderho/ntfy/latest)](https://github.com/binwiederhier/ntfy)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ntfy)](https://hub.docker.com/r/jauderho/ntfy/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/ntfy/latest)](https://hub.docker.com/r/jauderho/ntfy/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/octosql/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/octosql/latest)](https://github.com/cube2222/octosql/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/octosql/)

@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
+        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
+        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
     runs-on: ubuntu-20.04
 
     steps:
@@ -77,7 +77,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
+        image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dive, dnscontrol, dnscrypt-proxy, driftctl, dry, excalidraw, fq, gobgp, gocannon, hakrawler, headscale, httprobe, httpx, lego, log4j-scan, logmepwn,  miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, pwru, rclone, rustybgp, sftpd, spicedb, ssh-audit, sslyze, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, yt-dlp]
     runs-on: ubuntu-20.04
     
     steps:
