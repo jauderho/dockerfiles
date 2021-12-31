@@ -13,7 +13,12 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/octosql.tar.gz \
 	&& tar xzf /tmp/octosql.tar.gz --strip 1 -C /go/src/github.com/cube2222/octosql \
-	&& go build -o octosql -v -trimpath -ldflags="-s -w" ./cmd/octosql 
+	&& go build -o octosql-cli -v -trimpath -ldflags="-s -w -X github.com/cube2222/octosql/cmd.VERSION=${BUILD_VERSION}" . 
+
+RUN id
+RUN ls -l ./octosql-cli
+RUN chmod 777 ./octosql-cli && ls -l ./octosql-cli
+RUN ./octosql-cli --help
 
 WORKDIR /config
 
@@ -22,7 +27,7 @@ WORKDIR /config
 
 
 FROM scratch
-#FROM alpine:3.14
+#FROM alpine:3.15
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -33,7 +38,7 @@ LABEL org.opencontainers.image.description="OctoSQL is a query tool that joins, 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
-COPY --from=build /go/src/github.com/cube2222/octosql/octosql /usr/local/bin/octosql
+COPY --from=build /go/src/github.com/cube2222/octosql/octosql-cli /usr/local/bin/octosql
 COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/octosql"]
