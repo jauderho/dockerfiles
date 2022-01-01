@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN \
   apk update && \
   build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
-  runtime_pkgs="ca-certificates openssl openssh-client" && \
+  runtime_pkgs="ca-certificates openssl openssh-client python3" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
   ln -s /usr/bin/python3 /usr/bin/python && \
@@ -28,6 +28,8 @@ RUN \
   apk del build-dependencies && \
   rm -rf /var/cache/apk/* && \
   rm -rf /root/.cache/pip && \
+	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
+	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf && \
   rm -rf /root/.cargo
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
