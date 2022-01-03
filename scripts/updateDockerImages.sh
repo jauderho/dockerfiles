@@ -29,6 +29,7 @@ REPO=(
 	"juanfont/headscale" \
 	"projectdiscovery/httpx" \
 	"go-acme/lego" \
+	"fullhunt/log4j-scan" \
 	"0xInfection/logmepwn" \
 	"slackhq/nebula" \
 	"binwiederhier/ntfy" \

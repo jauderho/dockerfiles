@@ -21,7 +21,8 @@ RUN \
 	ln -s /usr/bin/python3 /usr/bin/python && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir --upgrade wheel && \
-	git clone --depth 1 ${GIT_URL} /opt/log4j-scan && \
+	git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /opt/log4j-scan && \
+	#git clone --depth 1 ${GIT_URL} /opt/log4j-scan && \
 	cd /opt/log4j-scan && \
 	pip3 install --no-cache-dir -r requirements.txt && \
 	apk del build-dependencies && \
