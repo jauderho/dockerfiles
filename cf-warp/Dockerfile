@@ -1,4 +1,4 @@
-FROM node:17-alpine3.14 AS build
+FROM node:17-alpine3.15 AS build
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ COPY . .
 
 
 
-FROM node:17-alpine3.14
+FROM node:17-alpine3.15
 
 WORKDIR /app
 COPY --from=build /app .
