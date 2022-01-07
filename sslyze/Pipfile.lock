@@ -795,11 +795,11 @@
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
-                "sha256:2780ed346f0bc056fd922131a41e5370dce76ddfa7fbd8ff3ff4c3f36c4c328f",
-                "sha256:e10069d8c13a5b11021bb27f78cc69975d45c47d0a6b6343d9764acbcdc9a1fa"
+                "sha256:875de815a1ba609a4c0ebc620faecd8eb57183ba1f4cc6f8abba1790c140e960",
+                "sha256:8b3b7da797fa007f7f39c518879a1bdae3a7dab96e170f4cb5a4b96390238369"
             ],
             "index": "pypi",
-            "version": "==1.14.0"
+            "version": "==1.14.1"
         },
         "sphinx-rtd-theme": {
             "hashes": [
@@ -906,11 +906,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece",
-                "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"
+                "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed",
+                "sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
-            "version": "==1.26.7"
+            "version": "==1.26.8"
         },
         "webencodings": {
             "hashes": [
