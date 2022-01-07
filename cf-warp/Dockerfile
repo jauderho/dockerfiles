@@ -1,4 +1,5 @@
-FROM node:17-alpine3.15 AS build
+FROM node:16-alpine3.15 AS build
+#FROM node:17-alpine3.15 AS build
 
 WORKDIR /app
 
@@ -24,17 +25,13 @@ COPY . .
 
 
 
-FROM node:17-alpine3.15
+#FROM node:17-alpine3.15
+FROM alpine:3.15
 
 WORKDIR /app
 COPY --from=build /app .
 
-# Fix security issues with base image
-RUN yarn upgrade --latest \
-	&& yarn upgrade ansi-regex@5.0.1 \
-	&& yarn upgrade cookie@0.4.1
-
 RUN apk update \
-	&& apk upgrade --no-cache busybox ssl_client
+	&& apk --no-cache add --upgrade busybox ssl_client nodejs
 
 ENTRYPOINT ["node", "cli.js"]
