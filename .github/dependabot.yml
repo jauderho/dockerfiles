@@ -221,6 +221,12 @@ updates:
       
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /netmaker
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /nginx-distroless
     schedule:
       interval: "daily"

@@ -32,6 +32,7 @@ REPO=(
 	"fullhunt/log4j-scan" \
 	"0xInfection/logmepwn" \
 	"slackhq/nebula" \
+	"gravitl/netmaker" \
 	"binwiederhier/ntfy" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \

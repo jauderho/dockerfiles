@@ -30,6 +30,7 @@ REPO=(
         "logmepwn" \
         "miller" \
         "nebula" \
+        "netmaker" \
         "ntfy" \
         "octosql" \
         "pwru" \
