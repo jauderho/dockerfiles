@@ -29,7 +29,7 @@ LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/netmaker"
-LABEL org.opencontainers.image.description="Netmaker automates fast, secure, and distributed virtual networks"
+LABEL org.opencontainers.image.description="Netmaker automates fast, secure, and distributed virtual networks using Wireguard"
 
 RUN apk add gcompat iptables
 
