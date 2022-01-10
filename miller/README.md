@@ -5,5 +5,4 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/miller/latest)](https://hub.docker.com/r/jauderho/miller/)
 
 
-This is the WIP Go version of miller. It will rebuild weekly. See https://github.com/johnkerl/miller/ for more details
-
+Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
