@@ -31,6 +31,7 @@ REPO=(
 	"go-acme/lego" \
 	"fullhunt/log4j-scan" \
 	"0xInfection/logmepwn" \
+	"johnkerl/miller" \
 	"slackhq/nebula" \
 	"gravitl/netmaker" \
 	"binwiederhier/ntfy" \
