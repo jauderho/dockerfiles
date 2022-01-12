@@ -10,7 +10,7 @@ This repo contains Dockerfiles for applications that I find useful.
 - Pull images from [Docker Hub](https://hub.docker.com/u/jauderho/) and [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles)
 - Images are scanned daily using Trivy, Snyk and Anchore. See the [GHA workflow](https://github.com/jauderho/dockerfiles/blob/main/.github/workflows/scan.yml)
 
-## Status
+## [Build Status](https://github.com/jauderho/dockerfiles/blob/main/BUILD_STATUS.md)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/age/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/age/latest)](https://github.com/FiloSottile/age)
