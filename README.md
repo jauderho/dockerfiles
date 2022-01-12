@@ -72,6 +72,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dry)](https://hub.docker.com/r/jauderho/dry/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dry/latest)](https://hub.docker.com/r/jauderho/dry/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dsq/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/dsq/latest)](https://github.com/multiprocessio/dsq)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dsq)](https://hub.docker.com/r/jauderho/dsq/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dsq/latest)](https://hub.docker.com/r/jauderho/dsq/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/excalidraw/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/excalidraw/latest)](https://github.com/excalidraw/excalidraw/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/excalidraw/)

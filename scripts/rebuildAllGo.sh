@@ -17,6 +17,7 @@ ACTION=(
         "dnscrypt-proxy" \
         "driftctl" \
         "dry" \
+        "dsq" \
         "fq" \
         "gobgp" \
         "gocannon" \
