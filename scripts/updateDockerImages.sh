@@ -27,6 +27,7 @@ REPO=(
 	"osrg/gobgp" \
 	"kffl/gocannon" \
 	"juanfont/headscale" \
+	"nojima/httpie-go" \
 	"projectdiscovery/httpx" \
 	"go-acme/lego" \
 	"fullhunt/log4j-scan" \

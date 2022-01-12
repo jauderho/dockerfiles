@@ -179,6 +179,12 @@ updates:
       
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /httpie-go
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /httprobe
     schedule:
       interval: "daily"

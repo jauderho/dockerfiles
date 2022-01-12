@@ -5,7 +5,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-REPO=( 
+ACTION=( 
         "age" \
         "ali" \
         "amass" \
@@ -25,6 +25,7 @@ REPO=(
         "hakrawler" \
         "headscale" \
         "httprobe" \
+        "httpie-go" \
         "httpx" \
         "lego" \
         "logmepwn" \
@@ -43,7 +44,7 @@ REPO=(
         "wuzz" \
 )
 
-for i in "${REPO[@]}"
+for i in "${ACTION[@]}"
 do
 	gh workflow run "${i}"
 done
