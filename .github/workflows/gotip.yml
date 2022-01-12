@@ -14,7 +14,8 @@ on:
 env:
   BUILD_VERSION: "nightly"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
+  UPSTREAM_REPO: https://github.com/golang/go.git
 
 jobs:
 
@@ -32,6 +33,10 @@ jobs:
       - name: Setup Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
+
+      - name: Get commit short hash from remote repo
+        id: get-hash
+        run: echo "::set-output name=hash::$(git ls-remote ${{ env.UPSTREAM_REPO }} HEAD | awk '{print $1}' | head -c 8)"
 
       - name: Set Docker metadata
         id: docker_meta
@@ -74,7 +79,9 @@ jobs:
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ steps.get-hash.outputs.hash }}
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ steps.get-hash.outputs.hash }}
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
