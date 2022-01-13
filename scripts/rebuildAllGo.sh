@@ -41,6 +41,7 @@ ACTION=(
         "subfinder" \
         "tailscale" \
         "terraform" \
+        "textql" \
         "toxiproxy" \
         "wuzz" \
 )
