@@ -1,0 +1,5 @@
+SetEnv XORUX_ACCESS_CONTROL 1
+AuthUserFile /home/lpar2rrd/lpar2rrd/etc/web_config/htusers.cfg
+AuthName "LPAR2RRD authorization"
+AuthType Basic
+Require valid-user

@@ -1,0 +1,50 @@
+#  STOR2RRD STORAGES
+######################################################
+
+# GUI
+03,33 * * * * /home/lpar2rrd/stor2rrd/load.sh > /home/lpar2rrd/stor2rrd/logs/load.out 2>&1
+
+# IBM DS8000 storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_ds8perf.sh > /home/lpar2rrd/stor2rrd/load_ds8perf.out 2>&1
+
+# IBM SVC/Storwize/Flash storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_svcperf.sh > /home/lpar2rrd/stor2rrd/load_svcperf.out 2>&1
+
+# DS500/DS4000/DS3000/DCS3700 & NetApp E-series storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_ds5perf.sh > /home/lpar2rrd/stor2rrd/load_ds5perf.out 2>&1
+
+# IBM XIV storage agent
+0,10,20,30,40,50 * * * * /home/lpar2rrd/stor2rrd/load_xivperf.sh > /home/lpar2rrd/stor2rrd/load_xivperf.out 2>&1
+
+# Hitachi HUS and AMS 2000 storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_husperf.sh > /home/lpar2rrd/stor2rrd/load_husperf.out 2>&1
+
+# HPE 3PAR storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_3parperf.sh > /home/lpar2rrd/stor2rrd/load_3parperf.out 2>&1
+
+# NetApp storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_netappperf.sh > /home/lpar2rrd/stor2rrd/load_netappperf.out 2>&1
+
+# Hitachi VSP-G  & HPE XP7 storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_vspgperf.sh > /home/lpar2rrd/stor2rrd/load_vspgperf.out 2>&1
+
+# EMC VMAX
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vmaxperf.sh > /home/stor2rrd/stor2rrd/load_vmaxperf.out 2>&1
+
+# EMC VNX block
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vnxperf.sh > /home/stor2rrd/stor2rrd/load_vnxperf.out 2>&1
+
+# EMC VNX file
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vnxfperf.sh > /home/stor2rrd/stor2rrd/load_vnxfperf.out 2>&1
+
+# EMC VNXe
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vnxeperf.sh > /home/stor2rrd/stor2rrd/load_vnxeperf.out 2>&1
+
+# EMC Unity
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_unityperf.sh > /home/stor2rrd/stor2rrd/load_unityperf.out 2>&1
+
+# Dot Hill AssuredSAN and its rebrands like Lenovo S2200 or HPE MSA2000/P2000
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_dothillperf.sh > /home/stor2rrd/stor2rrd/load_dothillperf.out
+
+# Dell SC series (Compellent)
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_compellentperf.sh > /home/stor2rrd/stor2rrd/load_compellentperf.out 2>&1

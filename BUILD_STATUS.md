@@ -146,6 +146,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/logmepwn)](https://hub.docker.com/r/jauderho/logmepwn/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/logmepwn/latest)](https://hub.docker.com/r/jauderho/logmepwn/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/lpar2rrd/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/lpar2rrd/latest)](https://github.com/xorux/lpar2rrd)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lpar2rrd)](https://hub.docker.com/r/jauderho/lpar2rrd/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/lpar2rrd/latest)](https://hub.docker.com/r/jauderho/lpar2rrd/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/miller/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/miller/latest)](https://github.com/johnkerl/miller)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/miller)](https://hub.docker.com/r/jauderho/miller/)
@@ -225,6 +230,11 @@
 [![Version](https://img.shields.io/docker/v/jauderho/sslyze/latest)](https://github.com/nabla-c0d3/sslyze)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/sslyze)](https://hub.docker.com/r/jauderho/sslyze/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/sslyze/latest)](https://hub.docker.com/r/jauderho/sslyze/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/stor2rrd/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/stor2rrd/latest)](https://github.com/xorux/stor2rrd)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/stor2rrd)](https://hub.docker.com/r/jauderho/stor2rrd/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/stor2rrd/latest)](https://hub.docker.com/r/jauderho/stor2rrd/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/subfinder/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/subfinder/latest)](https://github.com/projectdiscovery/subfinder)

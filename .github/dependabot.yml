@@ -221,6 +221,12 @@ updates:
 
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /lpar2rrd
+    schedule:
+      interval: "daily"
+
+   # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /miller
     schedule:
       interval: "daily"
@@ -312,6 +318,12 @@ updates:
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /sslyze
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /stor2rrd
     schedule:
       interval: "daily"
 

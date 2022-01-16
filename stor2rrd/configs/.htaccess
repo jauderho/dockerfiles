@@ -1,0 +1,5 @@
+SetEnv XORUX_ACCESS_CONTROL 1
+AuthUserFile /home/stor2rrd/stor2rrd/etc/web_config/htusers.cfg
+AuthName "STOR2RRD authorization"
+AuthType Basic
+Require valid-user
