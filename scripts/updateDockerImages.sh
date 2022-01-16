@@ -32,7 +32,6 @@ REPO=(
 	"go-acme/lego" \
 	"fullhunt/log4j-scan" \
 	"0xInfection/logmepwn" \
-	"xorux/lpar2rrd" \
 	"johnkerl/miller" \
 	"slackhq/nebula" \
 	"gravitl/netmaker" \
@@ -44,7 +43,6 @@ REPO=(
 	"authzed/spicedb" \
 	"jtesta/ssh-audit" \
 	"nabla-c0d3/sslyze" \
-	"xorux/stor2rrd" \
 	"projectdiscovery/subfinder" \
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \

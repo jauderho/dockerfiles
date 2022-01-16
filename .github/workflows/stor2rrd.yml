@@ -12,13 +12,18 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "null"
+  BUILD_VERSION: "7.31-9"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
 jobs:
 
   deploy:
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        arch: [linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6, linux/ppc64le]
+#        distro: [ubuntu]
     runs-on: ubuntu-20.04
 
     steps:
@@ -42,7 +47,7 @@ jobs:
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.title=${{ env.REPOSITORY }}
-            
+
       - name: GitHub login
         if: ${{ github.event_name != 'pull_request' }}
         uses: docker/login-action@v1.12.0
@@ -58,54 +63,23 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
-      - name: Build and push (stable)
+      - name: Build and push
         uses: docker/build-push-action@v2.7.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          #platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
-          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          build-args: BUILD_VERSION
+          #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
+          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
+          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          #platforms: ${{ matrix.arch }}
+          build-args: |
+            BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            docker.io/${{ env.REPOSITORY }}:stable
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            ghcr.io/${{ env.REPOSITORY }}:stable
-
-#      - name: Build and push (3.0)
-#        uses: docker/build-push-action@v2.7.0
-#        with:
-#          push: ${{ github.event_name != 'pull_request' }}
-#          context: ${{ github.workflow }}
-#          file: ${{ github.workflow }}/Dockerfile.git
-#          #platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
-#          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-#          build-args: BUILD_VERSION=3.0
-#          cache-from: type=gha, scope=${{ github.workflow }}
-#          cache-to: type=gha, scope=${{ github.workflow }}
-#          labels: ${{ steps.docker_meta.outputs.labels }}
-#          tags: |
-#            docker.io/${{ env.REPOSITORY }}:3.0
-#            ghcr.io/${{ env.REPOSITORY }}:3.0
-
-      - name: Build and push (3.1dev)
-        uses: docker/build-push-action@v2.7.0
-        with:
-          push: ${{ github.event_name != 'pull_request' }}
-          context: ${{ github.workflow }}
-          file: ${{ github.workflow }}/Dockerfile.git
-          #platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
-          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          build-args: BUILD_VERSION=3.1dev
-          cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}
-          labels: ${{ steps.docker_meta.outputs.labels }}
-          tags: |
-            docker.io/${{ env.REPOSITORY }}:3.1dev
             docker.io/${{ env.REPOSITORY }}:latest
-            ghcr.io/${{ env.REPOSITORY }}:3.1dev
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
             ghcr.io/${{ env.REPOSITORY }}:latest
-
