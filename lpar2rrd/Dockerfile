@@ -70,7 +70,7 @@ RUN apk update && apk add --no-cache \
     diffutils \
     dpkg
 
-# perl-font-ttf fron testing repo (needed for PDF reports)
+# perl-font-ttf from testing repo (needed for PDF reports)
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
