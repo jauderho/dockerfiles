@@ -11,7 +11,7 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache git gcc musl-dev \ 
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/multiprocessio/dsq \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/multiprocessio/dsq \
 	&& cd /go/src/github.com/multiprocessio/dsq \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
 
