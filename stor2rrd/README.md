@@ -19,6 +19,8 @@ Application UI can be found on http://\<CONTAINER_IP\>, use admin/admin for logi
 
 ---
 
+Official images use an out of date base image with vulnerabilities hence the need for this image.
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/stor2rrd/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/stor2rrd/latest)](https://github.com/xorux/stor2rrd)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/stor2rrd)](https://hub.docker.com/r/jauderho/stor2rrd/)

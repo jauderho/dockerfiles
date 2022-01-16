@@ -19,6 +19,8 @@ Application UI can be found on http://\<CONTAINER_IP\>, use admin/admin for logi
 
 ---
 
+Official images use an out of date base image with vulnerabilities hence the need for this image.
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/lpar2rrd/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/lpar2rrd/latest)](https://github.com/xorux/lpar2rrd)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lpar2rrd)](https://hub.docker.com/r/jauderho/lpar2rrd/)
