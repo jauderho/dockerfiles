@@ -17,10 +17,11 @@ If you want to use this container as a XorMon backend, set XORMON env variable:
 
 Application UI can be found on http://\<CONTAINER_IP\>, use admin/admin for login.
 
+---
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/stor2rrd/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/stor2rrd/latest)](https://github.com/xorux/stor2rrd)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/stor2rrd)](https://hub.docker.com/r/jauderho/stor2rrd/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/stor2rrd/latest)](https://hub.docker.com/r/jauderho/stor2rrd/)
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
-
