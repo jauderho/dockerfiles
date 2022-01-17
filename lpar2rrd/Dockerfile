@@ -50,7 +50,7 @@ RUN apk update && apk add --no-cache \
     openssh-client \
     ttf-dejavu \
     graphviz \
-    vim \
+    # vim \
     rsyslog \
     tzdata \
     sudo \
