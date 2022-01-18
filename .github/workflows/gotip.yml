@@ -17,6 +17,10 @@ env:
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
   UPSTREAM_REPO: https://github.com/golang/go.git
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
 
   deploy:

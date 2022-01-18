@@ -9,7 +9,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& build_pkgs="ca-certificates curl gcc build-base git bash" \
 	&& apk add --no-cache ${build_pkgs}  \
 	&& update-ca-certificates \
-	&& go install golang.org/dl/gotip@latest \
+	&& go install -ldflags="-s -w" golang.org/dl/gotip@latest \
 	&& gotip download \
 	&& go clean \
 	&& gotip clean \
