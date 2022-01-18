@@ -12,11 +12,17 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go install -ldflags="-s -w" golang.org/dl/gotip@latest \
 	&& gotip download \
 	&& go clean \
+	&& go clean -cache \
+	&& go clean -modcache \
 	&& gotip clean \
+	&& gotip clean -cache \
+	&& gotip clean -modcache \
 	&& apk del ${build_pkgs} \
 	&& rm -rf /root/sdk/gotip/test \
 	&& rm -rf /root/sdk/gotip/.git \
 	&& rm -rf /var/cache/apk/*
+
+RUN gotip version
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
