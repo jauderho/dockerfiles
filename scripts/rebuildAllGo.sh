@@ -22,6 +22,7 @@ ACTION=(
         "gobgp" \
         "gocannon" \
         "goplay2" \
+        "goreplay" \
         "gotip" \
         "hakrawler" \
         "headscale" \

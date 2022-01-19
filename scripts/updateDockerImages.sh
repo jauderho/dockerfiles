@@ -27,6 +27,7 @@ REPO=(
 	"wader/fq" \
 	"osrg/gobgp" \
 	"kffl/gocannon" \
+	"buger/goreplay" \
 	"juanfont/headscale" \
 	"nojima/httpie-go" \
 	"projectdiscovery/httpx" \
