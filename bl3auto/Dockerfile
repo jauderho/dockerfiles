@@ -1,5 +1,4 @@
-#FROM golang:alpine AS build
-FROM jauderho/gotip:latest AS build
+FROM golang:alpine AS build
 
 #COPY . /go/src/github.com/jauderho/bl3auto/
 WORKDIR /go/src/github.com/jauderho/bl3auto/
@@ -15,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/bl3auto.tar.gz \
 	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto \
-	&& gotip build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/bl3auto.go
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/bl3auto.go
 
 # Validation check
 RUN ls -l /go/src/github.com/jauderho/bl3auto
