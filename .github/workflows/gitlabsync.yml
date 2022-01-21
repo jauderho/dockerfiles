@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Git Repo Sync
     steps:
-    - uses: actions/checkout@v2
+    - name: Harden Runner
+      uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+      with:
+        egress-policy: audit
+        
+    - uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
       with:
         fetch-depth: 0
-    - uses: jauderho/git-repo-sync@v0.1.0
+        
+    - uses: jauderho/git-repo-sync@63782025e80e84c48b25a1ee6bb9a22a3bd570d3 # v0.1.0
       with:
         # Such as https://github.com/wangchucheng/git-repo-sync.git
         #target-url: ${{ secrets.GITLAB_URL }}
