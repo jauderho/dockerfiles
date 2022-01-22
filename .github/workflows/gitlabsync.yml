@@ -10,7 +10,7 @@ permissions: read-all
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     name: Git Repo Sync
     steps:
     - name: Harden Runner
