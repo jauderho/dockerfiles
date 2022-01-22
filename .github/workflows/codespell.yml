@@ -9,8 +9,11 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: read
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions: read-all
 
 # Set the Job #
 jobs:

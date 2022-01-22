@@ -14,8 +14,7 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
+permissions: read-all
 
 # Set the Job #
 jobs:
@@ -44,10 +43,12 @@ jobs:
 
       # Run Linter against code base #
       - name: Lint Code Base
-        #uses: github/super-linter@v4
-        uses: docker://ghcr.io/github/super-linter:slim-v4
+        #uses: github/super-linter@b8641364ca9a79b3cf07f3c4c59a82709cd39094 # v4
+        uses: github/super-linter/slim@b8641364ca9a79b3cf07f3c4c59a82709cd39094 # v4
+        #uses: docker://ghcr.io/github/super-linter:slim-v4
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_DEFAULT_STYLE: prettier
+

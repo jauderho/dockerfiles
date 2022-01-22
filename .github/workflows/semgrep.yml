@@ -6,9 +6,8 @@ on:
     branches:
     - main
     - master
-    
-permissions:
-  contents: read
+
+permissions: read-all
 
 jobs:
   semgrep:
