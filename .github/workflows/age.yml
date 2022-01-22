@@ -16,8 +16,9 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
-jobs:
+permissions: read-all
 
+jobs:
   deploy:
     runs-on: ubuntu-20.04
 
