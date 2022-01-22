@@ -14,6 +14,9 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 # Set the Job #
 jobs:
   build:
@@ -25,8 +28,16 @@ jobs:
     # Load all steps #
     steps:
       # Checkout the code base #
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          allowed-endpoints: 
+            api.github.com:443
+            github.com:443
+          
       - name: Checkout Code
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
