@@ -22,15 +22,25 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
 
   deploy:
+    permissions:
+      contents: write
     runs-on: ubuntu-20.04
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          
       - name: Source checkout
-        uses: actions/checkout@v2.4.0 
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
         with:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
@@ -44,4 +54,3 @@ jobs:
       - name: Update dependencies
         run: |
           PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
-
