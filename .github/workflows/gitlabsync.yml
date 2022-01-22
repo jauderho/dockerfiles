@@ -1,9 +1,13 @@
 # https://dev.to/brunorobert/github-and-gitlab-sync-44mn
+# This pushes code from GitHub to Gitlab upon commit to GH
 name: Gitlab Sync
 
 on:
   - push
   - delete
+
+permissions:
+  contents: read
 
 jobs:
   sync:
@@ -17,7 +21,7 @@ jobs:
         allowed-endpoints: 
           github.com:443
           gitlab.com:443
-
+        
     - uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
       with:
         fetch-depth: 0

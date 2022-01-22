@@ -1,16 +1,31 @@
+name: Semgrep
+
 on:
   pull_request: {}
   push:
     branches:
     - main
     - master
-name: Semgrep
+    
+permissions:
+  contents: read
+
 jobs:
   semgrep:
     name: Scan
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.4.0
-    - uses: returntocorp/semgrep-action@v1
+    - name: Harden Runner
+      uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+      with:
+        egress-policy: audit
+        allowed-endpoints: 
+          github.com:443
+          metrics.semgrep.dev:443
+          semgrep.dev:443
+        
+    - uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
+    
+    - uses: returntocorp/semgrep-action@10c7bec24d3967289315906c94484927c8640035 # v1
       with:
         publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
