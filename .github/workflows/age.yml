@@ -21,6 +21,8 @@ permissions: read-all
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      packages: write
 
     steps:
       - name: Harden Runner
