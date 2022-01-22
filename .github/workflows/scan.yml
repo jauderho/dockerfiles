@@ -15,6 +15,9 @@ permissions: read-all
 
 jobs:
   trivy:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     strategy:
       fail-fast: false
       matrix:
@@ -23,11 +26,16 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          
       - name: Checkout code
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@9c21d3ca2c14eb35419e2a8b66d1195946d579b8 # master
         with:
           image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           format: 'template'
@@ -42,6 +50,9 @@ jobs:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
   snyk:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     needs: trivy
     strategy:
       fail-fast: false
@@ -51,14 +62,19 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          
       - name: Checkout code
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
       - name: Run Snyk to check ${{ matrix.image }} Docker image for vulnerabilities
         # Snyk can be used to break the build when it detects vulnerabilities.
         # In this case we want to upload the issues to GitHub Code Scanning
         continue-on-error: true
-        uses: snyk/actions/docker@master
+        uses: snyk/actions/docker@d1ee3d73c6f24375d0efc597c74570b0cd08a323 # master
         env:
           # In order to use the Snyk Action you will need to have a Snyk API token.
           # More details in https://github.com/snyk/actions#getting-your-snyk-token
@@ -74,6 +90,9 @@ jobs:
           sarif_file: snyk.sarif
 
   anchore:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
     needs: snyk
     strategy:
       fail-fast: false
@@ -83,11 +102,16 @@ jobs:
     runs-on: ubuntu-20.04
     
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          
       - name: Checkout code
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: anchore/scan-action@v3
+        uses: anchore/scan-action@0001ba0daf81f40441d7f7f0413af69ed10f44b6 # v3
         id: anchore-scan
         with:
           image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
