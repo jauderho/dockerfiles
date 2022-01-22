@@ -22,8 +22,7 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
 
