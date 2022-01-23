@@ -21,11 +21,14 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-jobs:
+permissions: read-all
 
+jobs:
   deploy:
     runs-on: ubuntu-20.04
-
+    permissions:
+      packages: write
+      
     steps:
       - name: Source checkout
         uses: actions/checkout@v2.4.0 
