@@ -28,6 +28,7 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     permissions:
+      contents: write
       packages: write
 
     steps:
