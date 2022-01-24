@@ -16,6 +16,8 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
+permissions: read-all
+
 jobs:
 
   deploy:
@@ -24,6 +26,8 @@ jobs:
       matrix:
         distro: [ubuntu, alpine]
     runs-on: ubuntu-20.04
+    permissions:
+      packages: write
 
     steps:
       - name: Source checkout

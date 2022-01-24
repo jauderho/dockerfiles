@@ -16,14 +16,21 @@ on:
       - .github/workflows/lego.yml
       - .github/workflows/lego-snyk.yml
   workflow_dispatch:
+
 env:
   BUILD_VERSION: "v4.5.3"
   DOCKER_CLI_EXPERIMENTAL: enabled
   APP: lego
   REPOSITORY: ${{ github.actor }}/lego
+
+permissions: read-all
+
 jobs:
   snyk:
     runs-on: ubuntu-20.04
+    permissions:
+      packages: write
+
     steps:
     - uses: actions/checkout@v2.4.0
     - name: Build a Docker image

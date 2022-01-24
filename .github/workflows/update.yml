@@ -25,11 +25,10 @@ concurrency:
 permissions: read-all
 
 jobs:
-
   deploy:
-    permissions:
-      contents: write
     runs-on: ubuntu-20.04
+    permissions:
+      packages: write
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
