@@ -16,7 +16,7 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
-jpermissions: read-all
+permissions: read-all
 
 jobs:
   deploy:
