@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/cilium/pwru/archive/
 ARG GIT_URL=https://github.com/cilium/pwru.git
 
-ENV CGO_ENABLED 1
+ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
