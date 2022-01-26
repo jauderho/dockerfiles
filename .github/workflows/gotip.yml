@@ -45,6 +45,10 @@ jobs:
       - name: Setup Buildx
         id: buildx
         uses: docker/setup-buildx-action@94ab11c41e45d028884a99163086648e898eed25 # v1
+        
+      - name: Get commit short hash from remote repo
+        id: get-hash
+        run: echo "::set-output name=hash::$(git ls-remote ${{ env.UPSTREAM_REPO }} HEAD | awk '{print $1}' | head -c
 
       - name: Set Docker metadata
         id: docker_meta
