@@ -29,7 +29,6 @@ jobs:
     runs-on: ubuntu-20.04
     permissions:
       contents: write
-      #packages: write
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
