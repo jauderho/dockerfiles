@@ -42,6 +42,7 @@ jobs:
             proxy.golang.org:443
             registry-1.docker.io:443
             sh.rustup.rs:443
+            static.rust-lang.org:443
           
       - name: Source checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 

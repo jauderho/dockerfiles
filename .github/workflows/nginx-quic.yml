@@ -45,10 +45,12 @@ jobs:
             archive.ubuntu.com:443
             artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
+            boringssl.googlesource.com:443
             codeload.github.com:443
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
+            hg.nginx.org:443
             ports.ubuntu.com:443
             production.cloudflare.docker.com:443
             proxy.golang.org:443
