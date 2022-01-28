@@ -65,6 +65,10 @@ jobs:
         uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681 # v3
         with:
           images: ${{ env.REPOSITORY }}
+          tags: |
+            type=sha,format=long
+            type=semver,pattern={{version}}
+            type=semver,pattern=${{ env.BUILD_VERSION }}
           labels: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
