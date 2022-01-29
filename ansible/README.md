@@ -5,7 +5,7 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ansible/latest)](https://hub.docker.com/r/jauderho/ansible/)
 
 This is an ansible build forked from:
-* *https://github.com/willhallonline/docker-ansible/blob/master/ansible210/ubuntu2004/Dockerfile
+* https://github.com/willhallonline/docker-ansible/blob/master/ansible210/ubuntu2004/Dockerfile
 * https://github.com/willhallonline/docker-ansible/blob/master/ansible211/alpine314/Dockerfile
 
 ---
