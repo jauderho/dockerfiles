@@ -92,7 +92,7 @@ do
 
 		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
-		git commit -m "Updated ${prog} to ${rver}" && \
+		git commit -s -m "Updated ${prog} to ${rver}" && \
 		git push
 
 	else
