@@ -25,7 +25,7 @@ concurrency:
 permissions: read-all
 
 jobs:
-  deploy:
+  update-docker:
     runs-on: ubuntu-20.04
     permissions:
       contents: write
