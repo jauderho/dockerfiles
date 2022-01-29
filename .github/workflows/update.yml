@@ -27,8 +27,6 @@ permissions: read-all
 jobs:
   update-docker:
     runs-on: ubuntu-20.04
-    permissions:
-      contents: write
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
@@ -56,3 +54,22 @@ jobs:
       - name: Update dependencies
         run: |
           PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
+
+  update-python:
+    runs-on: ubuntu-20.04
+
+    steps:
+      # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
+      - name: Source checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0  
+        with:
+          token: ${{ secrets.UPDATE_SECRET }} 
+          fetch-depth: 1
+ 
+      - name: Add pipenv
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
+          
+      - name: Update Python dependencies
+        run: |
+          scripts/updatePythonDeps.sh
