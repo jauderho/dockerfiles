@@ -9,6 +9,9 @@ FROM ubuntu@sha256:041767af88d66339ef063abfecb0e8052f776460325b8a2b91f5394938d27
 # Ubuntu 21.10
 FROM ubuntu@sha256:cfc189b67f53b322b0ceaabacfc9e2414c63435f362348807fe960d0fbce5ada AS ubuntu21.10-base
 
+# Ubuntu 22.04
+FROM ubuntu@sha256:0ad36748089181d832164977bdeb56d08672e352173127d8bfcd9aa4f7b3bd41 AS ubuntu21.10-base
+
 # Go 1.17.6 on Alpine 3.15
 FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c AS golang1.17.6-base
 
