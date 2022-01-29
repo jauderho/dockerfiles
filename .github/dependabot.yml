@@ -44,7 +44,13 @@ updates:
       interval: "daily"
     commit-message:
       prefix: "rust:"
- 
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /age
