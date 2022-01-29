@@ -1,4 +1,4 @@
-FROM golang:alpine AS build
+FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c AS build
 
 #COPY . /go/src/github.com/jauderho/bl3auto/
 WORKDIR /go/src/github.com/jauderho/bl3auto/
@@ -23,7 +23,7 @@ RUN cp bl3auto /go/bin/bl3auto
 # ----------------------------------------------------------------------------
 
 #FROM scratch
-FROM alpine:3.15
+FROM alpine@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
