@@ -66,8 +66,6 @@ jobs:
         with:
           images: ${{ env.REPOSITORY }}
           tags: |
-            type=sha,format=long
-            type=semver,pattern={{version}}
             type=semver,pattern=${{ env.BUILD_VERSION }}
           labels: |
             org.opencontainers.image.version=${{ env.BUILD_VERSION }}
