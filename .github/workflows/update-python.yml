@@ -2,19 +2,18 @@
 #
 # This runs every hour to check if upstream repos have had a new release
 #
-name: Update
+name: Update Python
 
 on:
   push:
     branches: 
       - main
     paths:
-      - scripts/updateDockerImages.sh
       - scripts/updatePythonDeps.sh
       - .github/workflows/ansible.yml
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 0 * * 3"
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
@@ -27,36 +26,6 @@ concurrency:
 permissions: read-all
 
 jobs:
-  update-docker:
-    runs-on: ubuntu-20.04
-
-    steps:
-      # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
-      - name: Harden Runner
-        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
-        with:
-          egress-policy: block
-          allowed-endpoints:
-            api.github.com:443
-            github.com:443
-            pypi.org:443
-
-      - name: Source checkout
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
-        with:
-          token: ${{ secrets.UPDATE_SECRET }} 
-          fetch-depth: 1
- 
-#      - name: Add packages
-#        run: |
-#          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends git curl jq
-#          ls -la
-#          pwd
-
-      - name: Update dependencies
-        run: |
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
-
   update-python:
     runs-on: ubuntu-20.04
 
