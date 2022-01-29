@@ -1,4 +1,4 @@
-FROM node:16-alpine3.15 AS build
+FROM node@sha256:2f50f4a428f8b5280817c9d4d896dbee03f072e93f4e0c70b90cc84bd1fcfe0d AS build
 #FROM node:17-alpine3.15 AS build
 
 WORKDIR /app
@@ -26,7 +26,7 @@ COPY . .
 
 
 #FROM node:17-alpine3.15
-FROM alpine:3.15
+FROM alpine@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
 
 WORKDIR /app
 COPY --from=build /app .
