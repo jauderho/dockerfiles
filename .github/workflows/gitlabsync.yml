@@ -3,8 +3,10 @@
 name: Gitlab Sync
 
 on:
-  - push
-  - delete
+  push:
+    branches:
+    - main
+  delete: {}
 
 permissions: read-all
 

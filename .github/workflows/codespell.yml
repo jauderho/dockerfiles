@@ -9,9 +9,9 @@ on:
   pull_request:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: true
+#concurrency:
+#  group: ${{ github.workflow }}
+#  cancel-in-progress: true
 
 permissions: read-all
 
@@ -20,7 +20,7 @@ jobs:
   build:
     name: Codespell
     # Set the agent to run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Load all steps #
     steps:
