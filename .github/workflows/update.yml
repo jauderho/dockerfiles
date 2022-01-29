@@ -10,6 +10,8 @@ on:
       - main
     paths:
       - scripts/updateDockerImages.sh
+      - scripts/updatePythonDeps.sh
+      - .github/workflows/ansible.yml
   workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
