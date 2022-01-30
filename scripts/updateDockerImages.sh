@@ -88,13 +88,18 @@ do
 	echo
 
 	if [ "$dver" != "$rver" ]; then
+		# update python requirements as necessary
+		if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
+			echo
+			scripts/updatePythonDeps.sh
+		fi
+	
 		echo "Updating to ${rver} ..." 
 
 		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
 		git commit -s -m "Updated ${prog} to ${rver}" && \
 		git push
-
 	else
 		echo "No update needed ..."
 	fi
