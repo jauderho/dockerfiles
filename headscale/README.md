@@ -4,4 +4,4 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/headscale/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/headscale/latest)](https://hub.docker.com/r/jauderho/headscale/)
 
-This was built without CGO. Please confirm if it works as I have not had the chance to test it.
+Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
