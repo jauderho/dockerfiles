@@ -58,8 +58,7 @@ git config user.name "updatebot"
 git config user.email "jauderho+update@users.noreply.github.com"
 git config pull.rebase false
 
-# 
-# Pull in the latest version from GitHub and if there is a newer version, update GitHub Actions to trigger a new build
+# Pull in the latest version from GitHub and if there is a newer version, update GitHub Action to trigger a new build
 # Right noew it's just a string compare
 for i in "${REPO[@]}"
 do
@@ -87,19 +86,22 @@ do
 	echo "    Repo version is	  $rver"
 	echo
 
+	# Version check
 	if [ "$dver" != "$rver" ]; then
-		# update python requirements as necessary
+
+		# Update python requirements as necessary
 		if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
 			echo
 			scripts/updatePythonDeps.sh "$prog"
 		fi
-	
+
 		echo "Updating to ${rver} ..." 
 
 		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
 		git commit -s -m "Updated ${prog} to ${rver}" && \
 		git push
+
 	else
 		echo "No update needed ..."
 	fi
