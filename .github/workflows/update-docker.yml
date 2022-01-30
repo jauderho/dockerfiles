@@ -46,13 +46,10 @@ jobs:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
  
-#      - name: Add packages
-#        run: |
-#          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends git curl jq
-#          ls -la
-#          pwd
+      - name: Add pipenv
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
 
       - name: Update dependencies
         run: |
           PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
-
