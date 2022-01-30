@@ -32,14 +32,14 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
     - name: Build a Docker image
       run: docker build -t ${{ env.REPOSITORY }} ${{ env.APP }} --build-arg BUILD_VERSION
     - name: Run Snyk to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
       continue-on-error: true
-      uses: snyk/actions/docker@master
+      uses: snyk/actions/docker@d1ee3d73c6f24375d0efc597c74570b0cd08a323 # master
       env:
         # In order to use the Snyk Action you will need to have a Snyk API token.
         # More details in https://github.com/snyk/actions#getting-your-snyk-token
@@ -49,6 +49,6 @@ jobs:
         image: ${{ env.REPOSITORY }}
         args: --file=${{ env.APP }}/Dockerfile
     - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@384cfc42b2131df01c009d3d2eed7b78d8e8556e
       with:
         sarif_file: snyk.sarif

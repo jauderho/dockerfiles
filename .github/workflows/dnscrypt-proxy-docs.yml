@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Source checkout
-        uses: actions/checkout@v2.4.0 
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
         
       - name: Update DockerHub description
-        uses: peter-evans/dockerhub-description@v2
+        uses: peter-evans/dockerhub-description@616d1b63e806b630b975af3b4fe3304307b20f40 # v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
