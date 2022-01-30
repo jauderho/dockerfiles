@@ -11,6 +11,8 @@ on:
     paths:
       - scripts/updateDockerImages.sh
       - .github/workflows/ansible.yml
+      - .github/workflows/sslyze.yml
+      - .github/workflows/update-docker.yml
   workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
