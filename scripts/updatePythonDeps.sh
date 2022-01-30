@@ -5,11 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-APP=(
-  "ansible" \
-  "sslyze" \
-)
-
 # setup git
 git config user.name "updatebot"
 git config user.email "jauderho+update@users.noreply.github.com"
@@ -19,25 +14,24 @@ git config pull.rebase false
 #PATH="$HOME/.local/bin:$PATH"
 #pipenv install --python 3.9
 #pipenv shell
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
 
-for i in "${APP[@]}"
-do
-	cd "${i}"
+cd "$1"
 
-	echo "Updating ${i} ..."
-	echo
+echo "Updating $1 ..."
+echo
 
-	pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
-	#pipenv lock && pipenv lock -r > requirements.txt
+pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
+#pipenv lock && pipenv lock -r > requirements.txt
 
-	git add Pipfile Pipfile.lock requirements.txt && \
-	git commit -s -m "Update requirements for ${i} ..." && \
-	git pull && \
-	git push
+git add Pipfile Pipfile.lock requirements.txt && \
+git commit -s -m "Update requirements for $1 ..." && \
+git pull && \
+git push
 
-	echo
-	echo
+echo
+echo
 
-	cd ..
-done
+cd ..
+
 

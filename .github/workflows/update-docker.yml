@@ -37,8 +37,10 @@ jobs:
         uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
         with:
           egress-policy: audit
-          allowed-endpoints:
+          allowed-endpoints: 
             api.github.com:443
+            azure.archive.ubuntu.com:443
+            files.pythonhosted.org:443
             github.com:443
             pypi.org:443
 
@@ -48,9 +50,9 @@ jobs:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
  
-      - name: Add pipenv
-        run: |
-          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
+ #     - name: Add pipenv
+ #       run: |
+ #         DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
 
       - name: Update dependencies
         run: |

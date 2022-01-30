@@ -91,7 +91,7 @@ do
 		# update python requirements as necessary
 		if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
 			echo
-			scripts/updatePythonDeps.sh
+			scripts/updatePythonDeps.sh "$prog"
 		fi
 	
 		echo "Updating to ${rver} ..." 
