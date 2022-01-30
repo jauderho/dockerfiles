@@ -1,7 +1,7 @@
 #FROM rust:1 AS build
 #FROM rust:bullseye AS build
 #FROM rust:alpine AS build
-FROM alpine:3.15.0 AS build
+FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c  AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 COPY Cargo.toml Cargo.toml
@@ -30,7 +30,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM alpine:3.15
+FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c 
 #FROM debian:11-slim
 #FROM rust:bullseye
 

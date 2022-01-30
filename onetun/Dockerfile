@@ -1,6 +1,6 @@
 #FROM rust:1 AS build
 #FROM rust:alpine AS build
-FROM rust:bullseye AS build
+FROM rust@sha256:e4979d36d5d30838126ea5ef05eb59c4c25ede7f064985e676feb21402d0661b AS build
 
 WORKDIR /usr/src/github.com/aramperes/onetun/
 COPY Cargo.toml Cargo.toml
