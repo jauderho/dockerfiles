@@ -8,8 +8,8 @@ on:
       - stor2rrd/*
       - .github/workflows/stor2rrd.yml
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * 1"
+  #schedule:
+  #  - cron: "0 8 * * 1"
 
 env:
   BUILD_VERSION: "7.31-9"
