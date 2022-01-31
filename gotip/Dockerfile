@@ -1,6 +1,6 @@
 #FROM golang:alpine AS build
 #FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c AS build
-FROM golang:alpine@sha256:ec327348af6dcd5634e5a0571741dbaf715c822cbf9053b0ef1eccefc7ac50c8 AS build
+FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c AS build
 
 ARG BUILD_VERSION
 
