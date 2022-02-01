@@ -43,6 +43,7 @@ jobs:
             files.pythonhosted.org:443
             github.com:443
             pypi.org:443
+            security.ubuntu.com:443
 
       - name: Source checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
