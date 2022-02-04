@@ -429,11 +429,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:4894ce3309c0099e8e6eb1db6e376372e7bcab822334bbdbcd2b1fa4df3d2231",
-                "sha256:56397929f87baf1d40b794dbcc4edbb9a393ad1d02d865c67f871f5921b9ae4a"
+                "sha256:1dc2811f20e163892fefe7006f2ce00778f8099a40aee265bfa60a13400de63d",
+                "sha256:aa7103805ae793277abbb85da9f6f05e76a1a295a9384a8e17c2fba2b3a690cb"
             ],
             "index": "pypi",
-            "version": "==12.0.0"
+            "version": "==12.0.1"
         },
         "flake8": {
             "hashes": [
@@ -464,7 +464,7 @@
                 "sha256:899e2a40a8c4a1aec681feef45733de8a6c58f3f6a0dbed2eb6574b4387a77b6",
                 "sha256:951f0d8a5b7260e9db5e41d429285b5f451e928479f19d80818878527d36e95e"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version < '3.10'",
             "version": "==4.10.1"
         },
         "iniconfig": {
