@@ -1,0 +1,62 @@
+# updatebot
+#
+# This runs every hour to check if upstream repos have had a new release
+#
+name: Update Python
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - scripts/updatePythonDeps.sh
+      - .github/workflows/ansible.yml
+      - .github/workflows/sslyze.yml
+      - .github/workflows/update-python.yml
+  workflow_dispatch:
+
+env:
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  update-python:
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [ansible, sslyze]
+    runs-on: ubuntu-20.04
+
+    steps:
+      # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
+      - name: Harden Runner
+        uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
+        with:
+          egress-policy: audit
+          allowed-endpoints: 
+            api.github.com:443
+            azure.archive.ubuntu.com:443
+            files.pythonhosted.org:443
+            github.com:443
+            pypi.org:443
+            security.ubuntu.com:443
+
+      - name: Source checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
+        with:
+          token: ${{ secrets.UPDATE_SECRET }} 
+          fetch-depth: 1
+ 
+ #     - name: Add pipenv
+ #       run: |
+ #         DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
+
+      - name: Update dependencies
+        run: |
+          scripts/updatePythonDeps.sh ${{ matrix.app }}
