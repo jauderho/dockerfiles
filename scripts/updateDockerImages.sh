@@ -51,6 +51,7 @@ REPO=(
 	"shopify/toxiproxy" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
+	"yggdrasil-network/yggdrasil-go" \
 	"getzola/zola" \
 )
 

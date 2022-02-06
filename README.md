@@ -277,6 +277,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/wuzz/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/wuzz/latest)](https://hub.docker.com/r/jauderho/wuzz/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/yggdrasil-go/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/yggdrasil-go/latest)](https://github.com/yggdrasil-network/yggdrasil-go/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/yggdrasil-go/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/yggdrasil-go/latest)](https://hub.docker.com/r/jauderho/yggdrasil-go/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/zola/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/zola/latest)](https://github.com/getzola/zola/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/zola/)

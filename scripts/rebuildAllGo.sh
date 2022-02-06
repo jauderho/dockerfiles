@@ -45,6 +45,7 @@ ACTION=(
         "textql" \
         "toxiproxy" \
         "wuzz" \
+        "yggdrasil-go" \
 )
 
 for i in "${ACTION[@]}"

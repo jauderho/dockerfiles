@@ -276,6 +276,16 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/toxiproxy)](https://hub.docker.com/r/jauderho/toxiproxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/toxiproxy/latest)](https://hub.docker.com/r/jauderho/toxiproxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/wuzz/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/wuzz/latest)](https://github.com/asciimoo/wuzz/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/wuzz/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/wuzz/latest)](https://hub.docker.com/r/jauderho/wuzz/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/yggdrasil-go/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/yggdrasil-go/latest)](https://github.com/yggdrasil-network/yggdrasil-go/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/yggdrasil-go/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/yggdrasil-go/latest)](https://hub.docker.com/r/jauderho/yggdrasil-go/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/youtube-dl/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ayoutube-dl)
 [![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://github.com/ytdl-org/youtube-dl)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/youtube-dl)](https://hub.docker.com/r/jauderho/youtube-dl/)
@@ -285,11 +295,6 @@
 [![Version](https://img.shields.io/docker/v/jauderho/yt-dlp/latest)](https://github.com/yt-dlp/yt-dlp)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/yt-dlp)](https://hub.docker.com/r/jauderho/yt-dlp/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/yt-dlp/latest)](https://hub.docker.com/r/jauderho/yt-dlp/)
-
-[![Build Status](https://github.com/jauderho/dockerfiles/workflows/wuzz/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
-[![Version](https://img.shields.io/docker/v/jauderho/wuzz/latest)](https://github.com/asciimoo/wuzz/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/wuzz/)
-[![Image Size](https://img.shields.io/docker/image-size/jauderho/wuzz/latest)](https://hub.docker.com/r/jauderho/wuzz/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/zola/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/zola/latest)](https://github.com/getzola/zola/)
