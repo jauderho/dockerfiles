@@ -13,6 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dry.tar.gz \
 	&& tar xzf /tmp/dry.tar.gz --strip 1 -C /go/src/github.com/moncho/dry \
+	&& go get -u all \
 	&& go build -o dry-bin -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
