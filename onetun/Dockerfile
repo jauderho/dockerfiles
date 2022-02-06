@@ -16,6 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/onetun.tar.gz --strip 1 -C /usr/src/github.com/aramperes/onetun \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release
 
+#RUN /usr/local/bin/onetun --help
+
 WORKDIR /config
 
 
@@ -42,7 +44,7 @@ COPY --from=build /config /config
 #RUN apk update \
 #	&& apk add --no-cache dumb-init
 
-RUN /usr/local/bin/onetun --help
+#RUN /usr/local/bin/onetun --help
 
 USER 1000
 
