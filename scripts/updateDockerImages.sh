@@ -51,6 +51,7 @@ REPO=(
 	"shopify/toxiproxy" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
+	"getzola/zola" \
 )
 
 # setup git
