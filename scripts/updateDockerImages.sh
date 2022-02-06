@@ -49,9 +49,10 @@ REPO=(
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \
 	"shopify/toxiproxy" \
+	"tsenart/vegeta" \
+	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
-	"yggdrasil-network/yggdrasil-go" \
 	"getzola/zola" \
 )
 

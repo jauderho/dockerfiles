@@ -276,6 +276,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/toxiproxy)](https://hub.docker.com/r/jauderho/toxiproxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/toxiproxy/latest)](https://hub.docker.com/r/jauderho/toxiproxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/vegeta/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/vegeta/latest)](https://github.com/tsenart/vegeta/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/vegeta/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/vegeta/latest)](https://hub.docker.com/r/jauderho/vegeta/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/wuzz/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/wuzz/latest)](https://github.com/asciimoo/wuzz/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/wuzz/)
