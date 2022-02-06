@@ -29,22 +29,6 @@ updates:
     commit-message:
       prefix: "python:"
 
-  # Maintain dependencies for Rust
-  - package-ecosystem: "cargo"
-    directory: /onetun
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "rust:"
-
-   # Maintain dependencies for Rust
-  - package-ecosystem: "cargo"
-    directory: /rustybgp
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "rust:"
-
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /age

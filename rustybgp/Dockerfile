@@ -1,10 +1,9 @@
-#FROM rust:1 AS build
 #FROM rust:bullseye AS build
 #FROM rust:alpine AS build
-FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c  AS build
+FROM alpine:3.15.0@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300 AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
-COPY Cargo.toml Cargo.toml
+#COPY Cargo.toml Cargo.toml
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/osrg/rustybgp/archive/
@@ -15,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add ca-certificates curl lld gcc protoc git musl-dev \
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
-	# revert CPU requirement
+	# revert and remove CPU requirement
 	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
 	&& git reset HEAD . \
 	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
@@ -29,8 +28,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-#FROM scratch
-FROM golang:alpine@sha256:519c827ec22e5cf7417c9ff063ec840a446cdd30681700a16cf42eb43823e27c 
+FROM scratch
+#FROM alpine:3.15.0@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
 #FROM debian:11-slim
 #FROM rust:bullseye
 
