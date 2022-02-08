@@ -10,7 +10,10 @@ This repo contains Dockerfiles for applications that I find useful.
 - Pull images from [Docker Hub](https://hub.docker.com/u/jauderho/) and [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles)
 - Images are scanned daily using Trivy, Snyk and Anchore. See the [GHA workflow](https://github.com/jauderho/dockerfiles/blob/main/.github/workflows/scan.yml)
 - Workflows use commit hashes and Dockerfiles use digest references in accordance with [OpenSSF Scorecard](https://github.com/ossf/scorecard)
-- Runners are hardened using Step Security's [Harden Runner](https://github.com/step-security/harden-runner)
+- Runners are hardened using Step Security's [Harden Runner](https://github.com/step-security/harden-runner)\
+- Testing
+  - Container signing
+  - SBOM generation
 
 ## [Build Status](https://github.com/jauderho/dockerfiles/blob/main/BUILD_STATUS.md)
 
