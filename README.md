@@ -9,6 +9,7 @@ This repo contains Dockerfiles for applications that I find useful.
 - Whenever possible, binaries are hardened and images will be optimized for size
 - Pull images from [Docker Hub](https://hub.docker.com/u/jauderho/) and [GitHub Container Registry](https://github.com/users/jauderho/packages?repo_name=dockerfiles)
 - Images are scanned daily using Trivy, Snyk and Anchore. See the [GHA workflow](https://github.com/jauderho/dockerfiles/blob/main/.github/workflows/scan.yml)
+- Workflows use commit hashes and Dockerfiles use digest references in accordance with OpenSSF Scorecard
 
 ## [Build Status](https://github.com/jauderho/dockerfiles/blob/main/BUILD_STATUS.md)
 
