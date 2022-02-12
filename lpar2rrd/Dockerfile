@@ -68,11 +68,13 @@ RUN apk update && apk add --no-cache \
     lsblk \
     procps \
     diffutils \
-    dpkg
+    dpkg \
+    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
+    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
 # perl-font-ttf from testing repo (needed for PDF reports)
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
+#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
+#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
 # install perl PDF API from CPAN
 RUN cpanm -l /usr -n PDF::API2
