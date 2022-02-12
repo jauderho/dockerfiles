@@ -14,6 +14,8 @@ on:
       - .github/workflows/sslyze.yml
       - .github/workflows/update-python.yml
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
