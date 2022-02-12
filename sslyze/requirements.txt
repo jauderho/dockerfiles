@@ -5,5 +5,5 @@ pycparser==2.21
 pydantic==1.8.2
 sslyze==5.0.2
 tls-parser==2.0.0
-typing-extensions==4.0.1
+typing-extensions==4.1.0
 wheel==0.37.1
