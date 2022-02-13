@@ -4,3 +4,5 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ntfy)](https://hub.docker.com/r/jauderho/ntfy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ntfy/latest)](https://hub.docker.com/r/jauderho/ntfy/)
 
+Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
+
