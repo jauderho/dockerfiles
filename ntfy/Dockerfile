@@ -39,7 +39,8 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/ntfy"
 LABEL org.opencontainers.image.description="ntfy is a simple HTTP-based pub-sub notification service"
 
-COPY --from=build /go/bin/ntfy /ntfy
+#COPY --from=build /go/bin/ntfy /ntfy
+COPY --from=build /go/src/github.com/binwiederhier/ntfy/ntfy /usr/local/bin/ntfy
 
-ENTRYPOINT ["/ntfy"]
+ENTRYPOINT ["/usr/local/bin/ntfy"]
 
