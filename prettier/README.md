@@ -7,4 +7,3 @@ Usage: `docker run --rm -it -v $(pwd):/work --user $(id -u):$(id -g) jauderho/pr
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/prettier/latest)](https://hub.docker.com/r/jauderho/prettier/)
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
-
