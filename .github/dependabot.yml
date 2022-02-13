@@ -271,6 +271,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /prettier
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /pwru
     schedule:
       interval: "daily"

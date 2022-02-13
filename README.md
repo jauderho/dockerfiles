@@ -202,6 +202,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/onetun/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/onetun/latest)](https://hub.docker.com/r/jauderho/onetun/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/prettier/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/prettier/latest)](https://github.com/prettier/prettier/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/prettier/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/prettier/latest)](https://hub.docker.com/r/jauderho/prettier/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/pwru/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/pwru/latest)](https://github.com/cilium/pwru)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/pwru)](https://hub.docker.com/r/jauderho/pwru/)

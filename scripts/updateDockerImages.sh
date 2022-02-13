@@ -40,6 +40,7 @@ REPO=(
 	"binwiederhier/ntfy" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \
+	"prettier/prettier" \
 	"cilium/pwru" \
 	"rclone/rclone" \
 	"authzed/spicedb" \
