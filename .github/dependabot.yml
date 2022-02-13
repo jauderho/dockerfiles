@@ -29,6 +29,14 @@ updates:
     commit-message:
       prefix: "python:"
 
+  # Maintain dependencies for Python 
+  - package-ecosystem: "pip"
+    directory: /visidata
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "python:"
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /age
@@ -368,6 +376,12 @@ updates:
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /vegeta
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /visidata
     schedule:
       interval: "daily"
 

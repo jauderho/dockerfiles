@@ -286,6 +286,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/vegeta/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/vegeta/latest)](https://hub.docker.com/r/jauderho/vegeta/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/visidata/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/visidata/latest)](https://github.com/saulpw/visidata/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/visidata/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/visidata/latest)](https://hub.docker.com/r/jauderho/visidata/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/wuzz/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/wuzz/latest)](https://github.com/asciimoo/wuzz/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/wuzz/)

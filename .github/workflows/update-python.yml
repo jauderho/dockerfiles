@@ -12,6 +12,7 @@ on:
       - scripts/updatePythonDeps.sh
       - .github/workflows/ansible.yml
       - .github/workflows/sslyze.yml
+      - .github/workflows/visidata.yml
       - .github/workflows/update-python.yml
   workflow_dispatch:
   schedule:
@@ -32,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [ansible, sslyze]
+        app: [ansible, sslyze, visidata]
     runs-on: ubuntu-20.04
 
     steps:
@@ -59,6 +60,6 @@ jobs:
  #       run: |
  #         DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
 
-      - name: Update dependencies
+      - name: Update dependencies (${{ matrix.app }})
         run: |
           scripts/updatePythonDeps.sh ${{ matrix.app }}

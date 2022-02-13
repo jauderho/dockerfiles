@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+visidata = "*"
+python-dateutil = "*"
+requests = "*"
+#setuptools = "*"
+wcwidth = "*"
+#darkdraw = { git = "https://github.com/devottys/darkdraw.git", editable = true }
+
+[dev-packages]
+
+[requires]
+python_version = "3"

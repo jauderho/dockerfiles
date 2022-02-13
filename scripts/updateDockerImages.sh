@@ -51,6 +51,7 @@ REPO=(
 	"hashicorp/terraform" \
 	"shopify/toxiproxy" \
 	"tsenart/vegeta" \
+	"saulpw/visidata" \
 	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
