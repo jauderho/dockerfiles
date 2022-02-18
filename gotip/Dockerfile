@@ -1,5 +1,5 @@
 #FROM golang:1.17.7-alpine3.15@sha256:c23027af83ff27f663d7983750a9a08f442adb2e7563250787b23ab3b6750d9e AS build
-FROM golang:1.18beta2-alpine3.15@sha256:c39ab37dfa0810a3f1c9fb4a0e7b947af55dbe1edc77c0e167a96b290d8f5efa AS build
+FROM golang:1.18rc1-alpine3.15@sha256:a8c33744dfc0b56098eaaea862c35a944b6df0eb92cead5bb43acf620fb14080 AS build
 
 ARG BUILD_VERSION
 
