@@ -3,7 +3,7 @@ FROM golang:1.17.7-alpine3.15@sha256:d030a987c28ca403007a69af28ba419fca00fc15f08
 WORKDIR /go/src/github.com/gravitl/netmaker/
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/gravitl/netmaker/archive/
+ARG ARCHIVE_URL=https://github.com/gravitl/netmaker/archive/refs/tags/
 
 ENV CGO_ENABLED 1
 
