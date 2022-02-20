@@ -35,6 +35,9 @@ jobs:
           allowed-endpoints: 
             api.github.com:443
             github.com:443
+            proxy.golang.org:443
+            pypi.org:443
+            zrdfepirv2blaprdstr01a.blob.core.windows.net:443
           
       - name: Checkout Code
         uses: actions/checkout@629c2de402a417ea7690ca6ce3f33229e27606a5 # v2
