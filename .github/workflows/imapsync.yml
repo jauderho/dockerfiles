@@ -1,18 +1,18 @@
-name: headscale
+name: imapsync
 
 on:
   push:
     branches: 
       - main
     paths:
-      - headscale/*
-      - .github/workflows/headscale.yml
+      - imapsync/*
+      - .github/workflows/imapsync.yml
   workflow_dispatch:
   schedule:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "v0.14.0"
+  BUILD_VERSION: "git"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -20,6 +20,11 @@ permissions: read-all
 
 jobs:
   deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        #distro: [ubuntu, alpine]
+        distro: [ubuntu]
     runs-on: ubuntu-20.04
     permissions:
       packages: write
@@ -29,19 +34,21 @@ jobs:
         uses: step-security/harden-runner@bdb12b622a910dfdc99a31fdfe6f45a16bc287a4 # v1
         with:
           egress-policy: block
-          allowed-endpoints: 
+          disable-telemetry: true
+          allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
+            archive.ubuntu.com:443
             artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
-            codeload.github.com:443
-            dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
+            imapsync.lamiral.info:443
+            ports.ubuntu.com:443
             production.cloudflare.docker.com:443
-            proxy.golang.org:443
+            raw.githubusercontent.com:443
             registry-1.docker.io:443
-            storage.googleapis.com:443
+            security.ubuntu.com:443
           
       - name: Source checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
@@ -84,18 +91,20 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
+          file: ${{ github.workflow }}/Dockerfile
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
-          #platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/s390x
-          build-args: |
-            BUILD_VERSION
-          cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x,linux/riscv64
+          build-args: BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
             docker.io/${{ env.REPOSITORY }}:latest
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
             ghcr.io/${{ env.REPOSITORY }}:latest
+
