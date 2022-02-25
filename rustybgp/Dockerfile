@@ -20,7 +20,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
 	&& source $HOME/.cargo/env \
 	&& rustup component add rustfmt \
-	&& cargo build --release
+	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release \
+	&& strip target/release/rustybgpd
 
 WORKDIR /config
 
