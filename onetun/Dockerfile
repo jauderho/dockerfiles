@@ -1,6 +1,6 @@
 #FROM alpine:edge@sha256:1a4c2018cfbab67566904e18fde9bf6a5c190605bf7da0e1d181b26746a15188 AS build
 #FROM alpine:3.15.0@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300 AS build
-FROM rust:1.58.1-alpine3.15@sha256:b61698ea823c6f9bc726272d7783867d89e79ca87e9944998739ce619da7699a AS build
+FROM rust:1.59.0-alpine3.15@sha256:a8168e9102a0b338fa8b683733cc58bcc9fb2de2d4ed1198f9bff22a9ae88478 AS build
 #FROM rust:1.58.1@sha256:e4979d36d5d30838126ea5ef05eb59c4c25ede7f064985e676feb21402d0661b AS build
 
 WORKDIR /usr/src/github.com/aramperes/onetun/
