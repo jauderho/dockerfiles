@@ -14,7 +14,61 @@ This image differs from the official image in the following ways:
 - Only add needed packages (--no-install-recommends)
 - Use ENTRYPOINT instead of CMD
 
-# First run
+## Docker Compose (recommended)
+
+```
+#
+# Create a .env in the same directory with the following information before running docker compose
+#
+# IMAPSYNC_USER1=
+# IMAPSYNC_PASSWORD1=
+# IMAPSYNC_USER2=
+# IMAPSYNC_PASSWORD2=
+#
+
+services:
+  imapsync:
+    #build: .
+    container_name: imapsync
+    image: jauderho/imapsync:latest
+    command: ["--errorsmax", "200", 
+              "--gmail1", 
+              "--user1", "${IMAPSYNC_USER1}", 
+              "--password1", "${IMAPSYNC_PASSWORD1}",
+              "--compress1", 
+              "--ssl1", 
+              "--sslargs1", "SSL_verify_mode=1", 
+              "--host2", "imap.mail.me.com", 
+              "--user2", "${IMAPSYNC_USER2}", 
+              "--password2", "${IMAPSYNC_PASSWORD2}", 
+              "--compress2", 
+              "--ssl2", 
+              "--sslargs2", "SSL_verify_mode=1", 
+              "--maxbytespersecond", "200_000", 
+              "--maxbytesafter", "3_000_000_000", 
+              "--addheader", "--useheader", 'Message-Id', 
+              "--no-modulesversion", 
+              "--nochecknoabletosearch", 
+              "--nofoldersizes", 
+              "--nofoldersizesatend", 
+              "--skipcrossduplicates", 
+              "--syncinternaldates", 
+              "--folderlast", '[Gmail]/All Mail',  
+              "--f1f2", '[Gmail]/All Mail=Archive']
+```
+
+Store environment variables in .env:
+
+```
+IMAPSYNC_USER1=
+IMAPSYNC_PASSWORD1=
+IMAPSYNC_USER2=
+IMAPSYNC_PASSWORD2=
+```
+
+## Docker
+
+### First run
 This can be rerun repeatedly until all messages are fully copied over to the destination.
 
 ```
@@ -41,7 +95,7 @@ docker run --rm -it jauderho/imapsync:latest \
 	--f1f2 '[Gmail]/All Mail=Archive'
 ```
 
-# Final run
+### Final run
 WARNING: This will delete all emails from the source system as part of the final run.
 
 ```
