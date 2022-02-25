@@ -1,0 +1,95 @@
+name: imapsync
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - imapsync/*
+      - .github/workflows/imapsync.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+env:
+  BUILD_VERSION: "git"
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+permissions: read-all
+
+jobs:
+  deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        #distro: [ubuntu, alpine]
+        distro: [alpine]
+    runs-on: ubuntu-20.04
+    permissions:
+      packages: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@bdb12b622a910dfdc99a31fdfe6f45a16bc287a4 # v1
+        with:
+          egress-policy: audit
+          
+      - name: Source checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0 
+ 
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480 # v1.2.0
+      
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@94ab11c41e45d028884a99163086648e898eed25 # v1
+
+      - name: Set Docker metadata
+        id: docker_meta
+        uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681 # v3
+        with:
+          images: ${{ env.REPOSITORY }}
+          labels: |
+            org.opencontainers.image.version=${{ env.BUILD_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
+
+      - name: GitHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@6af3c118c8376c675363897acf1757f7a9be6583 # v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DockerHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@6af3c118c8376c675363897acf1757f7a9be6583 # v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}      
+
+      - name: Build and push
+        uses: docker/build-push-action@7f9d37fa544684fb73bfe4835ed7214c255ce02b # v2.8.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          file: ${{ github.workflow }}/Dockerfile
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
+          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
+          build-args: BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            ghcr.io/${{ env.REPOSITORY }}:latest
+

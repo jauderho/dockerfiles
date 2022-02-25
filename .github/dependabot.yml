@@ -199,6 +199,12 @@ updates:
     schedule:
       interval: "daily"
       
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /imapsync
+    schedule:
+      interval: "daily"
+      
    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /lego

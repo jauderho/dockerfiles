@@ -136,6 +136,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/httpx)](https://hub.docker.com/r/jauderho/httpx/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/httpx/latest)](https://hub.docker.com/r/jauderho/httpx/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/imapsync/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/imapsync/latest)](https://github.com/imapsync/imapsync/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/imapsync/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/imapsync/latest)](https://hub.docker.com/r/jauderho/imapsync/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/lego/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Alego)
 [![Version](https://img.shields.io/docker/v/jauderho/lego/latest)](https://github.com/go-acme/lego)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/lego)](https://hub.docker.com/r/jauderho/lego/)
