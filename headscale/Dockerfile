@@ -21,8 +21,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-FROM scratch
-#FROM alpine:3.14
+#FROM scratch
+FROM alpine:3.15.0@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
