@@ -48,3 +48,9 @@
 
 # CloudStack support   
 0,20,40 * * * *  /home/lpar2rrd/lpar2rrd/load_cloudstack.sh > /home/lpar2rrd/lpar2rrd/load_cloudstack.out 2>&1 
+
+# Fusion Compute support
+0,20,40 * * * *  /home/lpar2rrd/lpar2rrd/load_fusioncompute.sh > /home/lpar2rrd/lpar2rrd/load_fusioncompute.out 2>&1
+
+# Proxmox support
+0,20,40 * * * *  /home/lpar2rrd/lpar2rrd/load_proxmox.sh > /home/lpar2rrd/lpar2rrd/load_proxmox.out 2>&1
