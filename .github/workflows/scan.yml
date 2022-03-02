@@ -32,7 +32,7 @@ jobs:
           egress-policy: audit
           
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # v2.4.0
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # master
@@ -68,7 +68,7 @@ jobs:
           egress-policy: audit
           
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # v2.4.0
 
       - name: Run Snyk to check ${{ matrix.image }} Docker image for vulnerabilities
         # Snyk can be used to break the build when it detects vulnerabilities.
@@ -108,7 +108,7 @@ jobs:
           egress-policy: audit
           
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # v2.4.0
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: anchore/scan-action@0001ba0daf81f40441d7f7f0413af69ed10f44b6 # v3
