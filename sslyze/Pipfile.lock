@@ -474,7 +474,6 @@
                 "sha256:1b5a0ea5c0e7b166b2f5895b91a08c14de8915afda4407fb5022a195224958ac",
                 "sha256:fa9e232dfa0c498bd0b8a3a73b8d8a31978304dcef0515adc859d4e096f96f4f"
             ],
-            "markers": "sys_platform == 'linux'",
             "version": "==0.7.1"
         },
         "jinja2": {
