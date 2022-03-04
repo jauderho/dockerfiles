@@ -2,7 +2,7 @@
 # Command used:
 # curl -s https://hub.docker.com/v2/repositories/jauderho/imapsync/ | jq '.pull_count'
 
-FROM ubuntu:22.04@sha256:a02c32cf0c2a7e8743c74deef66637aa70e063c9bd40e9e1f8c0b3ea0750b0ba
+FROM ubuntu:22.04@sha256:9fd089c601e4ce6b61bfbba987b63ec6b73eb4ef9f568ad38b58cf0bbb019bff
 
 ARG BUILD_VERSION
 
