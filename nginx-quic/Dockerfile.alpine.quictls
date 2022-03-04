@@ -1,5 +1,5 @@
 #FROM nginx AS build
-FROM golang:1.17.7-alpine3.15@sha256:d030a987c28ca403007a69af28ba419fca00fc15f08e7801fc8edee77c00b8ee AS build
+FROM golang:1.18rc1-alpine3.15@sha256:a8c33744dfc0b56098eaaea862c35a944b6df0eb92cead5bb43acf620fb14080 AS build
 
 WORKDIR /src
 COPY . .
