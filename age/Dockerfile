@@ -38,5 +38,10 @@ COPY --from=build /go/src/github.com/FiloSottile/age/age /usr/local/bin/age
 COPY --from=build /go/src/github.com/FiloSottile/age/age-keygen /usr/local/bin/age-keygen
 COPY --from=build /config /config
 
-CMD ["/usr/local/bin/age"]
+# EXPOSE
+# ENV
+# STOPSIGNAL
+HEALTHCHECK NONE
+# USER
 
+CMD ["/usr/local/bin/age"]
