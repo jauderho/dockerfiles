@@ -30,6 +30,7 @@ jobs:
         uses: step-security/harden-runner@bdb12b622a910dfdc99a31fdfe6f45a16bc287a4 # v1
         with:
           egress-policy: audit
+          disable-telemetry: true
           allowed-endpoints: 
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
@@ -94,7 +95,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
-          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/s390x
+          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           #platforms: ${{ matrix.arch }}
