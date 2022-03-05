@@ -44,8 +44,11 @@ jobs:
           egress-policy: block
           disable-telemetry: true
           allowed-endpoints: 
+            40.81.13.82:443
+            52.154.174.208:443
             api.github.com:443
             azure.archive.ubuntu.com:443
+            banjo.canonical.com:443
             files.pythonhosted.org:443
             github.com:443
             pypi.org:443
