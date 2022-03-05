@@ -49,6 +49,7 @@ jobs:
             proxy.golang.org:443
             raw.githubusercontent.com:443
             registry-1.docker.io:443
+            rekor.sigstore.dev:443
             storage.googleapis.com:443
             toolbox-data.anchore.io:443
             v1.fulcio.sigstore.dev:443
