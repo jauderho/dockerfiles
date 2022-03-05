@@ -42,6 +42,10 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/DNSCrypt/dnscrypt-proxy/dnscrypt-proxy /usr/local/bin/
 COPY --from=build --chown=nobody:nogroup /config /config
 
+# EXPOSE
+# ENV
+# STOPSIGNAL
+HEALTHCHECK NONE
 USER nobody
 
 ENTRYPOINT ["/usr/local/bin/dnscrypt-proxy"]
