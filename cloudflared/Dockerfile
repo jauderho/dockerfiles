@@ -19,8 +19,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& mkdir /etc/cloudflared
 
 # Validation check
-RUN cp cloudflared /go/bin/cloudflared
-RUN setcap CAP_NET_BIND_SERVICE+eip /go/bin/cloudflared
+#RUN cp cloudflared /go/bin/cloudflared
+#RUN setcap CAP_NET_BIND_SERVICE+eip /go/bin/cloudflared
+RUN setcap CAP_NET_BIND_SERVICE+eip cloudflared
 RUN cloudflared -v
 
 
@@ -40,6 +41,29 @@ LABEL org.opencontainers.image.title="jauderho/cloudflared"
 LABEL org.opencontainers.image.description="Command line client for Cloudflare's Argo Tunnel"
 
 # Default to Cloudflare and Quad9
+#ENV DNS1 1.1.1.1
+#ENV DNS2 9.9.9.9
+#ENV UPSTREAM1 https://${DNS1}/dns-query
+#ENV UPSTREAM2 https://${DNS2}/dns-query
+#ENV PORT 5454
+#ENV ADDRESS 0.0.0.0
+#ENV METRICS 127.0.0.1:8888
+
+COPY --from=build /etc/passwd /etc/group /etc/cloudflared /etc/
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
+
+#COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
+COPY --from=build /go/src/github.com/cloudflare/cloudflared/cloudflared /usr/local/bin/cloudflared
+
+#RUN setcap CAP_NET_BIND_SERVICE+eip /usr/local/bin/cloudflared
+
+# Use alpine as a base image if healthcheck is desired
+#HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1
+
+#USER cloudflared
+
+# EXPOSE
+# Default to Cloudflare and Quad9
 ENV DNS1 1.1.1.1
 ENV DNS2 9.9.9.9
 ENV UPSTREAM1 https://${DNS1}/dns-query
@@ -47,19 +71,10 @@ ENV UPSTREAM2 https://${DNS2}/dns-query
 ENV PORT 5454
 ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8888
-
-COPY --from=build /etc/passwd /etc/group /etc/cloudflared /etc/
-COPY --from=build /etc/ssl/certs /etc/ssl/certs
-
-COPY --from=build /go/bin/cloudflared /usr/local/bin/cloudflared
-
-#RUN setcap CAP_NET_BIND_SERVICE+eip /usr/local/bin/cloudflared
-
-# Use alpine as a base image if healthcheck is desired
-#HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1
-
+# STOPSIGNAL
+#HEALTHCHECK NONE
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1
 USER cloudflared
 
 ENTRYPOINT ["/usr/local/bin/cloudflared"]
 CMD ["proxy-dns --address ${ADDRESS} --port ${PORT} --metrics ${METRICS} --upstream ${UPSTREAM1} --upstream ${UPSTREAM2} --no-autoupdate"]
-
