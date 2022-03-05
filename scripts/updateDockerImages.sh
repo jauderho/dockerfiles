@@ -18,7 +18,6 @@ REPO=(
 	"jauderho/cf-warp" \
 	"cloudflare/cloudflared" \
 	"coredns/coredns" \
-	"wagoodman/dive" \
 	"StackExchange/dnscontrol" \
 	"DNSCrypt/dnscrypt-proxy" \
 	"cloudskiff/driftctl" \
