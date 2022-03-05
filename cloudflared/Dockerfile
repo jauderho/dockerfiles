@@ -20,7 +20,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 # Validation check
 #RUN cp cloudflared /go/bin/cloudflared
-RUN setcap CAP_NET_BIND_SERVICE+eip cloudflared
+#RUN setcap CAP_NET_BIND_SERVICE+eip cloudflared
 RUN ./cloudflared -v
 
 
@@ -46,8 +46,6 @@ COPY --from=build /go/src/github.com/cloudflare/cloudflared/cloudflared /usr/loc
 
 #RUN setcap CAP_NET_BIND_SERVICE+eip /usr/local/bin/cloudflared
 
-# Use alpine as a base image if healthcheck is desired
-
 # EXPOSE
 # Default to Cloudflare and Quad9
 ENV DNS1 1.1.1.1
@@ -58,8 +56,8 @@ ENV PORT 5454
 ENV ADDRESS 0.0.0.0
 ENV METRICS 127.0.0.1:8888
 # STOPSIGNAL
-#HEALTHCHECK NONE
-HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1
+HEALTHCHECK NONE
+#HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1
 USER cloudflared
 
 ENTRYPOINT ["/usr/local/bin/cloudflared"]
