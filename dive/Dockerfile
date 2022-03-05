@@ -4,21 +4,24 @@ WORKDIR /go/src/github.com/wagoodman/dive/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/wagoodman/dive/archive/
+ARG GIT_URL=https://github.com/jauderho/dive.git
 
 ENV GO111MODULE on
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache curl gcc musl-dev \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dive.tar.gz \
-	&& tar xzf /tmp/dive.tar.gz --strip 1 -C /go/src/github.com/wagoodman/dive \
+	&& apk add --no-cache curl git gcc musl-dev \
+	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/wagoodman/dive \
+	&& cd /go/src/github.com/wagoodman/dive \
 	&& go build -o dive-bin -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
 
 
+
 # ----------------------------------------------------------------------------
+
 
 
 #FROM scratch
@@ -44,7 +47,11 @@ RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m | sed -e
 COPY --from=build /go/src/github.com/wagoodman/dive/dive-bin /usr/local/bin/dive
 COPY --from=build --chown=nobody:nogroup /config /config
 
-#USER docker
+# EXPOSE
+# ENV
+# STOPSIGNAL
+HEALTHCHECK NONE
+USER root
 
 ENTRYPOINT ["/usr/local/bin/dive"]
 CMD ["--help"]
