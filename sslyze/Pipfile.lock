@@ -685,10 +685,10 @@
         },
         "readme-renderer": {
             "hashes": [
-                "sha256:a50a0f2123a4c1145ac6f420e1a348aafefcc9211c846e3d51df05fe3d865b7d",
-                "sha256:b512beafa6798260c7d5af3e1b1f097e58bfcd9a575da7c4ddd5e037490a5b85"
+                "sha256:e3b53bc84bd6af054e4cc1fe3567dc1ae19f554134221043a3f8c674e22209db",
+                "sha256:f02cee0c4de9636b5a62b6be50c9742427ba1b956aad1d938bfb087d0d72ccdf"
             ],
-            "version": "==32.0"
+            "version": "==33.0"
         },
         "requests": {
             "hashes": [
