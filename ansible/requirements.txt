@@ -8,7 +8,6 @@ cachez==0.1.2
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12; python_version >= '3'
-colorama==0.4.4
 commonmark==0.9.1
 cryptography==36.0.1
 enrich==1.2.7
@@ -23,16 +22,16 @@ pygments==2.11.2
 pyparsing==3.0.7
 python-dateutil==2.8.2
 pywinrm==0.4.2
-pyyaml==6.0
+pyyaml==6.0; python_version != '3.4'
 requests-ntlm==1.1.0
 requests==2.27.1
 resolvelib==0.5.5
 retryz==0.1.9
-rich==11.2.0
+rich==12.0.0
 ruamel.yaml.clib==0.2.6; platform_python_implementation == 'CPython' and python_version < '3.11'
 ruamel.yaml==0.17.21; python_version >= '3.7'
 six==1.16.0
-storops==1.2.10
+storops==1.2.11
 tenacity==8.0.1
 urllib3==1.26.8
 wcmatch==8.3
