@@ -4,6 +4,8 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/tailscale)](https://hub.docker.com/r/jauderho/tailscale/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/tailscale/latest)](https://hub.docker.com/r/jauderho/tailscale/)
 
+Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
+
 ## Docker Compose (recommended)
 
 ```
