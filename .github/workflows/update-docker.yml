@@ -39,6 +39,7 @@ jobs:
           egress-policy: audit
           disable-telemetry: false
           allowed-endpoints: 
+            aerodent.canonical.com:443
             api.github.com:443
             azure.archive.ubuntu.com:443
             files.pythonhosted.org:443
