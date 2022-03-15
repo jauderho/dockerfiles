@@ -285,6 +285,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /pia-wg
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /prettier
     schedule:
       interval: "daily"

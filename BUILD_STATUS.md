@@ -206,6 +206,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/onetun/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/onetun/latest)](https://hub.docker.com/r/jauderho/onetun/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/pia-wg/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Apia-wg)
+[![Version](https://img.shields.io/docker/v/jauderho/pia-wg/latest)](https://github.com/jauderho/pia-wg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/pia-wg)](https://hub.docker.com/r/jauderho/pia-wg/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/pia-wg/latest)](https://hub.docker.com/r/jauderho/pia-wg/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/prettier/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/prettier/latest)](https://github.com/prettier/prettier/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/prettier/)
