@@ -1,4 +1,4 @@
-FROM golang:1.18rc1-alpine3.15@sha256:a8c33744dfc0b56098eaaea862c35a944b6df0eb92cead5bb43acf620fb14080 AS build
+FROM golang:1.18.0-alpine3.15@sha256:9efe6b075e2bd5eff0fae9ce2961897ac339ef31eec24732691e15be0a154eec AS build
 
 WORKDIR /go/src/github.com/hakluke/hakrawler/
 
