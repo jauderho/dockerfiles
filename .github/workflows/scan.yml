@@ -38,8 +38,7 @@ jobs:
         uses: aquasecurity/trivy-action@a7a829a4345428ddd92ca57b18257440f6a18c90 # master
         with:
           image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
           hide-progress: false
