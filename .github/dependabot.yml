@@ -426,4 +426,3 @@ updates:
     directory: /zola
     schedule:
       interval: "daily"
-
