@@ -90,6 +90,9 @@ do
 	echo "    Dockerfile version is $dver"
 	echo "    Repo version is	  $rver"
 	echo
+	
+	# Skip if null
+	[ -z "$rver" ] && break
 
 	# Version check
 	if [ "$dver" != "$rver" ]; then
