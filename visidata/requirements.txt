@@ -4,6 +4,6 @@ idna==3.3; python_version >= '3'
 python-dateutil==2.8.2
 requests==2.27.1
 six==1.16.0
-urllib3==1.26.8
+urllib3==1.26.9
 visidata==2.8
 wcwidth==0.2.5
