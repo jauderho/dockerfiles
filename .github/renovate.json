@@ -1,5 +1,0 @@
-{
-  "dockerfile": {
-    "fileMatch": ["(^|/)compose[^/]*\.ya?ml$"]
-  }
-}
