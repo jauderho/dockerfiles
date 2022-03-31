@@ -28,7 +28,7 @@ jobs:
       with:
         fetch-depth: 0
         
-    - uses: jauderho/git-repo-sync@63782025e80e84c48b25a1ee6bb9a22a3bd570d3 # v0.1.0
+    - uses: jauderho/git-repo-sync@b0dea30061093b153138cad58241ad55d711cf9b # v0.1.0
       with:
         # Such as https://github.com/wangchucheng/git-repo-sync.git
         #target-url: ${{ secrets.GITLAB_URL }}
