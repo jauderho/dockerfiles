@@ -5,8 +5,8 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/nginx/latest)](https://hub.docker.com/r/jauderho/nginx/)
 
 - This is a custom hardened build primarily for my personal use case
-- It includes Cloudflare zlib, ngx_brotli and the latest PCRE version
-- Please ensure that you read the Dockerfile carefully before using
+- It includes Cloudflare zlib, ngx_brotli and PCRE2
+- Please ensure that you read the Dockerfile carefully before use. YMMV
 - Alpine forked from https://github.com/yobasystems/alpine-nginx
 - Ubuntu forked from https://github.com/27Bslash6/docker/tree/master/nginx
 
