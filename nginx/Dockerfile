@@ -1,10 +1,11 @@
-FROM alpine:3.15.3@sha256:f22945d45ee2eb4dd463ed5a431d9f04fcd80ca768bb1acf898d91ce51f7bf04
+#FROM alpine:3.15.3@sha256:f22945d45ee2eb4dd463ed5a431d9f04fcd80ca768bb1acf898d91ce51f7bf04
+FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
 #ENV BUILD_VERSION 1.21.6
 
 # https://www.openssl.org/source
-#ENV OPENSSL_VERSION 3.0.1
+#ENV OPENSSL_VERSION 3.0.2
 
 # https://www.pcre.org/
 #ENV PCRE_VERSION 10.39
@@ -17,7 +18,7 @@ ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
 ARG PATCHES_URL=https://github.com/jauderho/patches.git
 
 RUN \
-  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl pcre zlib git" && \
+  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl zlib git" && \
   runtime_pkgs="ca-certificates tzdata" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   update-ca-certificates && \
