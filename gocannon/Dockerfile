@@ -1,4 +1,4 @@
-FROM golang:1.18.0-alpine3.15@sha256:413073fb0136d8c713f2596d0bbdfd42a3bfef291130db5b21a88ad341fff7ac AS build
+FROM golang:1.18.0-alpine3.15@sha256:a2ca4f4c0828b1b426a3153b068bf32a21868911c57a9fc4dccdc5fbb6553b35 AS build
 
 WORKDIR /go/src/github.com/kffl/gocannon/
 
