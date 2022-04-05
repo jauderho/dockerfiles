@@ -129,7 +129,7 @@ jobs:
         uses: sigstore/cosign-installer@581838fbedd492d2350a9ecd427a95d6de1e5d01 # v1.4.1
       
       - name: Install syft
-        uses: anchore/sbom-action/download-syft@2ad78246293830258e98b4e707b1fb02d0242828 # v0.6.0
+        uses: anchore/sbom-action/download-syft@f6c3d0fe42c3cf876e3462574e4c9416b5e0f07a # v0.6.0
       
       - name: Sign the image digest and generate SBOM
         run: |
