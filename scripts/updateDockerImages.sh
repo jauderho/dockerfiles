@@ -8,55 +8,7 @@ IFS=$'\n\t'
 # $PAT variable needs to be passed into the script as an env variable
 # PAT is only used to avoid API rate limits
 
-REPO=( 
-	"FiloSottile/age" \
-	"nakabonne/ali" \
-	"ansible/ansible" \
-	"OWASP/amass" \
-	"jauderho/bl3auto" \
-	"psf/black" \
-	"jauderho/cf-warp" \
-	"cloudflare/cloudflared" \
-	"coredns/coredns" \
-	"StackExchange/dnscontrol" \
-	"DNSCrypt/dnscrypt-proxy" \
-	"cloudskiff/driftctl" \
-	"moncho/dry" \
-	"multiprocessio/dsq"
-	"wader/fq" \
-	"osrg/gobgp" \
-	"kffl/gocannon" \
-	"buger/goreplay" \
-	"juanfont/headscale" \
-	"nojima/httpie-go" \
-	"projectdiscovery/httpx" \
-	"go-acme/lego" \
-	"fullhunt/log4j-scan" \
-	"0xInfection/logmepwn" \
-	"johnkerl/miller" \
-	"slackhq/nebula" \
-	"gravitl/netmaker" \
-	"binwiederhier/ntfy" \
-	"cube2222/octosql" \
-	"aramperes/onetun" \
-	"prettier/prettier" \
-	"cilium/pwru" \
-	"rclone/rclone" \
-	"authzed/spicedb" \
-	"jtesta/ssh-audit" \
-	"nabla-c0d3/sslyze" \
-	"projectdiscovery/subfinder" \
-	"tailscale/tailscale" \
-	"hashicorp/terraform" \
-	"drwetter/testssl.sh" \
-	"shopify/toxiproxy" \
-	"tsenart/vegeta" \
-	"saulpw/visidata" \
-	"yggdrasil-network/yggdrasil-go" \
-	"ytdl-org/youtube-dl" \
-	"yt-dlp/yt-dlp" \
-	"getzola/zola" \
-)
+read -r -d '' -a REPO < <( grep -I -R ARCHIVE_URL= ./*/Dockerfile | sed -e 's/^.*ARG ARCHIVE_URL\=https\:\/\/github.com\///g' -e 's/\/archive\/.*$//g' && printf '\0' )
 
 # setup git
 git config user.name "updatebot"
