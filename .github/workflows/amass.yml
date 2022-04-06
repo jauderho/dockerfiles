@@ -42,6 +42,7 @@ jobs:
             production.cloudflare.docker.com:443
             proxy.golang.org:443
             registry-1.docker.io:443
+            zrdfepirv2dz5prdstr11a.blob.core.windows.net:443
           
       - name: Source checkout
         uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # v2.4.0 
