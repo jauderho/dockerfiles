@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/openairplay/goplay2/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/openairplay/goplay2/archive/
-ARG GIT_URL=https://github.com/openairplay/goplay2
+ARG GIT_URL=https://github.com/openairplay/goplay2.git
 
 ENV CGO_ENABLED 1
 

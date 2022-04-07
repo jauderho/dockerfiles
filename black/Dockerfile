@@ -1,7 +1,7 @@
 FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454 AS build
 
 ARG BUILD_VERSION
-ARG GIT_URL=https://github.com/fullhunt/black
+ARG ARCHIVE_URL=https://github.com/psf/black/archive/
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1

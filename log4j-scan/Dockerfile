@@ -3,7 +3,7 @@ FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5ac
 WORKDIR /opt/log4j-scan
 
 ARG BUILD_VERSION
-ARG GIT_URL=https://github.com/fullhunt/log4j-scan
+ARG GIT_URL=https://github.com/fullhunt/log4j-scan.git
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
