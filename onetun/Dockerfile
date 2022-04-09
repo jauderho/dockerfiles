@@ -1,4 +1,4 @@
-#FROM alpine:3.15.4@sha256:315a3eab8ebf3bbcb931e34d13684b1e53186b8ec342c64383ce5c64890771ab AS build
+#FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454 AS build
 FROM rust:1.60.0-alpine3.15@sha256:b38a9e55db25b29d9320c7e04f2ddd688ac68b8582adb3070230d3b7d2f183ae AS build
 
 WORKDIR /usr/src/github.com/aramperes/onetun/
@@ -22,7 +22,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM alpine:3.15.4@sha256:315a3eab8ebf3bbcb931e34d13684b1e53186b8ec342c64383ce5c64890771ab
+FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
