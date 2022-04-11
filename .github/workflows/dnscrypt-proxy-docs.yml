@@ -12,6 +12,7 @@ on:
       - dnscrypt-proxy
       - .github/workflows/dnscrypt-proxy.yml
       - .github/workflows/dnscrypt-proxy-docs.yml
+  workflow_dispatch:
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
