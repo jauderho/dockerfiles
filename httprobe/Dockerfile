@@ -1,4 +1,4 @@
-FROM golang:1.18.0-alpine3.15@sha256:a2ca4f4c0828b1b426a3153b068bf32a21868911c57a9fc4dccdc5fbb6553b35 AS build
+FROM golang:1.18.1-alpine3.15@sha256:1a80c4c090ad01efb2952b0ba2a8cb5aed157eb10963c8c088e443911ac48a88 AS build
 
 WORKDIR /go/src/github.com/tomnomnom/httprobe/
 
