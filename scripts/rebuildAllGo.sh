@@ -44,6 +44,7 @@ ACTION=(
         "terraform" \
         "textql" \
         "toxiproxy" \
+        "trufflehog" \
         "vegeta" \
         "wuzz" \
         "yggdrasil-go" \

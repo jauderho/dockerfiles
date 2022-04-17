@@ -50,6 +50,7 @@ REPO=(
 	"hashicorp/terraform" \
 	"drwetter/testssl.sh" \
 	"shopify/toxiproxy" \
+	"trufflesecurity/trufflehog" \
 	"tsenart/vegeta" \
 	"saulpw/visidata" \
 	"yggdrasil-network/yggdrasil-go" \

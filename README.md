@@ -292,6 +292,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/toxiproxy)](https://hub.docker.com/r/jauderho/toxiproxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/toxiproxy/latest)](https://hub.docker.com/r/jauderho/toxiproxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/trufflehog/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/trufflehog/latest)](https://github.com/trufflesecurity/trufflehog/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/trufflehog/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/trufflehog/latest)](https://hub.docker.com/r/jauderho/trufflehog/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/vegeta/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/vegeta/latest)](https://github.com/tsenart/vegeta/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/vegeta/)
