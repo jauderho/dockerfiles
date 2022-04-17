@@ -25,12 +25,12 @@ WORKDIR /config
 FROM scratch
 #FROM alpine:3.14
 
-LABEL org.opencontainers.imnebula.authors="Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.imnebula.url="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imnebula.documentation="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imnebula.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imnebula.title="jauderho/nebula"
-LABEL org.opencontainers.imnebula.description="nebula is a scalable overlay networking tool with a focus on performance, simplicity and security"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/nebula"
+LABEL org.opencontainers.image.description="nebula is a scalable overlay networking tool with a focus on performance, simplicity and security"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 

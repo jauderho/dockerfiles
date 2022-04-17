@@ -25,12 +25,12 @@ WORKDIR /config
 FROM scratch
 #FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454
 
-LABEL org.opencontainers.imvegeta.authors="Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.imvegeta.url="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imvegeta.documentation="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imvegeta.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imvegeta.title="jauderho/vegeta"
-LABEL org.opencontainers.imvegeta.description="Vegeta is a versatile HTTP load testing tool built to drill HTTP services at a constant request rate"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/vegeta"
+LABEL org.opencontainers.image.description="Vegeta is a versatile HTTP load testing tool built to drill HTTP services at a constant request rate"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 

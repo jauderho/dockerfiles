@@ -27,12 +27,12 @@ WORKDIR /config
 FROM scratch
 #FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454
 
-LABEL org.opencontainers.imyggdrasil-go.authors="Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.imyggdrasil-go.url="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imyggdrasil-go.documentation="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imyggdrasil-go.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.imyggdrasil-go.title="jauderho/yggdrasil-go"
-LABEL org.opencontainers.imyggdrasil-go.description="yggdrasil is an implementation of a fully end-to-end encrypted network"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/yggdrasil-go"
+LABEL org.opencontainers.image.description="yggdrasil is an implementation of a fully end-to-end encrypted network"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
