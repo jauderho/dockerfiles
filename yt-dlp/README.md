@@ -1,5 +1,7 @@
 
-Usage: `docker run --rm -it jauderho/yt-dlp:latest `
+Usage: `docker run --rm -it jauderho/yt-dlp:latest`
+
+Download to the current directory: `docker run --rm -it -v "$(pwd):/downloads:rw" jauderho/yt-dlp:latest`
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/yt-dlp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/yt-dlp/latest)](https://github.com/yt-dlp/yt-dlp)
