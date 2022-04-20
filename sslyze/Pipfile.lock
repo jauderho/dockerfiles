@@ -224,10 +224,10 @@
         },
         "babel": {
             "hashes": [
-                "sha256:4b6c75c5e1e10060a7a93df0fb28c46e25244b5f52bf5ef389c21d89f02c31d7",
-                "sha256:92c9313a278c2920e39c8ac6373eb397b540798830fa0fcb8968192f908e2eef"
+                "sha256:3f349e85ad3154559ac4930c3918247d319f21910d5ce4b25d439ed8693b98d2",
+                "sha256:98aeaca086133efb3e1e2aad0396987490c8425929ddbcfe0550184fdc54cd13"
             ],
-            "version": "==2.10.0"
+            "version": "==2.10.1"
         },
         "black": {
             "hashes": [
@@ -486,7 +486,6 @@
                 "sha256:5efe48d255973902f6badc3ce55e2aa6c5c3b3bc642059ef3a91247bcfcc5806",
                 "sha256:c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"
             ],
-            "markers": "sys_platform == 'linux'",
             "version": "==0.8.0"
         },
         "jinja2": {
