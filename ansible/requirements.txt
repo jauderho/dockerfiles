@@ -27,7 +27,7 @@ pywinrm==0.4.3
 pyyaml==6.0
 requests-ntlm==1.1.0
 requests==2.27.1
-resolvelib==0.5.5
+resolvelib==0.8.1
 retryz==0.1.9
 rich==12.2.0
 ruamel.yaml.clib==0.2.6; platform_python_implementation == 'CPython' and python_version < '3.11'
