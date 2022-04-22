@@ -1,4 +1,5 @@
 FROM node:16-alpine3.15@sha256:2f50f4a428f8b5280817c9d4d896dbee03f072e93f4e0c70b90cc84bd1fcfe0d AS build
+#FROM node:18-alpine3.15@sha256:469ee26d9e00547ea91202a34ff2542f984c2c60a2edbb4007558ccb76b56df2 AS build
 
 WORKDIR /app
 
@@ -15,7 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& yarn set version berry \
 	&& yarn install \
-	&& yarn up -R eslint \
+	&& yarn up -R eslint postcss react-scripts \
 	&& npx browserslist@latest --update-db
 
 COPY . .
