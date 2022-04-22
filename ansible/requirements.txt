@@ -24,7 +24,7 @@ pygments==2.11.2
 pyparsing==3.0.8
 python-dateutil==2.8.2
 pywinrm==0.4.3
-pyyaml==6.0
+pyyaml==6.0; python_version != '3.4'
 requests-ntlm==1.1.0
 requests==2.27.1
 resolvelib==0.5.5
