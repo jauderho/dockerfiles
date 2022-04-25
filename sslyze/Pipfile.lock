@@ -464,6 +464,7 @@
                 "sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6",
                 "sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539"
             ],
+            "markers": "python_version < '3.10'",
             "version": "==4.11.3"
         },
         "iniconfig": {
