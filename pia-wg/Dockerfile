@@ -1,5 +1,5 @@
 #FROM ubuntu:22.04@sha256:4b37edbffa132e152b5a61b63e7effd92ce12b2e5ab6a1e616605e55bc3982aa
-FROM ubuntu:22.04@sha256:7599221e4e2e4eeb90ad282fc523139578f3dfea245b5049c4fee1b28776d2be
+FROM ubuntu:22.04@sha256:2a7dffab37165e8b4f206f61cfd984f8bb279843b070217f6ad310c9c31c9c7c
 #FROM python:3.9-slim
 #FROM python:3.9-alpine
 
