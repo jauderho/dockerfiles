@@ -95,6 +95,12 @@ updates:
       
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /dhcp-helper
+    schedule:
+      interval: "daily"
+      
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /dive
     schedule:
       interval: "daily"
