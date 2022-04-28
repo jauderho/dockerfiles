@@ -24,6 +24,7 @@ ACTION=(
         "goplay2" \
         "goreplay" \
         "gotip" \
+        "gron" \
         "hakrawler" \
         "headscale" \
         "httprobe" \
@@ -38,6 +39,7 @@ ACTION=(
         "octosql" \
         "pwru" \
         "rclone" \
+        "rdap" \
         "spicedb" \
         "subfinder" \
         "tailscale" \

@@ -122,6 +122,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gotip)](https://hub.docker.com/r/jauderho/gotip/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/gotip/latest)](https://hub.docker.com/r/jauderho/gotip/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/gron/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/gron/latest)](https://github.com/tomnomnom/gron)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/gron)](https://hub.docker.com/r/jauderho/gron/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/gron/latest)](https://hub.docker.com/r/jauderho/gron/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/hakrawler/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/hakrawler/latest)](https://github.com/hakluke/hakrawler)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/hakrawler)](https://hub.docker.com/r/jauderho/hakrawler/)
@@ -231,6 +236,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Version](https://img.shields.io/docker/v/jauderho/rclone/latest)](https://github.com/rclone/rclone)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/rclone)](https://hub.docker.com/r/jauderho/rclone/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/rclone/latest)](https://hub.docker.com/r/jauderho/rclone/)
+
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/rdap/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/rdap/latest)](https://github.com/openrdap/rdap)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/rdap)](https://hub.docker.com/r/jauderho/rdap/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/rdap/latest)](https://hub.docker.com/r/jauderho/rdap/)
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/rustybgp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/rustybgp/latest)](https://github.com/osrg/rustybgp/)

@@ -1,20 +1,19 @@
 FROM golang:1.18.1-alpine3.15@sha256:42d35674864fbb577594b60b84ddfba1be52b4d4298c961b46ba95e9fb4712e8 AS build
 
-WORKDIR /go/src/github.com/tomnomnom/gron/
+WORKDIR /go/src/github.com/openrdap/rdap/
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/tomnomnom/gron/archive/
-ARG GIT_URL=https://github.com/tomnomnom/gron.git
+ARG ARCHIVE_URL=https://github.com/openrdap/rdap/archive/
+ARG GIT_URL=https://github.com/jauderho/rdap.git
 
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache git ca-certificates \ 
-	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/tomnomnom/gron \
-	&& cd /go/src/github.com/tomnomnom/gron \
-	&& go build -v -trimpath -ldflags="-s -w"
-#	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
+	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/openrdap/rdap \
+	&& cd /go/src/github.com/openrdap/rdap \
+	&& go build -o rdap -v -trimpath -ldflags="-s -w" ./cmd/rdap
 
 WORKDIR /config
 
@@ -29,13 +28,13 @@ LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title="jauderho/gron"
-LABEL org.opencontainers.image.description="gron transforms JSON into manageable chunks"
+LABEL org.opencontainers.image.title="jauderho/rdap"
+LABEL org.opencontainers.image.description="OpenRDAP is an command line RDAP client implementation in Go"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
-COPY --from=build /go/src/github.com/tomnomnom/gron/gron /usr/local/bin/gron
+COPY --from=build /go/src/github.com/openrdap/rdap/rdap /usr/local/bin/rdap
 COPY --from=build /config /config
 
-ENTRYPOINT ["/usr/local/bin/gron"]
+ENTRYPOINT ["/usr/local/bin/rdap"]
 

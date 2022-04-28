@@ -179,6 +179,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /gron
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /hakrawler
     schedule:
       interval: "daily"
@@ -312,6 +318,12 @@ updates:
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /rclone
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /rdap
     schedule:
       interval: "daily"
 

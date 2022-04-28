@@ -5,3 +5,5 @@
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/gron/latest)](https://hub.docker.com/r/jauderho/gron/)
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
+
+Usage: `docker run --rm -it jauderho/gron:latest <URL>`
