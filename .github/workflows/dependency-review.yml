@@ -13,7 +13,11 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@34cbc43f0b10c9dda284e663cf43c2ebaf83e956
         with:
-          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
 
       - name: 'Checkout Repository'
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
