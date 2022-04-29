@@ -31,10 +31,10 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@34cbc43f0b10c9dda284e663cf43c2ebaf83e956 # v1
+        uses: step-security/harden-runner@34cbc43f0b10c9dda284e663cf43c2ebaf83e956
         with:
-          egress-policy: audit
-          disable-telemetry: false
+          egress-policy: block
+          disable-telemetry: true
           allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
