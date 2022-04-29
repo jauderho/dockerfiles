@@ -11,7 +11,9 @@ on:
     paths:
       - scripts/updateDockerImages.sh
       - .github/workflows/ansible.yml
+      - .github/workflows/docker-autocompose.yml
       - .github/workflows/sslyze.yml
+      - .github/workflows/visidata.yml
       - .github/workflows/update-docker.yml
   workflow_dispatch:
   schedule:

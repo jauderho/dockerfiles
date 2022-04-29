@@ -48,6 +48,7 @@ ACTION=(
         "toxiproxy" \
         "trufflehog" \
         "vegeta" \
+        "whois" \
         "wuzz" \
         "yggdrasil-go" \
 )
