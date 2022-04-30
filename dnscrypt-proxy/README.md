@@ -20,8 +20,9 @@ services:
       - "5454:5454/udp"
     volumes:
        - './etc-cloudflared/:/etc/cloudflared/'
-    cap_add:
-      - NET_BIND_SERVICE
+    # uncomment if using a lower port
+    #cap_add:
+    #  - NET_BIND_SERVICE
     restart: unless-stopped
 ```
 
