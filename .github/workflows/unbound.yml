@@ -1,0 +1,99 @@
+
+name: unbound
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - unbound/*
+      - .github/workflows/unbound.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+env:
+  BUILD_VERSION: "1.15.0-r0"
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+permissions: read-all
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    permissions:
+      packages: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@248ae51c2e8cc9622ecf50685c8bf7150c6e8813
+        with:
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
+            95s5acprodeus1file6.blob.core.windows.net:443
+            api.github.com:443
+            artifactcache.actions.githubusercontent.com:443
+            auth.docker.io:443
+            dl-cdn.alpinelinux.org:443
+            ghcr.io:443
+            github.com:443
+            production.cloudflare.docker.com:443
+            registry-1.docker.io:443
+          
+      - name: Source checkout
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.4.0 
+ 
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480 # v1.2.0
+      
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@f211e3e9ded2d9377c8cadc4489a4e38014bc4c9 # v1
+
+      - name: Set Docker metadata
+        id: docker_meta
+        uses: docker/metadata-action@b2391d37b4157fa4aa2e118d643f417910ff3242 # v3
+        with:
+          images: ${{ env.REPOSITORY }}
+          labels: |
+            org.opencontainers.image.version=${{ env.BUILD_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
+
+      - name: GitHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@dd4fa0671be5250ee6f50aedf4cb05514abda2c7 # v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DockerHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@dd4fa0671be5250ee6f50aedf4cb05514abda2c7 # v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}      
+
+      - name: Build and push
+        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a # v2.8.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          #platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/s390x
+          platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
+          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          build-args: |
+            BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:latest

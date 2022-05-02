@@ -317,6 +317,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/trufflehog/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/trufflehog/latest)](https://hub.docker.com/r/jauderho/trufflehog/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/unbound/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/unbound/latest)](https://github.com/NLnetLabs/unbound/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/unbound)](https://hub.docker.com/r/jauderho/unbound/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/unbound/latest)](https://hub.docker.com/r/jauderho/unbound/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/vegeta/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/vegeta/latest)](https://github.com/tsenart/vegeta/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/vegeta/)
