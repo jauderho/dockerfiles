@@ -3,7 +3,7 @@ cryptography==36.0.2
 nassl==4.0.2
 pycparser==2.21
 pydantic==1.9.0
-sslyze==5.0.3
+sslyze==5.0.4
 tls-parser==2.0.0
 typing-extensions==4.2.0
 wheel==0.37.1
