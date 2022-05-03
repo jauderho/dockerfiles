@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/unbound"
 LABEL org.opencontainers.image.description="Unbound is a validating, recursive, caching DNS resolver"
 
-EXPOSE 53 53/udp
+#EXPOSE 53 53/udp
 # ENV
 # STOPSIGNAL
 HEALTHCHECK NONE
