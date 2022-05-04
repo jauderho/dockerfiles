@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+catprinter = { git = "https://github.com/jauderho/catprinter.git", editable = true }
+bleak = "*"
+numpy = "*"
+opencv-python = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
