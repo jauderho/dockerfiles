@@ -30,7 +30,7 @@ LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title="jauderho/visidata"
+LABEL org.opencontainers.image.title="jauderho/docker-autocompose"
 LABEL org.opencontainers.image.description="docker-autocompose generates a docker-compose yaml definition from a docker container"
 
 #WORKDIR /work
