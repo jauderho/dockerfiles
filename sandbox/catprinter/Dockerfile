@@ -1,4 +1,4 @@
-FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454
+FROM ubuntu:22.04@sha256:26c68657ccce2cb0a31b330cb0be2b5e108d467f641c62e13ab40cbec258c68d
 
 ARG BUILD_VERSION
 
@@ -10,21 +10,24 @@ ENV PIP_NO_CACHE_DIR=1
 COPY requirements.txt . 
 
 RUN \
-	apk update && \
-	build_pkgs="python3-dev git" && \
-	runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
-	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
-	apk --no-cache add ${runtime_pkgs} && \
+	apt-get update && \
+	#build_pkgs="python3-dev git libblas-dev liblapack-dev curl" && \
+	build_pkgs="python3-dev python3-pip git libblas-dev liblapack-dev curl" && \
+	#runtime_pkgs="python3 python3-pip bluez python3-opencv" && \
+	#runtime_pkgs="python3 python3-pip bluez libgl1-mesa-glx" && \
+	runtime_pkgs="python3 bluez libgl1-mesa-glx" && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	ln -s /usr/bin/python3 /usr/bin/python && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
-	pip3 install --no-cache-dir --upgrade wheel && \
 	pip3 install --no-cache-dir -r requirements.txt && \
-	apk del build-dependencies && \
-	rm -rf /var/cache/apk/* && \
+	pip3 install --no-cache-dir git+https://github.com/jauderho/catprinter.git && \
+	curl -o /usr/local/bin/print.py https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
+	apt-get purge -y ${build_pkgs} && \
+	apt-get autoremove -y --purge && \
+	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /root/.cache/pip && \
-	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
-	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf && \
-	rm -rf /root/.cargo
+	rm -rf /root/.cargo && \
+	apt-get clean
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -33,7 +36,12 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/catprinter"
 LABEL org.opencontainers.image.description="catprinter prints to a portable thermal printer sold on AliExpress for around $20"
 
-#WORKDIR /work
+WORKDIR /usr/local/lib/python3.10/dist-packages/
 
-ENTRYPOINT ["/usr/bin/print.py"]
+#RUN pip3 show catprinter
+#RUN find /usr/local/lib/python3.10/dist-packages/catprinter-0.0.0.dist-info -print
+#RUN chmod 755 /usr/local/bin/print.py
+
+ENTRYPOINT ["python3", "/usr/local/bin/print.py"]
+CMD ["-h"]
 
