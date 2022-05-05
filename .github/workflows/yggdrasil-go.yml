@@ -80,7 +80,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
       - name: Build and push
-        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a # v2.8.0
+        uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
