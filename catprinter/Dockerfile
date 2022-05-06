@@ -36,7 +36,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/catprinter"
 LABEL org.opencontainers.image.description="catprinter prints to a portable thermal printer sold on AliExpress for around $20"
 
-WORKDIR /usr/local/lib/python3.10/dist-packages/
+WORKDIR /work
 
 #RUN pip3 show catprinter
 #RUN find /usr/local/lib/python3.10/dist-packages/catprinter-0.0.0.dist-info -print
