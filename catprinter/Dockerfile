@@ -12,7 +12,8 @@ COPY requirements.txt .
 RUN \
 	apt-get update && \
 	#build_pkgs="python3-dev git libblas-dev liblapack-dev curl" && \
-	build_pkgs="python3-dev python3-pip git libblas-dev liblapack-dev curl" && \
+	#build_pkgs="python3-dev python3-pip git libblas-dev liblapack-dev curl" && \
+	build_pkgs="python3-dev python3-pip git libblas-dev liblapack-dev curl gcc g77 atlas3-base-dev" && \
 	#runtime_pkgs="python3 python3-pip bluez python3-opencv" && \
 	#runtime_pkgs="python3 python3-pip bluez libgl1-mesa-glx" && \
 	runtime_pkgs="python3 bluez libgl1-mesa-glx" && \
