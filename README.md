@@ -42,6 +42,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/black)](https://hub.docker.com/r/jauderho/black/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/black/latest)](https://hub.docker.com/r/jauderho/black/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/catprinter/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/catprinter/latest)](https://github.com/rbaron/catprinter/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/catprinter/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/catprinter/latest)](https://hub.docker.com/r/jauderho/catprinter/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/cloudflared/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Acloudflared)
 [![Version](https://img.shields.io/docker/v/jauderho/cloudflared/latest)](https://github.com/cloudflare/cloudflared)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cloudflared)](https://hub.docker.com/r/jauderho/cloudflared/)

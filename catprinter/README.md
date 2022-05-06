@@ -6,3 +6,5 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
+This is WIP. Testers wanted to make sure Bluetooth works in Docker.
+

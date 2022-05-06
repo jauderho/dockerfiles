@@ -31,6 +31,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/black)](https://hub.docker.com/r/jauderho/black/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/black/latest)](https://hub.docker.com/r/jauderho/black/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/catprinter/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/catprinter/latest)](https://github.com/rbaron/catprinter/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/catprinter/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/catprinter/latest)](https://hub.docker.com/r/jauderho/catprinter/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/cf-warp/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/cf-warp/latest)](https://github.com/jauderho/cf-warp/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/cf-warp)](https://hub.docker.com/r/jauderho/cf-warp/)
