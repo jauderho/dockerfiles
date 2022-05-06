@@ -11,6 +11,7 @@ on:
     paths:
       - scripts/updateDockerImages.sh
       - .github/workflows/ansible.yml
+      - .github/workflows/catprinter.yml
       - .github/workflows/docker-autocompose.yml
       - .github/workflows/sslyze.yml
       - .github/workflows/visidata.yml
