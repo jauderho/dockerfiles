@@ -65,6 +65,7 @@ RUN apk update && apk add --no-cache \
     perl-dbd-pg \
     perl-dbd-sqlite \
     diffutils \
+    freetype \
     && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
     && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
