@@ -1,6 +1,6 @@
 -e git+https://github.com/mitogen-hq/mitogen.git@bd3cfb4230a485c57a7ad63687ad15249ed341f8#egg=mitogen
 ansible-compat==2.0.4
-ansible-core==2.13.0
+ansible-core==2.12.5
 ansible-lint==6.1.0
 ansible==5.7.1
 attrs==21.4.0
