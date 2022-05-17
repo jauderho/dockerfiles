@@ -135,10 +135,8 @@ jobs:
         run: |
           cosign sign docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
           cosign sign ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          syft docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }} -o json > docker_sbom.json
-          syft ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }} -o json > ghcr_sbom.json
-          cosign attest --predicate docker_sbom.json docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign attest --predicate ghcr_sbom.json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+          syft attest -o syft-json docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+          syft attest -o syft-json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: 1
          
