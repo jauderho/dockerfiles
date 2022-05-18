@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates curl openssl-dev lld g++ cargo musl-dev make \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/zola.tar.gz \
 	&& tar xzf /tmp/zola.tar.gz --strip 1 -C /usr/src/github.com/getzola/zola \
-	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release \
+	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build -j1 --release \
 	&& strip target/release/zola
 
 WORKDIR /config
