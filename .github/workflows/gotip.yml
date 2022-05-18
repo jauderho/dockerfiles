@@ -49,6 +49,7 @@ jobs:
             registry-1.docker.io:443
             sum.golang.org:443
             zrdfepirv2dm3prdstr08.blob.core.windows.net:443
+            zrdfepirv2bn4prdstr02.blob.core.windows.net:443
           
       - name: Source checkout
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.4.0 
