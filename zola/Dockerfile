@@ -1,7 +1,7 @@
 #FROM alpine:edge@sha256:1a4c2018cfbab67566904e18fde9bf6a5c190605bf7da0e1d181b26746a15188 AS build
 #FROM alpine:3.15.4@sha256:4edbd2beb5f78b1014028f4fbb99f3237d9561100b6881aabbf5acce2c4f9454 AS build
 #FROM rust:1.60.0-alpine3.15@sha256:b38a9e55db25b29d9320c7e04f2ddd688ac68b8582adb3070230d3b7d2f183ae AS build
-FROM rust:1.59.0-alpine3.15 AS build
+FROM rust:1.61.0-alpine3.15@sha256:ea8103383c68d118f58d7133c4fd7029f2168405754b16829c9ab2d3a7969e94 AS build
 #FROM rust:1.58.1@sha256:e4979d36d5d30838126ea5ef05eb59c4c25ede7f064985e676feb21402d0661b AS build
 
 WORKDIR /usr/src/github.com/getzola/zola/
