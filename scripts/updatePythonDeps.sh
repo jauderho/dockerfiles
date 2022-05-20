@@ -21,6 +21,7 @@ cd "$1"
 echo "Updating $1 ..."
 echo
 
+python -m pip install -U setuptools
 #pipenv --python 3.10 lock && pipenv --python 3.10 lock -r > requirements.txt
 #pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
 pipenv --python 3.9 lock
