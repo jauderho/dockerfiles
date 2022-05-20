@@ -22,7 +22,9 @@ echo "Updating $1 ..."
 echo
 
 #pipenv --python 3.10 lock && pipenv --python 3.10 lock -r > requirements.txt
-pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
+#pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
+pipenv --python 3.9 lock
+pipenv --python 3.9 lock -r > requirements.txt
 #pipenv lock && pipenv lock -r > requirements.txt
 
 git add Pipfile Pipfile.lock requirements.txt && \
