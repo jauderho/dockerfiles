@@ -52,7 +52,7 @@ RUN \
 	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
 	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
-COPY --from=build /usr/lib/python3.9/site-packages/ /usr/lib/python3.9/site-packages/
+COPY --from=build /usr/lib/python3.10/site-packages/ /usr/lib/python3.10/site-packages/
 COPY --from=build /usr/bin/black /usr/bin/black
 
 WORKDIR /data
