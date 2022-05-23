@@ -21,11 +21,16 @@ cd "$1"
 echo "Updating $1 ..."
 echo
 
-python -m pip install -U setuptools
+# for python3.10 and ubuntu 22.04
+#python -m pip install -U pip
+#python -m pip install -U setuptools
+#pip install --upgrade --user pipenv
 #pipenv --python 3.10 lock && pipenv --python 3.10 lock -r > requirements.txt
-#pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
-pipenv --python 3.9 lock
-pipenv --python 3.9 lock -r > requirements.txt
+
+# stick with python3.9 and ubuntu 20.04 for now
+pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
+#pipenv --python 3.9 lock
+#pipenv --python 3.9 lock -r > requirements.txt
 #pipenv lock && pipenv lock -r > requirements.txt
 
 git add Pipfile Pipfile.lock requirements.txt && \
