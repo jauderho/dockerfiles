@@ -59,10 +59,10 @@
         },
         "bracex": {
             "hashes": [
-                "sha256:096c4b788bf492f7af4e90ef8b5bcbfb99759ae3415ea1b83c9d29a5ed8f9a94",
-                "sha256:1c8d1296e00ad9a91030ccb4c291f9e4dc7c054f12c707ba3c5ff3e9a81bcd21"
+                "sha256:6789a715744bcb3359b53c4012dd94be5ab7669c638affe89f670595a3c73cc0",
+                "sha256:a3ce1d8a9fb7acc887e2e60ac5aa269f243d960c34c3d8a541fb672bdb9aa957"
             ],
-            "version": "==2.2.1"
+            "version": "==2.3"
         },
         "cachez": {
             "hashes": [
@@ -284,10 +284,10 @@
         },
         "persist-queue": {
             "hashes": [
-                "sha256:2571f1c235daf5ebda7bd826de010cc1a867fc14ae6c223f86199f3a0c96c09c",
-                "sha256:e85452d204536fdfc707a72290008dca376b636088a9d5de5eab52cdfde06142"
+                "sha256:bdaa4dcfc4b20a9ce1f5cb6da3116b6cb8fe37527d991fd242856ef2cccd218e",
+                "sha256:d0ce1798b457fc233973efe7c262eb5e80642bebe0c05abbe5611ee223511d5f"
             ],
-            "version": "==0.7.0"
+            "version": "==0.8.0"
         },
         "pluggy": {
             "hashes": [
@@ -441,10 +441,10 @@
         },
         "rich": {
             "hashes": [
-                "sha256:d13c6c90c42e24eb7ce660db397e8c398edd58acb7f92a2a88a95572b838aaa4",
-                "sha256:d239001c0fb7de985e21ec9a4bb542b5150350330bbc1849f835b9cbc8923b91"
+                "sha256:abcecd4444fa27cf84de412f713305e0d5481c941f12fc202fa4fc6711f80feb",
+                "sha256:cd8c809da089740f4bd94fa6d544cf23421d4bad34988569c2d03fdbdb858f0d"
             ],
-            "version": "==12.4.1"
+            "version": "==12.4.2"
         },
         "ruamel.yaml": {
             "hashes": [
