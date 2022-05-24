@@ -36,7 +36,7 @@ requests-ntlm==1.1.0
 requests==2.27.1
 resolvelib==0.5.5
 retryz==0.1.9
-rich==12.4.3
+rich==12.4.4
 ruamel.yaml.clib==0.2.6; platform_python_implementation == 'CPython' and python_version < '3.11'
 ruamel.yaml==0.17.21
 six==1.16.0
