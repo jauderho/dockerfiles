@@ -134,18 +134,20 @@ jobs:
       - name: Sign the image digest and generate SBOM
         run: |
           cosign sign docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign sign ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
           syft attest -o syft-json docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          syft attest -o syft-json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: 1
+          
+          #cosign sign ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+          #syft attest -o syft-json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
          
       - name: Verify the image digest and SBOM
         run: |
           cosign verify docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign verify ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
           cosign verify-attestation docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign verify-attestation ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: 1
+          
+          #cosign verify ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+          #cosign verify-attestation ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
           
