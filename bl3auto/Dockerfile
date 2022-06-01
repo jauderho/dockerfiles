@@ -35,6 +35,12 @@ LABEL org.opencontainers.image.description="Borderlands Auto SHiFT Code Redempti
 
 COPY --from=build /go/src/github.com/jauderho/bl3auto/bl3auto /usr/local/bin/
 
+# EXPOSE
+# ENV
+# STOPSIGNAL
+HEALTHCHECK NONE
+USER bl3auto
+
 ENTRYPOINT ["/usr/local/bin/bl3auto"]
 
 #CMD ["/usr/local/bin/bl3auto"]
