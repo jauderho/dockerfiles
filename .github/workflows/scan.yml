@@ -23,7 +23,7 @@ jobs:
       matrix:
         #image: [cloudflared]
         image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dhcp-helper, dive, dnscontrol, dnscrypt-proxy, docker-autocompose, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, whois, wuzz, yggdrasil-go, yt-dlp, zola]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Harden Runner
@@ -58,7 +58,7 @@ jobs:
       matrix:
         #image: [cloudflared]
         image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dhcp-helper, dive, dnscontrol, dnscrypt-proxy, docker-autocompose, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, whois, wuzz, yggdrasil-go, yt-dlp, zola]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Harden Runner
@@ -98,7 +98,7 @@ jobs:
       matrix:
         #image: [cloudflared]
         image: [age, ali, ansible, bl3auto, black, cf-warp, cloudflared, coredns, dhcp-helper, dive, dnscontrol, dnscrypt-proxy, docker-autocompose, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, whois, wuzz, yggdrasil-go, yt-dlp, zola]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     
     steps:
       - name: Harden Runner
