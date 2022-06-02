@@ -1,4 +1,3 @@
-#FROM golang:1.18.2-alpine3.16@sha256:4795c5d21f01e0777707ada02408debe77fe31848be97cf9fa8a1462da78d949 AS build
 FROM golang:1.18.2-alpine3.16@sha256:4795c5d21f01e0777707ada02408debe77fe31848be97cf9fa8a1462da78d949 AS build
 
 #COPY . /go/src/github.com/jauderho/bl3auto/
