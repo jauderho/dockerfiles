@@ -39,7 +39,7 @@ COPY --from=build /go/src/github.com/jauderho/bl3auto/bl3auto /usr/local/bin/
 # ENV
 # STOPSIGNAL
 HEALTHCHECK NONE
-USER bl3auto
+#USER bl3auto
 
 ENTRYPOINT ["/usr/local/bin/bl3auto"]
 
