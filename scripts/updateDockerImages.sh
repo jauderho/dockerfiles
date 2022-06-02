@@ -20,6 +20,7 @@ REPO=(
 	"coredns/coredns" \
 	"StackExchange/dnscontrol" \
 	"DNSCrypt/dnscrypt-proxy" \
+	"projectdiscovery/dnsx" \
 	"cloudskiff/driftctl" \
 	"moncho/dry" \
 	"multiprocessio/dsq" \

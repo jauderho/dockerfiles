@@ -71,6 +71,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscrypt-proxy)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dnscrypt-proxy/latest)](https://hub.docker.com/r/jauderho/dnscrypt-proxy/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnsx/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/dnsx/latest)](https://github.com/projectdiscovery/dnsx)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnsx)](https://hub.docker.com/r/jauderho/dnsx/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dnsx/latest)](https://hub.docker.com/r/jauderho/dnsx/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/docker-autocompose/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/docker-autocompose/latest)](https://github.com/Red5d/docker-autocompose/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/docker-autocompose/)
