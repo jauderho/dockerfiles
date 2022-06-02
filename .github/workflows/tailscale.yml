@@ -43,6 +43,7 @@ jobs:
             proxy.golang.org:443
             registry-1.docker.io:443
             storage.googleapis.com:443
+            zrdfepirv2bl5prdstr04.blob.core.windows.net:443
           
       - name: Source checkout
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.4.0 
