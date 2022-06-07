@@ -15,6 +15,7 @@ ACTION=(
         "dive" \
         "dnscontrol" \
         "dnscrypt-proxy" \
+        "dnsx" \
         "driftctl" \
         "dry" \
         "dsq" \
