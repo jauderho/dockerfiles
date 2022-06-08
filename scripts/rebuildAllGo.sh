@@ -12,6 +12,7 @@ ACTION=(
         "bl3auto" \
         "cloudflared" \
         "coredns" \
+        "ddosify" \
         "dive" \
         "dnscontrol" \
         "dnscrypt-proxy" \

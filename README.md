@@ -57,6 +57,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/coredns)](https://hub.docker.com/r/jauderho/coredns/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/coredns/latest)](https://hub.docker.com/r/jauderho/coredns/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/ddosify/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/ddosify/latest)](https://github.com/ddosify/ddosify)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ddosify)](https://hub.docker.com/r/jauderho/ddosify/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/ddosify/latest)](https://hub.docker.com/r/jauderho/ddosify/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/dhcp-helper/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/dhcp-helper/latest)](https://thekelleys.org.uk/dhcp-helper/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dhcp-helper)](https://hub.docker.com/r/jauderho/dhcp-helper/)
