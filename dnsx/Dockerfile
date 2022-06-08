@@ -37,5 +37,5 @@ COPY --from=build /go/src/github.com/projectdiscovery/dnsx/dnsx /usr/local/bin/d
 COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/dnsx"]
-#CMD ["-h"]
+CMD ["-h"]
 
