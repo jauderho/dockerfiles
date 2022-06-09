@@ -27,18 +27,18 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
     
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@248ae51c2e8cc9622ecf50685c8bf7150c6e8813 # v1
-      with:
-        egress-policy: audit
-        disable-telemetry: false
-        allowed-endpoints: 
-          github.com:443
-          semgrep.dev:443
-          
-    - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
-    
-    # Run Semgrep as CI
-    - run: semgrep ci
-      env:
-        SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      - name: Harden Runner
+        uses: step-security/harden-runner@248ae51c2e8cc9622ecf50685c8bf7150c6e8813 # v1
+        with:
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: 
+            github.com:443
+            semgrep.dev:443
+            
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      
+      # Run Semgrep as CI
+      - run: semgrep ci
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
