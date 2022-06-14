@@ -101,10 +101,22 @@ do
 	if [ "$dver" != "$rver" ]; then
 
 		# Update python requirements as necessary
-		if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
-			echo
-			scripts/updatePythonDeps.sh "$prog"
-		fi
+		#if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
+		#	echo
+		#	scripts/updatePythonDeps.sh "$prog"
+		#fi
+
+		case $i in 
+			
+			"ansible/ansible" | "nabla-c0d3/sslyze")
+				echo
+				scripts/updatePythonDeps.sh "$prog"
+				;;
+			*)
+				# not a Python program
+				;;
+
+		esac
 
 		echo "Updating to ${rver} ..." 
 
