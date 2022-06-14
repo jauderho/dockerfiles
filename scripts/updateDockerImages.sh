@@ -108,7 +108,9 @@ do
 
 		case $i in 
 			
-			"ansible/ansible" | "nabla-c0d3/sslyze")
+			"ansible/ansible" | \
+			"nabla-c0d3/sslyze" | \
+			"saulpw/visidata")
 				echo
 				scripts/updatePythonDeps.sh "$prog"
 				;;
