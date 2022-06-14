@@ -11,6 +11,8 @@ on:
     paths:
       - scripts/updatePythonDeps.sh
       - .github/workflows/ansible.yml
+      - .github/workflows/catprinter.yml
+      - .github/workflows/docker-autocompose.yml
       - .github/workflows/sslyze.yml
       - .github/workflows/visidata.yml
       - .github/workflows/update-python.yml
