@@ -45,6 +45,7 @@ jobs:
             objects.githubusercontent.com:443
             production.cloudflare.docker.com:443
             proxy.golang.org:443
+            rdfepirv2bn1prdstr01.blob.core.windows.net:443
             registry-1.docker.io:443
             www.openssl.org:443
           
