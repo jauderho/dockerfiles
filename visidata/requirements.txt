@@ -1,5 +1,5 @@
 -i https://pypi.org/simple
-certifi==2022.5.18.1
+certifi==2022.6.15
 charset-normalizer==2.0.12
 idna==3.3
 python-dateutil==2.8.2
