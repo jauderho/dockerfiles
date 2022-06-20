@@ -9,7 +9,7 @@ bracex==2.3.post1
 cachez==0.1.2
 certifi==2022.6.15
 cffi==1.15.0
-charset-normalizer==2.0.12
+charset-normalizer==2.1.0
 commonmark==0.9.1
 cryptography==37.0.2
 enrich==1.2.7
