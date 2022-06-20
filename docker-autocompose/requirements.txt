@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 certifi==2022.6.15
-charset-normalizer==2.0.12
+charset-normalizer==2.1.0
 docker==5.0.3
 -e git+https://github.com/jauderho/docker-autocompose.git@350f9ea576d8ee6ca58310b7f1a5e304582c306d#egg=docker-autocompose
 idna==3.3
