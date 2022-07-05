@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 cffi==1.15.1
-cryptography==37.0.2
+cryptography==37.0.4
 nassl==4.0.2
 pycparser==2.21
 pydantic==1.9.1
