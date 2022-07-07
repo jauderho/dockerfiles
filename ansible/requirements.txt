@@ -45,7 +45,7 @@ six==1.16.0
 storops==1.2.11
 subprocess-tee==0.3.5
 tomli==2.0.1
-urllib3==1.26.9
+urllib3==1.26.10
 wcmatch==8.4
 wheel==0.37.1
 xmltodict==0.13.0
