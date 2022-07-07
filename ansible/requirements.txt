@@ -11,7 +11,7 @@ certifi==2022.6.15
 cffi==1.15.1
 charset-normalizer==2.1.0
 commonmark==0.9.1
-cryptography==37.0.2
+cryptography==37.0.4
 enrich==1.2.7
 idna==3.3
 iniconfig==1.1.1
