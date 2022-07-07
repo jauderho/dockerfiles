@@ -16,7 +16,7 @@ enrich==1.2.7
 idna==3.3
 iniconfig==1.1.1
 jinja2==3.1.2
-jsonschema==4.6.1
+jsonschema==4.6.2
 markupsafe==2.1.1
 -e git+https://github.com/mitogen-hq/mitogen.git@bd3cfb4230a485c57a7ad63687ad15249ed341f8#egg=mitogen
 ntlm-auth==1.5.0
