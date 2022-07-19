@@ -28,7 +28,7 @@ RUN yarn build:app:docker
 
 
 
-FROM nginx:1.23.1-alpine@sha256:ab9c300bee725209492d51b627055126ee2c078a3546edda9fa906fa71cdb704
+FROM nginx:1.23.1-alpine@sha256:bcd7e3d2ef178e5a7f586e94896038df86d2dcce5052b426147b054e9c303498
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
