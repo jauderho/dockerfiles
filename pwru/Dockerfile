@@ -11,8 +11,9 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q git ca-certificates llvm-13 clang-13 golang-go gcc \
-	&& ln -s /usr/bin/clang-13 /usr/bin/clang \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q git ca-certificates llvm-14 clang-14 golang-go gcc \
+	&& ln -s /usr/bin/clang-14 /usr/bin/clang \
+	&& ln -s /usr/bin/llvm-strip-14 /usr/bin/llvm-strip \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
 	&& go generate \
