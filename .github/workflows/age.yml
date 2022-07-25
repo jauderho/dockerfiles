@@ -51,6 +51,7 @@ jobs:
             raw.githubusercontent.com:443
             registry-1.docker.io:443
             rekor.sigstore.dev:443
+            sigstore-tuf-root.storage.googleapis.com:443
             storage.googleapis.com:443
             toolbox-data.anchore.io:443
             v1.fulcio.sigstore.dev:443
