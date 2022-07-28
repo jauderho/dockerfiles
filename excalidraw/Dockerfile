@@ -1,5 +1,5 @@
 FROM node:16-alpine3.16@sha256:da32af0cf608622b1550678b2552b7d997def7d0ada00e0eca0166ed2ea42186 AS build
-#FROM node:18-alpine3.16@sha256:b3ca07adf425d043e180464aac97cb4f7a566651f77f4ecb87b10c10788644bb AS build
+#FROM node:18-alpine3.16@sha256:02009de840e80a6d810724021a6c4512b321c3f36eaa06f1546c400bc49a8fa0 AS build
 
 WORKDIR /app
 
