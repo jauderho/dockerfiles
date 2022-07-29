@@ -1,4 +1,4 @@
-FROM golang:1.19rc2-alpine3.16@sha256:09d8bc814b800efe1108927de2ac88c53d23b7aadaf3b82e9c040f28d8534bfe AS build
+FROM golang:1.19rc2-alpine3.16@sha256:6809c5cc3e04a13e34faf6865e6be56407f15045bc5c9d65a492ff06a0ca7d2d AS build
 
 WORKDIR /go/src/github.com/shopify/toxiproxy
 
