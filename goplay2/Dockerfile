@@ -1,4 +1,4 @@
-FROM golang:alpine3.16@sha256:95cb6e56bfaa95521b14fadec93ae5071cf9518e28175320704be00fb9ccbd28 AS build
+FROM golang:alpine3.16@sha256:9c621254fe1ff5a00291eb689b1be2ce4744eee678e33189f2fd7b4fc726cff4 AS build
 
 WORKDIR /go/src/github.com/openairplay/goplay2/
 

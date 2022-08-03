@@ -1,7 +1,7 @@
 #
 # See https://medium.com/@chemidy/create-the-smallest-and-secured-golang-docker-image-based-on-scratch-4752223b7324
 #
-FROM golang:alpine3.16@sha256:95cb6e56bfaa95521b14fadec93ae5071cf9518e28175320704be00fb9ccbd28 as build-env
+FROM golang:alpine3.16@sha256:9c621254fe1ff5a00291eb689b1be2ce4744eee678e33189f2fd7b4fc726cff4 as build-env
 
 WORKDIR /go/src/app
 ADD . /go/src/app
