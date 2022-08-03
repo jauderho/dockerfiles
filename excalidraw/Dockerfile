@@ -1,4 +1,4 @@
-FROM node:16-alpine3.16@sha256:da32af0cf608622b1550678b2552b7d997def7d0ada00e0eca0166ed2ea42186 AS build
+FROM node:16-alpine3.16@sha256:1908564153449b1c46b329e6ce2307e226bc566294f822f11c5a8bcef4eeaad7 AS build
 #FROM node:18-alpine3.16@sha256:02009de840e80a6d810724021a6c4512b321c3f36eaa06f1546c400bc49a8fa0 AS build
 
 WORKDIR /app
@@ -28,7 +28,7 @@ RUN yarn build:app:docker
 
 
 
-FROM nginx:1.23.1@sha256:ecc068890de55a75f1a32cc8063e79f90f0b043d70c5fcf28f1713395a4b3d49
+FROM nginx:1.23.1-alpine@sha256:044441a2f81e4cfc98c9d740c1b73ed7313dec240298161ec360e036c3ba218e
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
