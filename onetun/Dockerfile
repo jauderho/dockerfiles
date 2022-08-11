@@ -9,7 +9,7 @@ ARG ARCHIVE_URL=https://github.com/aramperes/onetun/archive/
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl lld g++ cargo musl-dev \
+	&& apk add --no-cache ca-certificates curl lld g++ musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/onetun.tar.gz \
 	&& tar xzf /tmp/onetun.tar.gz --strip 1 -C /usr/src/github.com/aramperes/onetun \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release \
