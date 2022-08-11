@@ -3,7 +3,7 @@ cffi==1.15.1
 cryptography==37.0.4
 nassl==4.0.2
 pycparser==2.21
-pydantic==1.9.1
+pydantic==1.9.2
 sslyze==5.0.5
 tls-parser==2.0.0
 typing-extensions==4.3.0; python_version >= '3.7'
