@@ -32,7 +32,8 @@ WORKDIR /app
 COPY --from=build /app .
 
 RUN apk update \
-	&& apk --no-cache add --upgrade busybox ssl_client nodejs
+	&& apk --no-cache add --upgrade busybox ssl_client nodejs \
+	&& rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["node", "cli.js"]
 
