@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 ansible==6.2.0
 ansible-compat==2.2.0; python_version >= '3.8'
-ansible-core==2.13.2; python_version >= '3.8'
+ansible-core==2.13.3; python_version >= '3.8'
 ansible-lint==6.4.0
 attrs==22.1.0; python_version >= '3.5'
 bitmath==1.3.3.1
@@ -26,13 +26,13 @@ persist-queue==0.8.0
 pluggy==1.0.0; python_version >= '3.6'
 py==1.11.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
 pycparser==2.21
-pygments==2.12.0; python_version >= '3.6'
+pygments==2.13.0; python_version >= '3.6'
 pyparsing==3.0.9; python_full_version >= '3.6.8'
 pyrsistent==0.18.1; python_version >= '3.7'
 pytest==7.1.2; python_version >= '3.7'
 python-dateutil==2.8.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 pywinrm==0.4.3
-pyyaml==6.0; python_version != '3.4'
+pyyaml==6.0; python_version >= '3.6'
 requests==2.28.1; python_version >= '3.7' and python_version < '4'
 requests-ntlm==1.1.0
 resolvelib==0.8.1
@@ -40,7 +40,7 @@ retryz==0.1.9
 rich==12.5.1; python_version < '4' and python_full_version >= '3.6.3'
 ruamel.yaml==0.17.21; python_version >= '3'
 ruamel.yaml.clib==0.2.6; python_version < '3.11' and platform_python_implementation == 'CPython'
-setuptools==64.0.2; python_version >= '3.7'
+setuptools==65.0.0; python_version >= '3.7'
 six==1.16.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 storops==1.2.11
 subprocess-tee==0.3.5; python_version >= '3.6'
