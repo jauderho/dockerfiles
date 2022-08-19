@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.4.0
         
       - name: Update DockerHub description
-        uses: peter-evans/dockerhub-description@836d7e6aa8f6f32dce26f5a1dd46d3dc24997eae # v2
+        uses: peter-evans/dockerhub-description@da890086d39c735e41d8823c8a95bde4302c3d64 # v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
