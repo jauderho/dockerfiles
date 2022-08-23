@@ -387,3 +387,5 @@
 This command shows what the image is capable of supporting (which differs from available qemu support)
 
 > docker buildx imagetools inspect docker.io/library/golang:alpine
+
+
