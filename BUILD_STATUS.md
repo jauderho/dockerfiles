@@ -388,4 +388,3 @@ This command shows what the image is capable of supporting (which differs from a
 
 > docker buildx imagetools inspect docker.io/library/golang:alpine
 
-
