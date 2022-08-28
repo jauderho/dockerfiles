@@ -346,6 +346,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/visidata/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/visidata/latest)](https://hub.docker.com/r/jauderho/visidata/)
 
+![Build Status](https://github.com/jauderho/dockerfiles/workflows/watchtower/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/watchtower/latest)](https://github.com/containrrr/watchtower)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/watchtower)](https://hub.docker.com/r/jauderho/watchtower/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/watchtower/latest)](https://hub.docker.com/r/jauderho/watchtower/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/whois/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/whois/latest)](https://github.com/likexian/whois)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/whois)](https://hub.docker.com/r/jauderho/whois/)
