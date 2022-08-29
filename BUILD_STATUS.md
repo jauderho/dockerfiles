@@ -86,6 +86,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/docker-autocompose/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/docker-autocompose/latest)](https://hub.docker.com/r/jauderho/docker-autocompose/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/docker-bench-security/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/docker-bench-security/latest)](https://github.com/docker/docker-bench-security)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/docker-bench-security)](https://hub.docker.com/r/jauderho/docker-bench-security/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/docker-bench-security/latest)](https://hub.docker.com/r/jauderho/docker-bench-security/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/driftctl/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/driftctl/latest)](https://github.com/cloudskiff/driftctl/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/driftctl/)
