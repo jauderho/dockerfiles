@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/FiloSottile/age \
   && cd /go/src/github.com/FiloSottile/age \
+  && go get -u all \
 	&& go build -o . -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" filippo.io/age/cmd/... 
 
 WORKDIR /config

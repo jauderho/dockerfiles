@@ -13,6 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/likexian/whois \
 	&& cd /go/src/github.com/likexian/whois \
+	&& go get -u all \
 	&& go build -o whois -v -trimpath -ldflags="-s -w" ./cmd/whois
 
 WORKDIR /config
