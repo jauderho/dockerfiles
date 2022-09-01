@@ -53,6 +53,7 @@ jobs:
             rekor.sigstore.dev:443
             sigstore-tuf-root.storage.googleapis.com:443
             storage.googleapis.com:443
+            sum.golang.org:443
             toolbox-data.anchore.io:443
             v1.fulcio.sigstore.dev:443
 
