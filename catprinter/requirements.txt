@@ -1,5 +1,5 @@
 -i https://pypi.org/simple
-bleak==0.15.1
+bleak==0.16.0
 -e git+https://github.com/jauderho/catprinter.git@42d98d632d17a46ff88d80d4851bc2b7ef68eeaf#egg=catprinter
 dbus-next==0.2.3; platform_system == 'Linux'
 numpy==1.23.2
