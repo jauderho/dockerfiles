@@ -13,7 +13,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/trufflehog.tar.gz \
 	&& tar xzf /tmp/trufflehog.tar.gz --strip 1 -C /go/src/github.com/trufflesecurity/trufflehog \
-	&& go get -u all \
 	&& go build -o ./trufflehog -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
