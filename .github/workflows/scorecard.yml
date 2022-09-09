@@ -34,6 +34,7 @@ jobs:
             bestpractices.coreinfrastructure.org:443
             codeload.github.com:443
             github.com:443
+            oauth2.sigstore.dev:443
 
       - name: "Checkout code"
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.4.0
