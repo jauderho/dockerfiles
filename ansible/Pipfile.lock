@@ -635,10 +635,10 @@
         },
         "yamllint": {
             "hashes": [
-                "sha256:e688324b58560ab68a1a3cff2c0a474e3fed371dfe8da5d1b9817b7df55039ce"
+                "sha256:9e3d8ddd16d0583214c5fdffe806c9344086721f107435f68bad990e5a88826b"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.27.1"
+            "version": "==1.28.0"
         }
     },
     "develop": {}
