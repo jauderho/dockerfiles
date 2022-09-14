@@ -26,24 +26,24 @@
         },
         "bleak": {
             "hashes": [
-                "sha256:30a4b4a07bd37dd2467d199bf89483156904d221632b7fd9caf1bc0fb43272af",
-                "sha256:a549f43e3c5d8de464c72b4b905534c3f4781746e9815ecd531b7255de2e19c7"
+                "sha256:16f4decdc12d8dde5bef45496b7a4b1ef2de27f6a302119cd606eae16d54d483",
+                "sha256:be243ced0132b02d43738411d7e5f210fb536905a867d26c339085b4f976ddb2"
             ],
             "index": "pypi",
-            "version": "==0.16.0"
+            "version": "==0.17.0"
         },
         "catprinter": {
             "editable": true,
             "git": "https://github.com/jauderho/catprinter.git",
             "ref": "42d98d632d17a46ff88d80d4851bc2b7ef68eeaf"
         },
-        "dbus-next": {
+        "dbus-fast": {
             "hashes": [
-                "sha256:58948f9aff9db08316734c0be2a120f6dc502124d9642f55e90ac82ffb16a18b",
-                "sha256:f4eae26909332ada528c0a3549dda8d4f088f9b365153952a408e28023a626a5"
+                "sha256:292fec563d27f39bdc46d0a7d03320ff2d77f5f336bd8f564fe186946a213764",
+                "sha256:3fea12c425587bb2b552e60e40bfcda2d3b94e77a8b2a30ec07c5bbc187bc984"
             ],
             "markers": "platform_system == 'Linux'",
-            "version": "==0.2.3"
+            "version": "==1.4.0"
         },
         "numpy": {
             "hashes": [
@@ -91,14 +91,6 @@
             ],
             "index": "pypi",
             "version": "==4.6.0.66"
-        },
-        "typing-extensions": {
-            "hashes": [
-                "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02",
-                "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==4.3.0"
         }
     },
     "develop": {}
