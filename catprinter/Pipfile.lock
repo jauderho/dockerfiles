@@ -39,11 +39,11 @@
         },
         "dbus-fast": {
             "hashes": [
-                "sha256:292fec563d27f39bdc46d0a7d03320ff2d77f5f336bd8f564fe186946a213764",
-                "sha256:3fea12c425587bb2b552e60e40bfcda2d3b94e77a8b2a30ec07c5bbc187bc984"
+                "sha256:203fd4e931e91a7db751e3425605c294745f0ae4c345d9f17abcdd5d66003a9d",
+                "sha256:b6de68d1ba55f9a95f103206b34ae095fc23d1290b2102474fd1c6615be4e2d3"
             ],
             "markers": "platform_system == 'Linux'",
-            "version": "==1.4.0"
+            "version": "==1.5.1"
         },
         "numpy": {
             "hashes": [
