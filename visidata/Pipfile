@@ -9,6 +9,7 @@ python-dateutil = "*"
 requests = "*"
 #setuptools = "*"
 wcwidth = "*"
+lxml = "*"
 #darkdraw = { git = "https://github.com/devottys/darkdraw.git", editable = true }
 
 [dev-packages]
