@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
-certifi==2022.9.14 ; python_version >= '3.6'
-charset-normalizer==2.1.1 ; python_version >= '3.6'
+certifi==2022.9.24 ; python_version >= '3.6'
+charset-normalizer==2.1.1 ; python_full_version >= '3.6.0'
 docker==6.0.0
 -e git+https://github.com/jauderho/docker-autocompose.git@51db6c6d84105fb5b16b80b68b5feac174d36f2d#egg=docker-autocompose
 idna==3.4 ; python_version >= '3.5'
