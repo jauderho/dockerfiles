@@ -26,11 +26,11 @@
         },
         "bleak": {
             "hashes": [
-                "sha256:16f4decdc12d8dde5bef45496b7a4b1ef2de27f6a302119cd606eae16d54d483",
-                "sha256:be243ced0132b02d43738411d7e5f210fb536905a867d26c339085b4f976ddb2"
+                "sha256:5878871f7ba36ad49183e37e49856d3b165c012b4d3065fbeb477ddba26c3922",
+                "sha256:d6c3d81a03ec92d19e504de7f92f903520dbae38b823433aadc85e9c43cbdab7"
             ],
             "index": "pypi",
-            "version": "==0.17.0"
+            "version": "==0.18.1"
         },
         "catprinter": {
             "editable": true,
@@ -39,11 +39,11 @@
         },
         "dbus-fast": {
             "hashes": [
-                "sha256:8ec59757611af62b60d24fe42b7eeff24e031cfb072133c169f07594d90215ad",
-                "sha256:fac9487066e2427df3e4daed681dd00a0ee327316fc22228d5aa19cb6a82ff3a"
+                "sha256:cd3c3017f5647b5190f228f00554ee1672b7623c2f581f019a042e0edb41dbc0",
+                "sha256:fb09586c33ae83e83cff3ce3cd3fda2453f77bccfa7f995449ab566626eb652f"
             ],
             "markers": "platform_system == 'Linux'",
-            "version": "==1.7.0"
+            "version": "==1.14.0"
         },
         "numpy": {
             "hashes": [
