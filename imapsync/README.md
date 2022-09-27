@@ -13,6 +13,9 @@ This image differs from the official image in the following ways:
 - Remove testing and modules needed for testing
 - Only add needed packages (--no-install-recommends)
 - Use ENTRYPOINT instead of CMD
+- Half the size!
+
+The examples below show how to migrate from Gmail to Apple Mail.
 
 ## Docker Compose (recommended)
 
