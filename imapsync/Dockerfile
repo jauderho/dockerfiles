@@ -47,7 +47,9 @@ RUN set -xe && \
   && wget -N https://imapsync.lamiral.info/imapsync \
         https://imapsync.lamiral.info/prerequisites_imapsync \
         https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py \
-  && chmod +x imapsync oauth2.py 
+  && chmod +x imapsync oauth2.py \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
