@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& yarn set version berry \
-	&& yarn install \
+	&& yarn install --ignore-optional \
 	&& yarn up -R eslint postcss react-scripts \
 	&& npx browserslist@latest --update-db
 
