@@ -1,5 +1,5 @@
-FROM node:16-alpine3.16@sha256:1908564153449b1c46b329e6ce2307e226bc566294f822f11c5a8bcef4eeaad7 AS build
-#FROM node:18-alpine3.16@sha256:717a3d788a41347ceb43c1f65831538d75ea74a4d29dfefadb7b7246d450127c AS build
+#FROM node:16-alpine3.16@sha256:1908564153449b1c46b329e6ce2307e226bc566294f822f11c5a8bcef4eeaad7 AS build
+FROM node:18-alpine3.16@sha256:d4935e4a77d3a9aca897dc3610f7a9abc83732ba4075439fbdb46a517c07d81e AS build
 
 WORKDIR /app
 
@@ -8,6 +8,7 @@ ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
 ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
 #ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 ARG NODE_ENV=production
+ARG NODE_OPTIONS=--openssl-legacy-provider
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
