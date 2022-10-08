@@ -7,7 +7,7 @@ ENV TFTPD_EXTRA_ARGS=""
 
 ARG BUILD_VERSION
 # Package will be downloaded manually since armhf has no package for syslinux (#1).
-ARG SYSLINUX_PACKAGE="https://dl-cdn.alpinelinux.org/alpine/v3.16/main/x86_64/syslinux-6.04_pre1-r11.apk"
+ARG SYSLINUX_PACKAGE="https://dl-cdn.alpinelinux.org/alpine/v3.16/main/x86_64/syslinux-6.04_pre1-r10.apk"
 
 RUN apk add --no-cache tftp-hpa
 
