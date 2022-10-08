@@ -158,11 +158,11 @@
         },
         "visidata": {
             "hashes": [
-                "sha256:30ca9d65608a8f9d62798bda4a689c2b443ee042ddb59b76fa123ac814c2e899",
-                "sha256:cd0850b42072ac5c2b5ee1a79b14212e654a22fe1cf448bd62f10cac9dc025e3"
+                "sha256:da530d8f16568595628d1f75903bbd1ec0919c2b51f7fa275b69ce015a32ab3e",
+                "sha256:fe10c88f585e8e1c79a60a7e5dc08e1097d84c73d741a1fa10db0422252b6318"
             ],
             "index": "pypi",
-            "version": "==2.10.1"
+            "version": "==2.10.2"
         },
         "wcwidth": {
             "hashes": [
@@ -174,11 +174,11 @@
         },
         "zipp": {
             "hashes": [
-                "sha256:05b45f1ee8f807d0cc928485ca40a07cb491cf092ff587c0df9cb1fd154848d2",
-                "sha256:47c40d7fe183a6f21403a199b3e4192cca5774656965b0a4988ad2f8feb5f009"
+                "sha256:3a7af91c3db40ec72dd9d154ae18e008c69efe8ca88dde4f9a731bb82fe2f9eb",
+                "sha256:972cfa31bc2fedd3fa838a51e9bc7e64b7fb725a8c00e7431554311f180e9980"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==3.8.1"
+            "version": "==3.9.0"
         }
     },
     "develop": {}
