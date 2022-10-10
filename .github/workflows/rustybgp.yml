@@ -45,6 +45,7 @@ jobs:
             sh.rustup.rs:443
             static.crates.io:443
             static.rust-lang.org:443
+            umsavqhtjjn341b2fqdg.blob.core.windows.net:443
             zrdfepirv2phx10prdstr02a.blob.core.windows.net:443
           
       - name: Source checkout
