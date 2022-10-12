@@ -91,7 +91,7 @@ jobs:
 
       - name: Build and push
         if: ${{ matrix.distro == 'ubuntu' }}
-        uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94 # v2.8.0
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
@@ -113,7 +113,7 @@ jobs:
 
       - name: Build and push (Alpine)
         if: ${{ matrix.distro == 'alpine' }}
-        uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94 # v2.8.0
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
