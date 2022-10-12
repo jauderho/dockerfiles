@@ -99,7 +99,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}     
 
       - name: Build and push (${{ matrix.quic }})
-        uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94 # v2.8.0
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
@@ -183,7 +183,7 @@ jobs:
 
       - name: Build and push (${{ matrix.quic }})
         if: ${{ matrix.quic != 'boringssl' }}
-        uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94 # v2.8.0
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
@@ -202,7 +202,7 @@ jobs:
 
       - name: Build and push (latest)
         if: ${{ matrix.quic == 'boringssl' }}
-        uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94 # v2.8.0
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
