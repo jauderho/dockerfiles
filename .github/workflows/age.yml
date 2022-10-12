@@ -70,7 +70,7 @@ jobs:
 
       - name: Set Docker metadata
         id: docker_meta
-        uses: docker/metadata-action@69f6fc9d46f2f8bf0d5491e4aabe0bb8c6a4678a # v3
+        uses: docker/metadata-action@12cce9efe0d49980455aaaca9b071c0befcdd702 # v3
         with:
           images: ${{ env.REPOSITORY }}
           tags: |
