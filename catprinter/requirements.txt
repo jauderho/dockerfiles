@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 async-timeout==4.0.2 ; python_version >= '3.6'
-bleak==0.18.1
+bleak==0.19.0
 -e git+https://github.com/jauderho/catprinter.git@a21a652b7e97c7f742e9d9020423204e929ce8fc#egg=catprinter
 dbus-fast==1.45.0 ; platform_system == 'Linux'
 numpy==1.23.4
