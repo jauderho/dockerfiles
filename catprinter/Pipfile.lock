@@ -35,7 +35,7 @@
         "catprinter": {
             "editable": true,
             "git": "https://github.com/jauderho/catprinter.git",
-            "ref": "a21a652b7e97c7f742e9d9020423204e929ce8fc"
+            "ref": "90f147eb913971b2aa5587b6805480c581b6d088"
         },
         "dbus-fast": {
             "hashes": [
