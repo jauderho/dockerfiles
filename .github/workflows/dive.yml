@@ -13,7 +13,7 @@ on:
 
 env:
   BUILD_VERSION: "git"
-  DOCKER_CLI_VERSION: "20.10.19"
+  DOCKER_CLI_VERSION: "20.10.20"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
