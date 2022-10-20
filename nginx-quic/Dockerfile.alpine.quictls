@@ -70,6 +70,7 @@ LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
 RUN apk update && \
+    apk upgrade -a && \
     apk add --no-cache pcre2
 
 COPY --from=build /src/openssl/libcrypto* /usr/lib/
