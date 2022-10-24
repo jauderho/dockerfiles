@@ -1,4 +1,4 @@
-FROM ubuntu:22.04@sha256:35fb073f9e56eb84041b0745cb714eff0f7b225ea9e024f703cab56aaa5c7720
+FROM ubuntu:22.10@sha256:898852f07de8ff57e7810a5c28553e71f10db60ae79c2b7a06acc45bbb03741a
 #FROM python:3.11.0b3-slim-bullseye@sha256:4f93f4d41b5abe5f693b6a579c2ddbc46e0f31369ca5b77b1f367d4888a9cbd0
 #FROM python:3.9-alpine
 
