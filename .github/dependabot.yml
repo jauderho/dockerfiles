@@ -17,39 +17,7 @@ updates:
 
   # Maintain dependencies for Python 
   - package-ecosystem: "pip"
-    directory: /ansible
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "python:"
-
-# Maintain dependencies for Python 
-  - package-ecosystem: "pip"
-    directory: /catprinter
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "python:"
-
-  # Maintain dependencies for Python 
-  - package-ecosystem: "pip"
-    directory: /docker-autocompose
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "python:"
-
-  # Maintain dependencies for Python 
-  - package-ecosystem: "pip"
-    directory: /sslyze
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "python:"
-
-  # Maintain dependencies for Python 
-  - package-ecosystem: "pip"
-    directory: /visidata
+    directory: /
     schedule:
       interval: "daily"
     commit-message:
