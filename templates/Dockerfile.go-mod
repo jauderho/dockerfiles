@@ -1,6 +1,6 @@
 #FROM golang:1.13.5-alpine
 #FROM golang:1.12-alpine
-FROM golang:1.19.2-alpine3.16@sha256:845f16d6c1c1501505a9f35978494bcd77a03f4f0cfeef56e3d8788325bea4a3
+FROM golang:1.19.3-alpine3.16@sha256:8558ae624304387d18694b9ea065cc9813dd4f7f9bd5073edb237541f2d0561b
 
 COPY . /go/src/github.com/matt1484/bl3_auto_vip
 WORKDIR /go/src/github.com/matt1484/bl3_auto_vip
