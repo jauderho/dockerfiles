@@ -120,7 +120,6 @@ jobs:
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          acs-report-enable: true
           fail-build: false
           severity-cutoff: high
 
