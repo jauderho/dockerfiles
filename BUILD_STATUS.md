@@ -66,6 +66,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dive)](https://hub.docker.com/r/jauderho/dive/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/dive/latest)](https://hub.docker.com/r/jauderho/dive/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/dkimpy/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adkimpy)
+[![Version](https://img.shields.io/docker/v/jauderho/dkimpy/latest)](https://launchpad.net/dkimpy/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dkimpy)](https://hub.docker.com/r/jauderho/dkimpy/)
+[![Image Size](https://img.shields.io/docker/image-size/jauderho/dkimpy/latest)](https://hub.docker.com/r/jauderho/dkimpy/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/dnscontrol/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Adnscontrol)
 [![Version](https://img.shields.io/docker/v/jauderho/dnscontrol/latest)](https://github.com/StackExchange/dnscontrol)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/dnscontrol)](https://hub.docker.com/r/jauderho/dnscontrol/)
