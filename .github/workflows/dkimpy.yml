@@ -1,0 +1,130 @@
+name: dkimpy
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - dkimpy/*
+      - .github/workflows/dkimpy.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+env:
+  BUILD_VERSION: "1.0.5"
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+permissions: read-all
+
+jobs:
+  deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ubuntu, alpine]
+        #distro: [ubuntu]
+    runs-on: ubuntu-22.04
+    permissions:
+      packages: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34 # v1
+        with:
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: 
+            95s5acprodeus1file6.blob.core.windows.net:443
+            api.github.com:443
+            archive.ubuntu.com:443
+            artifactcache.actions.githubusercontent.com:443
+            auth.docker.io:443
+            codeload.github.com:443
+            dl-cdn.alpinelinux.org:443
+            files.pythonhosted.org:443
+            ghcr.io:443
+            github.com:443
+            ports.ubuntu.com:443
+            production.cloudflare.docker.com:443
+            proxy.golang.org:443
+            pypi.org:443
+            registry-1.docker.io:443
+            security.ubuntu.com:443
+          
+      - name: Source checkout
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v2.4.0 
+ 
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@e81a89b1732b9c48d79cd809d8d81d79c4647a18 # v1.2.0
+      
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@8c0edbc76e98fa90f69d9a2c020dcb50019dc325 # v1
+
+      - name: Set Docker metadata
+        id: docker_meta
+        uses: docker/metadata-action@57396166ad8aefe6098280995947635806a0e6ea # v3
+        with:
+          images: ${{ env.REPOSITORY }}
+          labels: |
+            org.opencontainers.image.version=${{ env.BUILD_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
+
+      - name: GitHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DockerHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}      
+
+      - name: Build and push
+        if: ${{ matrix.distro == 'ubuntu' }}
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          file: ${{ github.workflow }}/Dockerfile
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          build-args: BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            ghcr.io/${{ env.REPOSITORY }}:latest
+
+      - name: Build and push (Alpine)
+        if: ${{ matrix.distro == 'alpine' }}
+        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          file: ${{ github.workflow }}/Dockerfile.${{ matrix.distro }}
+          #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          build-args: BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
