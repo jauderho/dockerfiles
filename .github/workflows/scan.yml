@@ -40,7 +40,8 @@ jobs:
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@9ab158e8597f3b310480b9a69402b419bc03dbd5 # master
         with:
-          image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           format: 'sarif'
           output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
@@ -83,7 +84,8 @@ jobs:
           # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high
 
       - name: Upload result to GitHub Code Scanning
@@ -116,7 +118,8 @@ jobs:
         uses: anchore/scan-action@3578976016e97642035dd9a0be842060e62422c6 # v3
         id: anchore-scan
         with:
-          image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           acs-report-enable: true
           fail-build: false
           severity-cutoff: high
