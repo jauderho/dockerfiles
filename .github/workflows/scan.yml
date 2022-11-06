@@ -84,8 +84,8 @@ jobs:
           # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high
 
       - name: Upload result to GitHub Code Scanning
@@ -118,8 +118,8 @@ jobs:
         uses: anchore/scan-action@3578976016e97642035dd9a0be842060e62422c6 # v3
         id: anchore-scan
         with:
-          #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           fail-build: false
           severity-cutoff: high
 
