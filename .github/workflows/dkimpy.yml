@@ -90,7 +90,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}      
 
       - name: Build and push
-        if: ${{ matrix.distro == 'ubuntu' }}
+        if: ${{ matrix.distro == 'alpine' }}
         uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
@@ -111,8 +111,8 @@ jobs:
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}
             ghcr.io/${{ env.REPOSITORY }}:latest
 
-      - name: Build and push (Alpine)
-        if: ${{ matrix.distro == 'alpine' }}
+      - name: Build and push (${{ matrix.distro }})
+        if: ${{ matrix.distro == 'ubuntu' }}
         uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v2.8.0
         with:
           push: ${{ github.event_name != 'pull_request' }}
