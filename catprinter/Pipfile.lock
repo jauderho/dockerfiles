@@ -26,11 +26,11 @@
         },
         "bleak": {
             "hashes": [
-                "sha256:4201c5ed76d26d416680872670c7406a8d0214ecf2e6bd8ba66c84bc82258bd2",
-                "sha256:9f34309a3b7e1156690d48baa3cf1e977f719f66f89bd74f1f85bcdec68aca39"
+                "sha256:18754811d42be6f36389612ac5e6774da23f30de43ce60da9be72ced800ea0e1",
+                "sha256:3bba56ca4ad81a5a6bfd15a3e7d3979c90102fd608a6a4f981e0cd5a9b23454d"
             ],
             "index": "pypi",
-            "version": "==0.19.2"
+            "version": "==0.19.4"
         },
         "catprinter": {
             "editable": true,
