@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [ansible, catprinter, docker-autocompose, sslyze, visidata]
+        app: [ansible, catprinter, dkimpy, docker-autocompose, sslyze, visidata]
     runs-on: ubuntu-22.04
 
     steps:
