@@ -25,9 +25,10 @@ echo
 # for python3.10 and ubuntu 22.04
 #python -m pip install -U pip
 #python -m pip install -U setuptools
+python3 -m pip install --no-cache-dir --upgrade pip
 pip install --upgrade --user pipenv
-pipenv --python 3.10 lock && pipenv --python 3.10 requirements > requirements.txt
-#pipenv --python 3.10 lock && pipenv --python 3.10 lock -r > requirements.txt
+pipenv lock && pipenv requirements > requirements.txt
+#pipenv --python 3.10 lock && pipenv --python 3.10 requirements > requirements.txt
 
 # stick with python3.9 and ubuntu 20.04 for now
 #pipenv --python 3.9 lock && pipenv --python 3.9 lock -r > requirements.txt
