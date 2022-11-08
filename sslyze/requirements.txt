@@ -7,4 +7,4 @@ pydantic==1.10.2
 sslyze==5.0.6
 tls-parser==2.0.0
 typing-extensions==4.4.0 ; python_version >= '3.7'
-wheel==0.38.2
+wheel==0.38.3
