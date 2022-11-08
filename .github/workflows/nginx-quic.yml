@@ -38,29 +38,21 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34 # v1
         with:
-          egress-policy: audit
-          disable-telemetry: false
-          allowed-endpoints: 
-            95s5acprodeus1file6.blob.core.windows.net:443
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
             api.github.com:443
-            archive.ubuntu.com:443
-            artifactcache.actions.githubusercontent.com:443
+            archive.ubuntu.com:80
             auth.docker.io:443
             boringssl.googlesource.com:443
-            codeload.github.com:443
-            dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
             hg.nginx.org:443
-            ports.ubuntu.com:443
+            ports.ubuntu.com:80
             production.cloudflare.docker.com:443
             proxy.golang.org:443
-            rdfepirv2bn1prdstr03.blob.core.windows.net:443
             registry-1.docker.io:443
-            security.ubuntu.com:443
-            zrdfepirv2dm5prdstr01a.blob.core.windows.net:443
-            zrdfepirv2sn4prdstr09a.blob.core.windows.net:443
-            zrdfepirv2byaprdstr10a.blob.core.windows.net:443
+            security.ubuntu.com:80
           
       - name: Source checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v2.4.0 
@@ -128,15 +120,12 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34 # v1
         with:
-          egress-policy: audit
-          disable-telemetry: false
-          allowed-endpoints: 
-            95s5acprodeus1file6.blob.core.windows.net:443
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
             api.github.com:443
-            artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
             boringssl.googlesource.com:443
-            codeload.github.com:443
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
