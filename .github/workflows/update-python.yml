@@ -44,13 +44,11 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34 # v1
         with:
-          egress-policy: audit
-          disable-telemetry: false
+          egress-policy: block
+          disable-telemetry: true
           allowed-endpoints: 
-            40.81.13.82:443
-            52.154.174.208:443
             api.github.com:443
-            azure.archive.ubuntu.com:443
+            azure.archive.ubuntu.com:80
             banjo.canonical.com:443
             files.pythonhosted.org:443
             github.com:443
