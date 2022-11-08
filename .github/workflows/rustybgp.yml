@@ -28,14 +28,11 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34 # v1
         with:
-          egress-policy: audit
-          disable-telemetry: false
-          allowed-endpoints:
-            95s5acprodeus1file6.blob.core.windows.net:443
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
             api.github.com:443
-            artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
-            codeload.github.com:443
             crates.io:443
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
@@ -45,8 +42,6 @@ jobs:
             sh.rustup.rs:443
             static.crates.io:443
             static.rust-lang.org:443
-            umsavqhtjjn341b2fqdg.blob.core.windows.net:443
-            zrdfepirv2phx10prdstr02a.blob.core.windows.net:443
           
       - name: Source checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v2.4.0 
