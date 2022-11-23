@@ -11,7 +11,6 @@ RUN test -n "${BUILD_VERSION}" \
     && runtime_pkgs="ca-certificates python3" \
     && apk add --no-cache --virtual build-dependencies ${build_pkgs} \
     && apk add --no-cache ${runtime_pkgs}  \
-    && ln -s /usr/bin/python3 /usr/bin/python \
     && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ssh-audit.tar.gz \
     && tar xvzf /tmp/ssh-audit.tar.gz --strip 1 -C /home/ssh-audit \
     && addgroup ssh-audit \
