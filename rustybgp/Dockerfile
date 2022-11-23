@@ -1,6 +1,6 @@
 #FROM rust:bullseye AS build
 #FROM rust:1.62.1-alpine3.16@sha256:971dc703e7ede10115db07995c5ab527459964b2b280469a56a5005f5d37acc3 AS build
-FROM alpine:3.16.3@sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b AS build
+FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4 AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 #COPY Cargo.toml Cargo.toml
@@ -30,7 +30,7 @@ WORKDIR /config
 
 
 FROM scratch
-#FROM alpine:3.16.3@sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b
+#FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4
 #FROM debian:11-slim
 #FROM rust:bullseye
 
