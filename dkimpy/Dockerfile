@@ -18,7 +18,6 @@ RUN \
   runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
-  ln -s /usr/bin/python3 /usr/bin/python && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir --upgrade wheel && \
 	pip3 install --no-cache-dir -r requirements.txt && \

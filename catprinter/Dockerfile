@@ -19,7 +19,6 @@ RUN \
 	#runtime_pkgs="python3 python3-pip bluez libgl1-mesa-glx" && \
 	runtime_pkgs="python3 bluez libgl1-mesa-glx" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
-	ln -s /usr/bin/python3 /usr/bin/python && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir -r requirements.txt && \
 	pip3 install --no-cache-dir git+https://github.com/jauderho/catprinter.git && \

@@ -16,7 +16,6 @@ RUN \
 	runtime_pkgs="python3" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
 	apk --no-cache add ${runtime_pkgs} && \
-	ln -s /usr/bin/python3 /usr/bin/python && \
 	#python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir --upgrade black==${BUILD_VERSION} && \
 	#apk del build-dependencies && \
@@ -46,7 +45,6 @@ RUN \
 	apk update && \
 	runtime_pkgs="python3" && \
 	apk --no-cache add ${runtime_pkgs} && \
-	ln -s /usr/bin/python3 /usr/bin/python && \
 	rm -rf /var/cache/apk/* && \
 	rm -rf /root/.cache/pip && \
 	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
