@@ -19,8 +19,6 @@ RUN set -x \
  #&& curl -Lo SHA2-256SUMS https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/SHA2-256SUMS \
  #&& cat SHA2-256SUMS | grep yt-dlp: | awk -F: '{print $2" "$1}' | sha256sum -c \
  && chmod a+rx /usr/local/bin/yt-dlp \
-    # Requires python -> python3.
- && ln -s /usr/bin/python3 /usr/bin/python \
     # Clean-up
  #&& rm SHA2-256SUMS \
  && apk del curl \
