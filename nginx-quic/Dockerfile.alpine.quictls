@@ -1,6 +1,7 @@
 #FROM nginx AS build
 #FROM golang:1.19.3-alpine3.16@sha256:d171aa333fb386089206252503bc6ab545072670e0286e3d1bbc644362825c6e AS build
-FROM alpine:edge AS build
+FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4 AS build
+#FROM alpine:edge AS build
 
 WORKDIR /src
 COPY . .
@@ -59,8 +60,8 @@ RUN apk update && \
 
 
 #FROM nginx
-#FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4
-FROM alpine:edge
+FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4
+#FROM alpine:edge
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
