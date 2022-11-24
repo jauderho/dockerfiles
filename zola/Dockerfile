@@ -1,6 +1,6 @@
 #FROM alpine:edge@sha256:1a4c2018cfbab67566904e18fde9bf6a5c190605bf7da0e1d181b26746a15188 AS build
-#FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4 AS build
-FROM rust:1.65.0-alpine3.16@sha256:1988d1cdc2e885f41f1aa71c0c781a4a59b8f64cccb2a143b83b05825c4cbd92 AS build
+FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4 AS build
+#FROM rust:1.65.0-alpine3.16@sha256:1988d1cdc2e885f41f1aa71c0c781a4a59b8f64cccb2a143b83b05825c4cbd92 AS build
 
 WORKDIR /usr/src/github.com/getzola/zola/
 #COPY Cargo.toml Cargo.toml
@@ -10,10 +10,11 @@ ARG ARCHIVE_URL=https://github.com/getzola/zola/archive/
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl openssl-dev lld g++ musl-dev make \
+	&& apk add --no-cache ca-certificates curl openssl-dev lld g++ musl-dev make mold cargo \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/zola.tar.gz \
 	&& tar xzf /tmp/zola.tar.gz --strip 1 -C /usr/src/github.com/getzola/zola \
-	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build -j1 --release \
+	#&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build -j1 --release \
+	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/zola
 
 WORKDIR /config
