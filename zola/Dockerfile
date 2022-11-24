@@ -10,10 +10,9 @@ ARG ARCHIVE_URL=https://github.com/getzola/zola/archive/
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache ca-certificates curl openssl-dev lld g++ musl-dev make mold cargo \
+	&& apk add --no-cache ca-certificates curl openssl-dev g++ musl-dev make mold cargo \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/zola.tar.gz \
 	&& tar xzf /tmp/zola.tar.gz --strip 1 -C /usr/src/github.com/getzola/zola \
-	#&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build -j1 --release \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/zola
 
