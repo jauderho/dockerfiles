@@ -11,7 +11,7 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add ca-certificates curl lld gcc protoc git musl-dev \
+	&& apk add ca-certificates curl gcc protoc git musl-dev mold \
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert and remove CPU requirement
@@ -20,7 +20,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
 	&& source $HOME/.cargo/env \
 	&& rustup component add rustfmt \
-	&& RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build -j1 --release \
+	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/rustybgpd
 
 WORKDIR /config
