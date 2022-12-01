@@ -497,11 +497,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:20d090e661bbe88a5d801ea5eb3d853564940352120c84c9a14968847aca2893",
-                "sha256:b95b2423ef18d17dcd5977732a0bf0fbbde4937f10dce24ff804581f7f3ca4e9"
+                "sha256:2d5443724f640ce07658ca8ca8bbd40d26b58914e63eec6549727869aa67e2cc",
+                "sha256:c2a2ff9dd8dfd991109b517ab98d5cb465e857acb45f6b643a0e284a9eb2cc76"
             ],
             "index": "pypi",
-            "version": "==15.3.3"
+            "version": "==15.3.4"
         },
         "flake8": {
             "hashes": [
@@ -942,11 +942,11 @@
         },
         "twine": {
             "hashes": [
-                "sha256:42026c18e394eac3e06693ee52010baa5313e4811d5a11050e7d48436cf41b9e",
-                "sha256:96b1cf12f7ae611a4a40b6ae8e9570215daff0611828f5fe1f37a16255ab24a0"
+                "sha256:929bc3c280033347a00f847236564d1c52a3e61b1ac2516c97c48f3ceab756d8",
+                "sha256:9e102ef5fdd5a20661eb88fad46338806c3bd32cf1db729603fe3697b1bc83c8"
             ],
             "index": "pypi",
-            "version": "==4.0.1"
+            "version": "==4.0.2"
         },
         "typing-extensions": {
             "hashes": [
