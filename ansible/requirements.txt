@@ -1,5 +1,5 @@
 -i https://pypi.org/simple
-ansible==7.0.0
+ansible==7.1.0
 ansible-compat==2.2.6 ; python_version >= '3.8'
 ansible-core==2.14.0 ; python_version >= '3.9'
 ansible-lint==6.9.1
