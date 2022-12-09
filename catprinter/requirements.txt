@@ -2,6 +2,6 @@
 async-timeout==4.0.2 ; python_version >= '3.6'
 bleak==0.19.5
 -e git+https://github.com/jauderho/catprinter.git@f624d579dc79abdf691675155a9b894e499cc0e7#egg=catprinter
-dbus-fast==1.75.1 ; platform_system == 'Linux'
+dbus-fast==1.80.0 ; platform_system == 'Linux'
 numpy==1.23.5
 opencv-python==4.6.0.66
