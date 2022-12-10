@@ -9,7 +9,7 @@ docker-autocompose = { git = "https://github.com/jauderho/docker-autocompose.git
 pyaml = "*"
 docker = "*"
 six = "*"
-packaging = "21.3"
+packaging = "==21.3"
 
 [dev-packages]
 
