@@ -4,7 +4,7 @@ charset-normalizer==2.1.1 ; python_full_version >= '3.6.0'
 docker==6.0.1
 -e git+https://github.com/jauderho/docker-autocompose.git@833dc2477f500bc3dfc251c1029f7ab317e1deee#egg=docker-autocompose
 idna==3.4 ; python_version >= '3.5'
-packaging==22.0 ; python_version >= '3.7'
+packaging==22.0
 pyaml==21.10.1
 pyyaml==6.0 ; python_version >= '3.6'
 requests==2.28.1 ; python_version >= '3.7' and python_version < '4'
