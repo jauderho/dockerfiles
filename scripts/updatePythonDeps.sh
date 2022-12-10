@@ -27,6 +27,7 @@ echo
 #python -m pip install -U setuptools
 python3 -m pip install --no-cache-dir --upgrade pip
 pip install --upgrade --user pipenv
+pip install --upgrade --user certifi
 pipenv lock && pipenv requirements > requirements.txt
 #pipenv --python 3.11 lock && pipenv --python 3.11 requirements > requirements.txt
 
