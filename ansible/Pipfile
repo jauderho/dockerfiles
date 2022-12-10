@@ -13,7 +13,7 @@ pywinrm = "*"
 #requests-kerberos = "*"
 storops = "*"
 wheel = "*"
-mitogen = { git = "https://github.com/mitogen-hq/mitogen.git", editable = true, ref = "f830dd8e40818f073d91000fc3bc50899905fd86" }
+mitogen = { git = "https://github.com/mitogen-hq/mitogen.git", editable = true, ref = "660d3e088501816edc12f4b98e9e92a35f68c707" }
 
 [dev-packages]
 
