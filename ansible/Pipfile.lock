@@ -26,11 +26,11 @@
         },
         "ansible-compat": {
             "hashes": [
-                "sha256:8bb3488327125a0948d38b766389a4819573343d5673aa78a7bed23eb9d5b28d",
-                "sha256:e976b875c6e721e1276da25dfa49850833e0ce73153fe789744f357d5bf9d079"
+                "sha256:08deddcd0a1dc6baabe674b07c6ff882118492c123d281f56f01905271a7ffc4",
+                "sha256:77fd80841279d8b0664df61faab65c32275d1a2b0079f60bf30c3d44251f6301"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2.2.6"
+            "version": "==2.2.7"
         },
         "ansible-core": {
             "hashes": [
@@ -335,11 +335,11 @@
         },
         "pathspec": {
             "hashes": [
-                "sha256:88c2606f2c1e818b978540f73ecc908e13999c6c3a383daf3705652ae79807a5",
-                "sha256:8f6bf73e5758fd365ef5d58ce09ac7c27d2833a8d7da51712eac6e27e35141b0"
+                "sha256:3c95343af8b756205e2aba76e843ba9520a24dd84f68c22b9f93251507509dd6",
+                "sha256:56200de4077d9d0791465aa9095a01d421861e405b5096955051deefd697d6f6"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.10.2"
+            "version": "==0.10.3"
         },
         "persist-queue": {
             "hashes": [
