@@ -31,9 +31,8 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/amass"
 LABEL org.opencontainers.image.description="amass performs network mapping of attack surfaces and external asset discovery "
 
-RUN \
-	&& apk update \
-	&& apk upgrade -a 
+RUN apk update \
+	&& apk upgrade -a
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
