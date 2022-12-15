@@ -33,9 +33,6 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/ali"
 LABEL org.opencontainers.image.description="ali is a load testing tool capable of performing real-time analysis"
 
-RUN apk update \
-	&& apk upgrade -a
-
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/src/github.com/nakabonne/ali/ali /usr/local/bin/ali

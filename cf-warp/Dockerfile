@@ -8,6 +8,7 @@ ARG ARCHIVE_URL=https://github.com/jauderho/cf-warp/archive/
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cf-warp.tar.gz \
@@ -32,6 +33,7 @@ WORKDIR /app
 COPY --from=build /app .
 
 RUN apk update \
+	&& apk upgrade -a \
 	&& apk --no-cache add --upgrade busybox ssl_client nodejs \
 	&& rm -rf /var/cache/apk/*
 

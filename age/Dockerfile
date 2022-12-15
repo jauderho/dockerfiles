@@ -33,9 +33,6 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/age"
 LABEL org.opencontainers.image.description="age is a simple, modern and secure file encryption tool, format, and Go library"
 
-RUN apk update \
-	&& apk upgrade -a
-
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/src/github.com/FiloSottile/age/age /usr/local/bin/age

@@ -11,6 +11,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc build-base bind-tools libcap \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
@@ -39,6 +40,9 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/cloudflared"
 LABEL org.opencontainers.image.description="Command line client for Cloudflare's Argo Tunnel"
+
+RUN apk update \
+	&& apk upgrade -a
 
 COPY --from=build /etc/passwd /etc/group /etc/cloudflared /etc/
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
