@@ -12,8 +12,9 @@ ENV PIP_NO_CACHE_DIR=1
 COPY requirements.txt .
 
 # workaround needed to prevent conflicts for six and packaging
-RUN \
+RUN test -n "${BUILD_VERSION}" && \
   apk update && \
+  apk upgrade -a && \
   build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
   runtime_pkgs="ca-certificates openssl openssh-client python3" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \

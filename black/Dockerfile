@@ -10,8 +10,9 @@ ENV PIP_NO_CACHE_DIR=1
 # pipenv lock -r > requirements.txt
 #COPY requirements.txt . 
 
-RUN \
+RUN test -n "${BUILD_VERSION}" && \
 	apk update && \
+	apk upgrade -a && \
 	build_pkgs="build-base python3-dev py3-pip" && \
 	runtime_pkgs="python3" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
@@ -25,11 +26,7 @@ RUN \
 	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
 
-
-
 # ----------------------------------------------------------------------------
-
-
 
 
 FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4
@@ -43,6 +40,7 @@ LABEL org.opencontainers.image.description="Black is the uncompromising Python c
 
 RUN \
 	apk update && \
+	apk upgrade -a && \
 	runtime_pkgs="python3" && \
 	apk --no-cache add ${runtime_pkgs} && \
 	rm -rf /var/cache/apk/* && \

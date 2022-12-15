@@ -13,6 +13,7 @@ ENV PIP_NO_CACHE_DIR=1
 COPY requirements.txt .
 
 RUN apt-get update && \
+	apt-get dist-upgrade -y && \
 	build_pkgs="cargo gcc libssl-dev python3-dev git" && \
 	runtime_pkgs="python3-pip openssh-client" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \

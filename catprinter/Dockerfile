@@ -11,6 +11,7 @@ COPY requirements.txt .
 
 RUN \
 	apt-get update && \
+	apt-get dist-upgrade -y && \
 	#build_pkgs="python3-dev git libblas-dev liblapack-dev curl" && \
 	# too many packages needed to build catprinter on arm/v7
 	#build_pkgs="python3-dev python3-pip git curl libopenblas-dev libblas-dev liblapack-dev patch file gcc g++ gfortran cmake ninja-build libatlas-base-dev libssl-dev" && \
