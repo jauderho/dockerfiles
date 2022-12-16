@@ -37,6 +37,7 @@ jobs:
             github.com:443
             fulcio.sigstore.dev:443
             oauth2.sigstore.dev:443
+            sigstore-tuf-root.storage.googleapis.com:443
 
       - name: "Checkout code"
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v2.4.0
