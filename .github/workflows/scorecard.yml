@@ -19,6 +19,7 @@ jobs:
     permissions:
       # Needed to upload the results to code-scanning dashboard.
       security-events: write
+      id-token: write
       actions: read
       contents: read
 
@@ -34,6 +35,7 @@ jobs:
             bestpractices.coreinfrastructure.org:443
             codeload.github.com:443
             github.com:443
+            fulcio.sigstore.dev:443
             oauth2.sigstore.dev:443
 
       - name: "Checkout code"
