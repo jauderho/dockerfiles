@@ -572,11 +572,11 @@
         },
         "subprocess-tee": {
             "hashes": [
-                "sha256:7ea885ff32cdb2b2d3b2a6c464492f2ee1ebbf324e50598d75de4f6f3ea0f149",
-                "sha256:dae5fba2640b45442a84b23f887aadfbe3f9addcca8320f5f99acb8d5c36b77e"
+                "sha256:b3c124993f8b88d1eb1c2fde0bc2069787eac720ba88771cba17e8c93324825d",
+                "sha256:eca56973a1c1237093c2055b2731bcaab784683b83f22c76f26e4c5763402e28"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "tomli": {
             "hashes": [
