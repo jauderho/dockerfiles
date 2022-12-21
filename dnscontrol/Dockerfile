@@ -11,6 +11,7 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc build-base git \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscontrol.tar.gz \
@@ -35,6 +36,9 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dnscontrol"
 LABEL org.opencontainers.image.description="DNSControl is an opinionated platform for seamlessly managing your DNS configuration"
+
+RUN apk update \
+	&& apk upgrade -a
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/dnscontrol /usr/local/bin

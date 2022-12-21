@@ -8,6 +8,7 @@ ARG GIT_URL=https://github.com/docker/docker-bench-security.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache git iproute2 docker-cli dumb-init \ 
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& apk del git

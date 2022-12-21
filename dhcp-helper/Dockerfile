@@ -2,7 +2,9 @@ FROM alpine:3.17.0@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976
 
 ARG BUILD_VERSION
 
-RUN apk --no-cache add dhcp-helper
+RUN apk update \
+	&& apk upgrade -a \
+    && apk --no-cache add dhcp-helper
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

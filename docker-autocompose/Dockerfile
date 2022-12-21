@@ -11,6 +11,7 @@ COPY requirements.txt .
 
 RUN \
 	apk update && \
+	apk upgrade -a && \
 	build_pkgs="python3-dev git" && \
 	runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \

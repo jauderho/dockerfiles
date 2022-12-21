@@ -10,6 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/multiprocessio/dsq \
 	&& cd /go/src/github.com/multiprocessio/dsq \
@@ -30,6 +31,9 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dsq"
 LABEL org.opencontainers.image.description="dsq is a CLI companion to DataStation (a GUI) for running SQL queries against data files"
+
+RUN apk update \
+	&& apk upgrade -a
 
 COPY --from=build /go/src/github.com/multiprocessio/dsq/dsq /usr/local/bin/dsq
 COPY --from=build /config /config

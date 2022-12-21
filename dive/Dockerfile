@@ -11,6 +11,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache curl git gcc musl-dev \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/wagoodman/dive \
 	&& cd /go/src/github.com/wagoodman/dive \
@@ -36,7 +37,10 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dive"
 LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering ways to shrink your image size"
 
-RUN echo $(uname -m)
+RUN apk update \
+	&& apk upgrade -a
+
+#RUN echo $(uname -m)
 #RUN echo ${DOCKER_CLI_VERSION}
 
 # Include a workaround for arch naming mismatch
