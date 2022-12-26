@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc musl-dev \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/FiloSottile/age \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/FiloSottile/age \
 	&& cd /go/src/github.com/FiloSottile/age \
 	&& go build -o . -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" filippo.io/age/cmd/... 
 
