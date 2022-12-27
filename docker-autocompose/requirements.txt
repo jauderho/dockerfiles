@@ -2,7 +2,7 @@
 certifi==2022.12.7 ; python_version >= '3.6'
 charset-normalizer==2.1.1 ; python_full_version >= '3.6.0'
 docker==6.0.1
--e git+https://github.com/jauderho/docker-autocompose.git@70623e246ac13dbedb6400fb2eb7cba767e30fa7#egg=docker-autocompose
+-e git+https://github.com/jauderho/docker-autocompose.git@b4f07212e451ae06177d0d2beccef924d1560dcd#egg=docker-autocompose
 idna==3.4 ; python_version >= '3.5'
 packaging==21.3
 pyaml==21.10.1
