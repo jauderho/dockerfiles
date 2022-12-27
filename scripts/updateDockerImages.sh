@@ -9,6 +9,7 @@ IFS=$'\n\t'
 # PAT is only used to avoid API rate limits
 
 REPO=( 
+	"filosottile/age" \
 	"nakabonne/ali" \
 	"ansible/ansible" \
 	"OWASP/amass" \
