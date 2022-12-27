@@ -97,6 +97,7 @@ do
 	
 	# Skip if null
 	[ -z "$rver" ] && break
+	[[ $rver = null ]] && break
 
 	# Version check
 	if [ "$dver" != "$rver" ]; then
