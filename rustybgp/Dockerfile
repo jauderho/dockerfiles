@@ -12,7 +12,7 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold \
-	&& git clone --depth 1 ${GIT_URL} \
+	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert and remove CPU requirement
 	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
