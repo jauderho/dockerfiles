@@ -697,11 +697,11 @@
         },
         "pkginfo": {
             "hashes": [
-                "sha256:7fc056f8e6b93355925083373b0f6bfbabe84ee3f29854fd155c9d6a4211267d",
-                "sha256:e769fd353593d43e0c9f47e17e25f09a8efcddcdf9a71674ea3ba444ff31bb44"
+                "sha256:14ac884f19ef50abfce74b2793394903b3e2901e759908237ba5e18ca9d7524b",
+                "sha256:911a99a7dbcd52d0726b32e9f0df84d09081f4faf98deff1e3835b7880d14223"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.9.4"
+            "version": "==1.9.5"
         },
         "platformdirs": {
             "hashes": [
@@ -815,11 +815,11 @@
         },
         "rich": {
             "hashes": [
-                "sha256:12b1d77ee7edf251b741531323f0d990f5f570a4e7c054d0bfb59fb7981ad977",
-                "sha256:3aa9eba7219b8c575c6494446a59f702552efe1aa261e7eeb95548fa586e1950"
+                "sha256:25f83363f636995627a99f6e4abc52ed0970ebbd544960cc63cbb43aaac3d6f0",
+                "sha256:41fe1d05f433b0f4724cda8345219213d2bfa472ef56b2f64f415b5b94d51b04"
             ],
             "markers": "python_full_version >= '3.7.0'",
-            "version": "==13.0.0"
+            "version": "==13.0.1"
         },
         "secretstorage": {
             "hashes": [
@@ -854,11 +854,11 @@
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
-                "sha256:2fb4f460b0dcd9c7e83f48e72d5f741441ddb858b73eb9159ef3bc1e7a22ec78",
-                "sha256:776a6439f1f602d4685f5046d00a90b38d8c075884ee81fe075260e92d152d9b"
+                "sha256:3d7a8005058f4eaf3d540d1467f2b2d909992c6256e927cbf15a7aec62cb5c2a",
+                "sha256:a41d36bb0c592bdf3e3afb545567587c92ea4fe895ecce26d0409899adf45efb"
             ],
             "index": "pypi",
-            "version": "==1.20.0"
+            "version": "==1.20.1"
         },
         "sphinx-rtd-theme": {
             "hashes": [
