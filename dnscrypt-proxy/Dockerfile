@@ -1,4 +1,4 @@
-FROM golang:1.19.4-alpine3.17@sha256:cf3f282dc9d14653ee9df26ab220a3d3aedd6ae0bffb718c76daacc07667a1c4 AS build
+FROM golang:1.19.4-alpine3.17@sha256:86d32cc0dfc04757fd8aeebb86308e6d1e3de60c73cb59e0f99c7b2ef77416b6 AS build
 
 WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
