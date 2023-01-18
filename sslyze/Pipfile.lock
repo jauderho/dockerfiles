@@ -215,10 +215,10 @@
         },
         "sslyze": {
             "hashes": [
-                "sha256:5b229dc7d72734d14a4e85799a40bf1867b1ad3ea88ad6b1901517974b402b53"
+                "sha256:17edf03121904b28be4c75938db192df706e6be1ba172b8741135921cfd661e5"
             ],
             "index": "pypi",
-            "version": "==5.1.0"
+            "version": "==5.1.1"
         },
         "tls-parser": {
             "hashes": [
@@ -967,11 +967,11 @@
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
-                "sha256:101e1473a35d3426632a4db6fb8bc5e218a9da5c72d8016764cae24183844fc4",
-                "sha256:7c7b7f0fb4865cab0842680adcb9f2d7b00fc76f91fac45039ec079cd29ab287"
+                "sha256:5e9cdea8604f4769eb667f6561336cee5132df8e01b14832aa20b3210843f16e",
+                "sha256:9c94e4f64ac2c459241654662b4969a21b5b8e0488e3a4a32d342d34ce4e312f"
             ],
             "index": "pypi",
-            "version": "==1.21.3"
+            "version": "==1.21.4"
         },
         "sphinx-rtd-theme": {
             "hashes": [
