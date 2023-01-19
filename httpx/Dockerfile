@@ -10,6 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/httpx.tar.gz \
 	&& tar xzf /tmp/httpx.tar.gz --strip 1 -C /go/src/github.com/projectdiscovery/httpx \

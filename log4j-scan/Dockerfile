@@ -14,6 +14,7 @@ ENV PIP_NO_CACHE_DIR=1
 
 RUN \
 	apk update && \
+	apk upgrade -a && \
 	build_pkgs="build-base libffi-dev openssl-dev python3-dev git curl" && \
 	runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \

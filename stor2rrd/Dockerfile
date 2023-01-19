@@ -20,8 +20,9 @@ ENV VI_IMAGE 1
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
 
-RUN apk update && apk upgrade -a && \
-     apk add --no-cache \
+RUN apk update \
+    && apk upgrade -a \
+    && apk add --no-cache \
     bash \
     wget \
     supervisor \

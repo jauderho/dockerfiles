@@ -19,6 +19,8 @@ ARG PATCHES_URL=https://github.com/jauderho/patches.git
 
 RUN \
   #build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl zlib git" && \
+  apk update && \
+  apk upgrade -a && \
   build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev ccache openssl zlib git" && \
   runtime_pkgs="ca-certificates tzdata" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \

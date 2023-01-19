@@ -11,6 +11,7 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl make git gcc build-base \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/lego.tar.gz \

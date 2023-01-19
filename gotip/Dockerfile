@@ -7,6 +7,7 @@ ENV GO111MODULE on
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& build_pkgs="ca-certificates curl gcc build-base git bash" \
 	&& apk add --no-cache ${build_pkgs}  \
 	&& update-ca-certificates \

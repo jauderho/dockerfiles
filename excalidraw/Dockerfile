@@ -12,6 +12,7 @@ ARG NODE_OPTIONS=--openssl-legacy-provider
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates git \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \

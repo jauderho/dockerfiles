@@ -6,8 +6,9 @@ FROM ubuntu:22.10@sha256:4f9ec2c0aa321966bfe625bc485aa1d6e96549679cfdf98bb404dfc
 
 ARG BUILD_VERSION
 
-RUN set -xe && \
-  apt-get update \
+RUN set -xe \
+  && apt-get update \
+  && apt-get dist-upgrade -y \
   && apt-get install -y --no-install-recommends \
   libauthen-ntlm-perl \
   libcgi-pm-perl \
