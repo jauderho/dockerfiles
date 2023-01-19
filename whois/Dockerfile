@@ -10,6 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache git ca-certificates \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/likexian/whois \
 	&& cd /go/src/github.com/likexian/whois \

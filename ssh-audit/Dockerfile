@@ -7,6 +7,7 @@ ARG ARCHIVE_URL=https://github.com/jtesta/ssh-audit/archive/
 
 RUN test -n "${BUILD_VERSION}" \
     && apk update \
+    && apk upgrade -a \
     && build_pkgs="curl" \
     && runtime_pkgs="ca-certificates python3" \
     && apk add --no-cache --virtual build-dependencies ${build_pkgs} \

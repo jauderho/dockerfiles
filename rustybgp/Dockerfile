@@ -11,6 +11,7 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold \
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \

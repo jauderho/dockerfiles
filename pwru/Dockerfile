@@ -37,6 +37,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/pwru"
 LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for tracing network packets in the Linux kernel with advanced filtering capabilities."
 
+RUN apt-get update \
+	&& apt-get dist-upgrade -y
+
 COPY --from=build /go/src/github.com/cilium/pwru/pwru /usr/local/bin/pwru
 COPY --from=build /config /config
 

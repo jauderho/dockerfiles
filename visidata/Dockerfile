@@ -11,6 +11,7 @@ COPY requirements.txt .visidatarc ./
 
 RUN \
 	apk update && \
+	apk upgrade -a && \
 	build_pkgs="python3-dev libxml2-dev libxslt-dev gcc build-base" && \
 	runtime_pkgs="ca-certificates openssl python3 py3-pip libxml2 libxslt" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \

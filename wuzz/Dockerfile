@@ -10,6 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc musl-dev \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/asciimoo/wuzz \
@@ -31,6 +32,9 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/wuzz"
 LABEL org.opencontainers.image.description="wuzz is an interactive cli tool for HTTP inspection"
+
+RUN apk update \
+	&& apk upgrade -a 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 

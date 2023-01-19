@@ -9,6 +9,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/trufflehog.tar.gz \
@@ -31,7 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/trufflehog"
 LABEL org.opencontainers.image.description="trufflehog finds leaked credentials"
 
-RUN apk add --no-cache git
+RUN apk update \
+	&& apk upgrade -a \
+	&& apk add --no-cache git
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 

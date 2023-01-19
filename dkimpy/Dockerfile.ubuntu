@@ -32,7 +32,6 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dkimpy"
 LABEL org.opencontainers.image.description="dkimpy is a library that implements DKIM (DomainKeys Identified Mail) email signing and verification"
 
-
 CMD ["dkimverify"]
 #CMD ["dknewkey"]
 #CMD ["dkimsign"]

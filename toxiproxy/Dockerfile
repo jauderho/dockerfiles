@@ -12,6 +12,7 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/toxiproxy.tar.gz \
@@ -39,9 +40,11 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/toxiproxy"
 LABEL org.opencontainers.image.description="toxiproxy is a framework for simulating network conditions"
 
-#RUN apk add --no-cache ca-certificates \
-#	&& update-ca-certificates \
-#  && rm -rf /var/cache/apk/*
+RUN apk update \
+	&& apk upgrade -a \
+	&& apk add --no-cache ca-certificates \
+	&& update-ca-certificates \
+	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /go/bin/toxiproxy /toxiproxy
 COPY --from=build /go/bin/toxiproxy-cli /toxiproxy-cli

@@ -11,6 +11,7 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates bash curl make git gcc build-base musl-dev \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
@@ -28,6 +29,9 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/terraform"
 LABEL org.opencontainers.image.description="Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently"
+
+RUN apk update \
+	&& apk upgrade -a 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/hashicorp/terraform/terraform /usr/local/bin/terraform

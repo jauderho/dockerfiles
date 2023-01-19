@@ -8,6 +8,7 @@ ARG ARCHIVE_URL=https://github.com/ytdl-org/youtube-dl/archive/
 
 RUN set -x \
  && apk update  \
+ && apk upgrade -a \
  && apk add --no-cache \
         ca-certificates \
         curl \

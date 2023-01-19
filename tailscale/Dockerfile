@@ -12,6 +12,7 @@ COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/tailscale.tar.gz \
@@ -37,9 +38,11 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/tailscale"
 LABEL org.opencontainers.image.description="Tailscale is Wireguard made easy"
 
-RUN apk add --no-cache ca-certificates iptables ip6tables iproute2 \
+RUN apk update \
+	&& apk upgrade -a \
+	&& apk add --no-cache ca-certificates iptables ip6tables iproute2 \
 	&& update-ca-certificates \
-  && rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /go/bin/tailscale /usr/local/bin
 COPY --from=build /go/bin/tailscaled /usr/local/bin
