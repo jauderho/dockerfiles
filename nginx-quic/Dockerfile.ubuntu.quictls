@@ -6,6 +6,7 @@ WORKDIR /src
 COPY . .
 
 RUN apt-get update && \
+    apt-get dist-upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc-12 g++-12 mold make perl ca-certificates && \
     git clone --depth 1 https://github.com/quictls/openssl && \
     cd openssl && \

@@ -33,6 +33,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/goplay2"
 LABEL org.opencontainers.image.description="goplay2 is an opinionated Airplay 2 speaker implementation"
 
+RUN apk update \
+	&& apk upgrade -a
+	
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/src/github.com/openairplay/goplay2/goplay2 /usr/local/bin/goplay2

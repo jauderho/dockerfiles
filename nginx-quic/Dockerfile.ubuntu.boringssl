@@ -6,6 +6,7 @@ WORKDIR /src
 COPY . .
 
 RUN apt-get update && \
+    apt-get dist-upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc g++ gcc-12 g++-12 mold make cmake perl libunwind-dev golang ca-certificates ninja-build && \
     git clone --depth 1 https://boringssl.googlesource.com/boringssl && \
     mkdir boringssl/build && \

@@ -32,7 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/httpx"
 LABEL org.opencontainers.image.description="httpx is a fast and multi-purpose HTTP toolkit"
 
-RUN apk add --no-cache bind-tools ca-certificates
+RUN apk update \
+	&& apk upgrade -a \
+	&& apk add --no-cache bind-tools ca-certificates
 
 COPY --from=build /go/src/github.com/projectdiscovery/httpx/httpx /usr/local/bin/httpx
 COPY --from=build /config /config

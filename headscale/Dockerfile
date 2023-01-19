@@ -32,6 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/headscale"
 LABEL org.opencontainers.image.description="An open source, self-hosted implementation of the Tailscale coordination server."
 
+RUN apk update \
+	&& apk upgrade -a
+
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/src/github.com/juanfont/headscale/headscale /usr/local/bin/headscale

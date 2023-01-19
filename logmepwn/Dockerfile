@@ -38,9 +38,11 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/logmepwn"
 LABEL org.opencontainers.image.description="logmepwn is a mass scanner for log4shell"
 
-RUN apk add --no-cache ca-certificates \
+RUN apk update \
+	&& apk upgrade -a \
+	&& apk add --no-cache ca-certificates \
 	&& update-ca-certificates \
-  && rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /go/bin/lmp /usr/local/bin
 

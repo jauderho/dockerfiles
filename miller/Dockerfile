@@ -32,6 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/miller"
 LABEL org.opencontainers.image.description="Miller is like awk, sed, cut, join, and sort for data formats such as CSV, TSV, tabular JSON and positionally-indexed"
 
+RUN apk update \
+	&& apk upgrade -a
+	
 COPY --from=build /go/src/github.com/johnkerl/miller/mlr /usr/local/bin/mlr
 COPY --from=build /config /config
 

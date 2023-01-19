@@ -32,6 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/httprobe"
 LABEL org.opencontainers.image.description="httprobe probes for working http and https servers"
 
+RUN apk update \
+	&& apk upgrade -a
+
 COPY --from=build /go/src/github.com/tomnomnom/httprobe/httprobe /usr/local/bin/httprobe
 COPY --from=build /config /config
 
