@@ -44,6 +44,7 @@ jobs:
             mcr.microsoft.com:443
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
+            westcentralus.data.mcr.microsoft.com:443
 
       - name: Source checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0 
