@@ -34,6 +34,14 @@ RUN test -n "${BUILD_VERSION}" \
 ### FINAL ###
 FROM base AS final
 WORKDIR /app
+
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/aznamingtool"
+LABEL org.opencontainers.image.description="AzNamingTool assists with the configuration and generation of Azure Resource names"
+
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "AzureNamingTool.dll"]
 
