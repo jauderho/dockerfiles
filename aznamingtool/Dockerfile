@@ -1,0 +1,39 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+### BASE ###
+#FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:03555d92065f11067c9e2f259787fa858a03313540a01f10cde6bfd720671285 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:debec27f5579ddee99c2fd5616ee18def873aa83ad68e7b563c222162099fda5 AS base
+WORKDIR /app
+RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
+EXPOSE 80
+EXPOSE 443
+
+### BUILD ###
+#FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:408f1593d25f04e5d1c97115da40760ca032505c97dafd7d5a291e0a3ae88c61 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0@sha256:028d360c0f409f13daf8689edfe680dba9d4b651eb8a6f1210a3542f0ad4bf58 AS build
+WORKDIR /src
+
+ARG BUILD_VERSION
+ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
+ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
+
+RUN test -n "${BUILD_VERSION}" \
+	&& apt-get update \
+	&& apt-get -y dist-upgrade --no-install-recommends \
+	&& DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends git \
+	&& git clone --depth 1 ${GIT_URL} /src \
+	&& cd /src/ready/AzNamingTool \
+	&& dotnet restore "AzureNamingTool.csproj" \
+	&& dotnet build "AzureNamingTool.csproj" -c Release -o /app/build \
+	&& dotnet publish "AzureNamingTool.csproj" -c Release -o /app/publish \
+	&& apt-get purge -y git \
+	&& apt-get autoremove -y --purge \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get clean
+
+### FINAL ###
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "AzureNamingTool.dll"]
+

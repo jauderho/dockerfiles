@@ -37,6 +37,11 @@ This repo contains Dockerfiles for applications that I find useful.
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/ansible)](https://hub.docker.com/r/jauderho/ansible/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/ansible/latest)](https://hub.docker.com/r/jauderho/ansible/)
 
+[![Build Status](https://github.com/jauderho/dockerfiles/workflows/aznamingtool/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
+[![Version](https://img.shields.io/docker/v/jauderho/aznamingtool/latest)](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/aznamingtool)](https://hub.docker.com/r/jauderho/aznamingtool/)
+[![Imaznamingtool Size](https://img.shields.io/docker/image-size/jauderho/aznamingtool/latest)](https://hub.docker.com/r/jauderho/aznamingtool/)
+
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/black/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ablack)
 [![Version](https://img.shields.io/docker/v/jauderho/black/latest)](https://github.com/psf/black)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/black)](https://hub.docker.com/r/jauderho/black/)

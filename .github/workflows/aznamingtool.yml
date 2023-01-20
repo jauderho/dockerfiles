@@ -1,0 +1,135 @@
+name: aznamingtool
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - aznamingtool/*
+      - .github/workflows/aznamingtool.yml
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1"
+
+env:
+  BUILD_VERSION: "git"
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+permissions: read-all
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@18bf8ad2ca49c14cbb28b91346d626ccfb00c518
+        with:
+          egress-policy: audit
+          disable-telemetry: false
+          allowed-endpoints: >
+            95s5acprodeus1file6.blob.core.windows.net:443
+            api.github.com:443
+            artifactcache.actions.githubusercontent.com:443
+            auth.docker.io:443
+            codeload.github.com:443
+            dl-cdn.alpinelinux.org:443
+            fulcio.sigstore.dev:443
+            ghcr.io:443
+            github.com:443
+            index.docker.io:443
+            oauth2.sigstore.dev:443
+            objects.githubusercontent.com:443
+            pipelines.actions.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            production.cloudflare.docker.com:443
+            proxy.golang.org:443
+            raw.githubusercontent.com:443
+            registry-1.docker.io:443
+            rekor.sigstore.dev:443
+            sigstore-tuf-root.storage.googleapis.com:443
+            storage.googleapis.com:443
+            sum.golang.org:443
+            toolbox-data.anchore.io:443
+            v1.fulcio.sigstore.dev:443
+
+      - name: Source checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0 
+ 
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@e81a89b1732b9c48d79cd809d8d81d79c4647a18 # v1.2.0
+      
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@8c0edbc76e98fa90f69d9a2c020dcb50019dc325 # v1
+
+      - name: Set Docker metadata
+        id: docker_meta
+        uses: docker/metadata-action@507c2f2dc502c992ad446e3d7a5dfbe311567a96 # v3
+        with:
+          images: ${{ env.REPOSITORY }}
+          tags: |
+            type=sha,format=long,prefix=sha256:
+          labels: |
+            org.opencontainers.image.version=${{ env.BUILD_VERSION }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.title=${{ env.REPOSITORY }}
+
+      - name: GitHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DockerHub login
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}      
+
+      - name: Build and push
+        id: push-step
+        uses: docker/build-push-action@37abcedcc1da61a57767b7588cb9d03eb57e28b3 # v2.8.0
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          context: ${{ github.workflow }}
+          #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64
+          #platforms: ${{ matrix.arch }}
+          build-args: |
+            BUILD_VERSION
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}, mode=max
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: |
+            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            docker.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
+            ghcr.io/${{ env.REPOSITORY }}:latest
+
+  docs:
+    needs: deploy
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Source checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0
+        
+      - name: Update DockerHub description
+        uses: peter-evans/dockerhub-description@93b93397c27ed52b4055b8c6b2f8d92456ab3c56 # v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: ${{ env.REPOSITORY }}
+          readme-filepath: ${{ github.workflow }}/README.md
+
