@@ -102,8 +102,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          #platforms: linux/amd64,linux/arm64
+          #platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           #platforms: ${{ matrix.arch }}
           build-args: |
