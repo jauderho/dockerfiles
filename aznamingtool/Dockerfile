@@ -42,6 +42,8 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/aznamingtool"
 LABEL org.opencontainers.image.description="AzNamingTool assists with the configuration and generation of Azure Resource names"
 
+RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
+
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "AzureNamingTool.dll"]
 
