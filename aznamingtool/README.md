@@ -8,5 +8,5 @@ Up to date multi-platform images are built an hour after upstream release and re
 
 Usage: `docker run --rm -it -d -p 8081:80 --mount source=azurenamingtoolvol,target=/app/settings jauderho/azurenamingtool:latest`
 
-Built using .NET 7
+Slim build using .NET 7 on Alpine
 
