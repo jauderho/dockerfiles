@@ -29,8 +29,8 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@18bf8ad2ca49c14cbb28b91346d626ccfb00c518
         with:
-          egress-policy: block
-          disable-telemetry: true
+          egress-policy: audit
+          disable-telemetry: false
           allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
@@ -108,6 +108,8 @@ jobs:
           #platforms: ${{ matrix.arch }}
           build-args: |
             BUILD_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}, mode=max
           labels: ${{ steps.docker_meta.outputs.labels }}
@@ -127,33 +129,28 @@ jobs:
       # https://github.com/docker/roadmap/issues/269
       # https://github.com/anchore/syft
       
-      - name: Install cosign
-        uses: sigstore/cosign-installer@9becc617647dfa20ae7b1151972e9b3a2c338a2b # v1.4.1
+      #- name: Install cosign
+      #  uses: sigstore/cosign-installer@9becc617647dfa20ae7b1151972e9b3a2c338a2b # v1.4.1
       
-      - name: Install syft
-        uses: anchore/sbom-action/download-syft@54e36e45f34bc64728f51adb8044404daca492a6 # v0.6.0
+      #- name: Install syft
+      #  uses: anchore/sbom-action/download-syft@54e36e45f34bc64728f51adb8044404daca492a6 # v0.6.0
       
-      - name: Sign the image digest and generate SBOM
-        run: |
-          cosign sign docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          syft docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }} -o json > docker_sbom.json
-          cosign attest --predicate docker_sbom.json docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign sign ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          syft ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }} -o json > ghcr_sbom.json
-          cosign attest --predicate ghcr_sbom.json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-        env:
-          COSIGN_EXPERIMENTAL: 1
-
-        #syft attest -o syft-json docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-        #syft attest -o syft-json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+      #- name: Sign the image digest and generate SBOM
+      #  run: |
+      #    cosign sign ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+      #    syft ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }} -o json > ghcr_sbom.json
+      #    cosign attest --predicate ghcr_sbom.json ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+      #    cosign sign registry.gitlab.com/${{ github.repository }}/${{ github.workflow }}@${{ steps.push-step.outputs.digest }}
+      #    syft registry.gitlab.com/${{ github.repository }}/${{ github.workflow }}@${{ steps.push-step.outputs.digest }} -o json > gitlab_sbom.json
+      #    cosign attest --predicate gitlab_sbom.json registry.gitlab.com/${{ github.repository }}/${{ github.workflow }}@${{ steps.push-step.outputs.digest }}
+      #  env:
+      #    COSIGN_EXPERIMENTAL: 1
          
-      - name: Verify the image digest and SBOM
-        run: |
-          cosign verify docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign verify-attestation docker.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign verify ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-          cosign verify-attestation ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
-        env:
-          COSIGN_EXPERIMENTAL: 1
-          
-          
+      #- name: Verify the image digest and SBOM
+      #  run: |
+      #    cosign verify ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+      #    cosign verify-attestation ghcr.io/${{ env.REPOSITORY }}@${{ steps.push-step.outputs.digest }}
+      #    cosign verify registry.gitlab.com/${{ github.repository }}/${{ github.workflow }}@${{ steps.push-step.outputs.digest }}
+      #    cosign verify-attestation registry.gitlab.com/${{ github.repository }}/${{ github.workflow }}@${{ steps.push-step.outputs.digest }}          
+      #  env:
+      #    COSIGN_EXPERIMENTAL: 1
