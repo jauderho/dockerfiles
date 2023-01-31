@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e3cbd42ca974852d71eea6e8720d6bf5e87e7b543b87b0b2de01181e70b5ac0b"
+            "sha256": "68f8d8a5a427d2589c3c7e9cdde46380cb5781e7ba365690723f52d5f16f9408"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -11,6 +11,11 @@
             {
                 "name": "pypi",
                 "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            },
+            {
+                "name": "piwheels",
+                "url": "https://www.piwheels.org/simple",
                 "verify_ssl": true
             }
         ]
@@ -976,11 +981,11 @@
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
-                "sha256:68e7136403ca67359d7beaab4d358cea518623abe749cc4e0639609aebf2f5c7",
-                "sha256:b8d15c05ced5e9fbe46a6dfd2ff194b6e508a64c9229bc7eaa08ee7089b9e6d3"
+                "sha256:71fca2d5eee9b034204e4c686ab20b4d8f5eb9409396216bcae6c87c38e18ea6",
+                "sha256:ef4a8b9d52de66065aa7d3adfabf5a436feb8a2eff07c2ddc31625d8807f2b69"
             ],
             "index": "pypi",
-            "version": "==1.21.8"
+            "version": "==1.22"
         },
         "sphinx-rtd-theme": {
             "hashes": [
