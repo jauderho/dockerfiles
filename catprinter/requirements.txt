@@ -1,4 +1,5 @@
 -i https://pypi.org/simple
+--extra-index-url https://www.piwheels.org/simple
 async-timeout==4.0.2 ; python_version >= '3.6'
 bleak==0.19.5
 -e git+https://github.com/jauderho/catprinter.git@8f056f5b21ec334a73259c700b27f9b016fe64ea#egg=catprinter
