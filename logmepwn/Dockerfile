@@ -1,4 +1,4 @@
-FROM golang:1.19.5-alpine3.17@sha256:2381c1e5f8350a901597d633b2e517775eeac7a6682be39225a93b22cfd0f8bb AS build
+FROM golang:1.20-alpine3.17@sha256:3806fee283c906011b0f498265614cb071224d554342bf8b4bfe663d0e575861 AS build
 
 WORKDIR /go/src/github.com/0xInfection/logmepwn
 
