@@ -17,7 +17,7 @@ RUN test -n "${BUILD_VERSION}" && \
 	runtime_pkgs="python3" && \
 	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
 	apk --no-cache add ${runtime_pkgs} && \
-	#python3 -m pip install --no-cache-dir --upgrade pip && \
+	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir --upgrade black==${BUILD_VERSION} && \
 	#apk del build-dependencies && \
 	rm -rf /var/cache/apk/* && \
