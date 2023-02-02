@@ -54,6 +54,7 @@ jobs:
             github.com:443
             pypi.org:443
             security.ubuntu.com:443
+            www.piwheels.org:443
 
       - name: Source checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0 
