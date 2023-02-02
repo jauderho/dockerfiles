@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine3.17@sha256:3806fee283c906011b0f498265614cb071224d554342bf8b4bfe663d0e575861 AS build
+FROM golang:1.20.0-alpine3.17@sha256:30a02e0d312773089a592f1d920f4b8dc17fb8c5f6fcced013ce0e162d41b8f1 AS build
 
 WORKDIR /go/src/github.com/juanfont/headscale/
 
