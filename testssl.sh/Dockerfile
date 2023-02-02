@@ -8,7 +8,7 @@ ARG ARCHIVE_URL=https://github.com/drwetter/testssl.sh/archive/
 RUN test -n "${BUILD_VERSION}" \
     && apk update \
     && apk upgrade -a \
-    && apk add --no-cache bash procps drill git coreutils libidn curl socat openssl xxd \
+    && apk add --no-cache bash procps drill coreutils libidn curl socat openssl xxd \
     && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/testssl.tar.gz \
     && tar xzf /tmp/testssl.tar.gz --strip 1 -C /home/testssl \
     && addgroup testssl \

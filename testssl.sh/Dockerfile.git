@@ -16,7 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
     && addgroup testssl \
     && adduser -G testssl -g "testssl user" -s /bin/bash -D testssl \
     && ln -s /home/testssl/testssl.sh /usr/local/bin/ \
-    && mkdir -m 755 -p /home/testssl/etc /home/testssl/bin
+    && mkdir -m 755 -p /home/testssl/etc /home/testssl/bin \
+		&& apk del git
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
