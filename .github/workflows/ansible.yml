@@ -52,6 +52,8 @@ jobs:
             registry-1.docker.io:443
             security.ubuntu.com:443
             static.crates.io:443
+            umsadn0h31k1s2342gds.blob.core.windows.net:443
+            www.piwheels.org:443
             zrdfepirv2bl5prdstr09a.blob.core.windows.net:443
 
       - name: Source checkout
