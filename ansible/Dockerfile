@@ -18,6 +18,7 @@ RUN apt-get update && \
 	runtime_pkgs="python3-pip openssh-client" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
+	python3 -m pip install --no-cache-dir --upgrade --ignore-installed packaging && \
 	pip3 install --no-cache-dir -r requirements.txt && \
 	apt-get purge -y ${build_pkgs} && \
 	apt-get autoremove -y --purge && \
