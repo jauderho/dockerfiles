@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 async-timeout==4.0.2 ; python_version >= '3.6'
 bleak==0.19.5
--e git+https://github.com/jauderho/catprinter.git@8f056f5b21ec334a73259c700b27f9b016fe64ea#egg=catprinter
+-e git+https://github.com/jauderho/catprinter.git@13d00db1f4558908bb66634f660c4360c9cd7298#egg=catprinter
 dbus-fast==1.84.0 ; platform_system == 'Linux'
 numpy==1.24.2
 opencv-python==4.7.0.68
