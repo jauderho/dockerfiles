@@ -2,7 +2,7 @@
 
 ### BASE ###
 #FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:03555d92065f11067c9e2f259787fa858a03313540a01f10cde6bfd720671285 AS base
-FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:8c530ac3c007e010e1d20156b7c1535be43ff428fe9fb322592be78b824b443f AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:ce5bfe503a59960cbbb42c078476e5241dcd02f93e210953a4d4a7417bab54d6 AS base
 WORKDIR /app
 RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
 EXPOSE 80
@@ -10,7 +10,7 @@ EXPOSE 443
 
 ### BUILD ###
 #FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:408f1593d25f04e5d1c97115da40760ca032505c97dafd7d5a291e0a3ae88c61 AS build
-FROM mcr.microsoft.com/dotnet/sdk:7.0@sha256:be940757726d2302010d04a01351dded716aab746f451ffecaceab46b941730e AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0@sha256:f5c9638efffb164cca3cde81f8e7c467f9797948922b0594691c922a8dc9ed1a AS build
 WORKDIR /src
 
 ARG BUILD_VERSION
