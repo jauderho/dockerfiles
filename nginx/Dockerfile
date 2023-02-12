@@ -1,4 +1,4 @@
-FROM alpine:3.17.1@sha256:f271e74b17ced29b915d351685fd4644785c6d1559dd1f2d4189a5e851ef753a
+FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
