@@ -4,9 +4,9 @@ cffi==1.15.1
 cryptography==38.0.4
 nassl==5.0.0
 pycparser==2.21
-pydantic==1.10.4
+pydantic==1.10.5
 pyopenssl==22.1.0 ; python_version >= '3.6'
 sslyze==5.1.1
 tls-parser==2.0.0
-typing-extensions==4.4.0 ; python_version >= '3.7'
+typing-extensions==4.5.0 ; python_version >= '3.7'
 wheel==0.38.4
