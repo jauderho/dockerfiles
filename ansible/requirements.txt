@@ -34,7 +34,7 @@ python-dateutil==2.8.2 ; python_version >= '2.7' and python_version not in '3.0,
 pywinrm==0.4.3
 pyyaml==6.0 ; python_version >= '3.6'
 requests==2.28.2 ; python_version >= '3.7' and python_version < '4'
-requests-ntlm==1.1.0
+requests-ntlm==1.2.0
 resolvelib==0.8.1
 retryz==0.1.9
 rich==13.3.1 ; python_full_version >= '3.7.0'
