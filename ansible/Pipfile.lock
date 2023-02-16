@@ -430,14 +430,6 @@
             "markers": "python_version >= '3.5'",
             "version": "==1.0.0"
         },
-        "ntlm-auth": {
-            "hashes": [
-                "sha256:c9667d361dc09f6b3750283d503c689070ff7d89f2f6ff0d38088d5436ff8543",
-                "sha256:f1527c581dbf149349134fc2d789d50af2a400e193206956fa0ab456ccc5a8ba"
-            ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
-            "version": "==1.5.0"
-        },
         "packaging": {
             "hashes": [
                 "sha256:714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2",
@@ -517,6 +509,24 @@
             "markers": "python_version >= '3.7'",
             "version": "==0.19.3"
         },
+        "pyspnego": {
+            "hashes": [
+                "sha256:0f43048a26a0c2c9edd8f3906f519022fcc5ae2baac1d2a65cdf9434ce0b761a",
+                "sha256:247e2d6ad6a6eaeaa6c9239a167ccf8d8c3b3322c684c90c03e6e18504c61d3a",
+                "sha256:5eb034dc30eba0ec85e9ba02ef7b7d26df8804027ea95e5280838919b5ceecdd",
+                "sha256:64c665f1e88a07cc25b680a475755a393df2b6b2bb62b75b2e79d7059b056109",
+                "sha256:65705b3763dc696358a5d6f9c74398afe37824a739e110b2b61ab731d617ff75",
+                "sha256:6cc0bab3737f1323dc9ebc0ca49b48ded6a09009643424f471a909083d298dbf",
+                "sha256:99c8fb4f4b859ae297c2f6cfed1511e46df574974a556c98a15c004251be0bec",
+                "sha256:a35976b59e226e6166a69398240edee688ad40c96d5afdc0e07ac1f09fcc5830",
+                "sha256:da78096fd7c9f40e716f6fbe3e30d913103d75fd676f839f98fc3a6fee92fbe3",
+                "sha256:e6e9664123d5521ecd21c32322f8ceb1575c8282b2f838beb33484ebaf2e66f9",
+                "sha256:e7dfcc0c780de04273655a9c3f62ea09e24cd5cd401fe0039eac553b0732e362",
+                "sha256:f951ad694b4cc166932736be2756fa84c4dfbda9c4b30733d9fb62464f898f29"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.7.0"
+        },
         "python-dateutil": {
             "hashes": [
                 "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86",
@@ -589,10 +599,11 @@
         },
         "requests-ntlm": {
             "hashes": [
-                "sha256:1eb43d1026b64d431a8e0f1e8a8c8119ac698e72e9b95102018214411a8463ea",
-                "sha256:9189c92e8c61ae91402a64b972c4802b2457ce6a799d658256ebf084d5c7eb71"
+                "sha256:33c285f5074e317cbdd338d199afa46a7c01132e5c111d36bd415534e9b916a8",
+                "sha256:b7781090c647308a88b55fb530c7b3705cef45349e70a83b8d6731e7889272a6"
             ],
-            "version": "==1.1.0"
+            "markers": "python_version >= '3.7'",
+            "version": "==1.2.0"
         },
         "resolvelib": {
             "hashes": [
