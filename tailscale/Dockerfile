@@ -17,13 +17,12 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/tailscale.tar.gz \
 	&& tar xzf /tmp/tailscale.tar.gz --strip 1 -C /go/src/github.com/tailscale/tailscale \ 
-	&& go build -v -trimpath -buildmode=pie -tags xversion -ldflags="-s -w -X tailscale.com/version.Short=${BUILD_VERSION}" tailscale.com/cmd/tailscale \
-	&& go build -v -trimpath -buildmode=pie -tags xversion -ldflags="-s -w -X tailscale.com/version.Short=${BUILD_VERSION}" tailscale.com/cmd/tailscaled 
+	&& go build -v -trimpath -buildmode=pie -tags xversion,ts_include_cli -ldflags="-s -w -X tailscale.com/version.Short=${BUILD_VERSION}" tailscale.com/cmd/tailscaled 
 
 # Validation check
-RUN cp tailscale /go/bin/tailscale
+#RUN cp tailscale /go/bin/tailscale
 RUN cp tailscaled /go/bin/tailscaled
-RUN tailscale version
+#RUN tailscale version
 
 
 # ----------------------------------------------------------------------------
@@ -38,14 +37,15 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/tailscale"
 LABEL org.opencontainers.image.description="Tailscale is Wireguard made easy"
 
+#COPY --from=build /go/bin/tailscale /usr/local/bin
+COPY --from=build /go/bin/tailscaled /usr/local/bin
+
 RUN apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates iptables ip6tables iproute2 \
 	&& update-ca-certificates \
+	&& ln -s /usr/local/bin/tailscaled /usr/local/bin/tailscale \
 	&& rm -rf /var/cache/apk/*
-
-COPY --from=build /go/bin/tailscale /usr/local/bin
-COPY --from=build /go/bin/tailscaled /usr/local/bin
 
 WORKDIR /tailscale
 
