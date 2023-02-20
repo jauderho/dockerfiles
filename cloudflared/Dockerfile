@@ -1,5 +1,5 @@
 #FROM golang:1.20.1-alpine3.17@sha256:48f336ef8366b9d6246293e3047259d0f614ee167db1869bdbc343d6e09aed8a AS build
-FROM golang:1.19.6-alpine3.17 AS build
+FROM golang:1.20.1-alpine3.17 AS build
 
 WORKDIR /go/src/github.com/cloudflare/cloudflared/
 
