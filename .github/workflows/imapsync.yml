@@ -33,6 +33,7 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v1
         with:
+          disable-sudo: true
           egress-policy: audit
           disable-telemetry: false
           allowed-endpoints: >
