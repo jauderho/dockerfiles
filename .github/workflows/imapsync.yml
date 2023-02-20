@@ -37,6 +37,8 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
+            actiontoad.canonical.com:443
+            aerodent.canonical.com:443
             api.github.com:443
             archive.ubuntu.com:443
             artifactcache.actions.githubusercontent.com:443
@@ -44,6 +46,7 @@ jobs:
             ghcr.io:443
             github.com:443
             imapsync.lamiral.info:443
+            kazooie.canonical.com:443
             ports.ubuntu.com:443
             production.cloudflare.docker.com:443
             raw.githubusercontent.com:443
