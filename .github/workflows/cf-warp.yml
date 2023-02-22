@@ -28,7 +28,7 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # v1
         with:
-          disable-sudo: true
+          disable-sudo: false
           egress-policy: audit
           disable-telemetry: false
           allowed-endpoints: 
@@ -41,9 +41,10 @@ jobs:
             ghcr.io:443
             github.com:443
             production.cloudflare.docker.com:443
-            proxy.golang.org:443
+            raw.githubusercontent.com:443
             registry-1.docker.io:443
             registry.yarnpkg.com:443
+            repo.yarnpkg.com:443
           
       - name: Source checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0 
