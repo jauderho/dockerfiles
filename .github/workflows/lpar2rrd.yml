@@ -33,6 +33,7 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: 
             api.github.com:443
+            auth.docker.io:443
             cpanmetadb.plackperl.org:80
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
