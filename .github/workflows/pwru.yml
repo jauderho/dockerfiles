@@ -40,6 +40,7 @@ jobs:
             api.github.com:443
             archive.ubuntu.com:80
             auth.docker.io:443
+            dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
             index.docker.io:443
