@@ -72,8 +72,8 @@ RUN apk update \
     diffutils \
     dpkg \
     freetype \
-    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
-    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
 # perl-font-ttf from testing repo (needed for PDF reports)
 #RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
