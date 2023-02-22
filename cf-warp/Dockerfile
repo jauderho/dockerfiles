@@ -13,12 +13,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cf-warp.tar.gz \
 	&& tar xzf /tmp/cf-warp.tar.gz --strip 1 -C /app \
+	&& yarn set version berry \
 	&& yarn install \
-	&& yarn upgrade --latest \
-	&& yarn --ignore-optional \
-	&& yarn outdated
-
-COPY . .
+	&& yarn up
 
 
 
@@ -30,12 +27,13 @@ COPY . .
 FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
 
 WORKDIR /app
-COPY --from=build /app .
 
 RUN apk update \
 	&& apk upgrade -a \
 	&& apk --no-cache add --upgrade busybox ssl_client nodejs \
 	&& rm -rf /var/cache/apk/*
+
+COPY --from=build /app .
 
 ENTRYPOINT ["node", "cli.js"]
 
