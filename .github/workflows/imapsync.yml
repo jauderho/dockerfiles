@@ -94,7 +94,7 @@ jobs:
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x,linux/riscv64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
