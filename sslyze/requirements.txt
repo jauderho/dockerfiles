@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 cffi==1.15.1
-cryptography==38.0.4
+cryptography==39.0.2
 nassl==5.0.0
 pycparser==2.21
 pydantic==1.10.5
