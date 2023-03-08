@@ -4,7 +4,7 @@ cffi==1.15.1
 cryptography==38.0.4
 nassl==5.0.0
 pycparser==2.21
-pydantic==1.10.5
+pydantic==1.10.6
 pyopenssl==22.1.0 ; python_version >= '3.6'
 sslyze==5.1.1
 tls-parser==2.0.0
