@@ -110,10 +110,10 @@
                 "ed25519"
             ],
             "hashes": [
-                "sha256:3500ee90454b7c2cf712581e0398eb47038d27e69148329df634ecd98dd8621c"
+                "sha256:7559744b5a9019691908f0a0c653e206b6cbf636c8c6d66e1a0827cfc8ec7f91"
             ],
             "index": "pypi",
-            "version": "==1.1.0"
+            "version": "==1.1.1"
         },
         "dnspython": {
             "hashes": [
