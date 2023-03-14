@@ -9,4 +9,4 @@ pyopenssl==23.0.0 ; python_version >= '3.6'
 sslyze==5.1.2
 tls-parser==2.0.1
 typing-extensions==4.5.0 ; python_version >= '3.7'
-wheel==0.38.4
+wheel==0.40.0
