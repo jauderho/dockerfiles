@@ -239,11 +239,11 @@
         },
         "wheel": {
             "hashes": [
-                "sha256:965f5259b566725405b05e7cf774052044b1ed30119b5d586b2703aafe8719ac",
-                "sha256:b60533f3f5d530e971d6737ca6d58681ee434818fab630c83a734bb10c083ce8"
+                "sha256:cd1196f3faee2b31968d626e1731c94f99cbdb67cf5a46e4f5656cbee7738873",
+                "sha256:d236b20e7cb522daf2390fa84c55eea81c5c30190f90f29ae2ca1ad8355bf247"
             ],
             "index": "pypi",
-            "version": "==0.38.4"
+            "version": "==0.40.0"
         }
     },
     "develop": {
@@ -932,14 +932,6 @@
             "markers": "sys_platform == 'linux'",
             "version": "==3.3.3"
         },
-        "setuptools": {
-            "hashes": [
-                "sha256:2ee892cd5f29f3373097f5a814697e397cf3ce313616df0af11231e2ad118077",
-                "sha256:b78aaa36f6b90a074c1fa651168723acbf45d14cb1196b6f02c0fd07f17623b2"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==67.6.0"
-        },
         "six": {
             "hashes": [
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
@@ -1005,11 +997,11 @@
         },
         "sphinxcontrib-jquery": {
             "hashes": [
-                "sha256:8fb65f6dba84bf7bcd1aea1f02ab3955ac34611d838bcc95d4983b805b234daa",
-                "sha256:ed47fa425c338ffebe3c37e1cdb56e30eb806116b85f01055b158c7057fdb995"
+                "sha256:1620739f04e36a2c779f1a131a2dfd49b2fd07351bf1968ced074365933abc7a",
+                "sha256:f936030d7d0147dd026a4f2b5a57343d233f1fc7b363f68b3d4f1cb0993878ae"
             ],
             "markers": "python_version >= '3.1'",
-            "version": "==2.0.0"
+            "version": "==4.1"
         },
         "sphinxcontrib-jsmath": {
             "hashes": [
