@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Source checkout
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v2.4.0
+        uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f # v2.4.0
         
       - name: Update DockerHub description
         uses: peter-evans/dockerhub-description@202973a37c8a723405c0c5f0a71b6d99db470dae # v2
