@@ -21,21 +21,13 @@
         ]
     },
     "default": {
-        "async-timeout": {
-            "hashes": [
-                "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15",
-                "sha256:8ca1e4fcf50d07413d66d1a5e416e42cfdf5851c981d679a09851a6853383b3c"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==4.0.2"
-        },
         "bleak": {
             "hashes": [
-                "sha256:31e92e6754379bb394b8544457c77ce09a8a7dbc5f9adf3119b34576c901ef1e",
-                "sha256:87845a96453c58c19031c735444a7b3156800534bcd3f23ba74e119e9ae3cd88"
+                "sha256:68e3de7fcde4ef2d206dc3611bf97ad613ae589a6e199129c09debd126e5e05d",
+                "sha256:7f6fe69454ad5d4c0ab05ae4a9aa1aabd6926d7128eab2fac4ef8a58a72999ee"
             ],
             "index": "pypi",
-            "version": "==0.19.5"
+            "version": "==0.20.0"
         },
         "catprinter": {
             "editable": true,

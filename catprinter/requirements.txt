@@ -1,7 +1,6 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-async-timeout==4.0.2 ; python_version >= '3.6'
-bleak==0.19.5
+bleak==0.20.0
 -e git+https://github.com/jauderho/catprinter.git@e66c748eae9b8e6108bfe5d4560f5ee7427460ce#egg=catprinter
 dbus-fast==1.84.2 ; platform_system == 'Linux'
 numpy==1.24.2
