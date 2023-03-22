@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/openrdap/rdap \
 	&& cd /go/src/github.com/openrdap/rdap \
-	&& go get -u all \
+	&& go get -u \
 	&& go build -o rdap -v -trimpath -ldflags="-s -w" ./cmd/rdap
 
 WORKDIR /config
