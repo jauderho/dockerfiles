@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-bleak==0.20.0
+bleak==0.20.1
 -e git+https://github.com/jauderho/catprinter.git@e66c748eae9b8e6108bfe5d4560f5ee7427460ce#egg=catprinter
 dbus-fast==1.84.2 ; platform_system == 'Linux'
 numpy==1.24.2
