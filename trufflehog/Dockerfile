@@ -1,4 +1,4 @@
-FROM golang:1.20.2-alpine3.17@sha256:4e6bc0eafc261b6c8ba9bd9999b6698e8cefbe21e6d90fbc10c34599d75dc608 AS build
+FROM golang:1.20.2-alpine3.17@sha256:576da1aa73f8ffa3dc6a7577b6032bd834aa84f2e1714d3e7e96b06b49f4e177 AS build
 
 WORKDIR /go/src/github.com/trufflesecurity/trufflehog/
 
