@@ -13,8 +13,8 @@ on:
 
 env:
   BUILD_VERSION: "git"
-  OPENSSL_VERSION: "3.0.7"
-  PCRE_VERSION: "10.40"
+  OPENSSL_VERSION: "3.1.0"
+  PCRE_VERSION: "10.42"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
