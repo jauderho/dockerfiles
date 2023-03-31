@@ -1,4 +1,4 @@
-FROM golang:1.20.2-alpine3.17@sha256:e03044ec19ae333714d136a9c8ec2d47330e2b3ac74b7c0303d9e780387e60fa AS build
+FROM golang:1.20.2-alpine3.17@sha256:87734b78d26a52260f303cf1b40df45b0797f972bd0250e56937c42114bf472c AS build
 
 WORKDIR /go/src/github.com/ddosify/ddosify/
 
