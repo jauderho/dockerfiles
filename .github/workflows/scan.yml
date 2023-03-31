@@ -52,6 +52,41 @@ jobs:
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
+  anchore:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
+    needs: snyk
+    strategy:
+      fail-fast: false
+      matrix:
+        #image: [cloudflared]
+        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1f99358870fe1c846a3ccba386cc2b2246836776 # v2.2.1
+        with:
+          egress-policy: audit
+          
+      - name: Checkout code
+        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v2.4.0
+
+      - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
+        uses: anchore/scan-action@4be3c24559b430723e51858969965e163b196957 # v3.3.5
+        id: anchore-scan
+        with:
+          #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          fail-build: false
+          severity-cutoff: high
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@04df1262e6247151b5ac09cd2c303ac36ad3f62b
+        with:
+          sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
+
   snyk:
     permissions:
       contents: read # for actions/checkout to fetch code
@@ -95,37 +130,3 @@ jobs:
         with:
           sarif_file: snyk.sarif
 
-  anchore:
-    permissions:
-      contents: read # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
-    needs: snyk
-    strategy:
-      fail-fast: false
-      matrix:
-        #image: [cloudflared]
-        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
-    runs-on: ubuntu-22.04
-    
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@1f99358870fe1c846a3ccba386cc2b2246836776 # v2.2.1
-        with:
-          egress-policy: audit
-          
-      - name: Checkout code
-        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v2.4.0
-
-      - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: anchore/scan-action@4be3c24559b430723e51858969965e163b196957 # v3.3.5
-        id: anchore-scan
-        with:
-          #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          fail-build: false
-          severity-cutoff: high
-
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@04df1262e6247151b5ac09cd2c303ac36ad3f62b
-        with:
-          sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
