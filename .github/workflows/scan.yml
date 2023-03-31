@@ -5,7 +5,7 @@ name: Scan
 on:
   push:
     paths:
-      - .github/workflow/scan.yml
+      - .github/workflows/scan.yml
   workflow_dispatch:
   schedule:
     - cron: "0 18 * * *"
