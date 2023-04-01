@@ -45,4 +45,5 @@ jobs:
         uses: codespell-project/actions-codespell@22ff5a2e4b591290baf82d47c9feadac31c65441 # master
         with:
           check_filenames: true
+          skip: nginx.conf
           ignore_words_file: .codespellignore
