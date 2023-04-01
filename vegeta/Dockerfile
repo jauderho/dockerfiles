@@ -3,7 +3,7 @@ FROM golang:1.20.2-alpine3.17@sha256:87734b78d26a52260f303cf1b40df45b0797f972bd0
 WORKDIR /go/src/github.com/tsenart/vegeta/
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/jauderho/vegeta/archive/
+ARG ARCHIVE_URL=https://github.com/tsenart/vegeta/archive/
 ARG PKGSRC=github.com/tsenart/vegeta/src/version
 
 ENV CGO_ENABLED 0
