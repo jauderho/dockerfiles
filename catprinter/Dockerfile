@@ -21,8 +21,8 @@ RUN \
 	runtime_pkgs="python3 bluez libgl1-mesa-glx" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
-	pip3 install --no-cache-dir -r requirements.txt && \
-	pip3 install --no-cache-dir git+https://github.com/jauderho/catprinter.git && \
+	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	pip3 install --no-cache-dir git+https://github.com/jauderho/catprinter.git --break-system-packages && \
 	curl -o /usr/local/bin/print.py https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
 	apt-get purge -y ${build_pkgs} && \
 	apt-get autoremove -y --purge && \

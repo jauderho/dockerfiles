@@ -20,7 +20,7 @@ RUN apt-get update && \
 	git clone --depth 1 ${GIT_URL} && \
 	cd pia-wg && \
 	cp ca.rsa.4096.crt .. && \
-	pip3 install --no-cache-dir -r requirements.txt && \
+	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	apt-get purge -y git && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
