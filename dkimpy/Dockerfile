@@ -18,9 +18,9 @@ RUN \
   runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
-	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
-	pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	python3 -m pip install --no-cache-dir --upgrade pip && \
+	pip3 install --no-cache-dir --upgrade wheel && \
+	pip3 install --no-cache-dir -r requirements.txt && \
 	apk del build-dependencies && \
   rm -rf /var/cache/apk/* && \
   rm -rf /root/.cache/pip && \
