@@ -1,4 +1,4 @@
-FROM ubuntu:23.04@sha256:5ecfaeaaf7b0351f7ed301e389a13a6ff04f32f6e0e5e65f700b9321913b4497 AS build
+FROM ubuntu:23.04@sha256:008c0f6712067722f42f9685476d37b0b7b689e31d66e5787d1920c7ac230849 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -28,7 +28,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ubuntu:23.04@sha256:5ecfaeaaf7b0351f7ed301e389a13a6ff04f32f6e0e5e65f700b9321913b4497
+FROM ubuntu:23.04@sha256:008c0f6712067722f42f9685476d37b0b7b689e31d66e5787d1920c7ac230849
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
