@@ -7,7 +7,8 @@ WORKDIR /usr/src/github.com/osrg/rustybgp/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/osrg/rustybgp/archive/
-ARG GIT_URL=https://github.com/osrg/rustybgp.git
+ARG GIT_URL=https://github.com/jauderho/rustybgp.git
+#ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
