@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/tsenart/vegeta \
 	&& cd /go/src/github.com/tsenart/vegeta \
+	&& go get -u all \
 	&& go build -o ./vegeta -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
 
 WORKDIR /config

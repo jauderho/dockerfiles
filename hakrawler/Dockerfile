@@ -14,6 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/hakluke/hakrawler \
 	&& cd /go/src/github.com/hakluke/hakrawler \
+	&& go get -u all \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"  
 
 WORKDIR /config
