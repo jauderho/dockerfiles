@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/hakluke/hakrawler/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/hakluke/hakrawler/archive/
-ARG GIT_URL=https://github.com/hakluke/hakrawler.git
+ARG GIT_URL=https://github.com/jauderho/hakrawler.git
 
 ENV CGO_ENABLED 0
 
@@ -14,7 +14,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/hakluke/hakrawler \
 	&& cd /go/src/github.com/hakluke/hakrawler \
-	&& go get -u \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"  
 
 WORKDIR /config

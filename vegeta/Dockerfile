@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/tsenart/vegeta/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/tsenart/vegeta/archive/
-ARG GIT_URL=https://github.com/tsenart/vegeta.git
+ARG GIT_URL=https://github.com/jauderho/vegeta.git
 
 ENV CGO_ENABLED 0
 
@@ -15,7 +15,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/tsenart/vegeta \
 	&& cd /go/src/github.com/tsenart/vegeta \
-	&& go get -u \
 	&& go build -o ./vegeta -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
