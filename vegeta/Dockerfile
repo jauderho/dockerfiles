@@ -4,17 +4,17 @@ WORKDIR /go/src/github.com/tsenart/vegeta/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/tsenart/vegeta/archive/
-ARG PKGSRC=github.com/tsenart/vegeta/src/version
+ARG GIT_URL=https://github.com/tsenart/vegeta.git
 
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc musl-dev \
+	&& apk add --no-cache ca-certificates curl git gcc musl-dev \
 	&& update-ca-certificates \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/vegeta.tar.gz \
-	&& tar xzf /tmp/vegeta.tar.gz --strip 1 -C /go/src/github.com/tsenart/vegeta \
+	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/tsenart/vegeta \
+	&& cd /go/src/github.com/tsenart/vegeta \
 	&& go build -o ./vegeta -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
