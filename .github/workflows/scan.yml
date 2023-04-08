@@ -57,7 +57,7 @@ jobs:
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
-    #needs: trivy
+    needs: trivy
     strategy:
       max-parallel: 20
       fail-fast: false
@@ -93,9 +93,9 @@ jobs:
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-    #needs: anchore
+    needs: anchore
     strategy:
-      max-parallel: 20
+      max-parallel: 10
       fail-fast: false
       matrix:
         #image: [cloudflared]
