@@ -95,7 +95,7 @@ jobs:
             BUILD_VERSION
             DOCKER_CLI_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-alpine
-          cache-to: type=gha, scope=${{ github.workflow }}-alpine, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}

@@ -101,7 +101,7 @@ jobs:
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-ubuntu-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-ubuntu-${{ matrix.quic }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}-ubuntu-${{ matrix.quic }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-ubuntu-${{ matrix.quic }}
@@ -183,7 +183,7 @@ jobs:
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}
@@ -201,7 +201,7 @@ jobs:
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
-          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}-alpine-${{ matrix.quic }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine-${{ matrix.quic }}

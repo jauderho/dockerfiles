@@ -93,7 +93,7 @@ jobs:
           #platforms: linux/amd64
           build-args: BUILD_STABLE_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}
           labels: |
             org.opencontainers.image.version=${{ env.BUILD_STABLE_VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
@@ -115,7 +115,7 @@ jobs:
           #platforms: linux/amd64
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}

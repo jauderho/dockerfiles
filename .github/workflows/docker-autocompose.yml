@@ -96,7 +96,7 @@ jobs:
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
           build-args: BUILD_VERSION
           cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}, mode=max
+          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
