@@ -11,10 +11,10 @@ ARG ARCHIVE_URL=https://github.com/getzola/zola/archive/
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl openssl-dev g++ musl-dev make mold cargo \
+	&& apk add --no-cache ca-certificates curl openssl-dev g++ build-base musl-dev make mold cargo \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/zola.tar.gz \
 	&& tar xzf /tmp/zola.tar.gz --strip 1 -C /usr/src/github.com/getzola/zola \
-	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
+	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold -C target-feature=-crt-static" cargo build --release \
 	&& strip target/release/zola
 
 WORKDIR /config
@@ -23,8 +23,8 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-FROM scratch
-#FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
+#FROM scratch
+FROM alpine:3.17.3@sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126
 #FROM debian:11-slim
 #FROM rust:1.58.1@sha256:e4979d36d5d30838126ea5ef05eb59c4c25ede7f064985e676feb21402d0661b
 
@@ -40,8 +40,8 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /usr/src/github.com/getzola/zola/target/release/zola /usr/local/bin/zola
 COPY --from=build /config /config
 
-#RUN apk update \
-#	&& apk add --no-cache dumb-init
+RUN apk update \
+	&& apk add --no-cache libgcc libstdc++
 
 #RUN /usr/local/bin/zola --help
 
