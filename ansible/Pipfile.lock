@@ -39,11 +39,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:2a364458ae46c8edc3d6b5a78ac573dc1a49eec64c856c85a2cb205ea3d38a2e",
-                "sha256:78f4f5828682f9a5f66e0f17bcc67d2731e4ecf652d7e924d236bbcd9c44fea0"
+                "sha256:4ce790cf0006760ba01d8b946d80303702fc7454bd19c6b3079dd98d40517e6f",
+                "sha256:e5a3b7bd1ebe3cc1c574d1bd3de756bdf157110559024c50d34b5479d47290ba"
             ],
             "index": "pypi",
-            "version": "==6.14.6"
+            "version": "==6.15.0"
         },
         "attrs": {
             "hashes": [
@@ -618,14 +618,6 @@
             "markers": "python_version >= '3'",
             "version": "==0.17.21"
         },
-        "setuptools": {
-            "hashes": [
-                "sha256:888be97fde8cc3afd60f7784e678fa29ee13c4e5362daa7104a93bba33646c50",
-                "sha256:b7e53a01c6c654d26d2999ee033d8c6125e5fa55f03b7b193f937ae7ac999f22"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==67.7.0"
-        },
         "six": {
             "hashes": [
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
@@ -684,10 +676,11 @@
         },
         "yamllint": {
             "hashes": [
-                "sha256:4f58f323aedda16189a489d183ecc25c66d7a9cc0fe88f61b650fef167b13190"
+                "sha256:15f4bdb645e6a4a0a22fe5415bc38b4a934c51419b30104896d2f3f95e329185",
+                "sha256:2d83f1d12f733e162a87e06b176149d7bb9c5bae4a9e5fce1c771d7f703f7a65"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.30.0"
+            "version": "==1.31.0"
         }
     },
     "develop": {}
