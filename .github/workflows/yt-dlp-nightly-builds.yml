@@ -14,7 +14,7 @@ on:
 env:
   BUILD_VERSION: "2023.04.22.232519"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/yt-dlp
+  REPOSITORY: ${{ github.actor }}/yt-dlp-nightly-builds
 
 permissions: read-all
 
@@ -94,6 +94,6 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            docker.io/${{ env.REPOSITORY }}:latest
+            docker.io/${{ env.REPOSITORY }}:nightly
             ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            ghcr.io/${{ env.REPOSITORY }}:latest
+            ghcr.io/${{ env.REPOSITORY }}:nightly
