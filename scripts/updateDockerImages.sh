@@ -58,6 +58,7 @@ REPO=(
 	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
+	"yt-dlp/yt-dlp-nightly-builds" \
 	"getzola/zola" \
 )
 
