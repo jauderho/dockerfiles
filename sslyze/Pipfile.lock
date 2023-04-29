@@ -610,11 +610,11 @@
         },
         "invoke": {
             "hashes": [
-                "sha256:7ab5dd9cd76b787d560a78b1a9810d252367ab595985c50612702be21d671dd7",
-                "sha256:a860582bcf7a4b336fe18ef53937f0f28cec1c0053ffa767c2fcf7ba0b850f59"
+                "sha256:277894c57fa2b77f22ed3c7726fb8689773301e4497ccb2a59f19bc7bbbe5b4a",
+                "sha256:409c9cff8325d697f44308fda3026a97691972adc4ab81575d655a2100b50abc"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==2.1.0"
         },
         "jaraco.classes": {
             "hashes": [
