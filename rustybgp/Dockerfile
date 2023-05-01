@@ -13,7 +13,7 @@ ARG GIT_URL=https://github.com/jauderho/rustybgp.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold cargo \
+	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold cargo rustfmt \
 	&& git clone --depth 1 ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert and remove CPU requirement
