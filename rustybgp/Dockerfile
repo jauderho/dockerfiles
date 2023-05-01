@@ -1,6 +1,6 @@
 #FROM rust:bullseye AS build
-#FROM rust:1.62.1-alpine3.16@sha256:971dc703e7ede10115db07995c5ab527459964b2b280469a56a5005f5d37acc3 AS build
-FROM alpine:3.17.3@sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126 AS build
+FROM rust:1.69.0-alpine3.17@sha256:a1123af3383f0e71da8deca8afc1e506ff3ee48c7903f253a11b7b632d938190 AS build
+#FROM alpine:3.17.3@sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126 AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 #COPY Cargo.toml Cargo.toml
@@ -13,15 +13,13 @@ ARG GIT_URL=https://github.com/jauderho/rustybgp.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold cargo rustfmt \
-	&& git clone --depth 1 ${GIT_URL} \
+	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold \
+	# Full git clone in order to be able to revert b61f8ac5f8caccef8b145f26c09807eb1df4472f
+	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert and remove CPU requirement
 	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
 	&& git reset HEAD . \
-	#&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-	#&& source $HOME/.cargo/env \
-	#&& rustup component add rustfmt \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/rustybgpd
 
