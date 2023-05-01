@@ -20,6 +20,7 @@ RUN test -n "${BUILD_VERSION}" \
 	# revert and remove CPU requirement
 	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
 	&& git reset HEAD . \
+	&& rustup component add rustfmt \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/rustybgpd
 
