@@ -1,4 +1,4 @@
-FROM golang:1.20.3-alpine3.17@sha256:08e9c086194875334d606765bd60aa064abd3c215abfbcf5737619110d48d114 AS build
+FROM golang:1.20.4-alpine3.17@sha256:913de96707b0460bcfdfe422796bb6e559fc300f6c53286777805a9a3010a5ea AS build
 
 WORKDIR /go/src/github.com/tomnomnom/gron/
 
