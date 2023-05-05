@@ -112,11 +112,11 @@
         },
         "docker": {
             "hashes": [
-                "sha256:896c4282e5c7af5c45e8b683b0b0c33932974fe6e50fc6906a0a83616ab3da97",
-                "sha256:dbcb3bd2fa80dca0788ed908218bf43972772009b881ed1e20dfc29a65e49782"
+                "sha256:b65c999f87cb5c31700b6944dc17a631071170d1aab3ad6e23506068579f885d",
+                "sha256:cb697eccfeff55d232f7a7f4f88cd3770d27327c38d6c266b8f55c9f14a8491e"
             ],
             "index": "pypi",
-            "version": "==6.0.1"
+            "version": "==6.1.0"
         },
         "docker-autocompose": {
             "editable": true,
@@ -141,11 +141,11 @@
         },
         "pyaml": {
             "hashes": [
-                "sha256:70b45098ca3bd8ff769858d44dbb4e1e349d9efc405862c5cec1c36faf4a9731",
-                "sha256:e20a38630eb5ce58191aa6bacd5c2472f14f3588f7d85ba40f731d4f0804f2cc"
+                "sha256:b2737e9c7829884e2c1279271d52f217210adbfbf103eefd6c9b6aa6f9d4faf2",
+                "sha256:f18c3aa69c2344b66e3b45f4dc513a0a456df430df7844d60c59f649da2e2e31"
             ],
             "index": "pypi",
-            "version": "==23.5.6"
+            "version": "==23.5.7"
         },
         "pyparsing": {
             "hashes": [
