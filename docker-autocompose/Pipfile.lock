@@ -141,11 +141,11 @@
         },
         "pyaml": {
             "hashes": [
-                "sha256:b2737e9c7829884e2c1279271d52f217210adbfbf103eefd6c9b6aa6f9d4faf2",
-                "sha256:f18c3aa69c2344b66e3b45f4dc513a0a456df430df7844d60c59f649da2e2e31"
+                "sha256:287c58ad3aca43fd6da216f42b3d89c835aa1c79301948bbd25be9a2bb71def3",
+                "sha256:da944f15d3fe035946450f1acefd267be6b32878f2c736f8dd98a94b6bff3c0c"
             ],
             "index": "pypi",
-            "version": "==23.5.7"
+            "version": "==23.5.8"
         },
         "pyparsing": {
             "hashes": [
