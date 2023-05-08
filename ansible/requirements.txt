@@ -8,7 +8,7 @@ bitmath==1.3.3.1
 black==23.3.0 ; python_version >= '3.7'
 bracex==2.3.post1 ; python_version >= '3.7'
 cachez==0.1.2
-certifi==2022.12.7 ; python_version >= '3.6'
+certifi==2023.5.7 ; python_version >= '3.6'
 cffi==1.15.1
 charset-normalizer==3.1.0 ; python_full_version >= '3.7.0'
 click==8.1.3 ; python_version >= '3.7'
