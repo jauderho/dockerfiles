@@ -14,7 +14,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dry.tar.gz \
 	&& tar xzf /tmp/dry.tar.gz --strip 1 -C /go/src/github.com/moncho/dry \
-	&& go get -u github.com/containerd/containerd \
+	&& go get -u github.com/containerd/containerd@v1.6.21 \
+	&& go get -u github.com/docker/docker@v20.10.24 \
+	&& go get -u github.com/docker/cli@v20.10.24 \
 	&& go build -o dry-bin -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
