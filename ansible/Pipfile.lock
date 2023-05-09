@@ -39,11 +39,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:4ce790cf0006760ba01d8b946d80303702fc7454bd19c6b3079dd98d40517e6f",
-                "sha256:e5a3b7bd1ebe3cc1c574d1bd3de756bdf157110559024c50d34b5479d47290ba"
+                "sha256:c932a2ed77828943286cd46a29ddbae72d6fba8f09dbbcb2d620afa3cbe04871",
+                "sha256:df82f3935f1209e3074408eeae5e837ccec6fd52c1d3126689ff4124abb0a5cb"
             ],
             "index": "pypi",
-            "version": "==6.15.0"
+            "version": "==6.16.0"
         },
         "attrs": {
             "hashes": [
@@ -612,11 +612,11 @@
         },
         "ruamel.yaml": {
             "hashes": [
-                "sha256:90e398ee24524ebe20fc48cd1861cedd25520457b9a36cfb548613e57fde30a0",
-                "sha256:f251bd9096207af604af69d6495c3c650a3338d0493d27b04bc55477d7a884ed"
+                "sha256:5b2e01ecdece23ba373155132fcabec8971f4b311513244f7e1a83ce5ff417c2",
+                "sha256:8c8ea14ac57b7728785861129343f8d797145e4a422d91ef7a3dfc86ae646ff2"
             ],
             "markers": "python_version >= '3'",
-            "version": "==0.17.24"
+            "version": "==0.17.25"
         },
         "ruamel.yaml.clib": {
             "hashes": [
