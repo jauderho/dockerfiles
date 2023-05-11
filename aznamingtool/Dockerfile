@@ -3,7 +3,7 @@
 ### BASE ###
 #FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:03555d92065f11067c9e2f259787fa858a03313540a01f10cde6bfd720671285 AS base
 #FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:debec27f5579ddee99c2fd5616ee18def873aa83ad68e7b563c222162099fda5 AS base
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine@sha256:bbf39e46ba95dc0b40e07195e847256ffb375e6ab0536b396234e771a19b7e1e AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine@sha256:1116d7a1b7d16089a8890d080a64ed58beff822f02443d865a5bef43c947ffea AS base
 WORKDIR /app
 RUN apk update && apk upgrade -a
 EXPOSE 80
