@@ -10,7 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache git ca-certificates build-base clang llvm15 go \
+	&& apk add --no-cache git ca-certificates build-base clang llvm16 go \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
 	&& go generate \
