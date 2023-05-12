@@ -7,11 +7,11 @@ COPY . .
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc-12 g++-12 mold make perl ca-certificates && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc-13 g++-13 mold make perl ca-certificates && \
     git clone --depth 1 https://github.com/quictls/openssl && \
     cd openssl && \
-    export CC=/usr/bin/gcc-12 && \
-    export CXX=/usr/bin/g++-12 && \
+    export CC=/usr/bin/gcc-13 && \
+    export CXX=/usr/bin/g++-13 && \
     ./Configure enable-ktls && \
     make
 
@@ -35,7 +35,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
       --build=nginx-quic \
       --with-http_v3_module \
       --with-stream_quic_module \
-      --with-cc=/usr/bin/gcc-12 \
+      --with-cc=/usr/bin/gcc-13 \
       --with-cc-opt='-I/src/openssl/include -fuse-ld=mold -O3 -march=native -pipe -flto=auto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
       --with-ld-opt='-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
     NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
