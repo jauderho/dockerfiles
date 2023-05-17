@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6da1d30a3686218684e785f53eb5c8cc5e1f6065e98843f97e5e4beb180da363"
+            "sha256": "6ef63ad38dfe7ca06eacf477be4206c0f8dd6ff672ce89a25e43f47b2414d635"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -402,8 +402,8 @@
         },
         "mitogen": {
             "editable": true,
-            "git": "https://github.com/mitogen-hq/mitogen.git",
-            "ref": "660d3e088501816edc12f4b98e9e92a35f68c707"
+            "git": "https://github.com/jauderho/mitogen.git",
+            "ref": "08582cb52b936de5f20f836383b3c42706b3e930"
         },
         "mypy-extensions": {
             "hashes": [
