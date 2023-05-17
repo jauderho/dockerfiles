@@ -16,16 +16,16 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscontrol.tar.gz \
 	&& tar xzf /tmp/dnscontrol.tar.gz --strip 1 -C /go/src/github.com/StackExchange/dnscontrol \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X main.SHA=${BUILD_VERSION}"
+	&& go build -v -trimpath -buildmode=pie -ldflags="-linkmode=internal -s -w -X main.Version=${BUILD_VERSION}"
 
 # Validation check
 RUN cp dnscontrol /go/bin/dnscontrol
 RUN dnscontrol version
 
-#RUN go build -v -trimpath -buildmode=pie -ldflags="-s -w" -o cmd/convertzone/convertzone cmd/convertzone/main.go
-#RUN cp cmd/convertzone/convertzone /go/bin/convertzone
+
 
 # ----------------------------------------------------------------------------
+
 
 #FROM scratch
 FROM alpine:3.18.0@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1af4444c9b11
@@ -42,11 +42,9 @@ RUN apk update \
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/dnscontrol /usr/local/bin
-#COPY --from=build /go/bin/convertzone /usr/local/bin
 
 WORKDIR /dns
 
 ENTRYPOINT ["/usr/local/bin/dnscontrol"]
-#CMD ["/usr/local/bin/dnscontrol"]
 CMD ["-h"]
 
