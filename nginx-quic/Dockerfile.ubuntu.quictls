@@ -34,7 +34,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
       --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
       --build=nginx-quic \
       --with-http_v3_module \
-      --with-stream_quic_module \
       --with-cc=/usr/bin/gcc-13 \
       --with-cc-opt='-I/src/openssl/include -fuse-ld=mold -O3 -march=native -pipe -flto=auto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
       --with-ld-opt='-L/src/openssl -L/src/openssl/ssl -L/src/openssl/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \

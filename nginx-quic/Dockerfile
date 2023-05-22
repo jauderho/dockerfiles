@@ -31,7 +31,6 @@ RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev 
       --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
       --build=nginx-quic \
       --with-http_v3_module \
-      --with-stream_quic_module \
       --with-http_ssl_module \
       --with-http_realip_module \
       --with-http_v2_module \
