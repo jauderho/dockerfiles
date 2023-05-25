@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/octosql.tar.gz \
 	&& tar xzf /tmp/octosql.tar.gz --strip 1 -C /go/src/github.com/cube2222/octosql \
 	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& go build -o octosql -v -trimpath -ldflags="-s -w -X github.com/cube2222/octosql/cmd.VERSION=${BUILD_VERSION}" . 
 
 WORKDIR /config
