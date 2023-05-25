@@ -43,6 +43,7 @@ jobs:
             proxy.golang.org:443
             registry-1.docker.io:443
             storage.googleapis.com:443
+            sum.golang.org:443
           
       - name: Source checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v2.4.0 
