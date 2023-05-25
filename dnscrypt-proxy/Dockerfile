@@ -16,6 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	&& go get -u golang.org/x/net \
+	&& go mod vendor \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w"
 
 WORKDIR /config
