@@ -12,7 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.24.0"
+  BUILD_VERSION: "1.25.0"
   BUILD_STABLE_VERSION: "1.24.0"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
@@ -92,6 +92,8 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/s390x
           #platforms: linux/amd64
           build-args: BUILD_STABLE_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: |
@@ -114,6 +116,8 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/s390x
           #platforms: linux/amd64
           build-args: BUILD_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}
