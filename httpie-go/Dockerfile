@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/nojima/httpie-go \
 	&& cd /go/src/github.com/nojima/httpie-go \
 	&& go get -u golang.org/x/crypto \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w" ./cmd/ht 
 
 WORKDIR /config
