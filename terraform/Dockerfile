@@ -16,6 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
+	&& go get -u golang.org/x/net \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
 
 # ----------------------------------------------------------------------------

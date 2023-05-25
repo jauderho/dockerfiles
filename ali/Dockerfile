@@ -14,8 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ali.tar.gz \
 	&& tar xzf /tmp/ali.tar.gz --strip 1 -C /go/src/github.com/nakabonne/ali \
-	&& echo "after" \
-	&& ls -l \
+	&& go get -u golang.org/x/net \
 	&& go build -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
 
 WORKDIR /config

@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/openairplay/goplay2 \
 	&& cd /go/src/github.com/openairplay/goplay2 \
+	&& go get -u golang.org/x/net \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" . 
 
 WORKDIR /config
