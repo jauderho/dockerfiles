@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev libpcap-dev linux-headers \ 
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/buger/goreplay \
 	&& cd /go/src/github.com/buger/goreplay \
-	&& go get -u golang.org/x/net \
+	&& go get -u golang.org/x/net golang.org/x/crypto \
 	&& go mod tidy \
 	&& go build -v -o gor -trimpath -buildmode=pie -ldflags="-s -w -linkmode external -extldflags=-static"
 
