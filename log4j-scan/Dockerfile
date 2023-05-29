@@ -3,7 +3,8 @@ FROM alpine:3.18.0@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1a
 WORKDIR /opt/log4j-scan
 
 ARG BUILD_VERSION
-ARG GIT_URL=https://github.com/fullhunt/log4j-scan.git
+#ARG GIT_URL=https://github.com/fullhunt/log4j-scan.git
+ARG GIT_URL=https://github.com/jauderho/log4j-scan.git
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
@@ -21,8 +22,8 @@ RUN \
 	apk --no-cache add ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir --upgrade wheel && \
-	git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /opt/log4j-scan && \
-	#git clone --depth 1 ${GIT_URL} /opt/log4j-scan && \
+	#git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /opt/log4j-scan && \
+	git clone --depth 1 ${GIT_URL} /opt/log4j-scan && \
 	cd /opt/log4j-scan && \
 	pip3 install --no-cache-dir -r requirements.txt && \
 	apk del build-dependencies && \
