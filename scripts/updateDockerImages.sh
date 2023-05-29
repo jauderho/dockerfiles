@@ -34,7 +34,7 @@ REPO=(
 	"nojima/httpie-go" \
 	"projectdiscovery/httpx" \
 	"go-acme/lego" \
-	"fullhunt/log4j-scan" \
+	#"fullhunt/log4j-scan" \
 	"0xInfection/logmepwn" \
 	"johnkerl/miller" \
 	"slackhq/nebula" \
