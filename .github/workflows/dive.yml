@@ -94,6 +94,8 @@ jobs:
           build-args: |
             BUILD_VERSION
             DOCKER_CLI_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}-alpine
           cache-to: type=gha, scope=${{ github.workflow }}-alpine
           labels: ${{ steps.docker_meta.outputs.labels }}

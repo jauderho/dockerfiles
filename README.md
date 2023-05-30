@@ -11,9 +11,7 @@ This repo contains Dockerfiles for applications that I find useful.
 - Images are scanned daily using Trivy, Snyk and Anchore. See the [GHA workflow](https://github.com/jauderho/dockerfiles/blob/main/.github/workflows/scan.yml)
 - Workflows use commit hashes and Dockerfiles use digest references in accordance with OpenSSF's [Security Scorecard](https://github.com/ossf/scorecard) and enforced using [Allstar](https://github.com/ossf/allstar)
 - Runners are hardened using Step Security's [Harden Runner](https://github.com/step-security/harden-runner)
-- Testing
-  - Container signing
-  - SBOM generation
+- Images are signed and SBOMs included
 
 ## [Build Status](https://github.com/jauderho/dockerfiles/blob/main/BUILD_STATUS.md)
 

@@ -95,7 +95,10 @@ jobs:
           #platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          build-args: BUILD_VERSION
+          build-args: |
+            BUILD_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           labels: ${{ steps.docker_meta.outputs.labels }}

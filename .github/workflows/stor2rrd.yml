@@ -92,6 +92,8 @@ jobs:
           #platforms: ${{ matrix.arch }}
           build-args: |
             BUILD_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}

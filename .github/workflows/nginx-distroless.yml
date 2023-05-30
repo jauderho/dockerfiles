@@ -115,7 +115,8 @@ jobs:
           #platforms: linux/amd64,linux/arm64,linux/arm,linux/ppc64le,linux/s390x
           platforms: linux/amd64,linux/arm64,linux/s390x
           #platforms: linux/amd64
-          build-args: BUILD_VERSION
+          build-args: |
+            BUILD_VERSION
           sbom: true
           provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}

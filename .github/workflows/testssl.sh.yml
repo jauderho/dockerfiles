@@ -86,7 +86,10 @@ jobs:
           context: ${{ github.workflow }}
           #platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          build-args: BUILD_VERSION
+          build-args: |
+            BUILD_VERSION
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}
@@ -120,7 +123,10 @@ jobs:
           file: ${{ github.workflow }}/Dockerfile.git
           #platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7,linux/arm/v6
           platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
-          build-args: BUILD_VERSION=3.1dev
+          build-args: |
+            BUILD_VERSION=3.1dev
+          sbom: true
+          provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
           labels: ${{ steps.docker_meta.outputs.labels }}
