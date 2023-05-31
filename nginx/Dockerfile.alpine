@@ -1,17 +1,17 @@
 FROM alpine:3.18.0@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1af4444c9b11
 
 # https://nginx.org/en/download.html
-ENV BUILD_VERSION 1.21.6
+#ENV BUILD_VERSION 1.24.0
 
 # https://www.openssl.org/source
-ENV OPENSSL_VERSION 3.0.1
+#ENV OPENSSL_VERSION 3.1.1
 
 # https://www.pcre.org/
-ENV PCRE_VERSION 1.39
+#ENV PCRE_VERSION 10.42
 
-#ARG BUILD_VERSION
-#ARG OPENSSL_VERSION
-#ARG PCRE_VERSION
+ARG BUILD_VERSION
+ARG OPENSSL_VERSION
+ARG PCRE_VERSION
 ARG ZLIB_URL=https://github.com/cloudflare/zlib.git
 ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
 
