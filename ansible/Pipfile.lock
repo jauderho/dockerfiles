@@ -29,6 +29,14 @@
             "index": "pypi",
             "version": "==8.0.0"
         },
+        "ansible-compat": {
+            "hashes": [
+                "sha256:61b2ddf1414e54de68140be5941ff965b751635e091ed50d6da4457f1734d685",
+                "sha256:9ace0482066dc5ede3d074b3d9d28debc45a940743b39e09969c2f9c91198db1"
+            ],
+            "markers": "python_version >= '3.9'",
+            "version": "==4.1.1"
+        },
         "ansible-core": {
             "hashes": [
                 "sha256:723ef347b55ac48bb70951124d0b1e71d799cf7488924d484c3e88aaf9a8c14c",
@@ -39,11 +47,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:086306d5962639100d03701fce589c85549fe1c23e359abc52c91e07f0108e5b",
-                "sha256:93ad8a04adcda6025d4ff218a10694120fe70cb91da8ac9f85c5dc82b32456e4"
+                "sha256:6464c00f977d2dbc0751b0adf5a265110e20654bc818a41f94fb0c4be2a90d8a",
+                "sha256:c6da12e9eb6dd58223b0a48400aaa25e677af6cac3d9db41fb1b62006ddebb36"
             ],
             "index": "pypi",
-            "version": "==6.16.2"
+            "version": "==6.17.0"
         },
         "attrs": {
             "hashes": [
@@ -604,19 +612,19 @@
         },
         "rich": {
             "hashes": [
-                "sha256:2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c",
-                "sha256:69cdf53799e63f38b95b9bf9c875f8c90e78dd62b2f00c13a911c7a3b9fa4704"
+                "sha256:76f6b65ea7e5c5d924ba80e322231d7cb5b5981aa60bfc1e694f1bc097fe6fe1",
+                "sha256:d204aadb50b936bf6b1a695385429d192bc1fdaf3e8b907e8e26f4c4e4b5bf75"
             ],
             "markers": "python_full_version >= '3.7.0'",
-            "version": "==13.3.5"
+            "version": "==13.4.1"
         },
         "ruamel.yaml": {
             "hashes": [
-                "sha256:7e47a3d9ccfa2e41d353e6615661308bcbbc2ebad393bdc13b725bac15baf8a9",
-                "sha256:b73821c1e0a9daa459e215db7c4d6d23d7159fb61c4c536653a2b4fb5b8d08a7"
+                "sha256:098ed1eb6d338a684891a72380277c1e6fc4d4ae0e120de9a447275056dda335",
+                "sha256:3cf153f0047ced526e723097ac615d3009371779432e304dbd5596b6f3a4c777"
             ],
             "markers": "python_version >= '3'",
-            "version": "==0.17.30"
+            "version": "==0.17.31"
         },
         "ruamel.yaml.clib": {
             "hashes": [
