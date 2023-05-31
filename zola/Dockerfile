@@ -41,6 +41,7 @@ COPY --from=build /usr/src/github.com/getzola/zola/target/release/zola /usr/loca
 COPY --from=build /config /config
 
 RUN apk update \
+	&& apk upgrade -a \
 	&& apk add --no-cache libgcc libstdc++
 
 #RUN /usr/local/bin/zola --help
