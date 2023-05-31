@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/containrrr/watchtower/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/containrrr/watchtower/archive/
-ARG GIT_URL=https://github.com/jauderho/watchtower.git
+ARG GIT_URL=https://github.com/containrrr/watchtower.git
 
 ENV CGO_ENABLED 0
 
