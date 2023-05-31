@@ -40,7 +40,7 @@ RUN \
   NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   echo "Patching..." && \
   patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1015008.patch && \
-  patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.15.3.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-1.15.4-reprioritize-chacha-openssl-1.1.1.patch && \
   ./configure \
     --prefix=/usr/share/nginx \
