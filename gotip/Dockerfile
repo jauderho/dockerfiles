@@ -1,5 +1,5 @@
 #FROM golang:1.20.4-alpine3.18@sha256:ee2f23f1a612da71b8a4cd78fec827f1e67b0a8546a98d257cca441a4ddbebcb AS build
-FROM golang:1.20.4-alpine3.18@sha256:ee2f23f1a612da71b8a4cd78fec827f1e67b0a8546a98d257cca441a4ddbebcb AS build
+FROM alpine:3.18.0@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1af4444c9b11 AS build
 
 ARG BUILD_VERSION
 
@@ -8,11 +8,13 @@ ENV GO111MODULE on
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& build_pkgs="ca-certificates curl gcc build-base git bash" \
+	&& build_pkgs="ca-certificates curl gcc build-base git bash go" \
 	&& apk add --no-cache ${build_pkgs}  \
 	&& update-ca-certificates \
 	&& go install -ldflags="-s -w" golang.org/dl/gotip@latest \
-	&& gotip download \
+	&& /root/go/bin/gotip download \
+	&& ln -s /root/sdk/gotip/bin/go /usr/local/bin/gotip \
+	&& ln -s /root/sdk/gotip/bin/gofmt /usr/local/bin/gofmt \
 	&& go clean \
 	&& go clean -cache \
 	&& go clean -modcache \
@@ -21,7 +23,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& gotip clean -modcache \
 	&& apk del ${build_pkgs} \
 	&& rm -rf /root/sdk/gotip/test \
+	&& rm -rf /root/sdk/gotip/src \
 	&& rm -rf /root/sdk/gotip/.git \
+	&& rm -rf /usr/local/go \
 	&& rm -rf /var/cache/apk/*
 
 RUN gotip version
@@ -32,3 +36,5 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/gotip"
 LABEL org.opencontainers.image.description="The latest development version of Go updated nightly"
+
+#CMD ["/usr/local/bin/gotip"]
