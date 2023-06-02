@@ -16,7 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/lego.tar.gz \
 	&& tar xzf /tmp/lego.tar.gz --strip 1 -C /go/src/github.com/go-acme/lego \
-	&& make build
+	&& make build \
+	&& strip /go/src/github.com/go-acme/lego/dist/lego
 
 # ----------------------------------------------------------------------------
 
