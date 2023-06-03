@@ -439,10 +439,10 @@
         },
         "persist-queue": {
             "hashes": [
-                "sha256:bdaa4dcfc4b20a9ce1f5cb6da3116b6cb8fe37527d991fd242856ef2cccd218e",
-                "sha256:d0ce1798b457fc233973efe7c262eb5e80642bebe0c05abbe5611ee223511d5f"
+                "sha256:9ea2c2fa80edc1ce9f683665c3ebe78bbe71d08868206d0c67a81135182a19f9",
+                "sha256:e1938d3ac6d9b61692c115f8ddcada8d9a31f22506782585e39588a41ecfa5aa"
             ],
-            "version": "==0.8.0"
+            "version": "==0.8.1"
         },
         "platformdirs": {
             "hashes": [
