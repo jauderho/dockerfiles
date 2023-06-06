@@ -1,5 +1,5 @@
 FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
-#FROM python:3.11.0-slim-bullseye@sha256:f8cc89f5e47347703ec0c2b755464d7db2fa16f255ab860c4b24ba6ef2402020
+#FROM python:3.11.0-slim-bullseye@sha256:b5ee5360b357dcd0ab2e1cc5e22fa589b6734bbd55776df6b1700994febf1527
 #FROM python:3.9-alpine
 
 ARG BUILD_VERSION
