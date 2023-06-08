@@ -43,6 +43,7 @@ jobs:
             proxy.golang.org:443
             registry-1.docker.io:443
             storage.googleapis.com:443
+            umsax1vss3m4tgxxbsjq.blob.core.windows.net:443
             zrdfepirv2bl5prdstr04.blob.core.windows.net:443
             zrdfepirv2dm3prdstr08.blob.core.windows.net:443
           
