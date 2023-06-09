@@ -3,7 +3,7 @@ Usage: `docker run --rm -it jauderho/imapsync:latest `
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/imapsync/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/imapsync/latest)](https://github.com/imapsync/imapsync/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/age)](https://hub.docker.com/r/jauderho/imapsync/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/imapsync)](https://hub.docker.com/r/jauderho/imapsync/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/imapsync/latest)](https://hub.docker.com/r/jauderho/imapsync/)
 
 Up to date multi-platform images are rebuilt at least once a week.
