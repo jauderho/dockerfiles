@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v2.4.0
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@b43daad0c3c96202fc5800b511dfae8e6ecce864 # master
+        uses: aquasecurity/trivy-action@41f05d9ecffa2ed3f1580af306000f734b733e54 # master
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
