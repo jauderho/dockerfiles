@@ -47,11 +47,11 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:6464c00f977d2dbc0751b0adf5a265110e20654bc818a41f94fb0c4be2a90d8a",
-                "sha256:c6da12e9eb6dd58223b0a48400aaa25e677af6cac3d9db41fb1b62006ddebb36"
+                "sha256:c4ea96756e11ff268cd48f3c9997b9f6667248a7bc5fe4ea654b7a1c7a3fe2cd",
+                "sha256:f34e333f3555c99ff34c778f61d470d1e3a1eb6dc76090d0dd7b95b2c94745c2"
             ],
             "index": "pypi",
-            "version": "==6.17.0"
+            "version": "==6.17.1"
         },
         "attrs": {
             "hashes": [
