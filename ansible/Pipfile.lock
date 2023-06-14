@@ -502,21 +502,21 @@
         },
         "pyspnego": {
             "hashes": [
-                "sha256:187aa308fb40be4292753e86f9ee3df1c48500accdb50bcfecb7246b618cd7d8",
-                "sha256:18da3710c383167e54ae2b01f640f269de2cdc0992a8f72928e349441361c21d",
-                "sha256:2f2e51c7230f95febe9ff4e00eaa7c24ce64b197ae6c53dc85c7df88aa416d93",
-                "sha256:3f10ca7a2f0d5170c2032bb5d55183384208314032aa44c1684d6920d50e97de",
-                "sha256:44f39ec4c93c8cc51516a6b16365160e9dff622310afef9ee8456626bafda26b",
-                "sha256:77b965afaed4214b63dddabefdef762f3f9c9796349408d200c64a5921de809b",
-                "sha256:8d17f5157c572aa0fc5899211f8092917d1bee2ef84046684d939aa481a958f0",
-                "sha256:9b9e5a645dcd4645537c7dd38e69124fa524eba501b65fb1ab2825e80038a5dc",
-                "sha256:c4111a7584aea4e30b1cd2e0c0b1f8355ed4fb413cce21e2cecef8bfdf0eabcf",
-                "sha256:d498ff81da792ace2eea7f55a103a49a363882b820723f99dc5ccf03ea7f3b3e",
-                "sha256:f529b30a0ccfb0219b5b5b996c8a90cf5df0da6bcf19da33262573f9cca4d487",
-                "sha256:f656b22298a3582d210f8dfdd6541b0fb277b0020f9b649b329dea3688ff60da"
+                "sha256:07417f90328fb57c19a383e59b65060d4fc101441b74c34dbe4ba860775b0a3a",
+                "sha256:4b79d5ba55ada38833d2421c44ed30a7313c00cbf34fa919dd106049616307d3",
+                "sha256:58a17f7ba17f6cee72149911df6cc785ce7072744a386483957b74c62da654d8",
+                "sha256:6366e39ba251889e2573c7d037e7feec8af86aea6c3b32f22a8af33bf88265b6",
+                "sha256:6eea64f511bdfa192c2f80593ddf124258b0ea560327468953d18420e0ab3597",
+                "sha256:7515f00418324809eb1adec0afac93da006c03baba6c6fd1a981b5401b798f56",
+                "sha256:87a2c23e640f4f6ae3c391d1f56e287b72908080a0e6376f2f365da5a2117dca",
+                "sha256:aa43f00ed1c3b8e16a658613e2557a3ff9bea26acef867705eb4ee7f5e469ac3",
+                "sha256:c6aebe1fdc3990be2c137f3c3e041062243871b8161bc7adf4d269c3b6deda35",
+                "sha256:d031a7fa9c9ab3b67725e35affc90f8e6504518fb3ffe21573504e72b5a2fb5e",
+                "sha256:e7a92321272e3613c30f55a3324ef6d780bba8b723be8d50c35aac8409fc4028",
+                "sha256:ff4fecf488369d6634afb20f9e56eb3b187fb3c883d6551601bbad4f4badab62"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.9.0"
+            "version": "==0.9.1"
         },
         "python-dateutil": {
             "hashes": [
