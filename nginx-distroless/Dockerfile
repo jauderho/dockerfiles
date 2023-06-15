@@ -14,7 +14,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp -a --parents /usr/sbin/nginx /opt && \
     cp -a --parents /usr/sbin/nginx-debug /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/ld-* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libpcre.so.* /opt && \
+    cp -a --parents /lib/$(uname -m)-linux-gnu/libpcre* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libz.so.* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libc* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libdl* /opt && \
