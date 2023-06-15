@@ -89,7 +89,7 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.stable
           #platforms: linux/amd64,linux/arm64,linux/arm,linux/ppc64le,linux/s390x
-          platforms: linux/amd64,linux/arm64,linux/s390x
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
           #platforms: linux/amd64
           build-args: BUILD_STABLE_VERSION
           sbom: true
