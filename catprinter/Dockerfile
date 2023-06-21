@@ -1,6 +1,7 @@
 FROM ubuntu:23.04@sha256:9279f41cc6e4df8f87b13ac17c2c6f2a280fd3ca2638d18f8dc94b774486909f
 
 ARG BUILD_VERSION
+ARG GIT_URL=https://github.com/jauderho/catprinter.git
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
@@ -22,10 +23,10 @@ RUN \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
-	pip3 install --no-cache-dir git+https://github.com/jauderho/catprinter.git --break-system-packages && \
 	curl -o /usr/local/bin/print.py https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
 	apt-get purge -y ${build_pkgs} && \
 	apt-get autoremove -y --purge && \
+	apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /root/.cache/pip && \
 	rm -rf /root/.cargo && \
@@ -41,7 +42,7 @@ LABEL org.opencontainers.image.description="catprinter prints to a portable ther
 WORKDIR /work
 
 #RUN pip3 show catprinter
-#RUN find /usr/local/lib/python3.10/dist-packages/catprinter-0.0.0.dist-info -print
+#RUN find /usr/local/lib/python3.11/dist-packages/catprinter-0.1.0.dist-info -print
 #RUN chmod 755 /usr/local/bin/print.py
 
 ENTRYPOINT ["python3", "/usr/local/bin/print.py"]
