@@ -1,5 +1,5 @@
 
-## WARNING: This is experimental and built off of tip. 
+## WARNING: Upstream repo is no longer supported. Use regular nginx instead
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/nginx-quic/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/nginx-quic/latest)](https://hg.nginx.org/nginx-quic/)
