@@ -411,7 +411,7 @@
         "mitogen": {
             "editable": true,
             "git": "https://github.com/jauderho/mitogen.git",
-            "ref": "08582cb52b936de5f20f836383b3c42706b3e930"
+            "ref": "406fddd8c43ee61867fb8401df424df2c37d5999"
         },
         "mypy-extensions": {
             "hashes": [
