@@ -571,11 +571,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:21c2c29638e98502f3bba9ad6a4f07a4b09c5e2150bb491ff02411a5888f6955",
-                "sha256:ec6e2824bb1d3546b36c156324b9df6bca5a3d6d03adf991e6a5586756dcab9d"
+                "sha256:801d1a2d71f1fc54d332de2ab19de7452454309937233ea2f7485402882d67b3",
+                "sha256:84bcf92bb725dd7341336eea4685df9a364f16f2470c4d29c1d7e6c5fd5a457d"
             ],
             "index": "pypi",
-            "version": "==18.11.2"
+            "version": "==18.13.0"
         },
         "flake8": {
             "hashes": [
@@ -603,11 +603,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:1aaf550d4f73e5d6783e7acb77aec43d49da8017410afae93822cc9cca98c4d4",
-                "sha256:cb52082e659e97afc5dac71e79de97d8681de3aa07ff18578330904a9d18e5b5"
+                "sha256:3ebb78df84a805d7698245025b975d9d67053cd94c79245ba4b3eb694abe68bb",
+                "sha256:dbace7892d8c0c4ac1ad096662232f831d4e64f4c4545bd53016a3e9d4654743"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==6.7.0"
+            "markers": "python_version >= '3.8'",
+            "version": "==6.8.0"
         },
         "iniconfig": {
             "hashes": [
