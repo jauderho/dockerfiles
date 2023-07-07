@@ -121,7 +121,7 @@
         "docker-autocompose": {
             "editable": true,
             "git": "https://github.com/jauderho/docker-autocompose.git",
-            "ref": "f2d3bd622846bb2c3dee929a51961f859f9b8e9f"
+            "ref": "d5fb38a5cf5e5cb47526f4a218febb501e80abba"
         },
         "idna": {
             "hashes": [
@@ -141,11 +141,11 @@
         },
         "pyaml": {
             "hashes": [
-                "sha256:4c4b28b6fe89336000f08646f3cf1f6b68fb11e4c409626b77562e65a577273b",
-                "sha256:b7fa20b43c5b6e5c8b7406a2408fe533efd65a6459feff828f918342f043ef4c"
+                "sha256:0a37018282545ccc31faecbe138fda4d89e236af04d691cfb5af00cd60089345",
+                "sha256:0c510bbb8938309400e0b1e47ac16fd90e56d652805a93417128786718f33546"
             ],
             "index": "pypi",
-            "version": "==23.5.9"
+            "version": "==23.7.0"
         },
         "pyparsing": {
             "hashes": [
