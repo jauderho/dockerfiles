@@ -3,7 +3,7 @@
 aiodns==3.0.0
 authres==1.2.0
 cffi==1.15.1
-dkimpy==1.1.4
+dkimpy[arc,asyncio,ed25519]==1.1.4
 dnspython==2.3.0; python_version >= '3.7' and python_version < '4.0'
 pycares==4.3.0
 pycparser==2.21
