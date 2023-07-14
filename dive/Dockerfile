@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/wagoodman/dive/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/wagoodman/dive/archive/
-ARG GIT_URL=https://github.com/jauderho/dive.git
+ARG GIT_URL=https://github.com/wagoodman/dive.git
 
 ENV GO111MODULE on
 ENV CGO_ENABLED 0
