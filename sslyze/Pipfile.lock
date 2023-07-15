@@ -808,11 +808,11 @@
         },
         "platformdirs": {
             "hashes": [
-                "sha256:cec7b889196b9144d088e4c57d9ceef7374f6c39694ad1577a0aab50d27ea28c",
-                "sha256:f87ca4fcff7d2b0f81c6a748a77973d7af0f4d526f98f308477c3c436c74d528"
+                "sha256:16a642e216f72f16a0bf0026468135d8ffd34a3e17ad0875b030f16f3cba5cbb",
+                "sha256:363fe3800e9c0227721c56eea50ae30c52c57ca7865def61ea9ebad133fe4445"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==3.8.1"
+            "version": "==3.9.0"
         },
         "pluggy": {
             "hashes": [
