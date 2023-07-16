@@ -54,6 +54,7 @@ REPO=(
 	"drwetter/testssl.sh" \
 	"shopify/toxiproxy" \
 	"trufflesecurity/trufflehog" \
+	"tsenart/vegeta" \
 	"saulpw/visidata" \
 	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
