@@ -258,11 +258,11 @@
         },
         "visidata": {
             "hashes": [
-                "sha256:84fd9c31ff3bce07055bfe735d0455fca69db462db284c61b53e88e55debba77",
-                "sha256:c09ecb65025dc9d6513bfd5e5aff9c430ffc325cc183b81abf5f2df5a96b66b3"
+                "sha256:4e181a4938f469f08c71be325e3ea062eba7ceeead9708d6ced34a346ab1d3ac",
+                "sha256:5cdf524a0ed830786e99af833424395537ce0c724fcf9902cd238352deb6b57f"
             ],
             "index": "pypi",
-            "version": "==2.11"
+            "version": "==2.11.1"
         },
         "wcwidth": {
             "hashes": [
