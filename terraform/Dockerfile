@@ -12,15 +12,19 @@ COPY . .
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates bash curl make git gcc build-base musl-dev \
+	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
-	&& go get -u golang.org/x/net \
-	&& go mod tidy \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" \
+	&& cp terraform /go/bin/terraform \
+	&& go clean && go clean -cache && go clean -modcache 
+
+
 
 # ----------------------------------------------------------------------------
+
+
 
 #FROM scratch
 FROM alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
@@ -36,8 +40,10 @@ RUN apk update \
 	&& apk upgrade -a 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-COPY --from=build /go/src/github.com/hashicorp/terraform/terraform /usr/local/bin/terraform
+#COPY --from=build /go/src/github.com/hashicorp/terraform/terraform /usr/local/bin/terraform
+COPY --from=build /go/bin/terraform /usr/local/bin/terraform
 
 #RUN terraform --version
 
 ENTRYPOINT [ "/usr/local/bin/terraform" ]
+
