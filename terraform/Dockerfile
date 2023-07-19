@@ -40,7 +40,6 @@ RUN apk update \
 	&& apk upgrade -a 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-#COPY --from=build /go/src/github.com/hashicorp/terraform/terraform /usr/local/bin/terraform
 COPY --from=build /go/bin/terraform /usr/local/bin/terraform
 
 #RUN terraform --version
