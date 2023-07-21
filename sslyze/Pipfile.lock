@@ -950,11 +950,11 @@
         },
         "sphinx-autodoc-typehints": {
             "hashes": [
-                "sha256:8fb8dfc4b010505c850f4ef395fc80222ebfd8fd1b40149f8862f2396f623760",
-                "sha256:ec913d93e915b4dae6a8758cd95baecc70ed77fcdfe050601fc6b12afd0fc059"
+                "sha256:6a73c0c61a9144ce2ed5ef2bed99d615254e5005c1cc32002017d72d69fb70e6",
+                "sha256:94e440066941bb237704bb880785e2d05e8ae5406c88674feefbb938ad0dc6af"
             ],
             "index": "pypi",
-            "version": "==1.23.3"
+            "version": "==1.24.0"
         },
         "sphinx-rtd-theme": {
             "hashes": [
