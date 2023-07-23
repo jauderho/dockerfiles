@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/multiprocessio/dsq \
 	&& cd /go/src/github.com/multiprocessio/dsq \
 	&& go get -u golang.org/x/net \
+	&& go get -u github.com/snowflakedb/gosnowflake \
 	&& go mod tidy \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
 
