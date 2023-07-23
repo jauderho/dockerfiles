@@ -3,7 +3,7 @@
 aiodns==3.0.0
 anyio==3.7.1; python_version >= '3.7'
 authres==1.2.0
-certifi==2023.5.7; python_version >= '3.6'
+certifi==2023.7.22; python_version >= '3.6'
 cffi==1.15.1
 dkimpy[arc,asyncio,ed25519]==1.1.4
 dnspython==2.4.0; python_version >= '3.8' and python_version < '4.0'
