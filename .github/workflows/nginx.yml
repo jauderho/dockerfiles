@@ -58,7 +58,7 @@ jobs:
         
       - name: Setup mold
         id: mold
-        uses: rui314/setup-mold@ef083ef969bd785ce0477507a001c8302bd757db
+        uses: rui314/setup-mold@7f56dbde35ee02a3fe0287e7ddd310922eb5f553
 
 #      - name: Setup cache
 #        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
