@@ -39,7 +39,7 @@ requests==2.31.0; python_version >= '3.7'
 requests-ntlm==1.2.0; python_version >= '3.7'
 resolvelib==1.0.1
 retryz==0.1.9
-rich==13.5.0; python_full_version >= '3.7.0'
+rich==13.5.1; python_full_version >= '3.7.0'
 rpds-py==0.9.2; python_version >= '3.8'
 ruamel.yaml==0.17.32; python_version >= '3'
 ruamel.yaml.clib==0.2.7; python_version < '3.12' and platform_python_implementation == 'CPython'
