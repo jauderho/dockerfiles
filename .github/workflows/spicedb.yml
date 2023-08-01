@@ -39,6 +39,7 @@ jobs:
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
+            go.buf.build:443
             production.cloudflare.docker.com:443
             proxy.golang.org:443
             registry-1.docker.io:443
