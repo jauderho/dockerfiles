@@ -32,6 +32,7 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
+            acghubeus1.actions.githubusercontent.com:443
             api.github.com:443
             artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
