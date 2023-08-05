@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
     runs-on: ubuntu-22.04
 
     steps:
@@ -64,7 +64,7 @@ jobs:
       fail-fast: false
       matrix:
         #image: [cloudflared]
-        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+        image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
     runs-on: ubuntu-22.04
     
     steps:
@@ -101,7 +101,7 @@ jobs:
   #     fail-fast: false
   #     matrix:
   #       #image: [cloudflared]
-  #       image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, nginx-quic, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+  #       image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, prettier, pwru, rclone, rdap, rustybgp, sftpd, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
   #   runs-on: ubuntu-22.04
 
   #   steps:
