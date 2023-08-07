@@ -12,13 +12,17 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q git ca-certificates llvm-16 clang-16 golang-go gcc \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-16 clang-16 golang-go gcc flex bison \
 	&& ln -s /usr/bin/clang-16 /usr/bin/clang \
 	&& ln -s /usr/bin/llvm-strip-16 /usr/bin/llvm-strip \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
-	&& go generate \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
+	&& cd libpcap \
+	&& ./configure --disable-rdma --disable-shared --disable-usb --disable-netmap --disable-bluetooth --disable-dbus --without-libnl \
+	&& make \
+	&& cd .. \
+	&& go generate `uname -m` \
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/cilium/pwru/internal/pwru.Version=${BUILD_VERSION}" 
 
 WORKDIR /config
 
