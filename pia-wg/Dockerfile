@@ -1,6 +1,6 @@
 #FROM ubuntu:23.04@sha256:b5d5cddaeb8d2f150660cf8f9a1203dd450ac765e6c07630176ac6486eceaddb
 FROM ubuntu:23.04@sha256:b5d5cddaeb8d2f150660cf8f9a1203dd450ac765e6c07630176ac6486eceaddb
-#FROM python:3.11.4-slim-bookworm@sha256:36b544be6e796eb5caa0bf1ab75a17d2e20211cad7f66f04f6f5c9eeda930ef5
+#FROM python:3.11.4-slim-bookworm@sha256:4b2e5faf103be72abb65046501a89f8feaef28c1148fc2f9b3326e31694ee735
 #FROM python:3.11.4-alpine3.18@sha256:f54f860d3a50f1a73dc8227f332c29f02e94349f045326d3618d30af10c69106
 
 ARG BUILD_VERSION
