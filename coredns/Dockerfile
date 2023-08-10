@@ -1,4 +1,5 @@
-FROM golang:1.21.0-alpine3.18@sha256:445f34008a77b0b98bf1821bf7ef5e37bb63cc42d22ee7c21cc17041070d134f AS build
+FROM golang:1.20.7-alpine3.18@sha256:b255d9352ff4967f0424731acf5a262c3bb4b5bd712e6324ad9ed533c9d2aee7 AS build
+#FROM golang:1.21.0-alpine3.18@sha256:445f34008a77b0b98bf1821bf7ef5e37bb63cc42d22ee7c21cc17041070d134f AS build
 
 WORKDIR /go/src/github.com/coredns/coredns/
 
@@ -16,8 +17,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/coredns.tar.gz \
 	&& tar xzf /tmp/coredns.tar.gz --strip 1 -C /go/src/github.com/coredns/coredns \
-	#&& go get -u golang.org/x/net \
-	#&& go mod tidy \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& make
 
 # Validation check
