@@ -12,15 +12,17 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine@sha256:e3b051cbad561cec1b1ce3586aaf
 WORKDIR /src
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
-ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
+ARG ARCHIVE_URL=https://github.com/mspnp/AzureNamingTool/archive/
+#ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
+#ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
+ARG GIT_URL=https://github.com/jauderho/AzureNamingTool.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache bash git \
 	&& git clone --depth 1 ${GIT_URL} /src \
-	&& cd /src/ready/AzNamingTool \
+	&& cd /src/src \
 	&& dotnet restore "AzureNamingTool.csproj" -r linux-musl-x64 /p:PublishReadyToRun=true \
 	&& dotnet build "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/build --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true \
 	&& dotnet publish "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/publish --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true \
