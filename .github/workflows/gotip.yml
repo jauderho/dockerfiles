@@ -64,7 +64,8 @@ jobs:
         
       - name: Get commit short hash from remote repo
         id: get-hash
-        run: echo "::set-output name=hash::$(git ls-remote ${{ env.UPSTREAM_REPO }} HEAD | awk '{print $1}' | head -c 8)"
+        #run: echo "::set-output name=hash::$(git ls-remote ${{ env.UPSTREAM_REPO }} HEAD | awk '{print $1}' | head -c 8)"
+        run: echo "name=hash::$(git ls-remote ${{ env.UPSTREAM_REPO }} HEAD | awk '{print $1}' | head -c 8)" >> $GITHUB_OUTPUT
 
       - name: Set Docker metadata
         id: docker_meta
