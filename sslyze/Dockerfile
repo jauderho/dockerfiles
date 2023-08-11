@@ -14,9 +14,10 @@ COPY requirements.txt .
 
 RUN apt-get update && \
 	apt-get dist-upgrade -y && \
-	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip git && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	apt-get purge git && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean
