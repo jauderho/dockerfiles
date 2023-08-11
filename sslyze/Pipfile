@@ -9,7 +9,8 @@ verify_ssl = true
 name = "piwheels"
 
 [packages]
-sslyze = "*"
+#sslyze = "*"
+sslyze = { git = "https://github.com/jauderho/sslyze.git", editable = true }
 nassl = "*"
 cryptography = "*"
 tls-parser = "*"
