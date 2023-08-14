@@ -6,7 +6,7 @@ nassl==5.0.1
 pycparser==2.21
 pydantic==1.10.12
 pyopenssl==23.2.0; python_version >= '3.6'
-sslyze @ git+https://github.com/jauderho/sslyze.git@d9da1d9e69418150151f9cfa51c773d1733b6049
+sslyze @ git+https://github.com/jauderho/sslyze.git@f9eaaf82a1ebe4070a8cf28845f4347d853e1f1d
 tls-parser==2.0.1
 typing-extensions==4.7.1; python_version >= '3.7'
 wheel==0.41.1
