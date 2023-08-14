@@ -213,7 +213,7 @@
         "sslyze": {
             "editable": true,
             "git": "https://github.com/jauderho/sslyze.git",
-            "ref": "d9da1d9e69418150151f9cfa51c773d1733b6049"
+            "ref": "f9eaaf82a1ebe4070a8cf28845f4347d853e1f1d"
         },
         "tls-parser": {
             "hashes": [
