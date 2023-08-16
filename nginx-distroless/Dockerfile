@@ -1,4 +1,4 @@
-FROM nginx:1.25.2@sha256:1f54b49eb3b04b70cc505bccff7f7ebaba6d4b167249d69be688cb96107e1eb4 AS base
+FROM nginx:1.25.2@sha256:748e1e0239955172c421269430a03a533fb8d593d7a7e817a2a9e1f8c37305b8 AS base
 
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 ARG TIME_ZONE
