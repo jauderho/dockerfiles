@@ -105,14 +105,13 @@
         },
         "dkimpy": {
             "extras": [
-                "arc",
+                "ARC",
                 "asyncio",
                 "ed25519"
             ],
             "hashes": [
                 "sha256:9a667f8664b72eb9f8aa1250b0757cc3982ab68f70c48af39317b58cf62f2d75"
             ],
-            "index": "pypi",
             "version": "==1.1.5"
         },
         "dnspython": {
