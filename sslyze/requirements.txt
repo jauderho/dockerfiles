@@ -4,7 +4,7 @@ cffi==1.15.1
 cryptography==41.0.3
 nassl==5.0.1
 pycparser==2.21
-pydantic==1.10.12
+pydantic==2.2.1
 pyopenssl==23.2.0; python_version >= '3.6'
 sslyze @ git+https://github.com/jauderho/sslyze.git@c68a4c6a023253946a78803d5fc7669f420b6e0a
 tls-parser==2.0.1
