@@ -52,7 +52,7 @@ jobs:
             security.ubuntu.com:443
 
       - name: Source checkout
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v2.4.0 
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v2.4.0 
         with:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
