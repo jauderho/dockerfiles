@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 ansible==8.3.0; python_version >= '3.9'
-ansible-compat==4.1.7; python_version >= '3.9'
+ansible-compat==4.1.8; python_version >= '3.9'
 ansible-core==2.15.3; python_version >= '3.9'
 ansible-lint==6.18.0; python_version >= '3.9'
 attrs==23.1.0; python_version >= '3.7'
