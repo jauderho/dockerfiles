@@ -33,7 +33,8 @@ WORKDIR /app
 
 RUN apk update \
 	&& apk upgrade -a \
-	&& apk --no-cache add --upgrade busybox ssl_client nodejs-current \
+	#&& apk --no-cache add --upgrade busybox ssl_client nodejs-current \
+	&& apk --no-cache add --upgrade busybox ssl_client nodejs \
 	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /app .
