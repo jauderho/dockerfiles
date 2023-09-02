@@ -1,4 +1,4 @@
-FROM ubuntu:23.04@sha256:f1090cfa89ab321a6d670e79652f61593502591f2fc7452fb0b7c6da575729c4
+FROM ubuntu:23.10@sha256:ed5b80e7117fe03f4197adc76c64a86a290d31898a5d491e32f66c7eb7558fe3
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowball-client-linux.tar.gz
