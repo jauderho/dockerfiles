@@ -6,7 +6,7 @@ docker==6.1.3; python_version >= '3.7'
 docker-autocompose@ git+https://github.com/jauderho/docker-autocompose.git@161d4baa5c1ef56b05032daa29c959fcf015c6d9
 idna==3.4; python_version >= '3.5'
 packaging==21.3; python_version >= '3.6'
-pyaml==23.7.0; python_version >= '3.8'
+pyaml==23.9.1; python_version >= '3.8'
 pyparsing==3.1.1; python_full_version >= '3.6.8'
 pyyaml==6.0.1; python_version >= '3.6'
 requests==2.31.0; python_version >= '3.7'
