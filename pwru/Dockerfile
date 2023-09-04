@@ -1,6 +1,5 @@
-#FROM ubuntu:23.04@sha256:b5d5cddaeb8d2f150660cf8f9a1203dd450ac765e6c07630176ac6486eceaddb AS build
-FROM ubuntu:23.10 AS build
-#FROM golang:1.20.6-bookworm@sha256:c0e68a3dd1e676d2ea57e6b86bdf69e6e9a60ac079d9420e3b85d0e288ea1001 AS build
+FROM ubuntu:23.10@sha256:ed5b80e7117fe03f4197adc76c64a86a290d31898a5d491e32f66c7eb7558fe3 AS build
+#FROM golang:1.21.0-bookworm@sha256:640f192f24852cd875514e18a01977ae87692dca466abed7705ad3c4670b6993 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -13,9 +12,9 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-16 clang-16 golang-go gcc flex bison \
-	&& ln -s /usr/bin/clang-16 /usr/bin/clang \
-	&& ln -s /usr/bin/llvm-strip-16 /usr/bin/llvm-strip \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 golang-go gcc flex bison \
+	&& ln -s /usr/bin/clang-17 /usr/bin/clang \
+	&& ln -s /usr/bin/llvm-strip-17 /usr/bin/llvm-strip \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
@@ -35,7 +34,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ubuntu:23.04@sha256:b5d5cddaeb8d2f150660cf8f9a1203dd450ac765e6c07630176ac6486eceaddb
+FROM ubuntu:23.10@sha256:ed5b80e7117fe03f4197adc76c64a86a290d31898a5d491e32f66c7eb7558fe3
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
