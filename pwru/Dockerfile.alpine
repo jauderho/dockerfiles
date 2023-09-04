@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates build-base clang llvm16 go \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
-	&& go generate \
+	&& go generate `uname -m` \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
