@@ -27,7 +27,7 @@ RUN \
   update-ca-certificates && \
   cd /tmp && \
   wget -O - http://nginx.org/download/nginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
-  wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 --no-dns-cache | tar xzf  - -C /tmp && \
   wget -O - https://github.com/PhilipHazel/pcre2/releases/download/pcre2-${PCRE_VERSION}/pcre2-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
   git clone --depth 1 ${ZLIB_URL} /tmp/zlib && \
   cd /tmp/zlib && \
@@ -75,7 +75,7 @@ RUN \
     --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
     --with-ld-opt='-O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
-    --with-openssl-opt="enable-ec_nistp_64_gcc_128 enable-ktls threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
+    --with-openssl-opt="enable-ec_nistp_64_gcc_128 enable-ktls threads enable-tfo no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
