@@ -117,6 +117,7 @@
                 "sha256:d0d651aa754ef58d75cec6edfbd21259d93810b73f6ec246436a21b7841908de"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==41.0.3"
         },
         "nassl": {
@@ -151,6 +152,7 @@
                 "sha256:e020f7383746e5e03576b4b52c4d3b67b512a085133e9be92af997acf1829426"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==5.0.1"
         },
         "pycparser": {
@@ -200,6 +202,7 @@
                 "sha256:fdbdd1d630195689f325c9ef1a12900524dceb503b00a987663ff4f58669b93d"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==1.10.12"
         },
         "pyopenssl": {
@@ -213,13 +216,15 @@
         "sslyze": {
             "editable": true,
             "git": "https://github.com/jauderho/sslyze.git",
-            "ref": "c68a4c6a023253946a78803d5fc7669f420b6e0a"
+            "markers": "python_version >= '3.7'",
+            "ref": "caaac8a58b9f4f03e5a811f32b9ca702685c70c4"
         },
         "tls-parser": {
             "hashes": [
                 "sha256:9e9f2fdde87a2fda93835f1e18482b8813a1b71958cdb8d5f0cbb9f4ed4e2ec7"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.0.1"
         },
         "typing-extensions": {
@@ -232,11 +237,12 @@
         },
         "wheel": {
             "hashes": [
-                "sha256:12b911f083e876e10c595779709f8a88a59f45aacc646492a67fe9ef796c1b47",
-                "sha256:473219bd4cbedc62cea0cb309089b593e47c15c4a2531015f94e4e3b9a0f6981"
+                "sha256:0c5ac5ff2afb79ac23ab82bab027a0be7b5dbcf2e54dc50efe4bf507de1f7985",
+                "sha256:75909db2664838d015e3d9139004ee16711748a52c8f336b52882266540215d8"
             ],
             "index": "pypi",
-            "version": "==0.41.1"
+            "markers": "python_version >= '3.7'",
+            "version": "==0.41.2"
         }
     },
     "develop": {}

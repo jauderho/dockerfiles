@@ -1,12 +1,12 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 cffi==1.15.1
-cryptography==41.0.3
-nassl==5.0.1
+cryptography==41.0.3; python_version >= '3.7'
+nassl==5.0.1; python_version >= '3.7'
 pycparser==2.21
-pydantic==1.10.12
+pydantic==1.10.12; python_version >= '3.7'
 pyopenssl==23.2.0; python_version >= '3.6'
-sslyze @ git+https://github.com/jauderho/sslyze.git@c68a4c6a023253946a78803d5fc7669f420b6e0a
-tls-parser==2.0.1
+sslyze@ git+https://github.com/jauderho/sslyze.git@caaac8a58b9f4f03e5a811f32b9ca702685c70c4
+tls-parser==2.0.1; python_version >= '3.7'
 typing-extensions==4.7.1; python_version >= '3.7'
-wheel==0.41.1
+wheel==0.41.2; python_version >= '3.7'
