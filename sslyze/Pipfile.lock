@@ -217,7 +217,7 @@
             "editable": true,
             "git": "https://github.com/jauderho/sslyze.git",
             "markers": "python_version >= '3.7'",
-            "ref": "caaac8a58b9f4f03e5a811f32b9ca702685c70c4"
+            "ref": "c54f5645c89fadd65cfc4bbdfed35c84d04c4938"
         },
         "tls-parser": {
             "hashes": [
