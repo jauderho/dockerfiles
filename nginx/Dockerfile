@@ -72,7 +72,7 @@ RUN \
     --with-file-aio \
     --with-threads \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+    --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS' \
     --with-ld-opt='-O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-openssl-opt="enable-ec_nistp_64_gcc_128 enable-ktls threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
