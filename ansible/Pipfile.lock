@@ -48,12 +48,12 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:26c3aa1249636ad908449ef204be0a043a5af11ea3bd45949c8e4a680f217e7e",
-                "sha256:295dbb774176c84abd9c0fe31e3b80c075ad0d0555b1006803f36ba9e128d907"
+                "sha256:b984c31a6b693c04dc36a392fe3e05dad1415849957ba242cd6ea626ffda7034",
+                "sha256:ec13bf2eb65477f464ab8ebc6223552abfe68cb3f6583dc911d84600fd191adb"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==6.19.0"
+            "version": "==6.20.0"
         },
         "attrs": {
             "hashes": [
@@ -578,7 +578,7 @@
                 "sha256:fd1592b3fdf65fff2ad0004b5e363300ef59ced41c2e6b3a99d4089fa8c5435d",
                 "sha256:fd66fc5d0da6d9815ba2cebeb4205f95818ff4b79c3ebe268e75d961704af52f"
             ],
-            "markers": "python_version != '3.4'",
+            "markers": "python_version >= '3.6'",
             "version": "==6.0.1"
         },
         "referencing": {
