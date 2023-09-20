@@ -1,7 +1,7 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 ### BASE ###
-FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:6b491db4eb9cc645e449d79d48775c761d55127bc429de5afa3022474d67c718 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:933ae169296fe093776749cc47fd60e0a6e85bde607651a3fc6cd97bb5bc1ce0 AS base
 WORKDIR /app
 RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
 EXPOSE 80
