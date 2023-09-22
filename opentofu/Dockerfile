@@ -18,7 +18,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" \
-	&& cp opentofu /go/bin/opentofu
+	&& cp opentofu /go/bin/opentofu \
+	&& go clean && go clean -cache && go clean -modcache 
 
 
 
