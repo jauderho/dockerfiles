@@ -1,7 +1,7 @@
 #FROM ubuntu:23.10@sha256:c1c5a248f628c287d3472d86b0e5c9ca2ef0280475e50b46ad371f566b72e680
 FROM ubuntu:23.10@sha256:c1c5a248f628c287d3472d86b0e5c9ca2ef0280475e50b46ad371f566b72e680
 #FROM python:3.11.4-slim-bookworm@sha256:4b2e5faf103be72abb65046501a89f8feaef28c1148fc2f9b3326e31694ee735
-#FROM python:3.12.0rc2-alpine3.18@sha256:b92ffaf56e573fcf8fae71567b4e1570b422134d359dde47719f278b2acebb6a
+#FROM python:3.12.0rc3-alpine3.18@sha256:f68646d4ca421128a4f9b24a8bc39338ae574019fa5e845d5d8c57ecb143145f
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/jauderho/pia-wg/archive/
