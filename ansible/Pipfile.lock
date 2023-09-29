@@ -480,23 +480,11 @@
         },
         "pyspnego": {
             "hashes": [
-                "sha256:075fd5950d69dd2fca8aa41ecfb1d54cb155228000cb1f9e76916df2dee7812b",
-                "sha256:0e16cb331f1bd9c85f9b80e2be04bb5da2ecaff678cc0342f68b45e4667d7966",
-                "sha256:0fb120259c58b8cc6371908980f7cfa6c7ffc187ac43b782a4112bda8a06163b",
-                "sha256:866f140d5e8f57d1a9d1c1a24ea142ff94f9c8dfc3018219204b0999844f1ebe",
-                "sha256:964749e145b66d5dbba6419960f6a1f23661daf96175f69f9583fb2b3ad7b699",
-                "sha256:b696b07564492db7b80533a79e298fb4fcf8ca35cad520c595fef7045507cb51",
-                "sha256:b9ecc00b23eb1cfb0fe2cd10c5819751c9294895fe7c03a176768a51d0b78277",
-                "sha256:bd020e1d5b761aa668c066917e1af7a039bbe5985aeb2119ba3e2956f52ec12d",
-                "sha256:c3ad732037b46ed3e8a001884510323167aee15ad8c80feb5c324f4dd46c511c",
-                "sha256:dc9664a32ff1d7b9942573b9568216876d582612f12f9ec7bba312fb0065252d",
-                "sha256:e38d0563433cdea0e88b00c20f7f7ace84778d3c5c7ea3e22acd71cc1e56a284",
-                "sha256:e41c415953c0beea0bc1493121e1d2c7d08ccc10a8d28eaa1a3c6420e2917a07",
-                "sha256:e68fa2cdd7dcc1e4d0b2b42c23ba3a8d2daef2e02f88ecff3fb7c1e6351c8fec",
-                "sha256:efa3a5edf2fd5343fdc1d3fbfe02a7166f0747e3c63800a2f241320b78e3fb1d"
+                "sha256:06c22e8e3aa57196f97205569c03152fc4c19246547be38120fd34e5e8e04cb8",
+                "sha256:d95baece2b32771900e4420fb8389b870ac61b08b59cf1e32224b3a934e14673"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==0.9.2"
+            "markers": "python_version >= '3.8'",
+            "version": "==0.10.1"
         },
         "python-dateutil": {
             "hashes": [
