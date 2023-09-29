@@ -10,7 +10,7 @@ black==23.9.1; python_version >= '3.8'
 bracex==2.4; python_version >= '3.8'
 cachez==0.1.2
 certifi==2023.7.22; python_version >= '3.6'
-cffi==1.15.1
+cffi==1.16.0; python_version >= '3.8'
 charset-normalizer==3.2.0; python_full_version >= '3.7.0'
 click==8.1.7; python_version >= '3.7'
 cryptography==41.0.4; python_version >= '3.7'
