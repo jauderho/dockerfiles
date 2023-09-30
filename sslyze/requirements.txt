@@ -5,7 +5,7 @@ cffi==1.16.0; python_version >= '3.8'
 cryptography==41.0.4; python_version >= '3.7'
 nassl==5.1.0; python_version >= '3.7'
 pycparser==2.21
-pydantic==2.3.0; python_version >= '3.7'
+pydantic==2.4.0; python_version >= '3.7'
 pydantic-core==2.6.3; python_version >= '3.7'
 pyopenssl==23.2.0; python_version >= '3.6'
 sslyze==5.2.0; python_version >= '3.7'
