@@ -1,9 +1,9 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 certifi==2023.7.22; python_version >= '3.6'
-charset-normalizer==3.2.0; python_full_version >= '3.7.0'
+charset-normalizer==3.3.0; python_full_version >= '3.7.0'
 docker==6.1.3; python_version >= '3.7'
--e git+https://github.com/jauderho/docker-autocompose.git@ec51f4a91451442912466efef6329f03d9acb836#egg=docker-autocompose
+-e git+https://github.com/jauderho/docker-autocompose.git@f4304311efa34b788957cc59c93c0066dc18001c#egg=docker-autocompose
 idna==3.4; python_version >= '3.5'
 packaging==21.3; python_version >= '3.6'
 pyaml==23.9.7; python_version >= '3.8'
