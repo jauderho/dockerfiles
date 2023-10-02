@@ -10,4 +10,4 @@ Changes:
 * QR code will be shown if configuration is successfully generated
 * Hardcoded to use 1.1.1.2 and 9.9.9.9
 
-Usage: `docker run --rm -it jauderho/pia-wg:latest`
+Usage: `docker run --rm -it ghcr.io/jauderho/pia-wg:latest`

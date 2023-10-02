@@ -33,7 +33,7 @@ services:
   imapsync:
     #build: .
     container_name: imapsync
-    image: jauderho/imapsync:latest
+    image: ghcr.io/jauderho/imapsync:latest
     command: ["--errorsmax", "200", 
               "--gmail1", 
               "--user1", "${IMAPSYNC_USER1}", 
@@ -75,7 +75,7 @@ IMAPSYNC_PASSWORD2=
 This can be rerun repeatedly until all messages are fully copied over to the destination.
 
 ```
-docker run --rm -it jauderho/imapsync:latest \
+docker run --rm -it ghcr.io/jauderho/imapsync:latest \
 	--errorsmax 200 \
 	--gmail1 \
 	--user1 <user@domain.com> \
@@ -102,7 +102,7 @@ docker run --rm -it jauderho/imapsync:latest \
 WARNING: This will delete all emails from the source system as part of the final run.
 
 ```
-docker run --rm -it jauderho/imapsync:latest \
+docker run --rm -it ghcr.io/jauderho/imapsync:latest \
 	--errorsmax 200 \
 	--gmail1 \
 	--user1 <user@domain.com> \

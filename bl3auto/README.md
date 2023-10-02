@@ -8,7 +8,7 @@ Up to date multi-platform images are built an hour after upstream release and re
 
 This will automate the redemption of all available SHiFT codes for all Borderlands and Wonderlands games.
 
-Usage: `docker run -it -v codes:/root/.config/bl3auto/bl3auto jauderho/bl3auto:latest`
+Usage: `docker run -it -v codes:/root/.config/bl3auto/bl3auto ghcr.io/jauderho/bl3auto:latest`
 
 ### Docker Compose
 ```

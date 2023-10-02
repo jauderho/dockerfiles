@@ -6,5 +6,5 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it jauderho/ddosify:latest -t <URL>`
+Usage: `docker run --rm -it ghcr.io/jauderho/ddosify:latest -t <URL>`
 

@@ -6,4 +6,4 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `cat test.msg | docker run --rm -i jauderho/dkimpy:latest`
+Usage: `cat test.msg | docker run --rm -i ghcr.io/jauderho/dkimpy:latest`

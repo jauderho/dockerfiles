@@ -1,5 +1,5 @@
 
-Usage: `docker run --rm -it jauderho/youtube-dl:latest `
+Usage: `docker run --rm -it ghcr.io/jauderho/youtube-dl:latest `
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/youtube-dl/badge.svg)](https://github.com/jauderho/dockerfiles/actions?query=workflow%3Ayoutube-dl)
 [![Version](https://img.shields.io/docker/v/jauderho/youtube-dl/latest)](https://github.com/ytdl-org/youtube-dl)

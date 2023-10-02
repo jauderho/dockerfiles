@@ -1,5 +1,5 @@
 
-Usage: `docker run --rm -it -u $(id -u):$(id -g) -v $(pwd):/work jauderho/visidata:latest <FILENAME> `
+Usage: `docker run --rm -it -u $(id -u):$(id -g) -v $(pwd):/work ghcr.io/jauderho/visidata:latest <FILENAME> `
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/visidata/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/visidata/latest)](https://github.com/saulpw/visidata/)

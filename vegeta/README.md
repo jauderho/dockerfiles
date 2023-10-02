@@ -1,5 +1,5 @@
 
-Usage: `echo "GET <URL>" | docker run --rm -i jauderho/vegeta:latest attack -rate=100`
+Usage: `echo "GET <URL>" | docker run --rm -i ghcr.io/jauderho/vegeta:latest attack -rate=100`
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/vegeta/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/vegeta/latest)](https://github.com/tsenart/vegeta/)

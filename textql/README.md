@@ -1,4 +1,4 @@
-Usage: `docker run --rm -it -v $(pwd):/tmp jauderho/textql:latest [rest_of_command]`
+Usage: `docker run --rm -it -v $(pwd):/tmp ghcr.io/jauderho/textql:latest [rest_of_command]`
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/textql/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/textql/latest)](https://github.com/dinedal/textql)

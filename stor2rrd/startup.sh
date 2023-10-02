@@ -63,8 +63,8 @@ EOF
     su - stor2rrd -c "echo 'export DOCKER=1' >> /home/stor2rrd/stor2rrd/etc/.magic"
 
     if [[ -z "${TIMEZONE}" ]]; then
-        # set default TZ to London, enable TZ change via GUI
-        TIMEZONE="Europe/London"
+        # set default TZ to UTC, enable TZ change via GUI
+        TIMEZONE="Etc/UTC"
     fi
     echo "${TIMEZONE}" > /etc/timezone
     chmod 666 /etc/timezone

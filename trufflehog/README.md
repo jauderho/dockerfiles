@@ -6,4 +6,4 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it -v "$PWD:/pwd" jauderho/trufflehog:latest github --repo <GIT_REPO>`
+Usage: `docker run --rm -it -v "$PWD:/pwd" ghcr.io/jauderho/trufflehog:latest github --repo <GIT_REPO>`

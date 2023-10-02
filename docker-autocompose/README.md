@@ -6,4 +6,4 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock:ro jauderho/docker-autocompose:latest <CONTAINER ID or NAME>`
+Usage: `docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock:ro ghcr.io/jauderho/docker-autocompose:latest <CONTAINER ID or NAME>`

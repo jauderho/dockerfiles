@@ -5,15 +5,15 @@ It's based on the latest official [Alpine Linux](https://hub.docker.com/_/alpine
 
 Quick start:
 
-    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd jauderho/stor2rrd
+    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd ghcr.io/jauderho/stor2rrd
 
 You can set container timezone via env variable TIMEZONE in docker run command:
 
-    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e TIMEZONE="Europe/Prague" jauderho/stor2rrd
+    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e TIMEZONE="Etc/UTC" ghcr.io/jauderho/stor2rrd
 
 If you want to use this container as a XorMon backend, set XORMON env variable:
 
-    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e XORMON=1 jauderho/stor2rrd
+    docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e XORMON=1 ghcr.io/jauderho/stor2rrd
 
 Application UI can be found on http://\<CONTAINER_IP\>, use admin/admin for login.
 

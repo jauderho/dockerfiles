@@ -11,7 +11,7 @@
 
 Usage:
 
-* `docker run --rm -it jauderho/yt-dlp:latest`
-* `docker run --rm -it -v "$(pwd):/downloads:rw" jauderho/yt-dlp:latest` (download to the current directory)
+* `docker run --rm -it ghcr.io/jauderho/yt-dlp:latest`
+* `docker run --rm -it -v "$(pwd):/downloads:rw" ghcr.io/jauderho/yt-dlp:latest` (download to the current directory)
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.

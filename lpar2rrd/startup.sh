@@ -61,8 +61,8 @@ EOF
     rm -r /tmp/lpar2rrd-$LPAR_VER
 
     if [[ -z "${TIMEZONE}" ]]; then
-        # set default TZ to London, enable TZ change via GUI
-        TIMEZONE="Europe/London"
+        # set default TZ to UTC, enable TZ change via GUI
+        TIMEZONE="Etc/UTC"
     fi
     echo "${TIMEZONE}" > /etc/timezone
     chmod 666 /etc/timezone

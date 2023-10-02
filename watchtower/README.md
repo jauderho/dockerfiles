@@ -6,4 +6,4 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it jauderho/watchtower:latest`
+Usage: `docker run --rm -it ghcr.io/jauderho/watchtower:latest`

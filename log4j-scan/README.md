@@ -1,5 +1,5 @@
 
-Usage: `docker run --rm -ti jauderho/log4j-scan:latest -u <URL>`
+Usage: `docker run --rm -ti ghcr.io/jauderho/log4j-scan:latest -u <URL>`
 
 See https://github.com/fullhunt/log4j-scan for source. [UPDATE] This now detects CVE-2021-44228 and CVE-2021-45046.
 

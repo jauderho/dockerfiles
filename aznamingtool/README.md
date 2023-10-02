@@ -6,7 +6,7 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it -d -p 8081:80 --mount source=azurenamingtoolvol,target=/app/settings jauderho/azurenamingtool:latest`
+Usage: `docker run --rm -it -d -p 8081:80 --mount source=azurenamingtoolvol,target=/app/settings ghcr.io/jauderho/azurenamingtool:latest`
 
 Slim build using .NET 7 on Alpine
 

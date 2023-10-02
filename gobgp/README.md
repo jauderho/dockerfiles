@@ -1,5 +1,5 @@
 
-Usage: `docker run --rm -it -v $(pwd):/config jauderho/gobgp:latest`
+Usage: `docker run --rm -it -v $(pwd):/config ghcr.io/jauderho/gobgp:latest`
 
 Create a `gobgp.toml` in the current directory with the following:
 ```

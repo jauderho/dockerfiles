@@ -6,7 +6,7 @@
 
 Up to date multi-platform images are built an hour after upstream release and rebuilt at least once a week.
 
-Usage: `docker run --rm -it -v $(pwd):/work jauderho/catprinter:latest <FILENAME>`
+Usage: `docker run --rm -it -v $(pwd):/work ghcr.io/jauderho/catprinter:latest <FILENAME>`
 
 This is WIP. Testers wanted to make sure Bluetooth works in Docker.
 
