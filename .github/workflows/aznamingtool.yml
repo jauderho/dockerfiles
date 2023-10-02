@@ -38,6 +38,7 @@ jobs:
             auth.docker.io:443
             dc.services.visualstudio.com:443
             dl-cdn.alpinelinux.org:443
+            eastus.data.mcr.microsoft.com:443
             ghcr.io:443
             github.com:443
             index.docker.io:443
