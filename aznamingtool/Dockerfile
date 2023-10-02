@@ -2,6 +2,7 @@
 
 ### BASE ###
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine@sha256:5b313a895e8573f5d3591bab06b60213c3ff26c60bad12fa9a2fc31b9874ba77 AS base
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine@sha256:cd19e7b158aec55bf2eaa468b44794b05f11a932514fe093ca23bea660822acd AS base
 WORKDIR /app
 RUN apk update && apk upgrade -a
 EXPOSE 80
@@ -9,6 +10,7 @@ EXPOSE 443
 
 ### BUILD ###
 FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine@sha256:941e667376fc005ee30c79542086a61aa336d2e3aadd97af8d05816c0218601b AS build
+#FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine@sha256:fcf11110dd72ac7d83edc1d0103024a055476eb8c78add62557317f0f9c42eb6 AS build
 WORKDIR /src
 
 ARG BUILD_VERSION
