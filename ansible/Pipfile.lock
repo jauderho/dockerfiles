@@ -48,12 +48,12 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:13991d1cba5d69e704a0465b8d5f0e082c3c04e7664dedbbd2d9e4ebc6afd745",
-                "sha256:cce70b26cc146e3414f1bf6783b943dc01a974a1aeb5fdaa8b673a0accbb5519"
+                "sha256:166b66c41212b350665e0fc35497d33a05c7b90a6ed4ab01ed0f381cdeadbbef",
+                "sha256:7cb8efffad21cb869b0b58894e5cfe3437014ba7c61812c956c72dfebc99a0b8"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==6.20.2"
+            "version": "==6.20.3"
         },
         "attrs": {
             "hashes": [
@@ -800,11 +800,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:13abf37382ea2ce6fb744d4dad67838eec857c9f4f57009891805e0b5e123594",
-                "sha256:ef16afa8ba34a1f989db38e1dbbe0c302e4289a47856990d0682e374563ce35e"
+                "sha256:7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2",
+                "sha256:b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.0.5"
+            "version": "==2.0.6"
         },
         "wcmatch": {
             "hashes": [
