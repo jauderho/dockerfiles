@@ -1,4 +1,4 @@
-FROM golang:1.21.1-alpine3.18@sha256:1c9cc949513477766da12bfa80541c4f24957323b0ee00630a6ff4ccf334b75b AS build
+FROM golang:1.21.2-alpine3.18@sha256:a76f153cff6a59112777c071b0cde1b6e4691ddc7f172be424228da1bfb7bbda AS build
 
 #WORKDIR /go/src/github.com/opentofu/opentofu/
 
@@ -7,6 +7,7 @@ ARG ARCHIVE_URL=https://github.com/opentofu/opentofu/archive/
 ARG GIT_URL=https://github.com/opentofu/opentofu.git
 
 ENV GO111MODULE on
+ENV CGO_ENABLED 1
 
 COPY . .
 
@@ -15,8 +16,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
+	&& go generate ./... \
+	#&& go run ./tools/protobuf-compile . \
 	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" \
 	&& cp opentofu /go/bin/opentofu \
 	&& go clean && go clean -cache && go clean -modcache 
