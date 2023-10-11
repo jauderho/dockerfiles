@@ -19,7 +19,7 @@ RUN \
 	build_pkgs="python3-dev python3-pip git libblas-dev liblapack-dev curl" && \
 	#runtime_pkgs="python3 python3-pip bluez python3-opencv" && \
 	#runtime_pkgs="python3 python3-pip bluez libgl1-mesa-glx" && \
-	runtime_pkgs="python3 bluez libgl1-mesa-glx" && \
+	runtime_pkgs="python3 bluez libglx-mesa0" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
