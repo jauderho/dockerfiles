@@ -1,4 +1,4 @@
-FROM golang:1.21.2-alpine3.18@sha256:a76f153cff6a59112777c071b0cde1b6e4691ddc7f172be424228da1bfb7bbda AS build
+FROM golang:1.21.3-alpine3.18@sha256:926f7f7e1ab8509b4e91d5ec6d5916ebb45155b0c8920291ba9f361d65385806 AS build
 
 #WORKDIR /go/src/github.com/opentofu/opentofu/
 
@@ -16,7 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
+	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
+	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go generate ./... \
 	#&& go run ./tools/protobuf-compile . \
