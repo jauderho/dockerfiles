@@ -3,6 +3,6 @@
 bleak==0.21.1; python_version < '3.13' and python_version >= '3.8'
 -e git+https://github.com/jauderho/catprinter.git@9e47587390ed68ce3c99b37b8f3f00cf10e1bf73#egg=catprinter
 dbus-fast==2.11.1; platform_system == 'Linux'
-numpy==1.26.0; python_version < '3.13' and python_version >= '3.9'
+numpy==1.26.1; python_version < '3.13' and python_version >= '3.9'
 opencv-python==4.8.1.78; python_version >= '3.6'
 typing-extensions==4.8.0; python_version < '3.12'
