@@ -23,10 +23,10 @@
     "default": {
         "aiodns": {
             "hashes": [
-                "sha256:5268c89765a4a17d6875f70686d6ee406a0d4c40f0b65a0a311fb400aecfedf4",
-                "sha256:fadb59304f4e38fd23b2f1953107df5cf29121d66c4e9c37a9bb13832c0c0513"
+                "sha256:1073eac48185f7a4150cad7f96a5192d6911f12b4fb894de80a088508c9b3a99",
+                "sha256:a387b63da4ced6aad35b1dda2d09620ad608a1c7c0fb71efa07ebb4cd511928d"
             ],
-            "version": "==3.1.0"
+            "version": "==3.1.1"
         },
         "authres": {
             "hashes": [
