@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 annotated-types==0.6.0; python_version >= '3.8'
 cffi==1.16.0; python_version >= '3.8'
-cryptography==41.0.4; python_version >= '3.7'
+cryptography==41.0.5; python_version >= '3.7'
 nassl==5.1.0; python_version >= '3.7'
 pycparser==2.21
 pydantic==2.3.0; python_version >= '3.7'
