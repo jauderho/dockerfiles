@@ -7,7 +7,7 @@ nassl==5.1.0; python_version >= '3.7'
 pycparser==2.21
 pydantic==2.3.0; python_version >= '3.7'
 pydantic-core==2.6.3; python_version >= '3.7'
-pyopenssl==23.2.0; python_version >= '3.6'
+pyopenssl==23.3.0; python_version >= '3.7'
 sslyze==5.2.0; python_version >= '3.7'
 tls-parser==2.0.1; python_version >= '3.7'
 typing-extensions==4.8.0; python_version >= '3.8'
