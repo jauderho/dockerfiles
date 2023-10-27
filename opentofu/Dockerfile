@@ -20,9 +20,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go generate ./... \
-	#&& go run ./tools/protobuf-compile . \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" \
-	&& cp opentofu /go/bin/opentofu \
+	&& go run ./tools/protobuf-compile . \
+	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
+	&& cp tofu /go/bin/tofu \
 	&& go clean && go clean -cache && go clean -modcache 
 
 
@@ -45,9 +45,9 @@ RUN apk update \
 	&& apk upgrade -a 
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-COPY --from=build /go/bin/opentofu /usr/local/bin/opentofu
+COPY --from=build /go/bin/tofu /usr/local/bin/tofu
 
 #RUN opentofu --version
 
-ENTRYPOINT [ "/usr/local/bin/opentofu" ]
+ENTRYPOINT [ "/usr/local/bin/tofu" ]
 
