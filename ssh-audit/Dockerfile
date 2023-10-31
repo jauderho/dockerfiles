@@ -27,7 +27,10 @@ LABEL org.opencontainers.image.title="jauderho/ssh-audit"
 LABEL org.opencontainers.image.description="ssh-audit is a tool for ssh server & client configuration auditing"
 
 EXPOSE 2222
-USER ssh-audit
+# ENV
+# STOPSIGNAL
+HEALTHCHECK NONE
+USER nobody:nogroup
 
 ENTRYPOINT ["python3", "./ssh-audit.py"]
 
