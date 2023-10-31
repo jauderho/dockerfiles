@@ -16,14 +16,15 @@ RUN test -n "${BUILD_VERSION}" \
 	&& ln -s /usr/bin/clang-17 /usr/bin/clang \
 	&& ln -s /usr/bin/llvm-strip-17 /usr/bin/llvm-strip \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/cilium/pwru \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
-	&& cd libpcap \
-	&& ./configure --disable-rdma --disable-shared --disable-usb --disable-netmap --disable-bluetooth --disable-dbus --without-libnl \
-	&& make \
-	&& cd .. \
-	&& go generate `uname -m` \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/cilium/pwru/internal/pwru.Version=${BUILD_VERSION}" 
+	&& make
+	#&& cd libpcap \
+	#&& ./configure --disable-rdma --disable-shared --disable-usb --disable-netmap --disable-bluetooth --disable-dbus --without-libnl \
+	#&& make \
+	#&& cd .. \
+	#&& go generate `uname -m` \
+	#&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/cilium/pwru/internal/pwru.Version=${BUILD_VERSION}" 
 
 WORKDIR /config
 
