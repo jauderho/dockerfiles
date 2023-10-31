@@ -7,7 +7,7 @@ ARG ARCHIVE_URL=https://github.com/prettier/prettier/archive/
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates nodejs npm \
+	&& apk add --no-cache ca-certificates nodejs-current npm \
 	&& update-ca-certificates \
 	&& npm install -g prettier@${BUILD_VERSION} \
 	&& npm cache clean --force \
