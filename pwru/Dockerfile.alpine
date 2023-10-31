@@ -10,11 +10,12 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache git ca-certificates build-base clang llvm16 go \
+	&& apk add --no-cache git ca-certificates build-base clang llvm16 flex bison linux-headers \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
-	&& go generate `uname -m` \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
+	&& make 
+	#&& go generate amd64 \
+	#&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
 
 WORKDIR /config
 
