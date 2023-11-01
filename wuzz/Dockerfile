@@ -1,4 +1,4 @@
-FROM golang:1.21.3-alpine3.18@sha256:bd9fba964e49218519393ce78402084de252dc51ad1a471abe3b16c0a23f1c23 AS build
+FROM golang:1.21.3-alpine3.18@sha256:7fdfef9fb8674808f374632e3090605fef56a1e6c397cc3f7c451244eb46e253 AS build
 
 WORKDIR /go/src/github.com/asciimoo/wuzz/
 
