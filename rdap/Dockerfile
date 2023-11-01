@@ -1,4 +1,4 @@
-FROM golang:1.21.3-alpine3.18@sha256:bd9fba964e49218519393ce78402084de252dc51ad1a471abe3b16c0a23f1c23 AS build
+FROM golang:1.21.3-alpine3.18@sha256:53d0118d0084bf81c3f060e2736eeb82702a0a1891ac7dcd733ebbf02bcc2ec5 AS build
 
 WORKDIR /go/src/github.com/openrdap/rdap/
 
