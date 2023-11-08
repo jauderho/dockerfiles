@@ -43,7 +43,8 @@ jobs:
         uses: aquasecurity/trivy-action@2b6a709cf9c4025c5438138008beaddbb02086f0 # master
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          #image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+          image-ref: 'ghcr.io/jauderho/${{ matrix.image }}:latest'
           format: 'sarif'
           output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
