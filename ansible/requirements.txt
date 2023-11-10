@@ -27,7 +27,7 @@ mypy-extensions==1.0.0; python_version >= '3.5'
 packaging==23.2; python_version >= '3.7'
 pathspec==0.11.2; python_version >= '3.7'
 persist-queue==0.8.1
-platformdirs==3.11.0; python_version >= '3.7'
+platformdirs==4.0.0; python_version >= '3.7'
 pycparser==2.21
 pygments==2.16.1; python_version >= '3.7'
 pyspnego==0.10.2; python_version >= '3.8'
