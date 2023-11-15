@@ -341,11 +341,11 @@
         },
         "jsonschema-specifications": {
             "hashes": [
-                "sha256:05adf340b659828a004220a9613be00fa3f223f2b82002e273dee62fd50524b1",
-                "sha256:c91a50404e88a1f6ba40636778e2ee08f6e24c5613fe4c53ac24578a5a7f72bb"
+                "sha256:c9b234904ffe02f079bf91b14d79987faa685fd4b39c377a0996954c0090b9ca",
+                "sha256:f596778ab612b3fd29f72ea0d990393d0540a5aab18bf0407a46632eab540779"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2023.7.1"
+            "version": "==2023.11.1"
         },
         "markdown-it-py": {
             "hashes": [
@@ -571,11 +571,11 @@
         },
         "referencing": {
             "hashes": [
-                "sha256:449b6669b6121a9e96a7f9e410b245d471e8d48964c67113ce9afe50c8dd7bdf",
-                "sha256:794ad8003c65938edcdbc027f1933215e0d0ccc0291e3ce20a4d87432b59efc0"
+                "sha256:381b11e53dd93babb55696c71cf42aef2d36b8a150c49bf0bc301e36d536c882",
+                "sha256:cc28f2c88fbe7b961a7817a0abc034c09a1e36358f82fedb4ffdf29a25398863"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==0.30.2"
+            "version": "==0.31.0"
         },
         "requests": {
             "hashes": [
