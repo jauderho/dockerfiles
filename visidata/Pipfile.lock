@@ -285,11 +285,11 @@
         },
         "wcwidth": {
             "hashes": [
-                "sha256:25eb3ecbec328cdb945f56f2a7cfe784bdf7a73a8197398c7a7c65e7fe93e9ae",
-                "sha256:c4b153acf29f1f0d7fb1b00d097cce82b73de7a2016321c8d7ca71bd76dd848b"
+                "sha256:f01c104efdf57971bcb756f054dd58ddec5204dd15fa31d6503ea57947d97c02",
+                "sha256:f26ec43d96c8cbfed76a5075dac87680124fa84e0855195a6184da9c187f133c"
             ],
             "index": "pypi",
-            "version": "==0.2.11"
+            "version": "==0.2.12"
         },
         "zipp": {
             "hashes": [
