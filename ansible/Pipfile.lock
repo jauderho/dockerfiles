@@ -23,12 +23,12 @@
     "default": {
         "ansible": {
             "hashes": [
-                "sha256:c337b6f31187baffe7d289f4eaefb89bb34a3aae56dda6e1e8e61e4ae405cb3a",
-                "sha256:e5fd9eeca38d0241ccd414302df2aa0937aaac060aeb150aa9bcc8016a194ad3"
+                "sha256:4e758da22ff7a95ed2ab30cef12860407be68f65527af66a5b828739f634415a",
+                "sha256:cc06c251f142837cf540b7977724596a94f3d0fe9da9619175e9de6539cd0705"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.9'",
-            "version": "==9.0.0"
+            "markers": "python_version >= '3.10'",
+            "version": "==9.0.1"
         },
         "ansible-compat": {
             "hashes": [
@@ -483,11 +483,11 @@
         },
         "pygments": {
             "hashes": [
-                "sha256:1b37f1b1e1bff2af52ecaf28cc601e2ef7077000b227a0675da25aef85784bc4",
-                "sha256:e45a0e74bf9c530f564ca81b8952343be986a29f6afe7f5ad95c5f06b7bdf5e8"
+                "sha256:b27c2826c47d0f3219f29554824c30c5e8945175d888647acd804ddd04af846c",
+                "sha256:da46cec9fd2de5be3a8a784f434e4c4ab670b4ff54d605c4c2717e9d49c4c367"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.17.1"
+            "version": "==2.17.2"
         },
         "pyspnego": {
             "hashes": [
@@ -566,7 +566,7 @@
                 "sha256:fd1592b3fdf65fff2ad0004b5e363300ef59ced41c2e6b3a99d4089fa8c5435d",
                 "sha256:fd66fc5d0da6d9815ba2cebeb4205f95818ff4b79c3ebe268e75d961704af52f"
             ],
-            "markers": "python_version != '3.4'",
+            "markers": "python_version >= '3.6'",
             "version": "==6.0.1"
         },
         "referencing": {
