@@ -12,7 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "2023.11.26.232703"
+  BUILD_VERSION: "2023.11.28.232715"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/yt-dlp-nightly-builds
 
