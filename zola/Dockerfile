@@ -1,6 +1,6 @@
 #FROM alpine:edge@sha256:1a4c2018cfbab67566904e18fde9bf6a5c190605bf7da0e1d181b26746a15188 AS build
 #FROM alpine:3.18.5@sha256:34871e7290500828b39e22294660bee86d966bc0017544e848dd9a255cdf59e0 AS build
-FROM rust:1.74.0-alpine3.18@sha256:b749b12e4d1c183512f5e05a7c544f377e2630d6224a7b00fe7bfb64398aeee9 AS build
+FROM rust:1.74.0-alpine3.18@sha256:6c2c02b8906b6803c1a4ea29fb1db0b5659b81c6877983aee78725f4041e0113 AS build
 
 WORKDIR /usr/src/github.com/getzola/zola/
 #COPY Cargo.toml Cargo.toml
