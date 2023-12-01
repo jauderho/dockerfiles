@@ -30,7 +30,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 # cgr.dev/chainguard/nginx:1.25.1@sha256:183318178aac1c4692a3de76d4fdece9d0c78329a3f91eded9949edbbb27d994
-FROM nginx:1.25.3-alpine3.18@sha256:04a53576ed95f976bc30a2a80492be798df4d2f3a591641180798f7668cde1c2
+FROM nginx:1.25.3-alpine3.18@sha256:3923f8de8d2214b9490e68fd6ae63ea604deddd166df2755b788bef04848b9bc
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
