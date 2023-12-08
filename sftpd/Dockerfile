@@ -8,7 +8,7 @@ FROM alpine:3.19.0@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fda
 RUN apk update \
     && apk upgrade -a \
     && apk add --no-cache bash shadow openssh openssh-sftp-server \
-    && sed -i 's/GROUP=1000/GROUP=100/' /etc/pam.d/useradd \
+    #&& sed -i 's/GROUP=1000/GROUP=100/' /etc/pam.d/useradd \
     && mkdir -p /var/run/sshd \
     && rm -f /etc/ssh/ssh_host_*key*
 
