@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& touch server/docs/dummy \ 
 	&& mkdir server/site \ 
 	&& touch server/site/dummy \
-	&& go build -o ntfy -v -trimpath -buildmode=pie -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
+	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ntfy -v -trimpath -buildmode=pie -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check
 #RUN cp ntfy /go/bin/ntfy
