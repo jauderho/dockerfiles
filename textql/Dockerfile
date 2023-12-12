@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev sqlite-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/dinedal/textql \
 	&& cd /go/src/github.com/dinedal/textql \
-	&& go build -v -o textql-cli -trimpath -buildmode=pie -ldflags="-s -w" ./textql
+	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -v -o textql-cli -trimpath -buildmode=pie -ldflags="-s -w" ./textql
 
 WORKDIR /config
 
