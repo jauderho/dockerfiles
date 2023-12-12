@@ -1,12 +1,14 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
+aiohttp==3.9.1
+aiosignal==1.3.1; python_version >= '3.7'
 ansible==9.1.0; python_version >= '3.10'
 ansible-compat==4.1.10; python_version >= '3.9'
 ansible-core==2.16.2; python_version >= '3.10'
 ansible-lint==6.22.1; python_version >= '3.9'
 attrs==23.1.0; python_version >= '3.7'
 bitmath==1.3.3.1
-black==23.11.0; python_version >= '3.8'
+black==23.12.0; python_version >= '3.8'
 bracex==2.4; python_version >= '3.8'
 cachez==0.1.2
 certifi==2023.11.17; python_version >= '3.6'
@@ -15,6 +17,7 @@ charset-normalizer==3.3.2; python_full_version >= '3.7.0'
 click==8.1.7; python_version >= '3.7'
 cryptography==41.0.7; python_version >= '3.7'
 filelock==3.13.1; python_version >= '3.8'
+frozenlist==1.4.0; python_version >= '3.8'
 idna==3.6; python_version >= '3.5'
 jinja2==3.1.2; python_version >= '3.7'
 jsonschema==4.20.0; python_version >= '3.8'
@@ -23,6 +26,7 @@ markdown-it-py==3.0.0; python_version >= '3.8'
 markupsafe==2.1.3; python_version >= '3.7'
 mdurl==0.1.2; python_version >= '3.7'
 -e git+https://github.com/jauderho/mitogen.git@b7ab68745ab65d27c40a3a39d79a1c1cf14a04e0#egg=mitogen
+multidict==6.0.4; python_version >= '3.7'
 mypy-extensions==1.0.0; python_version >= '3.5'
 packaging==23.2; python_version >= '3.7'
 pathspec==0.12.1; python_version >= '3.8'
@@ -51,3 +55,4 @@ wcmatch==8.5; python_version >= '3.8'
 wheel==0.42.0; python_version >= '3.7'
 xmltodict==0.13.0; python_version >= '3.4'
 yamllint==1.33.0; python_version >= '3.8'
+yarl==1.9.4; python_version >= '3.7'
