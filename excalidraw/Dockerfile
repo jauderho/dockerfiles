@@ -18,6 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& yarn set version berry \
 	&& yarn install \
+	&& yarn install cross-env \
 	&& yarn up \
 	&& yarn up -R eslint postcss react-scripts \
 	&& npx browserslist@latest --update-db \
