@@ -79,7 +79,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v2.4.0
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: anchore/scan-action@896d5f410043987c8fe18f60d91bf199e436840c # v3.3.8
+        uses: anchore/scan-action@65161264d84bfeed55775e43bdbe5eb7c8a433fb # v3.4.0
         id: anchore-scan
         with:
           #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
