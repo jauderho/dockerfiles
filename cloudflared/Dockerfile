@@ -1,4 +1,4 @@
-FROM golang:1.20.12-alpine3.19@sha256:3ae92bcab3301033767e8c13d401394e53ad2732f770c313a34630193ed009b8 AS build
+FROM golang:1.21.6-alpine3.19@sha256:fd78f2fb1e49bcf343079bbbb851c936a18fc694df993cbddaa24ace0cc724c5 AS build
 
 WORKDIR /go/src/github.com/cloudflare/cloudflared/
 
