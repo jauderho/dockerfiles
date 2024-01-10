@@ -1,7 +1,7 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 ### BASE ###
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine@sha256:24d9700c32b29b7215bf7ec669dd034eb74e3935e7051e45c24d95de446bd066 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine@sha256:96bdf7fede27b0b5e15ce1d789bb86c56becb4336dd5f6fdc54f58f9a645cacd AS base
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine@sha256:cd19e7b158aec55bf2eaa468b44794b05f11a932514fe093ca23bea660822acd AS base
 WORKDIR /app
 RUN apk update && apk upgrade -a
