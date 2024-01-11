@@ -36,6 +36,7 @@ jobs:
             api.github.com:443
             api.nuget.org:443
             auth.docker.io:443
+            centralus.data.mcr.microsoft.com:443
             dc.services.visualstudio.com:443
             dl-cdn.alpinelinux.org:443
             eastus.data.mcr.microsoft.com:443
