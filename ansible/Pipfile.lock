@@ -337,11 +337,11 @@
         },
         "jsonschema": {
             "hashes": [
-                "sha256:4f614fd46d8d61258610998997743ec5492a648b33cf478c1ddc23ed4598a5fa",
-                "sha256:ed6231f0429ecf966f5bc8dfef245998220549cbbcf140f913b7464c52c3b6b3"
+                "sha256:3ba18e27f7491ea4a1b22edce00fb820eec968d397feb3f9cb61d5894bb38167",
+                "sha256:70a09719d375c0a2874571b363c8a24be7df8071b80c9aa76bc4551e7297c63c"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==4.20.0"
+            "version": "==4.21.0"
         },
         "jsonschema-specifications": {
             "hashes": [
