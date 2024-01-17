@@ -1,4 +1,4 @@
-FROM ubuntu:24.04@sha256:38d380071057443ebb6d65566c03a98eaec411e84e04e5e16cff49b1d6fdc9a0 AS build
+FROM ubuntu:24.04@sha256:50cb325cf61fa0ac0f42c2ea431d8ef091fe3d36f5bc039d15f89c569ff4988e AS build
 #FROM golang:1.21.0-bookworm@sha256:640f192f24852cd875514e18a01977ae87692dca466abed7705ad3c4670b6993 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
@@ -35,7 +35,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ubuntu:24.04@sha256:38d380071057443ebb6d65566c03a98eaec411e84e04e5e16cff49b1d6fdc9a0
+FROM ubuntu:24.04@sha256:50cb325cf61fa0ac0f42c2ea431d8ef091fe3d36f5bc039d15f89c569ff4988e
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
