@@ -105,11 +105,11 @@
         },
         "dnspython": {
             "hashes": [
-                "sha256:57c6fbaaeaaf39c891292012060beb141791735dbb4004798328fc2c467402d8",
-                "sha256:8dcfae8c7460a2f84b4072e26f1c9f4101ca20c071649cb7c34e8b6a93d58984"
+                "sha256:6facdf76b73c742ccf2d07add296f178e629da60be23ce4b0a9c927b1e02c3a6",
+                "sha256:a0034815a59ba9ae888946be7ccca8f7c157b286f8455b379c692efb51022a15"
             ],
-            "markers": "python_version >= '3.8' and python_version < '4.0'",
-            "version": "==2.4.2"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.5.0"
         },
         "pycares": {
             "hashes": [
