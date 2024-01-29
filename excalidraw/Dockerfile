@@ -1,4 +1,4 @@
-FROM node:21.6-alpine3.19@sha256:ab620cffd0f4d4529ef97682b2309c0571cd14a75496aa0934a13b059d003647 AS build
+FROM node:21.6-alpine3.19@sha256:a8beafd69068c05d09183e75b9aa679b520ba68f94b19c90d0da9f307f9f6565 AS build
 #FROM node:21.4-alpine3.18@sha256:9bfaec4816d320226b1533abd5d22d6a888105ee502b820676736de99a198408 AS build
 
 WORKDIR /app
@@ -31,7 +31,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 # cgr.dev/chainguard/nginx:1.25.1@sha256:183318178aac1c4692a3de76d4fdece9d0c78329a3f91eded9949edbbb27d994
-FROM nginx:1.25.3-alpine3.18@sha256:a59278fd22a9d411121e190b8cec8aa57b306aa3332459197777583beb728f59
+FROM nginx:1.25.3-alpine3.18@sha256:d12e6f7153fae36843aaeed8144c39956698e084e2e898891fa0cc8fe8f6c95c
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
