@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-certifi==2023.11.17; python_version >= '3.6'
+certifi==2024.2.2; python_version >= '3.6'
 charset-normalizer==3.3.2; python_full_version >= '3.7.0'
 docker==7.0.0; python_version >= '3.8'
 -e git+https://github.com/jauderho/docker-autocompose.git@e8b2affa74939bf4397c3c0a35f66eab6e3d67f4#egg=docker-autocompose
