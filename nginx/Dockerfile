@@ -2,14 +2,13 @@ FROM alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f277
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
-ENV BUILD_VERSION 1.25.3
+#ENV BUILD_VERSION 1.25.3
 
 # https://www.openssl.org/source
-ENV OPENSSL_VERSION 3.2.1
-#ENV OPENSSL_VERSION 3.1.5
+#ENV OPENSSL_VERSION 3.2.1
 
 # https://www.pcre.org/
-ENV PCRE_VERSION 10.42
+#ENV PCRE_VERSION 10.42
 
 ARG BUILD_VERSION
 ARG OPENSSL_VERSION
@@ -43,6 +42,7 @@ RUN \
   patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.25.1+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-1.25.3-reprioritize-chacha-openssl-1.1.1.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx-gzip-207-status.patch && \
   ./configure \
     --prefix=/usr/share/nginx \
     --sbin-path=/usr/sbin/nginx \
