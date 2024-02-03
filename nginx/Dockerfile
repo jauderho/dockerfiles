@@ -61,7 +61,7 @@ RUN \
     --with-http_ssl_module \
     --with-http_realip_module \
     --with-http_v2_module \
-    --with-http_v2_hpack_enc \
+    #--with-http_v2_hpack_enc \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
     --with-http_secure_link_module \
