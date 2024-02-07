@@ -1,12 +1,13 @@
-FROM node:21.6-alpine3.19@sha256:4cc2d9f365691fc6f8fe227321d32d9a2691216a71f51c21c7f02224515dea48 AS build
-#FROM node:21.4-alpine3.18@sha256:9bfaec4816d320226b1533abd5d22d6a888105ee502b820676736de99a198408 AS build
+#FROM node:21.6-alpine3.19@sha256:4cc2d9f365691fc6f8fe227321d32d9a2691216a71f51c21c7f02224515dea48 AS build
+FROM node:18.19-alpine3.19@sha256:0085670310d2879621f96a4216c893f92e2ded827e9e6ef8437672e1bd72f437 AS build
 
-WORKDIR /app
+#WORKDIR /app
+WORKDIR /opt/node_app
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
-ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
-#ARG GIT_URL=https://github.com/jauderho/excalidraw.git
+#ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
+ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 ARG NODE_ENV=production
 ARG NODE_OPTIONS=--openssl-legacy-provider
 
@@ -16,12 +17,13 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates git \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
-	&& yarn set version berry \
-	&& yarn install \
-	&& yarn install cross-env \
-	&& yarn up \
-	&& yarn up -R eslint postcss react-scripts \
-	&& npx browserslist@latest --update-db \
+	#&& yarn set version berry \
+	&& yarn --ignore-optional --network-timeout 600000 \
+	&& yarn add -W cross-env react react-dom \
+	#&& yarn install \
+	#&& yarn up \
+	#&& yarn up -R eslint postcss react-scripts react react-dom \
+	#&& npx browserslist@latest --update-db \
 	&& yarn build:app:docker
 
 
@@ -44,6 +46,7 @@ LABEL org.opencontainers.image.description="Excalidraw is a virtual whiteboard f
 RUN apk update \
 	&& apk upgrade -a
 
-COPY --from=build /app/build /usr/share/nginx/html
+#COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /opt/node_app/build /usr/share/nginx/html
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
