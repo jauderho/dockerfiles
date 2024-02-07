@@ -6,8 +6,8 @@ WORKDIR /opt/node_app
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
-#ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
-ARG GIT_URL=https://github.com/jauderho/excalidraw.git
+ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
+#ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 ARG NODE_ENV=production
 ARG NODE_OPTIONS=--openssl-legacy-provider
 
