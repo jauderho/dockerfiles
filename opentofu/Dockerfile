@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
+	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
 	&& cp tofu /go/bin/tofu \
 	&& go clean && go clean -cache && go clean -modcache 
 

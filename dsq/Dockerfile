@@ -17,7 +17,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u golang.org/x/net \
 	&& go get -u github.com/snowflakedb/gosnowflake \
 	&& go mod tidy \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w"
+	&& go build -v -trimpath -ldflags="-s -w"
 
 WORKDIR /config
 

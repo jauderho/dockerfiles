@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/johnkerl/miller \
 	&& cd /go/src/github.com/johnkerl/miller \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/mlr 
+	&& go build -v -trimpath -ldflags="-s -w" ./cmd/mlr 
 
 WORKDIR /config
 

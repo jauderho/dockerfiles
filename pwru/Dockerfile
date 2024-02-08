@@ -24,7 +24,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& make \
 	#&& cd .. \
 	#&& go generate `uname -m` \
-	#&& go build -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/cilium/pwru/internal/pwru.Version=${BUILD_VERSION}" 
+	#&& go build -v -trimpath -ldflags="-s -w -X github.com/cilium/pwru/internal/pwru.Version=${BUILD_VERSION}" 
 
 WORKDIR /config
 

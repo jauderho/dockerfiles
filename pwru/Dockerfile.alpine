@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/cilium/pwru \
 	&& make 
 	#&& go generate amd64 \
-	#&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" 
+	#&& go build -v -trimpath -ldflags="-s -w" 
 
 WORKDIR /config
 

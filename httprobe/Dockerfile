@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/tomnomnom/httprobe \
 	&& cd /go/src/github.com/tomnomnom/httprobe \
-	&& go build -o httprobe -v -trimpath -buildmode=pie -ldflags="-s -w" main.go  
+	&& go build -o httprobe -v -trimpath -ldflags="-s -w" main.go  
 
 WORKDIR /config
 

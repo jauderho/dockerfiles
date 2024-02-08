@@ -16,7 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" \
+	&& go build -v -trimpath -ldflags="-s -w" \
 	&& cp terraform /go/bin/terraform \
 	&& go clean && go clean -cache && go clean -modcache 
 

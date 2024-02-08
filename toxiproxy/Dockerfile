@@ -17,8 +17,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/toxiproxy.tar.gz \
 	&& tar xzf /tmp/toxiproxy.tar.gz --strip 1 -C /go/src/github.com/shopify/toxiproxy \ 
-	&& go build -o toxiproxy -v -trimpath -buildmode=pie -ldflags="-s -w -X github.com/Shopify/toxiproxy/v2.Version=${BUILD_VERSION}" ./cmd/server \
-	&& go build -o toxiproxy-cli -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/cli 
+	&& go build -o toxiproxy -v -trimpath -ldflags="-s -w -X github.com/Shopify/toxiproxy/v2.Version=${BUILD_VERSION}" ./cmd/server \
+	&& go build -o toxiproxy-cli -v -trimpath -ldflags="-s -w" ./cmd/cli 
 
 # Validation check
 RUN cp toxiproxy /go/bin/toxiproxy

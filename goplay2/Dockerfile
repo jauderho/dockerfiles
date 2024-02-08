@@ -17,7 +17,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/openairplay/goplay2 \
 	&& go get -u golang.org/x/net golang.org/x/crypto \
 	&& go mod tidy \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" . 
+	&& go build -v -trimpath -ldflags="-s -w" . 
 
 WORKDIR /config
 

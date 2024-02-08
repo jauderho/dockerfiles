@@ -17,7 +17,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
 	&& go get -u github.com/cloudflare/circl \
 	&& go mod vendor \
-	&& go build -o cloudflared -v -trimpath -buildmode=pie -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
+	&& go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
 	&& adduser -S cloudflared \
 	&& mkdir /etc/cloudflared
 

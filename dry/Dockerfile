@@ -18,7 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u github.com/docker/docker@v20.10.24 \
 	&& go get -u github.com/docker/cli@v20.10.24 \
 	&& go get -u github.com/docker/distribution \
-	&& go build -o dry-bin -v -trimpath -buildmode=pie -ldflags="-s -w" 
+	&& go build -o dry-bin -v -trimpath -ldflags="-s -w" 
 
 WORKDIR /config
 

@@ -16,7 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/buger/goreplay \
 	&& go get -u golang.org/x/net golang.org/x/crypto \
 	&& go mod tidy \
-	&& go build -v -o gor -trimpath -buildmode=pie -ldflags="-s -w -linkmode external -extldflags=-static"
+	&& go build -v -o gor -trimpath -ldflags="-s -w -linkmode external -extldflags=-static"
 
 WORKDIR /config
 

@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/amass.tar.gz \
 	&& tar xzf /tmp/amass.tar.gz --strip 1 -C /go/src/github.com/owasp/amass \
-	&& go build -v -trimpath -buildmode=pie -ldflags="-s -w" ./cmd/amass 
+	&& go build -v -trimpath -ldflags="-s -w" ./cmd/amass 
 
 WORKDIR /config
 
