@@ -1,4 +1,4 @@
-FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
+FROM alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
 #FROM python:3.12.1-alpine3.19@sha256:c793b92fd9e0e2a0b611756788a033d569ca864b733461c8fb30cfd14847dbcf
 #FROM python:3.12.1-alpine3.19@sha256:c793b92fd9e0e2a0b611756788a033d569ca864b733461c8fb30cfd14847dbcf
 
@@ -18,9 +18,9 @@ RUN \
   runtime_pkgs="ca-certificates openssl python3 py3-pip" && \
   apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
   apk --no-cache add ${runtime_pkgs} && \
-	python3 -m pip install --no-cache-dir --upgrade pip && \
-	pip3 install --no-cache-dir --upgrade wheel && \
-	pip3 install --no-cache-dir -r requirements.txt && \
+	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
+	pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
+	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	apk del build-dependencies && \
   rm -rf /var/cache/apk/* && \
   rm -rf /root/.cache/pip && \
