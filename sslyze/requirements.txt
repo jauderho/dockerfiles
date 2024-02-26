@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 annotated-types==0.6.0; python_version >= '3.8'
-cffi==1.16.0; python_version >= '3.8'
+cffi==1.16.0; platform_python_implementation != 'PyPy'
 cryptography==41.0.7; python_version >= '3.7'
 nassl==5.1.0; python_version >= '3.7'
 pycparser==2.21
@@ -10,5 +10,5 @@ pydantic-core==2.6.3; python_version >= '3.7'
 pyopenssl==23.3.0; python_version >= '3.7'
 sslyze==5.2.0; python_version >= '3.7'
 tls-parser==2.0.1; python_version >= '3.7'
-typing-extensions==4.9.0; python_version >= '3.8'
+typing-extensions==4.10.0; python_version >= '3.8'
 wheel==0.42.0; python_version >= '3.7'
