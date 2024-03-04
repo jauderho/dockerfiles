@@ -16,8 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
-	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
+	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
