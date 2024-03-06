@@ -1,5 +1,4 @@
 FROM golang:1.22.0-alpine3.19@sha256:8e96e6cff6a388c2f70f5f662b64120941fcd7d4b89d62fec87520323a316bd9 AS build
-#FROM golang:1.22.0-alpine3.19@sha256:8e96e6cff6a388c2f70f5f662b64120941fcd7d4b89d62fec87520323a316bd9 AS build
 
 WORKDIR /go/src/github.com/coredns/coredns/
 
@@ -17,16 +16,19 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/coredns.tar.gz \
 	&& tar xzf /tmp/coredns.tar.gz --strip 1 -C /go/src/github.com/coredns/coredns \
-	&& go get -u golang.org/x/net \
+	#&& go get -u golang.org/x/net \
 	&& go mod tidy \
-	&& make
+	&& make \
+	&& cp coredns /go/bin/coredns \
+	&& go clean && go clean -cache && go clean -modcache
 
 # Validation check
-RUN cp coredns /go/bin/coredns
-RUN coredns -version
+RUN /go/bin/coredns -version
+
 
 
 # ----------------------------------------------------------------------------
+
 
 
 FROM scratch
@@ -39,7 +41,7 @@ LABEL org.opencontainers.image.title="jauderho/coredns"
 LABEL org.opencontainers.image.description="CoreDNS is a DNS server"
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-COPY --from=build /go/src/github.com/coredns/coredns/coredns /usr/local/bin/
+COPY --from=build /go/bin/coredns /usr/local/bin/
 
 #EXPOSE 53/tcp 53/udp
 
