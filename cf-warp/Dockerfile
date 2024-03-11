@@ -1,4 +1,4 @@
-FROM node:21.7-alpine3.19@sha256:7bfef1d72befbb72b0894a3e4503edbdc0441058b4d091325143338cbf54cff8 AS build
+FROM node:21.7-alpine3.19@sha256:49e7f9bd0ff208d0db25ac587cef47fe9ef05ad3e23096540e67a97e78c1ff2f AS build
 
 WORKDIR /app
 
