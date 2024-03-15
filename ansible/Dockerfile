@@ -1,4 +1,5 @@
-FROM ubuntu:24.04@sha256:50cb325cf61fa0ac0f42c2ea431d8ef091fe3d36f5bc039d15f89c569ff4988e 
+#FROM ubuntu:24.04@sha256:50cb325cf61fa0ac0f42c2ea431d8ef091fe3d36f5bc039d15f89c569ff4988e 
+FROM ubuntu:23.10@sha256:5cd569b792a8b7b483d90942381cd7e0b03f0a15520d6e23fb7a1464a25a71b1
 
 WORKDIR /ansible
 
@@ -19,7 +20,7 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
 	#python3 -m pip install --no-cache-dir --upgrade --ignore-installed packaging --break-system-packages && \
-	pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
+	#pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	apt-get purge -y ${build_pkgs} && \
 	apt-get autoremove -y --purge && \
