@@ -4,7 +4,8 @@ WORKDIR /go/src/github.com/snyk/driftctl/
 
 ARG BUILD_VERSION
 #ARG ARCHIVE_URL=https://github.com/snyk/driftctl/archive/
-ARG ARCHIVE_URL=https://github.com/jauderho/driftctl/archive/
+#ARG ARCHIVE_URL=https://github.com/jauderho/driftctl/archive/
+ARG GIT_URL=https://github.com/jauderho/driftctl.git
 
 ENV CGO_ENABLED 0
 
