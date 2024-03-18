@@ -1,4 +1,4 @@
-FROM golang:1.22.1-alpine3.19@sha256:fc5e5848529786cf1136563452b33d713d5c60b2c787f6b2a077fa6eeefd9114 AS build
+FROM golang:1.22.1-alpine3.19@sha256:0466223b8544fb7d4ff04748acc4d75a608234bf4e79563bff208d2060c0dd79 AS build
 
 WORKDIR /go/src/github.com/cube2222/octosql/
 
@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/octosql.tar.gz \
 	&& tar xzf /tmp/octosql.tar.gz --strip 1 -C /go/src/github.com/cube2222/octosql \
-	&& go get -u golang.org/x/net golang.org/x/crypto gopkg.in/yaml.v3 \
+	&& go get -u golang.org/x/net golang.org/x/crypto gopkg.in/yaml.v3 github.com/jackc/pgx \
 	&& go mod tidy \
 	&& go build -o octosql -v -trimpath -ldflags="-s -w -X github.com/cube2222/octosql/cmd.VERSION=${BUILD_VERSION}" . 
 
