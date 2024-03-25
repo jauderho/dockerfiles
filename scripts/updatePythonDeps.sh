@@ -30,7 +30,7 @@ python3.11 -m pip install --no-cache-dir --upgrade --user pipenv certifi wheel s
 #python3.11 -m pip install --no-cache-dir --upgrade --user pipenv
 #python3.11 -m pip install --no-cache-dir --upgrade --user certifi
 #pipenv lock && pipenv requirements > requirements.txt
-pipenv --python 3.11 lock && pipenv --python 3.11 requirements --hash > requirements.txt
+pipenv --python 3.11 lock && pipenv --python 3.11 requirements > requirements.txt
 
 git add Pipfile Pipfile.lock requirements.txt && \
 git commit -s -m "Update requirements for $1 ..." && \
