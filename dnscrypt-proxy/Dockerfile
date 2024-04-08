@@ -14,6 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
+	&& go get -u all \
 	#&& go get -u golang.org/x/net \
 	#&& go get -u golang.org/x/net golang.org/x/net/http2 github.com/quic-go/quic-go/internal/qtls \
 	#&& go mod vendor \
