@@ -13,9 +13,9 @@ WORKDIR /src
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/mspnp/AzureNamingTool/archive/
+ARG GIT_URL=https://github.com/jauderho/AzureNamingTool.git
 #ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
 #ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
-ARG GIT_URL=https://github.com/jauderho/AzureNamingTool.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

@@ -12,8 +12,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0.101@sha256:1b99a629b4f55a496db835d9c334773
 WORKDIR /src
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
-ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
+ARG ARCHIVE_URL=https://github.com/mspnp/AzureNamingTool/archive/
+ARG GIT_URL=https://github.com/jauderho/AzureNamingTool.git
+#ARG ARCHIVE_URL=https://github.com/microsoft/CloudAdoptionFramework/archive/
+#ARG GIT_URL=https://github.com/jauderho/CloudAdoptionFramework.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
