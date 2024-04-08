@@ -446,7 +446,7 @@
             "editable": true,
             "git": "https://github.com/jauderho/mitogen.git",
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "ref": "f0b52d14ee79eaf17c323d09a4de481eead03ce3"
+            "ref": "cca651da1ff2720a72a2bfea09a540bd17fcf3b1"
         },
         "mypy-extensions": {
             "hashes": [
