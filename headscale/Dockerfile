@@ -14,6 +14,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/headscale.tar.gz \
 	&& tar xzf /tmp/headscale.tar.gz --strip 1 -C /go/src/github.com/juanfont/headscale \
+	&& go get -u github.com/jackc/pgx/v5 github.com/go-jose/go-jose/v3 google.golang.org/grpc google.golang.org/protobuf \
+	&& go mod tidy \
 	&& go build -o ./headscale -v -trimpath -ldflags="-s -w -X github.com/juanfont/headscale/cmd/headscale/cli.Version=${BUILD_VERSION}" ./cmd/headscale 
 
 WORKDIR /config

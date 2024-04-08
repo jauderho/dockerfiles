@@ -15,6 +15,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/subfinder.tar.gz \
 	&& tar xzf /tmp/subfinder.tar.gz --strip 1 -C /go/src/github.com/projectdiscovery/subfinder \
 	&& cd v2 \
+	&& go get -u github.com/quic-go/quic-go \
+	&& go mod tidy \
 	&& go build -o subfinder -v -trimpath -ldflags="-s -w" cmd/subfinder/main.go 
 
 WORKDIR /config
