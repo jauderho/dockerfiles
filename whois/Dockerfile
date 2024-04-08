@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/likexian/whois/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/likexian/whois/archive/
-ARG GIT_URL=https://github.com/jauderho/whois.git
+ARG GIT_URL=https://github.com/likexian/whois.git
 
 ENV CGO_ENABLED 0
 
