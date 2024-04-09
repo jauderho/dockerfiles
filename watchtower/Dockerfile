@@ -14,6 +14,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates tzdata \ 
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/containrrr/watchtower \
 	&& cd /go/src/github.com/containrrr/watchtower \
+	#&& go get -u google.golang.org/protobuf github.com/docker/docker@v24.0.9 github.com/docker/cli@v24.0.9 \
+	&& go get -u google.golang.org/protobuf github.com/docker/docker@v25.0.5 github.com/docker/cli@v25.0.5 golang.org/x/net \
+	&& go mod tidy \
 	&& go build -o watchtower -v -trimpath -ldflags="-s -w -X github.com/containrrr/watchtower/internal/meta.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
