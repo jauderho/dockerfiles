@@ -15,6 +15,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl git gcc musl-dev \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/wagoodman/dive \
 	&& cd /go/src/github.com/wagoodman/dive \
+	&& go get -u github.com/gdamore/tcell/v2 github.com/docker/docker github.com/docker/cli \
+	&& go get -u all \
+	&& go mod tidy \
 	&& go build -o dive-bin -v -trimpath -ldflags="-s -w" 
 
 WORKDIR /config
