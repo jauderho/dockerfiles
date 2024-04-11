@@ -15,7 +15,8 @@ nassl = "*"
 cryptography = "*"
 tls-parser = "*"
 pydantic = "*"
-wheel = "*"
+#wheel = "*"
+wheel = "0.42.0"
 
 [dev-packages]
 #mypy = "*"
