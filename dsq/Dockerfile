@@ -14,7 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git gcc musl-dev \ 
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/multiprocessio/dsq \
 	&& cd /go/src/github.com/multiprocessio/dsq \
-	&& go get -u golang.org/x/net \
+	&& go get -u google.golang.org/protobuf golang.org/x/net \
 	&& go get -u github.com/snowflakedb/gosnowflake \
 	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w"

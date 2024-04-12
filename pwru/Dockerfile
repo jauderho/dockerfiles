@@ -1,5 +1,5 @@
-FROM ubuntu:24.04@sha256:723ad8033f109978f8c7e6421ee684efb624eb5b9251b70c6788fdb2405d050b AS build
-#FROM golang:1.21.0-bookworm@sha256:640f192f24852cd875514e18a01977ae87692dca466abed7705ad3c4670b6993 AS build
+#FROM ubuntu:24.04@sha256:723ad8033f109978f8c7e6421ee684efb624eb5b9251b70c6788fdb2405d050b AS build
+FROM golang:1.22.2-bookworm@sha256:b03f3ba515751657c75475b20941fef47341fccb3341c3c0b64283ff15d3fb46 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -12,9 +12,11 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 golang-go gcc flex bison \
-	&& ln -s /usr/bin/clang-17 /usr/bin/clang \
-	&& ln -s /usr/bin/llvm-strip-17 /usr/bin/llvm-strip \
+	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-16 clang-16 golang-go gcc flex bison \
+	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-16 clang-16 flex bison libdpdk-dev \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-16 clang-16 flex bison \
+	&& ln -s /usr/bin/clang-16 /usr/bin/clang \
+	&& ln -s /usr/bin/llvm-strip-16 /usr/bin/llvm-strip \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
