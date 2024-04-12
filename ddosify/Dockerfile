@@ -14,6 +14,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ddosify.tar.gz \
 	&& tar xzf /tmp/ddosify.tar.gz --strip 1 -C /go/src/github.com/ddosify/ddosify \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& go build -o ddosify -v -trimpath -ldflags="-s -w" ./main.go 
 
 WORKDIR /config
