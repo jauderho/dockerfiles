@@ -44,6 +44,7 @@ jobs:
             rdfepirv2dm1prdstr02.blob.core.windows.net:443
             registry-1.docker.io:443
             storage.googleapis.com:443
+            sum.golang.org:443
           
       - name: Source checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v2.4.0 
