@@ -99,9 +99,9 @@
                 "ed25519"
             ],
             "hashes": [
-                "sha256:9a667f8664b72eb9f8aa1250b0757cc3982ab68f70c48af39317b58cf62f2d75"
+                "sha256:0ce72d961f443e8f9f05694b354542dee534e08e2b8c5b60c62d5daca7c1da0f"
             ],
-            "version": "==1.1.5"
+            "version": "==1.1.6"
         },
         "dnspython": {
             "hashes": [
