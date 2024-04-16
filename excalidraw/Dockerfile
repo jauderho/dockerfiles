@@ -1,5 +1,6 @@
-#FROM node:21.6-alpine3.19@sha256:4cc2d9f365691fc6f8fe227321d32d9a2691216a71f51c21c7f02224515dea48 AS build
-FROM node:21.7-alpine3.19@sha256:6d0f18a1c67dc218c4af50c21256616286a53c09e500fadf025b6d342e1c90ae AS build
+#FROM node:21.7.3-alpine3.19@sha256:6d0f18a1c67dc218c4af50c21256616286a53c09e500fadf025b6d342e1c90ae AS build
+FROM node:20.12.2-alpine3.19@sha256:ec0c413b1d84f3f7f67ec986ba885930c57b5318d2eb3abc6960ee05d4f2eb28 AS build
+#FROM node:18.20.2-alpine3.19@sha256:80338ff3fc4e989c1d5264a23223cec1c6014e812e584e825e78d1a98d893381 AS build
 
 #WORKDIR /app
 WORKDIR /opt/node_app
@@ -18,8 +19,14 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
 	#&& yarn set version berry \
+	#&& git fetch origin 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
+	#&& git reset --hard 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
+	&& yarn global add -W vite \
+	#&& ls -l node_modules/.bin \
+	#&& export PATH=./node_modules/.bin:$PATH \
+	#&& echo $PATH \
+	&& yarn add -W cross-env react react-dom react-scripts eslint postcss \
 	&& yarn --ignore-optional --network-timeout 600000 \
-	&& yarn add -W cross-env react react-dom \
 	#&& yarn install \
 	#&& yarn up \
 	#&& yarn up -R eslint postcss react-scripts react react-dom \
