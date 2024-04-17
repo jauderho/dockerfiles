@@ -21,6 +21,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& touch server/docs/dummy \ 
 	&& mkdir server/site \ 
 	&& touch server/site/dummy \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ntfy -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check

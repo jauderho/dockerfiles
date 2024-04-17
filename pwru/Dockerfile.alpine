@@ -13,6 +13,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates build-base clang llvm17 flex bison linux-headers \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& make 
 	#&& go generate amd64 \
 	#&& go build -v -trimpath -ldflags="-s -w" 

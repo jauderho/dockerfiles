@@ -14,6 +14,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/gobgp.tar.gz \
 	&& tar xzf /tmp/gobgp.tar.gz --strip 1 -C /go/src/github.com/osrg/gobgp \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w" ./cmd/gobgp/ \
 	&& go build -v -trimpath -ldflags="-s -w" ./cmd/gobgpd/ 
 

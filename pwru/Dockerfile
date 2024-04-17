@@ -20,6 +20,8 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
+	&& go get -u golang.org/x/net \
+	&& go mod tidy \
 	&& make
 	#&& cd libpcap \
 	#&& ./configure --disable-rdma --disable-shared --disable-usb --disable-netmap --disable-bluetooth --disable-dbus --without-libnl \

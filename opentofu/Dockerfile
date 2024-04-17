@@ -19,7 +19,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
 	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
-	&& go get -u github.com/cloudflare/circl google.golang.org/protobuf \
+	&& go get -u github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
