@@ -49,6 +49,7 @@ jobs:
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
             security.ubuntu.com:80
+            sum.golang.org:443
           
       - name: Source checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v2.4.0 
