@@ -15,7 +15,7 @@ updates:
     commit-message:
       prefix: "gha:"
 
-  # Maintain dependencies for Python 
+  # Maintain dependencies for Python
   - package-ecosystem: "pip"
     directory: /
     schedule:
@@ -88,25 +88,25 @@ updates:
     directory: /coredns
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /ddosify
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /dhcp-helper
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /dive
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /dnscontrol
@@ -148,25 +148,25 @@ updates:
     directory: /dry
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /dsq
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /excalidraw
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /fq
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /gobgp
@@ -208,62 +208,62 @@ updates:
     directory: /hakrawler
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /headscale
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /httpie-go
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /httprobe
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /httpx
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /imapsync
     schedule:
       interval: "daily"
-      
-   # Maintain dependencies for Docker
+
+    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /lego
     schedule:
       interval: "daily"
 
-   # Maintain dependencies for Docker
+    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /log4j-scan
     schedule:
       interval: "daily"
 
-   # Maintain dependencies for Docker
+    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /logmepwn
     schedule:
       interval: "daily"
 
-   # Maintain dependencies for Docker
+    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /lpar2rrd
     schedule:
       interval: "daily"
 
-   # Maintain dependencies for Docker
+    # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /miller
     schedule:
@@ -274,13 +274,13 @@ updates:
     directory: /nebula
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /netmaker
     schedule:
       interval: "daily"
-      
+
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /nginx-distroless
@@ -502,4 +502,3 @@ updates:
     directory: /zola
     schedule:
       interval: "daily"
-
