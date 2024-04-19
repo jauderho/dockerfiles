@@ -18,8 +18,8 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& tar xzf /tmp/driftctl.tar.gz --strip 1 -C /go/src/github.com/snyk/driftctl \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/snyk/driftctl \
 	&& cd /go/src/github.com/snyk/driftctl \
-	&& go get -u golang.org/x/net golang.org/x/crypto github.com/dgrijalva/jwt-go \
-	&& go mod tidy -compat=1.20 \
+	&& go get -u github.com/hashicorp/go-getter github.com/dgrijalva/jwt-go golang.org/x/net golang.org/x/crypto \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
