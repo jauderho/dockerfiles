@@ -16,7 +16,7 @@ ARG ZLIB_URL=https://github.com/cloudflare/zlib.git
 ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
 
 RUN \
-  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache" && \
+  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev ccache mold" && \
   runtime_pkgs="ca-certificates openssl pcre zlib tzdata git" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   cd /tmp && \
@@ -68,7 +68,7 @@ RUN \
     --with-http_slice_module \
     --with-http_v2_module \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=lld -O3 -march=native -m64 -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Werror -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+    --with-cc-opt='-fuse-ld=mold -O3 -march=native -m64 -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Werror -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
     --with-ld-opt='-lrt -O3 -march=native -m64 -flto -ffat-lto-objects -fPIE -pie -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-openssl-opt="enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
