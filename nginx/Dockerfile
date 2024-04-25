@@ -22,7 +22,7 @@ RUN \
   apk update && \
   apk upgrade -a && \
   build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold" && \
-  runtime_pkgs="ca-certificates tzdata" && \
+  runtime_pkgs="ca-certificates tzdata brotli-libs" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   update-ca-certificates && \
   cd /tmp && \
