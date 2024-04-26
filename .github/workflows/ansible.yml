@@ -101,8 +101,8 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
-          platforms: linux/amd64,linux/arm64
-          #platforms: linux/amd64,linux/arm64,linux/ppc64le
+          #platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
           build-args: |
             BUILD_VERSION
           sbom: true
@@ -126,9 +126,9 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.${{ matrix.distro }}
           #platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/arm/v7
-          platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le
-          #platforms: linux/amd64,linux/arm64,linux/ppc64le
+          #platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
           build-args: |
             BUILD_VERSION
           sbom: true
