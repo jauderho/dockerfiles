@@ -22,7 +22,7 @@ jsonschema-specifications==2023.12.1; python_version >= '3.8'
 markdown-it-py==3.0.0; python_version >= '3.8'
 markupsafe==2.1.5; python_version >= '3.7'
 mdurl==0.1.2; python_version >= '3.7'
--e git+https://github.com/jauderho/mitogen.git@bb9c51b3e9cc39fceddd55578bb89680fa4e1acc#egg=mitogen
+-e git+https://github.com/jauderho/mitogen.git@0f34e2505b0226044564a4ea0b9e1b6edf0e20de#egg=mitogen
 mypy-extensions==1.0.0; python_version >= '3.5'
 packaging==24.0; python_version >= '3.7'
 pathspec==0.12.1; python_version >= '3.8'
