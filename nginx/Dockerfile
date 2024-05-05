@@ -19,6 +19,7 @@ ARG PATCHES_URL=https://github.com/jauderho/patches.git
 
 RUN \
   #build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl zlib git" && \
+  NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   apk update && \
   apk upgrade -a && \
   build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev" && \
@@ -37,7 +38,6 @@ RUN \
   git submodule update --init && \
   git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
-  NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   echo "Patching..." && \
   patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.25.1+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
