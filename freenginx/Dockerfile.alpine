@@ -1,0 +1,105 @@
+FROM alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
+
+# https://nginx.org/en/download.html
+#ENV BUILD_VERSION 1.24.0
+
+# https://www.openssl.org/source
+#ENV OPENSSL_VERSION 3.1.1
+
+# https://www.pcre.org/
+#ENV PCRE_VERSION 10.42
+
+ARG BUILD_VERSION
+ARG OPENSSL_VERSION
+ARG PCRE_VERSION
+ARG ZLIB_URL=https://github.com/cloudflare/zlib.git
+ARG BROTLI_URL=https://github.com/google/ngx_brotli.git
+
+RUN \
+  build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev ccache mold" && \
+  runtime_pkgs="ca-certificates openssl pcre zlib tzdata git" && \
+  apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
+  cd /tmp && \
+  wget -O - http://freenginx.org/download/freenginx-${BUILD_VERSION}.tar.gz --tries=3 | tar zxf - -C /tmp && \
+  wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  wget -O - https://github.com/PhilipHazel/pcre2/releases/download/pcre2-${PCRE_VERSION}/pcre2-${PCRE_VERSION}.tar.gz --tries=3 | tar xzf  - -C /tmp && \
+  git clone --depth 1 ${ZLIB_URL} /tmp/zlib && \
+  cd /tmp/zlib && \
+  ./configure && \
+  git clone --depth 1 ${BROTLI_URL} /tmp/ngx_brotli && \
+  cd /tmp/ngx_brotli && \
+  git submodule update --init && \
+  cd /tmp/freenginx-${BUILD_VERSION} && \
+  ./configure \
+    --prefix=/etc/nginx \
+    --sbin-path=/usr/sbin/nginx \
+    --conf-path=/etc/nginx/nginx.conf \
+    --error-log-path=/var/log/nginx/error.log \
+    --http-log-path=/var/log/nginx/access.log \
+    --pid-path=/var/run/nginx.pid \
+    --lock-path=/var/run/nginx.lock \
+    --http-client-body-temp-path=/var/cache/nginx/client_temp \
+    --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+    --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+    --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
+    --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+    --user=nginx \
+    --group=nginx \
+    --with-http_ssl_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_sub_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_mp4_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_random_index_module \
+    --with-http_secure_link_module \
+    --with-http_stub_status_module \
+    --with-http_auth_request_module \
+    --without-http_autoindex_module \
+    --without-http_ssi_module \
+    --with-file-aio \
+    --with-threads \
+    --with-stream \
+    --with-stream_ssl_module \
+    --with-stream_realip_module \
+    --with-http_slice_module \
+    --with-http_v2_module \
+    --add-module=/tmp/ngx_brotli \
+    --with-cc-opt='-fuse-ld=mold -O3 -march=native -m64 -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Werror -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
+    --with-ld-opt='-lrt -O3 -march=native -m64 -flto -ffat-lto-objects -fPIE -pie -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now' \
+    --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
+    --with-openssl-opt="enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
+    --with-pcre-jit \
+    --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
+    --with-zlib=/tmp/zlib \
+    && \
+  PATH="/usr/lib/ccache:${PATH}" make && \
+  ccache -s && \
+  strip objs/nginx && \
+  make install && \
+  sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
+  addgroup -S nginx && \
+  adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx && \
+  rm -rf /tmp/* && \
+  apk del ${build_pkgs} && \
+  rm -rf /var/cache/apk/*
+
+LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title "jauderho/nginx"
+LABEL org.opencontainers.image.description "nginx is a web server"
+
+COPY files/index.html /etc/nginx/html/
+COPY files/nginx.conf /etc/nginx/nginx.conf
+
+VOLUME ["/var/cache/nginx"]
+
+EXPOSE 80 443
+
+#ENTRYPOINT ["nginx"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
