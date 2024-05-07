@@ -42,6 +42,7 @@ REPO=(
 	"binwiederhier/ntfy" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \
+	"opentofu/opentofu" \
 	"prettier/prettier" \
 	"cilium/pwru" \
 	"rclone/rclone" \
