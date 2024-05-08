@@ -1,12 +1,13 @@
-FROM node:20-alpine3.19@sha256:fac6f741d51194c175c517f66bc3125588313327ad7e0ecd673e161e4fa807f3 AS build
+#FROM node:20-alpine3.19@sha256:fac6f741d51194c175c517f66bc3125588313327ad7e0ecd673e161e4fa807f3 AS build
+FROM node:22-alpine3.19@sha256:487dc5d5122d578e13f2231aa4ac0f63068becd921099c4c677c850df93bede8 AS build
 
 #WORKDIR /app
 WORKDIR /opt/node_app
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
-ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
-#ARG GIT_URL=https://github.com/jauderho/excalidraw.git
+#ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
+ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 #ARG NODE_ENV=production
 #ARG NODE_OPTIONS=--openssl-legacy-provider
 
