@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 ansible==9.5.1; python_version >= '3.10'
-ansible-compat==4.1.11; python_version >= '3.9'
+ansible-compat==24.5.1; python_version >= '3.9'
 ansible-core==2.16.6; python_version >= '3.10'
 ansible-lint==24.2.3; python_version >= '3.10'
 attrs==23.2.0; python_version >= '3.7'
@@ -27,7 +27,7 @@ mypy-extensions==1.0.0; python_version >= '3.5'
 packaging==24.0; python_version >= '3.7'
 pathspec==0.12.1; python_version >= '3.8'
 persist-queue==0.8.1
-platformdirs==4.2.1; python_version >= '3.8'
+platformdirs==4.2.2; python_version >= '3.8'
 pycparser==2.22; python_version >= '3.8'
 pygments==2.18.0; python_version >= '3.8'
 pyspnego==0.10.2; python_version >= '3.8'
