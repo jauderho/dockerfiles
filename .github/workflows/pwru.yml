@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         distro: [ubuntu, alpine]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       packages: write
 
