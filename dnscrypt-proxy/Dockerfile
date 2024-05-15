@@ -16,8 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	#&& go get -u all \
 	&& go mod download golang.org/x/sync \
-	&& go get -u golang.org/x/sys \
-	&& go get -u golang.org/x/tools \
+	&& go get -u golang.org/x/sys golang.org/x/tools \
+	&& go get -u google.golang.org/genproto \
 	&& go get -u all \
 	&& go mod tidy \
 	&& go mod vendor \
