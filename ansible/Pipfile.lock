@@ -48,12 +48,12 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:2ec67cc1719f56e63b1dfc3728d0c2c4142e531f4452f6ae31f618438d59469a",
-                "sha256:8aad0de454e0e803b0416a9c6e409302a8eb93c0f3866a98f035b96647e72213"
+                "sha256:a0deb4d58ce267632a26f7e9daf91cd4cd8c2ed783ddbb588a95f86785df20cc",
+                "sha256:cf1d9876c63cb26f6677170d4c64b18d8d944b359f8772cba73a2145f8b7a7ac"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==24.2.3"
+            "version": "==24.5.0"
         },
         "attrs": {
             "hashes": [
@@ -335,6 +335,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.7"
+        },
+        "importlib-metadata": {
+            "hashes": [
+                "sha256:30962b96c0c223483ed6cc7280e7f0199feb01a0e40cfae4d4450fc6fab1f570",
+                "sha256:b78938b926ee8d5f020fc4772d487045805a55ddbad2ecf21c6d60938dc7fcd2"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==7.1.0"
         },
         "jinja2": {
             "hashes": [
@@ -834,11 +842,11 @@
         },
         "wcmatch": {
             "hashes": [
-                "sha256:24c19cedc92bc9c9e27f39db4e1824d72f95bd2cea32b254a47a45b1a1b227ed",
-                "sha256:c0088c7f6426cf6bf27e530e2b7b734031905f7e490475fd83c7c5008ab581b3"
+                "sha256:17d3ad3758f9d0b5b4dedc770b65420d4dac62e680229c287bf24c9db856a478",
+                "sha256:a70222b86dea82fb382dd87b73278c10756c138bd6f8f714e2183128887b9eb2"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==8.5.1"
+            "markers": "python_version >= '3.12'",
+            "version": "==8.5.2"
         },
         "wheel": {
             "hashes": [
@@ -864,6 +872,14 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==1.35.1"
+        },
+        "zipp": {
+            "hashes": [
+                "sha256:206f5a15f2af3dbaee80769fb7dc6f249695e940acca08dfb2a4769fe61e538b",
+                "sha256:2884ed22e7d8961de1c9a05142eb69a247f120291bc0206a00a7642f09b5b715"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==3.18.1"
         }
     },
     "develop": {}
