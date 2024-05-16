@@ -12,8 +12,8 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.25.4"
-  BUILD_STABLE_VERSION: "1.24.0"
+  BUILD_VERSION: "1.26.0"
+  BUILD_STABLE_VERSION: "1.26.0"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -89,7 +89,7 @@ jobs:
           context: ${{ github.workflow }}
           file: ${{ github.workflow }}/Dockerfile.stable
           #platforms: linux/amd64,linux/arm64,linux/arm,linux/ppc64le,linux/s390x
-          platforms: linux/amd64,linux/arm64,linux/ppc64le
+          platforms: linux/amd64,linux/arm64
           #platforms: linux/amd64
           build-args: BUILD_STABLE_VERSION
           sbom: true
