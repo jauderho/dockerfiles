@@ -37,7 +37,7 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v2.4.0
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v2.4.0
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # master
@@ -76,7 +76,7 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v2.4.0
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v2.4.0
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3.6.4
@@ -113,7 +113,7 @@ jobs:
   #         disable-telemetry: false
           
   #     - name: Checkout code
-  #       uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v2.4.0
+  #       uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v2.4.0
 
   #     - name: Run Snyk to check ${{ matrix.image }} Docker image for vulnerabilities
   #       # Snyk can be used to break the build when it detects vulnerabilities.
