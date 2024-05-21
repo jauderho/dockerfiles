@@ -3,12 +3,12 @@
 certifi==2024.2.2; python_version >= '3.6'
 charset-normalizer==3.3.2; python_full_version >= '3.7.0'
 docker==7.0.0; python_version >= '3.8'
--e git+https://github.com/jauderho/docker-autocompose.git@bca9f1e9bbac3b48e208ed924b0f0161babbf687#egg=docker-autocompose
+-e git+https://github.com/jauderho/docker-autocompose.git@1222057286b7ec787b7a7904c6c423a170db75c6#egg=docker-autocompose
 idna==3.7; python_version >= '3.5'
 packaging==21.3; python_version >= '3.6'
 pyaml==24.4.0; python_version >= '3.8'
 pyparsing==3.1.2; python_full_version >= '3.6.8'
 pyyaml==6.0.1; python_version >= '3.6'
-requests==2.32.0; python_version >= '3.8'
+requests==2.32.1; python_version >= '3.8'
 six==1.16.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 urllib3==2.2.1; python_version >= '3.8'
