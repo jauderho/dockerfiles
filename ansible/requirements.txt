@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 ansible==9.5.1; python_version >= '3.10'
 ansible-compat==24.5.1; python_version >= '3.9'
-ansible-core==2.16.6; python_version >= '3.10'
+ansible-core==2.16.7; python_version >= '3.10'
 ansible-lint==24.5.0; python_version >= '3.10'
 attrs==23.2.0; python_version >= '3.7'
 bitmath==1.3.3.1
@@ -36,7 +36,7 @@ python-dateutil==2.9.0.post0; python_version >= '2.7' and python_version not in 
 pywinrm==0.4.3
 pyyaml==6.0.1; python_version >= '3.6'
 referencing==0.35.1; python_version >= '3.8'
-requests==2.32.0; python_version >= '3.8'
+requests==2.32.1; python_version >= '3.8'
 requests-ntlm==1.2.0; python_version >= '3.7'
 resolvelib==1.0.1
 retryz==0.1.9

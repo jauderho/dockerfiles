@@ -40,11 +40,11 @@
         },
         "ansible-core": {
             "hashes": [
-                "sha256:111e55d358c2297ec0ce03ba98e6c5ce95947fdf50d878215eb8c183d0c275e4",
-                "sha256:f9dea5044a86fd95cc27099f4f5c3ae9beb23acf7c3b6331455726c47825922b"
+                "sha256:3e1b0ed76ff40d8722f1b5bf19348b95ff226ef5157f7afd720e3da1369a4a6e",
+                "sha256:a8c8f4facba30514571d47abec5c62a5768b86fef3d80d724911c8f20b7b34b7"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==2.16.6"
+            "version": "==2.16.7"
         },
         "ansible-lint": {
             "hashes": [
@@ -602,11 +602,11 @@
         },
         "requests": {
             "hashes": [
-                "sha256:f2c3881dddb70d056c5bd7600a4fae312b2a300e39be6a118d30b90bd27262b5",
-                "sha256:fa5490319474c82ef1d2c9bc459d3652e3ae4ef4c4ebdd18a21145a47ca4b6b8"
+                "sha256:21ac9465cdf8c1650fe1ecde8a71669a93d4e6f147550483a2967d08396a56a5",
+                "sha256:eb97e87e64c79e64e5b8ac75cee9dd1f97f49e289b083ee6be96268930725685"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2.32.0"
+            "version": "==2.32.1"
         },
         "requests-ntlm": {
             "hashes": [
