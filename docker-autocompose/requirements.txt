@@ -2,8 +2,8 @@
 --extra-index-url https://www.piwheels.org/simple
 certifi==2024.2.2; python_version >= '3.6'
 charset-normalizer==3.3.2; python_full_version >= '3.7.0'
-docker==7.0.0; python_version >= '3.8'
--e git+https://github.com/jauderho/docker-autocompose.git@44d9fc254c419a31e0b720c84ee613341fe0d1f2#egg=docker-autocompose
+docker==7.1.0; python_version >= '3.8'
+-e git+https://github.com/jauderho/docker-autocompose.git@75fd82a40d32d9179ea56ac46cd5b76cee30b121#egg=docker-autocompose
 idna==3.7; python_version >= '3.5'
 packaging==21.3; python_version >= '3.6'
 pyaml==24.4.0; python_version >= '3.8'
