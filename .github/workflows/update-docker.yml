@@ -33,7 +33,7 @@ permissions: read-all
 
 jobs:
   update-docker:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
