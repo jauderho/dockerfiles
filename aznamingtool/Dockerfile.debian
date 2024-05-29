@@ -1,11 +1,11 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 ### BASE ###
-FROM mcr.microsoft.com/dotnet/aspnet:8.0@sha256:516d18718444d5af9cd5a55dc10095c55bfcf96606a15e3d03476d4e67d9139a AS base
-WORKDIR /app
-RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
-EXPOSE 80
-EXPOSE 443
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0@sha256:516d18718444d5af9cd5a55dc10095c55bfcf96606a15e3d03476d4e67d9139a AS base
+#WORKDIR /app
+#RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
+#EXPOSE 80
+#EXPOSE 443
 
 ### BUILD ###
 FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:935902ef9eee58a9226b906e3d6ff1b2abaca240c9d5b4ac8dca9943b26c8f33 AS build
@@ -32,7 +32,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apt-get clean
 
 ### FINAL ###
-FROM base AS final
+#FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0@sha256:516d18718444d5af9cd5a55dc10095c55bfcf96606a15e3d03476d4e67d9139a
 WORKDIR /app
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
@@ -43,6 +44,9 @@ LABEL org.opencontainers.image.title="jauderho/aznamingtool"
 LABEL org.opencontainers.image.description="AzNamingTool assists with the configuration and generation of Azure Resource names"
 
 RUN apt-get update && apt-get -y dist-upgrade --no-install-recommends
+
+EXPOSE 80
+EXPOSE 443
 
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "AzureNamingTool.dll"]
