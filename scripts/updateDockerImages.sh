@@ -18,7 +18,7 @@ REPO=(
 	"jauderho/cf-warp" \
 	"cloudflare/cloudflared" \
 	"coredns/coredns" \
-	"ddosify/ddosify" \
+	#"ddosify/ddosify" \
 	"StackExchange/dnscontrol" \
 	"DNSCrypt/dnscrypt-proxy" \
 	"projectdiscovery/dnsx" \
