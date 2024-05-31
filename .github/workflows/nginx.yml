@@ -12,7 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.26.0"
+  BUILD_VERSION: "1.27.0"
   OPENSSL_VERSION: "3.3.0"
   PCRE_VERSION: "10.43"
   DOCKER_CLI_EXPERIMENTAL: enabled
