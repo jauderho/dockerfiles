@@ -32,11 +32,11 @@
         },
         "ansible-compat": {
             "hashes": [
-                "sha256:120843817479077db9460751026c2c9e43892c59a4f5fea1979d69eeb3fcec6d",
-                "sha256:7fd0090ece253b487cf956d9e1eea37b0c4c83adba0337794ae66328fa5b4aad"
+                "sha256:1e1695454ea759b24beab7dfbeac18964553edca4a4ad0584567aa3eef491f0e",
+                "sha256:f93d4c347d8e1903c292449441c09a987d70366f9cadf9afe5e32dc8a0193cac"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==24.6.0"
+            "version": "==24.6.1"
         },
         "ansible-core": {
             "hashes": [
@@ -589,7 +589,7 @@
                 "sha256:fd1592b3fdf65fff2ad0004b5e363300ef59ced41c2e6b3a99d4089fa8c5435d",
                 "sha256:fd66fc5d0da6d9815ba2cebeb4205f95818ff4b79c3ebe268e75d961704af52f"
             ],
-            "markers": "python_version != '3.4'",
+            "markers": "python_version >= '3.6'",
             "version": "==6.0.1"
         },
         "referencing": {
