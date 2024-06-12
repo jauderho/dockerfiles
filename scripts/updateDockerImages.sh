@@ -13,12 +13,12 @@ REPO=(
 	"nakabonne/ali" \
 	"ansible/ansible" \
 	"OWASP/amass" \
+	"getanteon/anteon" \
 	"jauderho/bl3auto" \
 	"psf/black" \
 	"jauderho/cf-warp" \
 	"cloudflare/cloudflared" \
 	"coredns/coredns" \
-	#"ddosify/ddosify" \
 	"StackExchange/dnscontrol" \
 	"DNSCrypt/dnscrypt-proxy" \
 	"projectdiscovery/dnsx" \

@@ -43,6 +43,12 @@ updates:
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
+    directory: /anteon
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
     directory: /ansible
     schedule:
       interval: "daily"
@@ -164,6 +170,12 @@ updates:
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
     directory: /fq
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for Docker
+  - package-ecosystem: "docker"
+    directory: /freenginx
     schedule:
       interval: "daily"
 
