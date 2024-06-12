@@ -513,11 +513,11 @@
         },
         "pyspnego": {
             "hashes": [
-                "sha256:3d5c5c28dbd0cd6a679acf45219630254db3c0e5ad4a16de521caa0585b088c0",
-                "sha256:9a22c23aeae7b4424fdb2482450d3f8302ac012e2644e1cfe735cf468fcd12ed"
+                "sha256:17dda4fbf725094c440e68709601c1575db83d9c844c9efedf0ad4dd1b72e5a0",
+                "sha256:cdfe9af7b19749d692e02fd4bd1b4b71d44ecb8dd9b2474abb0f3d90f6154e7e"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==0.10.2"
+            "version": "==0.11.0"
         },
         "python-dateutil": {
             "hashes": [
@@ -589,7 +589,7 @@
                 "sha256:fd1592b3fdf65fff2ad0004b5e363300ef59ced41c2e6b3a99d4089fa8c5435d",
                 "sha256:fd66fc5d0da6d9815ba2cebeb4205f95818ff4b79c3ebe268e75d961704af52f"
             ],
-            "markers": "python_version >= '3.6'",
+            "markers": "python_version != '3.4'",
             "version": "==6.0.1"
         },
         "referencing": {
