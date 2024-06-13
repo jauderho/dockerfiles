@@ -33,7 +33,7 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
 
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v2
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v2
     - name: Build a Docker image
       run: docker build -t ${{ env.REPOSITORY }} ${{ env.APP }} --build-arg BUILD_VERSION
     - name: Run Snyk to check Docker image for vulnerabilities
