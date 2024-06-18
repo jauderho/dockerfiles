@@ -134,7 +134,8 @@
                 "sha256:32dbbd94c26f611dc5cc6979e6b7aa1f55a64d6b463cc1dcd3c95505a63e48fe",
                 "sha256:71e575744f1d23f79741450254660442785f45a0797212852ee5199ef12eed98",
                 "sha256:72d234e4582e9658ffea8e9cae5b63d488ad06994ef12d81dc303b17472f3526",
-                "sha256:9ace140fc6d647fbe1c692bcb2abce768973491222c067c131d80957c595b71f"
+                "sha256:9ace140fc6d647fbe1c692bcb2abce768973491222c067c131d80957c595b71f",
+                "sha256:fc182f8f4cda51b45f01c64e4cbedfc2f00aff799debebc305d8d0210c43f251"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.6'",
