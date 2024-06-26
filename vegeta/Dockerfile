@@ -16,6 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/tsenart/vegeta \
 	&& cd /go/src/github.com/tsenart/vegeta \
 	&& go get -u golang.org/x/sys golang.org/x/tools \
+	&& go get -u ./... \
 	&& go get -u all \
 	&& go mod tidy \
 	&& go build -o ./vegeta -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
