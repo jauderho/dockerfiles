@@ -16,7 +16,7 @@ COPY entrypoint.sh .
 RUN apt-get update && \
 	apt-get dist-upgrade -y && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip git qrencode wireguard-tools && \
-	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
+	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
 	git clone --depth 1 ${GIT_URL} && \
 	cd pia-wg && \
 	cp ca.rsa.4096.crt .. && \
