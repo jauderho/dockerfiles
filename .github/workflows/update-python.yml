@@ -68,4 +68,6 @@ jobs:
 
       - name: Update dependencies (${{ matrix.app }})
         run: |
+          git config --local user.name "Jauder Ho Bot"
+          git config --local user.email "jauderho-bot@users.noreply.github.com"
           scripts/updatePythonDeps.sh ${{ matrix.app }}

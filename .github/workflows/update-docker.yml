@@ -63,4 +63,6 @@ jobs:
 
       - name: Update dependencies
         run: |
+          git config --local user.name "Jauder Ho Bot"
+          git config --local user.email "jauderho-bot@users.noreply.github.com"
           PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh

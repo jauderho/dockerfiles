@@ -66,9 +66,9 @@ REPO=(
 )
 
 # setup git
-git config user.name "Jauder Ho Bot"
-git config user.email "jauderho-bot@users.noreply.github.com"
-git config pull.rebase false
+#git config --local user.name "Jauder Ho Bot"
+#git config --local user.email "jauderho-bot@users.noreply.github.com"
+#git config --local pull.rebase false
 
 # Pull in the latest version from GitHub and if there is a newer version, update GitHub Action to trigger a new build
 # Right noew it's just a string compare
