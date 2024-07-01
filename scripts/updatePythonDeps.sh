@@ -6,8 +6,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # setup git
-git config user.name "Jauder Ho"
-git config user.email "jauderho@users.noreply.github.com"
+git config user.name "Jauder Ho Bot"
+git config user.email "jauderho-bot@users.noreply.github.com"
 git config pull.rebase false
 
 # setup pipenv and python
