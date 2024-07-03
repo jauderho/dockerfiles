@@ -59,7 +59,7 @@ jobs:
  
       - name: Setup QEMU
         id: qemu
-        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v1.2.0
+        uses: docker/setup-qemu-action@5927c834f5b4fdf503fca6f4c7eccda82949e1ee # v1.2.0
       
       - name: Setup Buildx
         id: buildx
