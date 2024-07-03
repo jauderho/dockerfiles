@@ -27,7 +27,7 @@ mdurl==0.1.2; python_version >= '3.7'
 mypy-extensions==1.0.0; python_version >= '3.5'
 packaging==24.1; python_version >= '3.8'
 pathspec==0.12.1; python_version >= '3.8'
-persist-queue==0.8.1
+persist-queue==1.0.0
 platformdirs==4.2.2; python_version >= '3.8'
 pycparser==2.22; python_version >= '3.8'
 pygments==2.18.0; python_version >= '3.8'
