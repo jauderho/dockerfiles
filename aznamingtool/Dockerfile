@@ -31,7 +31,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 ### FINAL ###
 #FROM base AS final
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19@sha256:1f20a26ac6dafbac77823588c77ff35f0d9cf31b6a8a444262800e8e1a9a673d
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19@sha256:de73c1e1abd69d3ffa2658075ad4cd4edccfef37eb92ddda2c78f20173403238
 WORKDIR /app
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
