@@ -27,6 +27,7 @@ updates:
   - package-ecosystem: "docker"
     directories:
       - "/*"
+      - "/templates/*"
     open-pull-requests-limit: 25
     schedule:
       interval: "daily"
