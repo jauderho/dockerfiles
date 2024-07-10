@@ -1,4 +1,4 @@
-name: alpine
+name: golang
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - templates/alpine/*
-      - .github/workflows/alpine.yml
+      - .github/workflows/golang.yml
   workflow_dispatch:
   schedule:
     - cron: "0 8 * * 1"
