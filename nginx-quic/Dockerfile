@@ -57,7 +57,7 @@ RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev 
 
 
 #FROM nginx
-FROM ghcr.io/jauderho/alpine:3.20.1@sha256:cf7d1c3fd3bb25c1153f9fb9a5849f33c57b4aa8ce7d57a24f7ca91b7877538f
+FROM alpine:3.20.1@sha256:b89d9c93e9ed3597455c90a0b88a8bbb5cb7188438f70953fede212a0c4394e0
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
