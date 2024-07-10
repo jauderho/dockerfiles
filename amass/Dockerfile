@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:c8d60b1cdb14529d7178ab36ca08a7c8007315fad8edce2779e82da6c4f09a6b AS build
+FROM golang:1.22.5-alpine3.20@sha256:8c9183f715b0b4eca05b8b3dbf59766aaedb41ec07477b132ee2891ac0110a07 AS build
 
 WORKDIR /go/src/github.com/owasp/amass/
 
