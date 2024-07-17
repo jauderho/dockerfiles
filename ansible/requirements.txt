@@ -33,7 +33,7 @@ pycparser==2.22; python_version >= '3.8'
 pygments==2.18.0; python_version >= '3.8'
 pyspnego==0.11.0; python_version >= '3.8'
 python-dateutil==2.9.0.post0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
-pywinrm==0.4.3
+pywinrm==0.5.0
 pyyaml==6.0.1; python_version >= '3.6'
 referencing==0.35.1; python_version >= '3.8'
 requests==2.32.3; python_version >= '3.8'
