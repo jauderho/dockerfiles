@@ -42,11 +42,17 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: >
             api.github.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
             archive.ubuntu.com:80
             auth.docker.io:443
             boringssl.googlesource.com:443
             ghcr.io:443
             github.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
             hg.nginx.org:443
             ports.ubuntu.com:80
             production.cloudflare.docker.com:443
@@ -124,11 +130,17 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: >
             api.github.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
             auth.docker.io:443
             boringssl.googlesource.com:443
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
             hg.nginx.org:443
             production.cloudflare.docker.com:443
             proxy.golang.org:443
