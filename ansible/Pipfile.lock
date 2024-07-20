@@ -529,11 +529,12 @@
         },
         "pywinrm": {
             "hashes": [
-                "sha256:995674bf5ac64b2562c9c56540473109e530d36bde10c262d5a5296121ad5565",
-                "sha256:c476c1e20dd0875da6fe4684c4d8e242dd537025907c2f11e1990c5aee5c9526"
+                "sha256:5428eb1e494af7954546cd4ff15c9ef1a30a75e05b25a39fd606cef22201e9f1",
+                "sha256:c267046d281de613fc7c8a528cdd261564d9b99bdb7c2926221eff3263b700c8"
             ],
             "index": "pypi",
-            "version": "==0.4.3"
+            "markers": "python_version >= '3.8'",
+            "version": "==0.5.0"
         },
         "pyyaml": {
             "hashes": [
