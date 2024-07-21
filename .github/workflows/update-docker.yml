@@ -48,6 +48,7 @@ jobs:
             azure.archive.ubuntu.com:80
             files.pythonhosted.org:443
             github.com:443
+            pkg-containers.githubusercontent.com:443
             pypi.org:443
             security.ubuntu.com:443
 

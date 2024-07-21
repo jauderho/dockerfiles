@@ -37,6 +37,7 @@ jobs:
             dl-cdn.alpinelinux.org:443
             ghcr.io:443
             github.com:443
+            pkg-containers.githubusercontent.com:443
             index.docker.io:443
             keyserver.ubuntu.com:11371
             objects.githubusercontent.com:443
