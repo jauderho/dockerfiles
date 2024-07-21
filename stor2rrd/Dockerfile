@@ -115,7 +115,7 @@ RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd.cron /var/spoo
 # ADD http://downloads.sourceforge.net/project/stor2rrd/stor2rrd/$STOR_SF_DIR/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
 # download tarballs from official website
-ADD https://stor2rrd.com/download-static/stor2rrd-$STOR_VER.tar /tmp/
+ADD https://stor2rrd.com/download-static/stor2rrd/stor2rrd-$STOR_VER.tar /tmp/
 
 # extract tarballs
 WORKDIR /tmp
