@@ -71,27 +71,28 @@ REPO=(
 #git config --local user.email "jauderho-bot@users.noreply.github.com"
 #git config --local pull.rebase false
 
-# Pull in the latest version from GitHub and if there is a newer version, update GitHub Action to trigger a new build
-# Right noew it's just a string compare
+# Fetch the latest version from GitHub and if there is a newer version, update GitHub Action to trigger a new build
+# Right now it is just a string compare
 for i in "${REPO[@]}"
 do
 
 	prog=$(echo "$i" | sed -e "s/.*\///")
 	dver=$(grep "BUILD_VERSION:" ".github/workflows/${prog}.yml" | cut -d \" -f 2)
 
-	if [ "$i" != "ansible/ansible" ]; then
-		#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
-		#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/tags" | jq -r '.[0].name')
-		rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
-		#rver=$(curl -sL "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
-		#rver="2021.02.04.1"
-
-	else
-
-		# special case for ansible
-		# ansible is a pain and does not put the release tag in the same repo (ansible/ansible) but ansible-community/ansible-build-data instead
-		rver=$(curl -sL https://pypi.org/pypi/ansible/json | jq -r '.info.version')
-	fi
+	case $i in
+		"ansible/ansible")
+			# special case for ansible
+			# ansible is a pain and does not put the release tag in the same repo (ansible/ansible) but ansible-community/ansible-build-data instead
+			rver=$(curl -sL https://pypi.org/pypi/ansible/json | jq -r '.info.version')
+			;;
+		*)
+			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
+			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/tags" | jq -r '.[0].name')
+			rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
+			#rver=$(curl -sL "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
+			#rver="2021.02.04.1"
+			;;
+	esac
 
 	echo "Checking repo ... $prog"
 	echo 
@@ -107,13 +108,7 @@ do
 	if [ "$dver" != "$rver" ]; then
 
 		# Update python requirements as necessary
-		#if [ "$i" == "ansible/ansible" ] || [ "$i" == "nabla-c0d3/sslyze" ]; then
-		#	echo
-		#	scripts/updatePythonDeps.sh "$prog"
-		#fi
-
-		case $i in 
-			
+		case $i in 			
 			"ansible/ansible" | \
 			"astral-sh/ruff" | \
 			"nabla-c0d3/sslyze" | \
@@ -124,7 +119,6 @@ do
 			*)
 				# not a Python program
 				;;
-
 		esac
 
 		echo "Updating to ${rver} ..." 
@@ -142,4 +136,3 @@ do
 	echo
 	echo
 done
-
