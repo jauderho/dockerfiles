@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:42b7c5450e3cbda706037f99f39b8796a40762a1da28261557d1b9bc48a55c88 AS build
+FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:a1b45239d3106b511704fa58471c253b8d15f234da5df6040f7b64c54b0b1c62 AS build
 
 WORKDIR /go/src/github.com/buger/goreplay/
 

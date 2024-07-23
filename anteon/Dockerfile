@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:42b7c5450e3cbda706037f99f39b8796a40762a1da28261557d1b9bc48a55c88 AS build
+FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:a1b45239d3106b511704fa58471c253b8d15f234da5df6040f7b64c54b0b1c62 AS build
 
 WORKDIR /go/src/github.com/getanteon/anteon/
 
@@ -26,7 +26,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.20.1@sha256:35bd39e08ef27d15c99521e02fcd1a10ae282d63624f58cfca0f9154749e2c11
+FROM ghcr.io/jauderho/alpine:3.20.2@sha256:6f037df56ca0bf09c6854daa341457f5105b1f2ec73b52bc5090026770feb1be
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

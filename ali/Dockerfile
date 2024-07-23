@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:71e926c0d4b9c3bf1fba77305e6fdc0c4381fecdaaa68cc21364abb6a967a165 AS build
+FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:a1b45239d3106b511704fa58471c253b8d15f234da5df6040f7b64c54b0b1c62 AS build
 
 WORKDIR /go/src/github.com/nakabonne/ali/
 
