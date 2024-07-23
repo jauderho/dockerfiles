@@ -46,6 +46,7 @@ REPO=(
 	"prettier/prettier" \
 	"cilium/pwru" \
 	"rclone/rclone" \
+	"astral-sh/ruff" \
 	"authzed/spicedb" \
 	"jtesta/ssh-audit" \
 	"nabla-c0d3/sslyze" \
@@ -114,6 +115,7 @@ do
 		case $i in 
 			
 			"ansible/ansible" | \
+			"astral-sh/ruff" | \
 			"nabla-c0d3/sslyze" | \
 			"saulpw/visidata")
 				echo
