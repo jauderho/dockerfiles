@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - templates/alpine/*
+      - templates/golang/*
       - .github/workflows/golang.yml
   workflow_dispatch:
   schedule:
