@@ -24,7 +24,7 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-FROM ghcr.io/jauderho/alpine:3.20.2@sha256:6f037df56ca0bf09c6854daa341457f5105b1f2ec73b52bc5090026770feb1be
+FROM ghcr.io/jauderho/alpine:3.20.2@sha256:97f9a20d03b69a9ff4e18a0bf37c87d5d0cf325aa201093f8dd636a4c4e94f0b
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
