@@ -8,8 +8,6 @@ on:
       - templates/golang/*
       - .github/workflows/golang.yml
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * 1"
 
 env:
   BUILD_VERSION: "1.22.5-alpine3.20"

@@ -8,8 +8,6 @@ on:
       - templates/alpine/*
       - .github/workflows/alpine.yml
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * 1"
 
 env:
   BUILD_VERSION: "3.20.2"
