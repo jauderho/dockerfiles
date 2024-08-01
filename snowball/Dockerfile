@@ -1,13 +1,13 @@
 FROM ubuntu:24.04@sha256:2e863c44b718727c860746568e1d54afd13b2fa71b160f5cd9058fc436217b30
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowball-client-linux.tar.gz
+ARG TARBALL_URL=https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowball-client-linux.tar.gz
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl \
-	&& curl -L "${ARCHIVE_URL}" -o /tmp/snowball.tar.gz \
+	&& curl -L "${TARBALL_URL}" -o /tmp/snowball.tar.gz \
 	&& tar xzf /tmp/snowball.tar.gz --strip 1 -C /usr/local \
 	&& rm -rf /tmp/snowball.tar.gz \
 	&& apt-get purge -y curl \
