@@ -17,16 +17,28 @@ concurrency:
 permissions: read-all
 
 jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    outputs:
+      programs: ${{ steps.set-programs.outputs.programs }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+
+      - name: Read list of programs from file
+        id: set-programs
+        run: echo "programs=$(cat scripts/PROGRAMS | jq -R -s -c 'split("\n") | map(select(length > 0))')" >> $GITHUB_OUTPUT
+
   trivy:
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+    needs: prepare
     strategy:
       max-parallel: 20
       fail-fast: false
       matrix:
-        #image: [cloudflared]
-        image: [age, ali, amass, anteon, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, freenginx, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, opentofu, prettier, pwru, rclone, rdap, rustybgp, sftpd, snowball, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+        image: ${{fromJson(needs.prepare.outputs.programs)}}
     runs-on: ubuntu-24.04
 
     steps:
@@ -37,14 +49,14 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v2.4.0
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # master
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           #image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          image-ref: 'ghcr.io/jauderho/${{ matrix.image }}:latest'
+          image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           format: 'sarif'
           output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
@@ -64,8 +76,7 @@ jobs:
       max-parallel: 20
       fail-fast: false
       matrix:
-        #image: [cloudflared]
-        image: [age, ali, amass, anteon, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, freenginx, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, opentofu, prettier, pwru, rclone, rdap, ruff, rustybgp, sftpd, snowball, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+        image: ${{fromJson(needs.prepare.outputs.programs)}}
     runs-on: ubuntu-24.04
     
     steps:
@@ -76,7 +87,7 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v2.4.0
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: anchore/scan-action@d43cc1dfea6a99ed123bf8f3133f1797c9b44492 # v4.1.0
