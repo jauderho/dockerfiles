@@ -33,7 +33,7 @@ python3.12 -m pip install --no-cache-dir --upgrade --user pipenv certifi wheel s
 pipenv --python 3.12 lock && pipenv --python 3.12 requirements > requirements.txt
 
 git add Pipfile Pipfile.lock requirements.txt && \
-git commit -S -m "Update requirements for $1 ..." && \
+git commit -S -s -m "Update requirements for $1 ..." && \
 git pull && \
 git push
 
