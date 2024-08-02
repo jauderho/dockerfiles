@@ -14,7 +14,7 @@ on:
 env:
   BUILD_VERSION: "1.27.2"
   OPENSSL_VERSION: "3.3.1"
-  PCRE_VERSION: "10.43"
+  PCRE_VERSION: "10.44"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
 
