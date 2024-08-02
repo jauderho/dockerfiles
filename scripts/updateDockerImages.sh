@@ -125,7 +125,7 @@ do
 
 		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
-		git commit -s -m "Updated ${prog} to ${rver}" && \
+		git commit -S -m "Updated ${prog} to ${rver}" && \
 		git push
 
 	else
