@@ -14,6 +14,7 @@ on:
       - .github/workflows/catprinter.yml
       - .github/workflows/dkimpy.yml
       - .github/workflows/docker-autocompose.yml
+      - .github/workflows/ruff.yml
       - .github/workflows/sslyze.yml
       - .github/workflows/visidata.yml
       - .github/workflows/update-docker.yml
@@ -57,13 +58,24 @@ jobs:
         with:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
- 
- #     - name: Add pipenv
- #       run: |
- #         DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends pipenv python3.9
+
+      - name: Setup SSH keys
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
+          SSH_PUBLIC_KEY: ${{ secrets.JBOT_SSH_PUBLIC_KEY }}
+        run: |
+          mkdir -m 700 -p ~/.ssh
+          echo "$JBOT_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          echo "$JBOT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
+          chmod 600 ~/.ssh/id_ed25519
+          chmod 644 ~/.ssh/id_ed25519.pub
 
       - name: Update dependencies
         run: |
           git config --local user.name "Jauder Ho Bot"
           git config --local user.email "jauderho-bot@users.noreply.github.com"
+          git config --local user.signingkey ~/.ssh/id_ed25519.pub
+          git config --local gpg.format ssh
+          git config --local commit.gpgsign true
           PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
+          rm -rf ~/.ssh
