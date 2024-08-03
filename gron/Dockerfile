@@ -14,6 +14,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache git ca-certificates \ 
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/tomnomnom/gron \
 	&& cd /go/src/github.com/tomnomnom/gron \
+	&& go get -u ./... \
 	&& go build -v -trimpath -ldflags="-s -w"
 
 WORKDIR /config
