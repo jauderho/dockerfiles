@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.5-alpine3.20@sha256:a1b45239d3106b511704fa58471c253b8d15f234da5df6040f7b64c54b0b1c62 AS build
+FROM ghcr.io/jauderho/golang:1.22.6-alpine3.20@sha256:7a0ea1962711cbad3a370eaf7cbf6d3216596048746b4ff133f3c27c685ef238 AS build
 
 WORKDIR /go/src/github.com/yggdrasil-network/yggdrasil-go/
 
