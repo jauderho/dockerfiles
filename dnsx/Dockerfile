@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.22.6-alpine3.20@sha256:7a0ea1962711cbad3a370eaf7cbf6d3216596048746b4ff133f3c27c685ef238 AS build
+FROM ghcr.io/jauderho/golang:1.22.6-alpine3.20@sha256:1fd3c00db78749fbe841af819e4f52a5f11d23461c939f4615301c6fac412900 AS build
 
 WORKDIR /go/src/github.com/projectdiscovery/dnsx/
 
