@@ -15,8 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dry.tar.gz \
 	&& tar xzf /tmp/dry.tar.gz --strip 1 -C /go/src/github.com/moncho/dry \
 	#&& go get -u github.com/containerd/containerd@v1.6.21 \
-	&& go get -u github.com/docker/docker@v25.0.5 \
-	&& go get -u github.com/docker/cli@v25.0.5 \
+	&& go get -u github.com/docker/docker@v25.0.6 github.com/docker/cli@v25.0.6 \
 	#&& go get -u github.com/docker/distribution \
 	&& go get -u golang.org/x/net \
 	#&& go get -u all \
