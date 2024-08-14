@@ -1,5 +1,5 @@
 #FROM ubuntu:24.04@sha256:2e863c44b718727c860746568e1d54afd13b2fa71b160f5cd9058fc436217b30 AS build
-FROM golang:1.22.6-bookworm@sha256:d6ead8cf3be1e7373654ad279d19f1747430738e783608d62dd78eb255b8701d AS build
+FROM golang:1.23.0-bookworm@sha256:4bda3420962ddfc78467f81eb9c2880e29e53604c6c05eae597210fc0fe8b5bf AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
