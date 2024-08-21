@@ -1,5 +1,4 @@
-#FROM node:20-alpine3.19@sha256:fac6f741d51194c175c517f66bc3125588313327ad7e0ecd673e161e4fa807f3 AS build
-FROM node:22-alpine3.20@sha256:4162c8a0f1fef9d3b003eb1fd3d8a26db46815288832aa453d829f4129d4dfd3 AS build
+FROM node:22.6-alpine3.20@sha256:4162c8a0f1fef9d3b003eb1fd3d8a26db46815288832aa453d829f4129d4dfd3 AS build
 
 #WORKDIR /app
 WORKDIR /opt/node_app
@@ -48,7 +47,7 @@ RUN yarn build:app:docker
 
 
 # cgr.dev/chainguard/nginx:1.25.1@sha256:183318178aac1c4692a3de76d4fdece9d0c78329a3f91eded9949edbbb27d994
-FROM nginx:1.27.0-alpine3.19@sha256:a45ee5d042aaa9e81e013f97ae40c3dda26fbe98f22b6251acdf28e579560d55
+FROM nginx:1.27.1-alpine3.20@sha256:c04c18adc2a407740a397c8407c011fc6c90026a9b65cceddef7ae5484360158
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

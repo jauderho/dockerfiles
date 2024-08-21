@@ -1,0 +1,49 @@
+FROM oven/bun:1.1.7-alpine@sha256:2079a46121650eeec498e8d952dd3a70b7fd63a634092ccba918dabac8f0965e AS build
+
+WORKDIR /opt/node_app
+
+ARG BUILD_VERSION
+ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
+ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
+#ARG NODE_ENV=production
+#ARG NODE_OPTIONS=--openssl-legacy-provider
+
+RUN test -n "${BUILD_VERSION}" \
+    && apk update \
+    && apk upgrade -a \
+    && apk add --no-cache ca-certificates git \
+    && update-ca-certificates \
+    && git clone --depth 1 ${GIT_URL} .
+    #&& git clone --depth 1 ${GIT_URL} . \
+		#&& bun \
+    #&& bun build:app:docker \
+    #&& bun add cross-env react react-dom \
+    #&& bun --cwd ./excalidraw-app build:app:docker
+
+RUN bun install
+
+ARG NODE_ENV=production
+
+RUN bun --cwd ./excalidraw-app build:app:docker
+
+
+# ----------------------------------------------------------------------------
+
+
+
+FROM nginx:1.27.1-alpine3.20@sha256:c04c18adc2a407740a397c8407c011fc6c90026a9b65cceddef7ae5484360158
+
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/excalidraw"
+LABEL org.opencontainers.image.description="Excalidraw is a virtual whiteboard for sketching hand-drawn like diagrams."
+
+RUN apk update \
+    && apk upgrade -a
+
+#COPY --from=build /opt/node_app/build /usr/share/nginx/html
+COPY --from=build /opt/node_app/excalidraw-app/build /usr/share/nginx/html
+
+HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
