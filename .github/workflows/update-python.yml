@@ -66,12 +66,12 @@ jobs:
 
       - name: Setup SSH keys
         env:
-          JBOT_SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
-          JBOT_SSH_PUBLIC_KEY: ${{ secrets.JBOT_SSH_PUBLIC_KEY }}
+          BOT_SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
+          BOT_SSH_PUBLIC_KEY: ${{ secrets.JBOT_SSH_PUBLIC_KEY }}
         run: |
           mkdir -m 700 -p ~/.ssh
-          echo "$JBOT_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          echo "$JBOT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
+          echo "$BOT_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          echo "$BOT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
           chmod 600 ~/.ssh/id_ed25519
           chmod 644 ~/.ssh/id_ed25519.pub
 
@@ -79,6 +79,7 @@ jobs:
         run: |
           git config --global user.name "Jauder Ho Bot"
           git config --global user.email "jauderho-bot@users.noreply.github.com"
+	  git config --global pull.rebase false
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
