@@ -2,9 +2,9 @@
 --extra-index-url https://www.piwheels.org/simple
 aiodns==3.2.0
 authres==1.2.0
-cffi==1.16.0; python_version >= '3.8'
+cffi==1.17.0
 dkimpy[ARC,asyncio,ed25519]==1.1.8
-dnspython==2.6.1; python_version >= '3.8'
-pycares==4.4.0; python_version >= '3.8'
-pycparser==2.22; python_version >= '3.8'
-pynacl==1.5.0; python_version >= '3.6'
+dnspython==2.6.1
+pycares==4.4.0
+pycparser==2.22
+pynacl==1.5.0
