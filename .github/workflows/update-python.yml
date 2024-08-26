@@ -66,8 +66,8 @@ jobs:
 
       - name: Setup SSH keys
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
-          SSH_PUBLIC_KEY: ${{ secrets.JBOT_SSH_PUBLIC_KEY }}
+          JBOT_SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
+          JBOT_SSH_PUBLIC_KEY: ${{ secrets.JBOT_SSH_PUBLIC_KEY }}
         run: |
           mkdir -m 700 -p ~/.ssh
           echo "$JBOT_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
