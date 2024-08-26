@@ -79,7 +79,7 @@ jobs:
         run: |
           git config --global user.name "Jauder Ho Bot"
           git config --global user.email "jauderho-bot@users.noreply.github.com"
-	  git config --global pull.rebase false
+          git config --global pull.rebase false
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
