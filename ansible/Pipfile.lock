@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f0aec81ee52a7709bc2a7dc1abb14747d868d68ab4fd6d9dfae0af32d21f8d9a"
+            "sha256": "15fc7c2dff4afbb814db99e49281285535763f75cc7ce2333fa285a6615d4eda"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -461,10 +461,13 @@
             "version": "==0.1.2"
         },
         "mitogen": {
-            "editable": true,
-            "git": "https://github.com/jauderho/mitogen.git",
+            "hashes": [
+                "sha256:95eb034d67ecc27b343085e22ca02796a79ae629ef55aba5959520083fcd3d92",
+                "sha256:e4f15b89773194fc798d86299193cefa75563d8fac4391f1b239cb149453ffb1"
+            ],
+            "index": "pypi",
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "ref": "c95d41128f493f93574d7fff479745432aee7047"
+            "version": "==0.3.9"
         },
         "mypy-extensions": {
             "hashes": [
@@ -867,12 +870,12 @@
         },
         "wheel": {
             "hashes": [
-                "sha256:177f9c9b0d45c47873b619f5b650346d632cdc35fb5e4d25058e09c9e581433d",
-                "sha256:c45be39f7882c9d34243236f2d63cbd58039e360f85d0913425fbd7ceea617a8"
+                "sha256:2376a90c98cc337d18623527a97c31797bd02bad0033d41547043a1cbfbe448f",
+                "sha256:a29c3f2817e95ab89aa4660681ad547c0e9547f20e75b0562fe7723c9a2a9d49"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==0.42.0"
+            "markers": "python_version >= '3.8'",
+            "version": "==0.44.0"
         },
         "xmltodict": {
             "hashes": [
