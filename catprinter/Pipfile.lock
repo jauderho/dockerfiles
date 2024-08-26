@@ -33,45 +33,15 @@
         "catprinter": {
             "editable": true,
             "git": "https://github.com/jauderho/catprinter.git",
-            "ref": "c0308dc10bb51666d594dcf834d01ac97937e47d"
+            "ref": "8fcc2f755fef870fdb61b40ac6e251389e3aef62"
         },
         "dbus-fast": {
             "hashes": [
-                "sha256:09afe8d935378936932e8f68b3447951c393d9a1cad4d4c3cb76f11a4b9a4306",
-                "sha256:18f419ea7a959cda7de22af14a470f884831d5d94e7efc8c0d6c7f0199203c8b",
-                "sha256:1cf6a26eabd6fe8ec0e60f9e048391fec3523f5420329e9ae0efad503094bd22",
-                "sha256:2555fa222878368be1d6fc734b4490a8b37a8dce131800f907dbb3a3485b0919",
-                "sha256:36be14c8b5b16100bf8b5ef6aa5c6978cf1890f51dce48627375ddebedb36aed",
-                "sha256:3f817bbaea7373620539b9177930c4cafca16b468e3a0b9cc6b884e4ae3a0373",
-                "sha256:4149cecaa6c822502d0bb526b7c8461138f9b7122a6134923a2eac965c7643fa",
-                "sha256:4e2fb38464e42c22aead5037ce5100b1ef2bd7a1a7e777e33e2d42b43d09e78e",
-                "sha256:5df6dcc2fb8133d446f358fe121018d30a614217b8193808658f7fbe492437bb",
-                "sha256:64871200ca8904fdc9bb702d7669f01addcaa0ebfd7cc3a9748a631c0f259f8f",
-                "sha256:6a61c1311c283930eabbeeec53feb4edf60add3c984f1cff7b6a60e680d17aeb",
-                "sha256:6b35d6726c316c23b63a7c2e76d635b07cc135bf8174290059ec48bc9acf722c",
-                "sha256:6fb5f94e4077262fbdcea785f1b3cf6a1a08738bd497190137bd088f11de0d9c",
-                "sha256:74a86fea950a3e31b9186fb6499e0f59d91dc60ae13f0ea10783631d45399600",
-                "sha256:799cfadda3ee6ab04704764372be57fd0923ad7d9c426a0ccb5332cf26108b7a",
-                "sha256:81c96638dd60a84429c95f740d46acd4f027fa42527176560636221e10e6829e",
-                "sha256:ae55505cbdfb23d2b8ae6ba8ef32d153f5de7d12431ed5ebbab0ec91375fdb40",
-                "sha256:b050b7dfbe271374aecf81c755d7e6779a179b7ae6112086e0ffe028d3295fc2",
-                "sha256:b5fd3bc2b5cfc647f3176299c03500e816b7e7ccc7e711542bbe461b870f0de8",
-                "sha256:b983f5bb047b6ba0e40f2654ff80d82bc0a713250b8ad0cc585f2911e3add95b",
-                "sha256:c4a86bfb4f0c7fc7dd815451818967432bfc945973738126c4b3bf38a24ac94c",
-                "sha256:c74f488d6e70af306d95b70278f73ad7d85776cae513a9eab9a3f8e4f324c1ea",
-                "sha256:ccf794c62ab78b1d3b671155529d59e4618a6fc9a3c20e8b17bae5a98d4a2aa6",
-                "sha256:ce972c59772f463a8646dc76a319c3286e7abfa4f3e878a78da25cd9032c1aff",
-                "sha256:d601c20677f6fb4fc96e964db9d30c642ae3639a4731590dc5c42d1e90b1d419",
-                "sha256:dc7384f373da8b2b26a83bb0aad7e5d796b4d1ae0492c7038be1fd6263472bdf",
-                "sha256:deaa8ea9672c6dca140bccbd385a5553b191f29ff5fb7164974fadd47d06b2d1",
-                "sha256:e5632c22feda93c4b6ff544232f4e9629b6bb27a2e8c62844cb257d8901b594d",
-                "sha256:e94855875bd9eda0c3bf873ed8c13d42fe24e69acd1d5c4287a172047ab5526e",
-                "sha256:e9daaf9e5b499a98d21030c477e5d9b7367b9e86f42850a0a6c423070b7e67c7",
-                "sha256:ee9bdaf4f0fc78701a989ff57cf843406fbfea1fa4179a88a167c44bf23098ff",
-                "sha256:ef8a8fc4bc7eae0972181e7ca6b8303d9e47930f6df2929cde0b3dfa592ded00"
+                "sha256:1516eef9726da1de870adaad690ed4b2dc45d2c7e3926e07abb3ac5309fd04e2",
+                "sha256:72b59c51e882300fd7f6d5bec8fb84ae8dea58040ade1d15c62c7fd9fa546f35"
             ],
             "markers": "platform_system == 'Linux'",
-            "version": "==2.23.0"
+            "version": "==2.24.0"
         },
         "numpy": {
             "hashes": [
