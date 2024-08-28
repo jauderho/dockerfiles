@@ -605,7 +605,7 @@
                 "sha256:f753120cb8181e736c57ef7636e83f31b9c0d1722c516f7e86cf15b7aa57ff12",
                 "sha256:ff3824dc5261f50c9b0dfb3be22b4567a6f938ccce4587b38952d85fd9e9afe4"
             ],
-            "markers": "python_version != '3.4'",
+            "markers": "python_version >= '3.8'",
             "version": "==6.0.2"
         },
         "referencing": {
