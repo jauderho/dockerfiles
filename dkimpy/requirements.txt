@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 aiodns==3.2.0
 authres==1.2.0
-cffi==1.17.0
+cffi==1.17.1
 dkimpy[ARC,asyncio,ed25519]==1.1.8
 dnspython==2.6.1
 pycares==4.4.0
