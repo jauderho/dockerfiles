@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.23.0-alpine3.20@sha256:f5fed402ff548d387e4b5643f28f8c41ae53e73a2e2e382e6009e83a64185a27 AS build
+FROM ghcr.io/jauderho/golang:1.23.1-alpine3.20@sha256:eed28d1e78bf849c504230928c030edac93691c7fb413f36ee123f8d6cd8549b AS build
 
 WORKDIR /go/src/github.com/tomnomnom/gron/
 
