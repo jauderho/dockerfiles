@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 annotated-types==0.7.0
 cffi==1.17.1
-cryptography==42.0.8
+cryptography==43.0.1
 nassl==5.2.0
 pycparser==2.22
 pydantic==2.6.4
