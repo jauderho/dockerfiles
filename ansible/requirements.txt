@@ -14,7 +14,7 @@ cffi==1.17.1
 charset-normalizer==3.3.2
 click==8.1.7
 cryptography==43.0.1
-filelock==3.15.4
+filelock==3.16.0
 idna==3.8
 importlib-metadata==8.4.0
 jinja2==3.1.4
@@ -28,7 +28,7 @@ mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
 persist-queue==1.0.0
-platformdirs==4.2.2
+platformdirs==4.3.1
 pycparser==2.22
 pygments==2.18.0
 pyspnego==0.11.1
