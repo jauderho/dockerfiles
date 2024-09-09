@@ -47,7 +47,7 @@ RUN yarn build:app:docker
 
 
 # cgr.dev/chainguard/nginx:1.25.1@sha256:183318178aac1c4692a3de76d4fdece9d0c78329a3f91eded9949edbbb27d994
-FROM nginx:1.27.1-alpine3.20@sha256:c04c18adc2a407740a397c8407c011fc6c90026a9b65cceddef7ae5484360158
+FROM nginx:1.27.1-alpine3.20@sha256:a5127daff3d6f4606be3100a252419bfa84fd6ee5cd74d0feaca1a5068f97dcf
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
