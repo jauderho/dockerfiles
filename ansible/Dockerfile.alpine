@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.20.2@sha256:97f9a20d03b69a9ff4e18a0bf37c87d5d0cf325aa201093f8dd636a4c4e94f0b
+FROM ghcr.io/jauderho/alpine:3.20.3@sha256:3e7fb726bc952e1b23d658c2caaa36e01ef742ae680147db68161ab52b811148
 
 WORKDIR /ansible
 
