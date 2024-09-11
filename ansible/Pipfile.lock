@@ -48,12 +48,12 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:a2305f1d69a25be27810c64a32711d1d0463d2fda5b9308166362347aeda36e0",
-                "sha256:ca2edc7e4e80cf19df4b28cbf4c118f761ce6cdd6a5ef9c8561e454ed7af5a24"
+                "sha256:8273136ce544c50bb073e928fdf596a1a82c86db2463e98402c29b8616af5406",
+                "sha256:b8c9c94c6c3bc68b43bcf7b067e286f8201e341772c7d3dbdb0364ecab2b3944"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==24.7.0"
+            "version": "==24.9.0"
         },
         "attrs": {
             "hashes": [
@@ -348,11 +348,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:66f342cc6ac9818fc6ff340576acd24d65ba0b3efabb2b4ac08b598965a4a2f1",
-                "sha256:9a547d3bc3608b025f93d403fdd1aae741c24fbb8314df4b155675742ce303c5"
+                "sha256:45e54197d28b7a7f1559e60b95e7c567032b602131fbd588f1497f47880aa68b",
+                "sha256:71522656f0abace1d072b9e5481a48f07c138e00f079c38c8f883823f9c26bd7"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==8.4.0"
+            "version": "==8.5.0"
         },
         "jinja2": {
             "hashes": [
