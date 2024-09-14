@@ -137,15 +137,15 @@
         "docker-autocompose": {
             "editable": true,
             "git": "https://github.com/jauderho/docker-autocompose.git",
-            "ref": "b556c8a487e6fd47a4c633a0068da3f6e71417d6"
+            "ref": "da22dcebbac1273557b6f723242aabcf919af246"
         },
         "idna": {
             "hashes": [
-                "sha256:050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac",
-                "sha256:d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603"
+                "sha256:69297d5da0cc9281c77efffb4e730254dd45943f45bbfb461de5991713989b1e",
+                "sha256:e5c5dafde284f26e9e0f28f6ea2d6400abd5ca099864a67f576f3981c6476124"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.8"
+            "version": "==3.9"
         },
         "packaging": {
             "hashes": [
