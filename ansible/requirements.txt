@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 ansible==10.4.0
-ansible-compat==24.9.0
+ansible-compat==24.9.1
 ansible-core==2.17.4
 ansible-lint==24.9.0
 attrs==24.2.0
@@ -14,8 +14,8 @@ cffi==1.17.1
 charset-normalizer==3.3.2
 click==8.1.7
 cryptography==43.0.1
-filelock==3.16.0
-idna==3.9
+filelock==3.16.1
+idna==3.10
 importlib-metadata==8.5.0
 jinja2==3.1.4
 jsonschema==4.23.0
@@ -28,7 +28,7 @@ mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
 persist-queue==1.0.0
-platformdirs==4.3.3
+platformdirs==4.3.6
 pycparser==2.22
 pygments==2.18.0
 pyspnego==0.11.1
