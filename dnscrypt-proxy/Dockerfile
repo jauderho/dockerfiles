@@ -4,14 +4,18 @@ WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/DNSCrypt/dnscrypt-proxy/archive/
+ARG GIT_URL=https://github.com/DNSCrypt/dnscrypt-proxy.git
 
 ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc musl-dev \
+	&& apk add --no-cache ca-certificates curl git gcc musl-dev \
 	&& update-ca-certificates \
+	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/DNSCrypt/dnscrypt-proxy \
+	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/DNSCrypt/dnscrypt-proxy \
+	#&& cd /go/src/github.com/DNSCrypt/dnscrypt-proxy \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	#&& go get -u all \
@@ -22,7 +26,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go mod tidy \
 	&& go mod vendor \
 	#&& go mod tidy \
-	&& go build -v -trimpath -ldflags="-s -w"
+	&& go build -o ./dnscrypt-proxy -v -trimpath -ldflags="-s -w" .
 
 WORKDIR /config
 
