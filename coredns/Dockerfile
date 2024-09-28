@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.23.1-alpine3.20@sha256:e938cb9d43f33ee6ff576faf5bd4d3eac72be3eacde8538ef73c99db77cadf0d AS build
+FROM ghcr.io/jauderho/golang:1.23.1-alpine3.20@sha256:027a986ddfba3c8d80138db345dc9382ba1ccbb3bd27a0ae61714e2b9018f105 AS build
 
 WORKDIR /go/src/github.com/coredns/coredns/
 
