@@ -16,8 +16,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
 	&& go get -u github.com/cloudflare/circl github.com/go-jose/go-jose/v3 github.com/quic-go/quic-go google.golang.org/protobuf \
-	&& go mod vendor \
+	&& go get -u github.com/coredns/coredns \
 	&& go mod tidy \
+	&& go mod vendor \
 	&& go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
 	&& adduser -S cloudflared \
 	&& mkdir /etc/cloudflared
