@@ -25,6 +25,8 @@ RUN test -n "${BUILD_VERSION}" \
 #FROM scratch
 FROM ghcr.io/jauderho/alpine:3.20.3@sha256:7d51dd030c8c83a805f71a1487c8bc5673771985842515dc468ef52ace748ffe
 
+ARG BUILD_VERSION
+
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
@@ -55,6 +57,8 @@ EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 853/tcp\
 	853/udp 3000/tcp 3000/udp 5443/tcp 5443/udp 6060/tcp
 
 WORKDIR /opt/adguardhome/work
+
+ADD https://github.com/AdguardTeam/AdGuardHome/releases/download/${BUILD_VERSION}/AdGuardHome_frontend.tar.gz ..
 
 ENTRYPOINT ["/opt/adguardhome/AdGuardHome"]
 
