@@ -20,6 +20,7 @@ REPO=(
 	"cloudflare/cloudflared" \
 	"coredns/coredns" \
 	"StackExchange/dnscontrol" \
+	"dkimpy/dkimpy" \
 	"DNSCrypt/dnscrypt-proxy" \
 	"projectdiscovery/dnsx" \
 	"cloudskiff/driftctl" \
@@ -79,10 +80,10 @@ do
 	dver=$(grep "BUILD_VERSION:" ".github/workflows/${prog}.yml" | cut -d \" -f 2)
 
 	case $i in
-		"ansible/ansible")
-			# special case for ansible
-			# ansible is a pain and does not put the release tag in the same repo (ansible/ansible) but ansible-community/ansible-build-data instead
-			rver=$(curl -sL https://pypi.org/pypi/ansible/json | jq -r '.info.version')
+		"ansible/ansible" | \
+		"dkimpy/dkimpy")
+			# special case for ansible and dkimpy
+			rver=$(curl -sL https://pypi.org/pypi/${prog}/json | jq -r '.info.version')
 			;;
 		*)
 			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
@@ -109,6 +110,7 @@ do
 		# Update python requirements as necessary
 		case $i in 			
 			"ansible/ansible" | \
+			"dkimpy/dkimpy" | \
 			"astral-sh/ruff" | \
 			"nabla-c0d3/sslyze" | \
 			"saulpw/visidata")

@@ -1,4 +1,4 @@
-#FROM ghcr.io/jauderho/golang:1.23.2-alpine3.20@sha256:c57959d750dd3b3a5c8a13c1e1309c24ded2fedcddac73fc339962bbc7911d60 AS build
+#FROM ghcr.io/jauderho/golang:1.23.2-alpine3.20@sha256:b65012bef5b3e0a603c0479da8f799f385448f031f0f38d90f8b9634737c2f92 AS build
 FROM ghcr.io/jauderho/alpine:3.20.3@sha256:7d51dd030c8c83a805f71a1487c8bc5673771985842515dc468ef52ace748ffe AS build
 
 ARG BUILD_VERSION
