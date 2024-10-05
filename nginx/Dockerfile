@@ -39,7 +39,7 @@ RUN \
   git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
   echo "Patching..." && \
-  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.25.1+.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.27.2+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-1.25.3-reprioritize-chacha-openssl-1.1.1.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-gzip-207-status.patch && \
