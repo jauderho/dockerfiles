@@ -9,7 +9,8 @@ ARG GIT_URL=https://github.com/docker/docker-bench-security.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache git iproute2 docker-cli dumb-init \ 
+	&& apk add --no-cache git iproute2 dumb-init \ 
+	&& apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community docker-cli \ 
 	&& git clone --depth 1 ${GIT_URL} . \
 	&& apk del git
 
