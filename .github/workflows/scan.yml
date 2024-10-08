@@ -23,7 +23,7 @@ jobs:
       programs: ${{ steps.set-programs.outputs.programs }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871
 
       - name: Read list of programs from file
         id: set-programs
@@ -49,7 +49,7 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # master
@@ -87,7 +87,7 @@ jobs:
           disable-telemetry: false
           
       - name: Checkout code
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: anchore/scan-action@64a33b277ea7a1215a3c142735a1091341939ff5 # v4.1.2
@@ -124,7 +124,7 @@ jobs:
   #         disable-telemetry: false
           
   #     - name: Checkout code
-  #       uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v2.4.0
+  #       uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v2.4.0
 
   #     - name: Run Snyk to check ${{ matrix.image }} Docker image for vulnerabilities
   #       # Snyk can be used to break the build when it detects vulnerabilities.
