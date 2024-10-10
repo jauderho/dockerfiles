@@ -11,7 +11,7 @@ bracex==2.5.post1
 cachez==0.1.2
 certifi==2024.8.30
 cffi==1.17.1
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
 click==8.1.7
 cryptography==43.0.1
 filelock==3.16.1
@@ -23,7 +23,7 @@ jsonschema-specifications==2024.10.1
 markdown-it-py==3.0.0
 markupsafe==3.0.1
 mdurl==0.1.2
-mitogen==0.3.12
+mitogen==0.3.13
 mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
@@ -49,6 +49,6 @@ storops==1.2.11
 subprocess-tee==0.4.2
 urllib3==2.2.3
 wcmatch==10.0
-xmltodict==0.14.0
+xmltodict==0.14.1
 yamllint==1.35.1
 zipp==3.20.2
