@@ -337,12 +337,12 @@
         },
         "visidata": {
             "hashes": [
-                "sha256:30275fcd90294ecdb0d024e24bd655b7787a2ca367d64ea181f15fb470f74c38",
-                "sha256:38c38df08c1b48dde5f9ae1bdb02cb19f70acf0461d0e85cb14f9c002a77c05a"
+                "sha256:8c4484158f0851e4887e595542bd65bdd991de9c20652b442b3fd9742ce8b031",
+                "sha256:903d8bff23df18c794499bee2a653bdeff3a48f899638656287c704ceca63e8b"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==3.0.2"
+            "markers": "python_version >= '3.8'",
+            "version": "==3.1.1"
         },
         "wcwidth": {
             "hashes": [
