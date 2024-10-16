@@ -23,7 +23,7 @@ jsonschema-specifications==2024.10.1
 markdown-it-py==3.0.0
 markupsafe==3.0.1
 mdurl==0.1.2
-mitogen==0.3.13
+mitogen==0.3.14
 mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
