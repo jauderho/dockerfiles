@@ -7,12 +7,12 @@ COPY . .
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc g++ gcc-13 g++-13 mold make cmake perl libunwind-dev golang ca-certificates ninja-build && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git gcc g++ gcc-14 g++-14 mold make cmake perl libunwind-dev golang ca-certificates ninja-build && \
     git clone --depth 1 https://boringssl.googlesource.com/boringssl && \
     mkdir boringssl/build && \
     cd boringssl/build && \
-    export CC=/usr/bin/gcc-13 && \
-    export CXX=/usr/bin/g++-13 && \
+    export CC=/usr/bin/gcc-14 && \
+    export CXX=/usr/bin/g++-14 && \
     cmake -DCMAKE_LINKER=/usr/bin/mold -GNinja .. && \
     ninja
 
@@ -35,7 +35,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends me
       --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
       --build=nginx-quic \
       --with-http_v3_module \
-      --with-cc=/usr/bin/gcc-13 \
+      --with-cc=/usr/bin/gcc-14 \
       --with-cc-opt='-I/src/boringssl/include -fuse-ld=mold -O3 -march=native -pipe -flto=auto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-all -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2' \
       --with-ld-opt='-L/src/boringssl/build/ssl -L/src/boringssl/build/crypto -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' && \
     NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
