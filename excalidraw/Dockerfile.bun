@@ -21,10 +21,12 @@ RUN test -n "${BUILD_VERSION}" \
     #&& bun --cwd ./excalidraw-app build:app:docker
 
 RUN bun install
+RUN bun pm untrusted
 
 ARG NODE_ENV=production
 
-RUN bun --cwd ./excalidraw-app build:app:docker
+#RUN bun --cwd ./excalidraw-app run build:app:docker
+RUN cd ./excalidraw-app && bun run build:app:docker
 
 
 # ----------------------------------------------------------------------------

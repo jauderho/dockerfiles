@@ -34,6 +34,8 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& yarn build:app:docker
 	#&& yarn --cwd ./excalidraw-app build:app:docker
 
+#RUN yarn outdated
+RUN yarn upgrade
 RUN yarn --network-timeout 600000
 
 ARG NODE_ENV=production
