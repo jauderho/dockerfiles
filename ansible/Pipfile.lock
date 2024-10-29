@@ -478,12 +478,12 @@
         },
         "mitogen": {
             "hashes": [
-                "sha256:c2a39b845194fb7e31e916fad1a434eb61cbf3bc05b1a6367aa945ab355956f8",
-                "sha256:f57a33bf5608d1c77c3ff46804885dbbc6a1297bfa9b7105b0f38b7311b8debe"
+                "sha256:b8336df72553e8fd2e453da76c25226bf48f54337b0290605dcc277a567630ca",
+                "sha256:fdf85ddaf97ddfe2f14b3bf66ff388950e8142f755e1df21a093aa32ac1a4da2"
             ],
             "index": "pypi",
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "version": "==0.3.14"
+            "version": "==0.3.15"
         },
         "mypy-extensions": {
             "hashes": [
