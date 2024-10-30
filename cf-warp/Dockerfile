@@ -34,7 +34,9 @@ WORKDIR /app
 RUN apk update \
 	&& apk upgrade -a \
 	#&& apk --no-cache add --upgrade busybox ssl_client nodejs-current \
-	&& apk --no-cache add --upgrade busybox ssl_client nodejs \
+	#&& apk --no-cache add --upgrade busybox ssl_client nodejs \
+	&& apk add --no-cache --upgrade busybox ssl_client  \
+	&& apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community nodejs-current \
 	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /app .
