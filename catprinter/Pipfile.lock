@@ -70,7 +70,7 @@
                 "sha256:ecb8c9caf7e5bad8608482465f1902138e640311ac9319cb3198b3f011fb10fa",
                 "sha256:f0de5326a1166a2ab3da0b5f3e8aa8f4cfa006458de73cce789267d058b16d93"
             ],
-            "markers": "platform_system == 'Linux'",
+            "markers": "python_version >= '3.8' and python_version < '4.0'",
             "version": "==2.24.3"
         },
         "numpy": {
