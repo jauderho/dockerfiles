@@ -25,7 +25,7 @@ markupsafe==3.0.2
 mdurl==0.1.2
 mitogen==0.3.18
 mypy-extensions==1.0.0
-packaging==24.1
+packaging==24.2
 pathspec==0.12.1
 persist-queue==1.0.0
 platformdirs==4.3.6
