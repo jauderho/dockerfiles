@@ -5,6 +5,6 @@ authres==1.2.0
 cffi==1.17.1
 dkimpy[ARC,asyncio,ed25519]==1.1.8
 dnspython==2.7.0
-pycares==4.4.0
+pycares==4.5.0
 pycparser==2.22
 pynacl==1.5.0
