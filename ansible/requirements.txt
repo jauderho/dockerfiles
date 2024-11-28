@@ -13,7 +13,7 @@ certifi==2024.8.30
 cffi==1.17.1
 charset-normalizer==3.4.0
 click==8.1.7
-cryptography==43.0.3
+cryptography==44.0.0
 filelock==3.16.1
 idna==3.10
 importlib-metadata==8.5.0
