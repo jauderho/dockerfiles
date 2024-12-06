@@ -108,7 +108,7 @@ ENV STOR_VER "${BUILD_VERSION}"
 EXPOSE 80
 
 COPY configs/crontab /var/spool/cron/crontabs/stor2rrd
-RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd.cron /var/spool/cron/crontabs/stor2rrd
+RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd:cron /var/spool/cron/crontabs/stor2rrd
 
 # download tarballs from SF
 # ADD http://downloads.sourceforge.net/project/lpar2rrd/lpar2rrd/$LPAR_SF_DIR/lpar2rrd-$LPAR_VER.tar /home/lpar2rrd/
