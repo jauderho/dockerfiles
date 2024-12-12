@@ -3,7 +3,7 @@
 ansible==11.1.0
 ansible-compat==24.10.0
 ansible-core==2.18.1
-ansible-lint==24.10.0
+ansible-lint==24.12.1
 attrs==24.2.0
 bitmath==1.3.3.1
 black==24.10.0
@@ -20,9 +20,7 @@ importlib-metadata==8.5.0
 jinja2==3.1.4
 jsonschema==4.23.0
 jsonschema-specifications==2024.10.1
-markdown-it-py==3.0.0
 markupsafe==3.0.2
-mdurl==0.1.2
 mitogen==0.3.19
 mypy-extensions==1.0.0
 packaging==24.2
@@ -30,7 +28,6 @@ pathspec==0.12.1
 persist-queue==1.0.0
 platformdirs==4.3.6
 pycparser==2.22
-pygments==2.18.0
 pyspnego==0.11.2
 python-dateutil==2.9.0.post0
 pywinrm==0.5.0
@@ -40,7 +37,6 @@ requests==2.32.3
 requests-ntlm==1.3.0
 resolvelib==1.0.1
 retryz==0.1.9
-rich==13.9.4
 rpds-py==0.22.3
 ruamel.yaml==0.18.6
 ruamel.yaml.clib==0.2.12
