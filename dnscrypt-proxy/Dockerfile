@@ -22,6 +22,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go mod download golang.org/x/sync \
 	&& go get -u golang.org/x/sys golang.org/x/tools \
 	&& go get -u google.golang.org/genproto \
+	&& go get -u golang.org/x/crypto \
 	&& go get -u ./... \
 	&& go mod tidy \
 	&& go mod vendor \

@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/netmaker.tar.gz \
 	&& tar xzf /tmp/netmaker.tar.gz --strip 1 -C /go/src/github.com/gravitl/netmaker \
 	&& go get -u github.com/go-jose/go-jose/v3 golang.org/x/net \
+	&& go get -u golang.org/x/crypto \
 	&& go mod tidy \
 	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ./netmaker -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" . 
 

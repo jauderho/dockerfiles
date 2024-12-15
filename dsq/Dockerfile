@@ -16,6 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/multiprocessio/dsq \
 	&& go get -u google.golang.org/protobuf golang.org/x/net \
 	&& go get -u github.com/snowflakedb/gosnowflake \
+	&& go get -u golang.org/x/crypto \
 	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w"
 

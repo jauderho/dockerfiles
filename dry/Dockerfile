@@ -18,6 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u github.com/docker/docker@v25.0.6 github.com/docker/cli@v25.0.6 \
 	#&& go get -u github.com/docker/distribution \
 	&& go get -u golang.org/x/net \
+	&& go get -u golang.org/x/crypto \
 	#&& go get -u all \
 	&& go build -o dry-bin -v -trimpath -ldflags="-s -w" 
 
