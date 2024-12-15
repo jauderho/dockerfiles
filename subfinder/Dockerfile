@@ -16,6 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/subfinder.tar.gz --strip 1 -C /go/src/github.com/projectdiscovery/subfinder \
 	&& cd v2 \
 	&& go get -u github.com/quic-go/quic-go \
+	&& go get -u golang.org/x/crypto \
 	&& go mod tidy \
 	&& go build -o subfinder -v -trimpath -ldflags="-s -w" cmd/subfinder/main.go 
 
