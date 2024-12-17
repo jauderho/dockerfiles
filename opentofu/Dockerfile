@@ -19,9 +19,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
 	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
 	&& cd /go/src/github.com/opentofu/opentofu \
-	&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
-	&& go get -u go.opentelemetry.io/otel/sdk/trace \
-	&& go mod tidy \
+	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
+	#&& go get -u go.opentelemetry.io/otel/sdk/trace \
+	&& go get -u golang.org/x/crypto  \
+	#&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \

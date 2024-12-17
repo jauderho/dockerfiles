@@ -16,9 +16,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/terraform.tar.gz \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
-	&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
-	&& go get -u go.opentelemetry.io/otel/sdk/trace \
-	&& go mod tidy \
+	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
+	#&& go get -u go.opentelemetry.io/otel/sdk/trace \
+	&& go get -u golang.org/x/crypto \
+	#&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w" \
 	&& cp terraform /go/bin/terraform \
 	&& go clean && go clean -cache && go clean -modcache 
