@@ -21,7 +21,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	&& go get -u go.opentelemetry.io/otel/sdk/trace \
-	&& go get -u golang.org/x/crypto \
 	&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
