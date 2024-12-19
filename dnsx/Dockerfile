@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnsx.tar.gz \
 	&& tar xzf /tmp/dnsx.tar.gz --strip 1 -C /go/src/github.com/projectdiscovery/dnsx \
 	&& go get -u github.com/quic-go/quic-go \
-	&& go get -u golang.org/x/crypto \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& go build -o dnsx -v -trimpath -ldflags="-s -w" cmd/dnsx/dnsx.go 
 

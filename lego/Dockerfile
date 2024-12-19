@@ -17,7 +17,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/lego.tar.gz \
 	&& tar xzf /tmp/lego.tar.gz --strip 1 -C /go/src/github.com/go-acme/lego \
 	&& go get -u google.golang.org/grpc google.golang.org/protobuf \
-	&& go get -u golang.org/x/crypto \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& make build \
 	&& strip /go/src/github.com/go-acme/lego/dist/lego \

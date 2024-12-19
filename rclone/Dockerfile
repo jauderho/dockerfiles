@@ -15,7 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/rclone.tar.gz \
 	&& tar xzf /tmp/rclone.tar.gz --strip 1 -C /go/src/github.com/rclone/rclone \
 	&& go get -u golang.org/x/net \
-	&& go get -u golang.org/x/crypto \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& go build -o rclone -v -trimpath -ldflags="-s -w" 
 
