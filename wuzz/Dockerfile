@@ -15,6 +15,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/asciimoo/wuzz \
 	&& cd /go/src/github.com/asciimoo/wuzz \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go build -v -trimpath -ldflags="-s -w" . 
 
 WORKDIR /config
