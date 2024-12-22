@@ -15,6 +15,7 @@ pyaml = "*"
 docker = "*"
 #six = "*"
 #packaging = "==21.3"
+packaging = "*"
 
 [dev-packages]
 
