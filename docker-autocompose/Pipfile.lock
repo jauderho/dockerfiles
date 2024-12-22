@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "64f406ece33f600bd2a51d56dcdb6f5be34aae33bdce8e716c84eb84749438f4"
+            "sha256": "b2bb8bec117043c97e2e7fc58b3f14cc44e3743b71f7a6b1421c5d3f97d5470b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -152,7 +152,7 @@
         "docker-autocompose": {
             "editable": true,
             "git": "https://github.com/jauderho/docker-autocompose.git",
-            "ref": "5b398c76e846faa5369c924749dd21d6220ae46a"
+            "ref": "57dd0ed5a830a4661d66f456a8ba079f9412296b"
         },
         "idna": {
             "hashes": [
@@ -162,31 +162,14 @@
             "markers": "python_version >= '3.6'",
             "version": "==3.10"
         },
-        "packaging": {
-            "hashes": [
-                "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb",
-                "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.6'",
-            "version": "==21.3"
-        },
         "pyaml": {
             "hashes": [
-                "sha256:31080551502f1014852b3c966a96c796adc79b4cf86e165f28ed83455bf19c62",
-                "sha256:e78dee8b0d4fed56bb9fa11a8a7858e6fade1ec70a9a122cee6736efac3e69b5"
+                "sha256:3938c2b47924ed74524f844961a011852f7968fb8cc7b3933276087c5d1e45b3",
+                "sha256:97ed4d31ecc1d7bb93f3d2a66e53548c53d6f572d75d166957abc64a06033b76"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==24.9.0"
-        },
-        "pyparsing": {
-            "hashes": [
-                "sha256:93d9577b88da0bbea8cc8334ee8b918ed014968fd2ec383e868fb8afb1ccef84",
-                "sha256:cbf74e27246d595d9a74b186b810f6fbb86726dbf3b9532efb343f6d7294fe9c"
-            ],
-            "markers": "python_version >= '3.9'",
-            "version": "==3.2.0"
+            "version": "==24.12.1"
         },
         "pyyaml": {
             "hashes": [
@@ -255,22 +238,13 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.32.3"
         },
-        "six": {
-            "hashes": [
-                "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
-                "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
-            "version": "==1.17.0"
-        },
         "urllib3": {
             "hashes": [
-                "sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac",
-                "sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9"
+                "sha256:1cee9ad369867bfdbbb48b7dd50374c0967a0bb7710050facf0dd6911440e3df",
+                "sha256:f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==2.2.3"
+            "markers": "python_version >= '3.9'",
+            "version": "==2.3.0"
         }
     },
     "develop": {}
