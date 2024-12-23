@@ -12,12 +12,12 @@ cachez==0.1.2
 certifi==2024.12.14
 cffi==1.17.1
 charset-normalizer==3.4.0
-click==8.1.7
+click==8.1.8
 cryptography==44.0.0
 filelock==3.16.1
 idna==3.10
 importlib-metadata==8.5.0
-jinja2==3.1.4
+jinja2==3.1.5
 jsonschema==4.23.0
 jsonschema-specifications==2024.10.1
 markupsafe==3.0.2
@@ -43,7 +43,7 @@ ruamel.yaml.clib==0.2.12
 six==1.17.0
 storops==1.2.11
 subprocess-tee==0.4.2
-urllib3==2.2.3
+urllib3==2.3.0
 wcmatch==10.0
 xmltodict==0.14.2
 yamllint==1.35.1
