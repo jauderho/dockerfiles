@@ -38,7 +38,7 @@ requests-ntlm==1.3.0
 resolvelib==1.0.1
 retryz==0.1.9
 rpds-py==0.22.3
-ruamel.yaml==0.18.7
+ruamel.yaml==0.18.8
 ruamel.yaml.clib==0.2.12
 six==1.17.0
 storops==1.2.11
