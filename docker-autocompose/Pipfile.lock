@@ -160,12 +160,12 @@
         },
         "pyaml": {
             "hashes": [
-                "sha256:3938c2b47924ed74524f844961a011852f7968fb8cc7b3933276087c5d1e45b3",
-                "sha256:97ed4d31ecc1d7bb93f3d2a66e53548c53d6f572d75d166957abc64a06033b76"
+                "sha256:33a93ac49218f57e020b81e280d2706cea554ac5a76445ac79add760d019c709",
+                "sha256:f7b40629d2dae88035657c860f539db3525ddd0120a11e0bcb44d47d5968b3bc"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==24.12.1"
+            "version": "==25.1.0"
         },
         "pyyaml": {
             "hashes": [
