@@ -36,7 +36,7 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     needs: prepare
     strategy:
-      max-parallel: 20
+      max-parallel: 25
       fail-fast: false
       matrix:
         image: ${{fromJson(needs.prepare.outputs.programs)}}
@@ -74,7 +74,7 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
     needs: [prepare, trivy]
     strategy:
-      max-parallel: 20
+      max-parallel: 25
       fail-fast: false
       matrix:
         image: ${{fromJson(needs.prepare.outputs.programs)}}
@@ -110,11 +110,10 @@ jobs:
   #     security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
   #   needs: anchore
   #   strategy:
-  #     max-parallel: 10
+  #     max-parallel: 20
   #     fail-fast: false
   #     matrix:
-  #       #image: [cloudflared]
-  #       image: [age, ali, amass, ansible, aznamingtool, bl3auto, black, catprinter, cf-warp, cloudflared, coredns, ddosify, dhcp-helper, dive, dkimpy, dnscontrol, dnscrypt-proxy, dnsx, docker-autocompose, docker-bench-security, driftctl, dry, dsq, excalidraw, fq, gobgp, gocannon, goplay2, goreplay, gotip, gron, hakrawler, headscale, httpie-go, httprobe, httpx, imapsync, lego, log4j-scan, logmepwn, lpar2rrd, miller, nebula, netmaker, nginx, ntfy, octosql, onetun, opentofu, prettier, pwru, rclone, rdap, ruff, rustybgp, sftpd, snowball, spicedb, ssh-audit, sslyze, stor2rrd, subfinder, tailscale, terraform, testssl.sh, textql, tftpd, toxiproxy, trufflehog, unbound, vegeta, visidata, watchtower, whois, wuzz, yggdrasil-go, yt-dlp, zola]
+  #      image: ${{fromJson(needs.prepare.outputs.programs)}}
   #   runs-on: ubuntu-24.04
 
   #   steps:
