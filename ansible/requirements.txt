@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 ansible==11.1.0
-ansible-compat==25.0.0
+ansible-compat==24.10.0
 ansible-core==2.18.1
 ansible-lint==24.12.2
 attrs==24.3.0
