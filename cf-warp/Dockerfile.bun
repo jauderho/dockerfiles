@@ -1,4 +1,4 @@
-FROM oven/bun:1.1.45-alpine@sha256:ae1ee3f0e326ad8ae886bd500929e7f4fcb4986a1455d6d6ab2f3c2498036aad AS build
+FROM oven/bun:1.2.0-alpine@sha256:f857945c180d6f3dca180961ff2753c1f0b372ccb7b04af4257c2243b7e8201e AS build
 
 WORKDIR /app
 
