@@ -48,12 +48,12 @@
         },
         "ansible-lint": {
             "hashes": [
-                "sha256:ce7a783ce4f053a965e31f308cdb57554259052efea04b8491c9704f11095e54",
-                "sha256:f636309c4e7f724fc1a544df529c4c2354f54cf35ede11d750366afb1158a464"
+                "sha256:9553b2aee124999b2005140bf27619793910454fcf2381e25ceb5b21f7384eed",
+                "sha256:e4d657578a8354832a84a1d5a2b9225a78b9c5fefa8880506b7fa0347d6b5f7e"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==24.12.2"
+            "version": "==25.1.0"
         },
         "attrs": {
             "hashes": [
@@ -334,11 +334,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:2082e5703d51fbf98ea75855d9d5527e33d8ff23099bec374a134febee6946b0",
-                "sha256:c249fbfcd5db47e5e2d6d62198e565475ee65e4831e2561c8e313fa7eb961435"
+                "sha256:533dc2f7ba78dc2f0f531fc6c4940addf7b70a481e269a5a3b93be94ffbe8338",
+                "sha256:ee4e77401ef576ebb38cd7f13b9b28893194acc20a8e68e18730ba9c0e54660e"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==3.16.1"
+            "markers": "python_version >= '3.9'",
+            "version": "==3.17.0"
         },
         "idna": {
             "hashes": [
@@ -350,11 +350,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:45e54197d28b7a7f1559e60b95e7c567032b602131fbd588f1497f47880aa68b",
-                "sha256:71522656f0abace1d072b9e5481a48f07c138e00f079c38c8f883823f9c26bd7"
+                "sha256:02a89390c1e15fdfdc0d7c6b25cb3e62650d0494005c97d6f148bf5b9787525e",
+                "sha256:310b41d755445d74569f993ccfc22838295d9fe005425094fad953d7f15c8580"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==8.5.0"
+            "markers": "python_version >= '3.9'",
+            "version": "==8.6.1"
         },
         "jinja2": {
             "hashes": [
@@ -449,12 +449,12 @@
         },
         "mitogen": {
             "hashes": [
-                "sha256:9aa017fcb262b70b8fb481db49987f1513a9b483f8b14c6ef14f1e7ea7947fed",
-                "sha256:b8d18b7b0be6a34bfbbd9ab6d5896a82af8cdebb2eed44773fbfd51bb581342f"
+                "sha256:626c31973c5e323795b654d8d963fccdee1e59f05e9608933dbc473047448762",
+                "sha256:90fe95f831dd4baf2ae11554746f7cb76b21222af9edfa07127431c8582c1918"
             ],
             "index": "pypi",
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "version": "==0.3.20"
+            "version": "==0.3.21"
         },
         "mypy-extensions": {
             "hashes": [
