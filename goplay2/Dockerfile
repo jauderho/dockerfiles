@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.23.5-alpine3.21@sha256:17c572a41e4d236d72a1fab8b4e04751a46fc3239a225c3fac7d2b41b84a339b AS build
+FROM ghcr.io/jauderho/golang:1.23.5-alpine3.21@sha256:9d07aef84b1aabde0c5dddd3f6153a09551db52b840749400639398959368561 AS build
 
 WORKDIR /go/src/github.com/openairplay/goplay2/
 
