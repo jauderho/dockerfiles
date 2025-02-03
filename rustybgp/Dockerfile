@@ -1,6 +1,6 @@
 #FROM rust:bullseye AS build
 FROM rust:1.84.1-alpine3.21@sha256:18be086bb0b8b45a04e6cb1a55863852cfdf81d7abed75ea588acb7f4aa6748e AS build
-#FROM ghcr.io/jauderho/alpine:3.21.2@sha256:ae4eeb37e8b2b5b3ec8439c2f00f7fdce6939c7f3867a7c3d2a4dddbfa257d34 AS build
+#FROM ghcr.io/jauderho/alpine:3.21.2@sha256:b4204281fb27e81009c63d368ed26377a2657689304189f3470ec6d977af1a2a AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
 #COPY Cargo.toml Cargo.toml
