@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
 bleak==0.22.3
--e git+https://github.com/jauderho/catprinter.git@7c4d770bc525c9e7184b35fc2580faebd76db100#egg=catprinter
-dbus-fast==2.32.0
+-e git+https://github.com/jauderho/catprinter.git@375c218c470479e80eac436ff2441c144c31f9b2#egg=catprinter
+dbus-fast==2.33.0
 numpy==2.2.2
 opencv-python==4.11.0.86
