@@ -81,7 +81,7 @@ RUN \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC && \
+  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC || make -j1 && \
   ccache -s && \
   strip objs/nginx && \
   make install && \
