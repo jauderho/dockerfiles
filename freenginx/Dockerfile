@@ -81,7 +81,7 @@ RUN \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC || make -j1 && \
+  PATH="/usr/lib/ccache:${PATH}" make -j1 && \
   ccache -s && \
   strip objs/nginx && \
   make install && \
@@ -92,6 +92,7 @@ RUN \
   apk del ${build_pkgs} && \
   rm -rf /var/cache/apk/*
 
+#  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC || make -j1 && \
 #    --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
