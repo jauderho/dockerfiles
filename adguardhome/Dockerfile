@@ -16,7 +16,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/adguardteam/adguardhome \
 	&& cd /go/src/github.com/adguardteam/adguardhome \
 	&& go get -u golang.org/x/crypto golang.org/x/net github.com/quic-go/quic-go \
-	&& go build -v -trimpath -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${BUILD_VERSION}" . 
+	&& go build -v -trimpath -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${BUILD_VERSION}" . \
+	&& cp AdGuardHome /go/bin/AdGuardHome \
+	&& go clean && go clean -cache && go clean -modcache 
 
 
 # ----------------------------------------------------------------------------
@@ -40,7 +42,8 @@ RUN apk update \
 	&& mkdir -p /opt/adguardhome/conf /opt/adguardhome/work \
 	&& chown -R nobody: /opt/adguardhome
 
-COPY --chown=nobody:nogroup --from=build /go/src/github.com/adguardteam/adguardhome/AdGuardHome /opt/adguardhome/AdGuardHome
+#COPY --chown=nobody:nogroup --from=build /go/src/github.com/adguardteam/adguardhome/AdGuardHome /opt/adguardhome/AdGuardHome
+COPY --chown=nobody:nogroup --from=build /go/bin/AdGuardHome /opt/adguardhome/AdGuardHome
 
 RUN setcap 'cap_net_bind_service=+eip' /opt/adguardhome/AdGuardHome
 

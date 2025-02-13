@@ -19,8 +19,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/snyk/driftctl \
 	&& cd /go/src/github.com/snyk/driftctl \
 	#&& go get -u github.com/hashicorp/go-getter github.com/dgrijalva/jwt-go golang.org/x/net golang.org/x/crypto golang.org/x/net \
-	&& go get -u github.com/dgrijalva/jwt-go golang.org/x/crypto golang.org/x/net \
-	&& go get -u github.com/go-git/go-git/v5 \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u github.com/go-git/go-git/v5 github.com/hashicorp/go-slug github.com/golang-jwt/jwt/v4 \
 	#&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
