@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.0-alpine3.21@sha256:157489c5bfe3d9b577009dcc142e1323666ea25d42353d9adabdd434c8a0a007 AS build
+FROM ghcr.io/jauderho/golang:1.24.0-alpine3.21@sha256:c7277c1bd5c33d3bfe0c00a404fb667827fbeaa5fbf515e3cabdff0c170e3c02 AS build
 
 WORKDIR /go/src/github.com/openairplay/goplay2/
 
@@ -26,7 +26,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:1b1fc889769b514ff40409425a8ef8e6718c2731e5b87409bef393ed05e6d3da
+FROM ghcr.io/jauderho/alpine:3.21.3@sha256:8213095e3d59b3739372e8e8dac2ab7adab19754c0899b66cc2062a7a97586ed
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

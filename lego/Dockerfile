@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.0-alpine3.21@sha256:157489c5bfe3d9b577009dcc142e1323666ea25d42353d9adabdd434c8a0a007 AS build
+FROM ghcr.io/jauderho/golang:1.24.0-alpine3.21@sha256:c7277c1bd5c33d3bfe0c00a404fb667827fbeaa5fbf515e3cabdff0c170e3c02 AS build
 
 WORKDIR /go/src/github.com/go-acme/lego/
 
