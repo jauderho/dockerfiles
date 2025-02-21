@@ -1,5 +1,5 @@
 #FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a AS build
-FROM rust:1.84.1-alpine3.21@sha256:fdff417c3845c92360b439382f7d6dabca6c998f59c8dce6cd2a16a2e9e85498 AS build
+FROM rust:1.85.0-alpine3.21@sha256:64d3fbc2db18485ab3a5211d56fec25493c71595e820c486e9b8a8ac9edbc4e8 AS build
 
 WORKDIR /usr/src/github.com/aramperes/onetun/
 #COPY Cargo.toml Cargo.toml
