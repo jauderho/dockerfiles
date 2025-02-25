@@ -23,12 +23,12 @@
     "default": {
         "ansible": {
             "hashes": [
-                "sha256:5c56d7b9bc9fd85fa20f14f4801e889a45a7ab83bb11776ad759e8fa67510ad4",
-                "sha256:7cbb3116ad4e499e081b1083d199698dd1be9f70107355396e05c60fc073dfcd"
+                "sha256:699c76dd00e841e7307d4829b0454c3ee746df8e4488fa10825014a01d42efcc",
+                "sha256:90b409f630dc6d558224409a3948314ede1bcda6db2d03c17708cef6117a6103"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.11'",
-            "version": "==11.2.0"
+            "version": "==11.3.0"
         },
         "ansible-compat": {
             "hashes": [
