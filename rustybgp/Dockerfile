@@ -1,5 +1,5 @@
 #FROM rust:bullseye AS build
-FROM rust:1.85.0-alpine3.21@sha256:64d3fbc2db18485ab3a5211d56fec25493c71595e820c486e9b8a8ac9edbc4e8 AS build
+FROM rust:1.85.0-alpine3.21@sha256:1030547bd568497d69e41771ada279179f0613369dc54779e46a3f6f376b3020 AS build
 #FROM ghcr.io/jauderho/alpine:3.21.3@sha256:8139b5dd95ef46202c45b611a4b7e972defda480df2e058b95b6a07b4f2e96c4 AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/
