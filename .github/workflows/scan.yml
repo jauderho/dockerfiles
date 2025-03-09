@@ -64,7 +64,7 @@ jobs:
           hide-progress: false
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
+        uses: github/codeql-action/upload-sarif@6bb031afdd8eb862ea3fc1848194185e076637e5
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
@@ -100,7 +100,7 @@ jobs:
           severity-cutoff: high
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
+        uses: github/codeql-action/upload-sarif@6bb031afdd8eb862ea3fc1848194185e076637e5
         with:
           sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
 
@@ -142,7 +142,7 @@ jobs:
   #         args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high
 
   #     - name: Upload result to GitHub Code Scanning
-  #       uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
+  #       uses: github/codeql-action/upload-sarif@6bb031afdd8eb862ea3fc1848194185e076637e5
   #       with:
   #         sarif_file: snyk.sarif
 
