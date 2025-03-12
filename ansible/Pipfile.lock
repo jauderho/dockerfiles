@@ -861,11 +861,11 @@
         },
         "yamllint": {
             "hashes": [
-                "sha256:2e16e504bb129ff515b37823b472750b36b6de07963bd74b307341ef5ad8bdc3",
-                "sha256:7a003809f88324fd2c877734f2d575ee7881dd9043360657cc8049c809eba6cd"
+                "sha256:22ab6a7db9d5f0954bd7a50ef70a41c1465c61f955893070b0767c0ec6693b7b",
+                "sha256:3835a65994858679ea06fd998dd968c3f71935cd93742990405999d888e21130"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==1.35.1"
+            "markers": "python_version >= '3.9'",
+            "version": "==1.36.0"
         },
         "zipp": {
             "hashes": [

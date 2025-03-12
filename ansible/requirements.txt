@@ -47,5 +47,5 @@ typing-extensions==4.12.2
 urllib3==2.3.0
 wcmatch==10.0
 xmltodict==0.14.2
-yamllint==1.35.1
+yamllint==1.36.0
 zipp==3.21.0
