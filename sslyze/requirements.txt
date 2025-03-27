@@ -9,4 +9,4 @@ pydantic==2.10.6
 pydantic-core==2.27.2
 sslyze==6.1.0
 tls-parser==2.0.1
-typing-extensions==4.12.2
+typing-extensions==4.13.0
