@@ -1,4 +1,4 @@
-FROM oven/bun:1.2.7-alpine@sha256:711890300bfd97cf513184aa296241ba5c058906a3d8203ccc0ec102af55f5df AS build
+FROM oven/bun:1.2.8-alpine@sha256:60179f5ab9a193228941d94b6e0570f152aea0ac092d5df14f4f2c4fbd8f3ca8 AS build
 
 WORKDIR /opt/node_app
 
