@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.1-alpine3.21@sha256:6d162053b9471746bdf1d9000d6116d9f7269a648f97e1b15cc3fdcf6c469738 AS build
+FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:d828367bc3963607869f3bc1493d9da72474183c9f23c6509e58f909b8bdd9a3 AS build
 
 WORKDIR /go/src/github.com/shopify/toxiproxy
 
