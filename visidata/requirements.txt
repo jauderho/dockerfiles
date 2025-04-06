@@ -4,7 +4,7 @@ certifi==2025.1.31
 charset-normalizer==3.4.1
 idna==3.10
 importlib-metadata==8.6.1
-lxml==5.3.1
+lxml==5.3.2
 python-dateutil==2.9.0.post0
 requests==2.32.3
 six==1.17.0
