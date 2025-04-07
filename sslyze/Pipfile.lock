@@ -318,11 +318,12 @@
         },
         "tls-parser": {
             "hashes": [
-                "sha256:9e9f2fdde87a2fda93835f1e18482b8813a1b71958cdb8d5f0cbb9f4ed4e2ec7"
+                "sha256:67621c6afa721c7afdb9c50d3c38119f22c9c1b93823af27e05a78e3a6fd0e5e",
+                "sha256:fc9c1c4bcb646317bf0f1a9396bad1423346a445fd34a86ccc6c3a7e434ebde3"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==2.0.1"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.0.2"
         },
         "typing-extensions": {
             "hashes": [
