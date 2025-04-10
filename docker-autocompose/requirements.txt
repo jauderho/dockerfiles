@@ -9,4 +9,4 @@ packaging==24.2
 pyaml==25.1.0
 pyyaml==6.0.2
 requests==2.32.3
-urllib3==2.3.0
+urllib3==2.4.0
