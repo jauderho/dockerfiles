@@ -43,7 +43,7 @@ ruamel.yaml.clib==0.2.12
 six==1.17.0
 storops==1.2.11
 subprocess-tee==0.4.2
-typing-extensions==4.13.1
+typing-extensions==4.13.2
 urllib3==2.3.0
 wcmatch==10.0
 xmltodict==0.14.2
