@@ -39,7 +39,7 @@ RUN \
   git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
   echo "Patching..." && \
-  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.27.2+.patch && \
+  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.27.5+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-1.25.3-reprioritize-chacha-openssl-1.1.1.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-gzip-207-status.patch && \
@@ -76,7 +76,7 @@ RUN \
     --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS' \
     --with-ld-opt='-O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
-    --with-openssl-opt="enable-ec_nistp_64_gcc_128 enable-ktls threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
+    --with-openssl-opt="enable-tfo enable-ktls no-tls-deprecated-ec enable-pie enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
