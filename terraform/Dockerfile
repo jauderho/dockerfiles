@@ -1,4 +1,5 @@
-FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:59a72c0e0fc4c879bcf803b0eba3ae58fc79c6d7913ddb99bea644468e96461a AS build
+#FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:59a72c0e0fc4c879bcf803b0eba3ae58fc79c6d7913ddb99bea644468e96461a AS build
+FROM golang:1.23-alpine3.21 AS build
 
 WORKDIR /go/src/github.com/hashicorp/terraform/
 
@@ -18,6 +19,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/terraform.tar.gz --strip 1 -C /go/src/github.com/hashicorp/terraform \
 	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	#&& go get -u go.opentelemetry.io/otel/sdk/trace \
+	&& go mod tidy \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w" \
