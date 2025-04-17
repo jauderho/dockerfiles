@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:6140157579a734c234937ab0e8465075a69dbb138c019ed50f229546401a485f AS build
+FROM ghcr.io/jauderho/alpine:3.21.3@sha256:4d30faf9002da9de8e2b91f6c1fadd20d55377434596e161fa014a72a3cf4dd1 AS build
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/psf/black/archive/
@@ -30,7 +30,7 @@ RUN test -n "${BUILD_VERSION}" && \
 # ----------------------------------------------------------------------------
 
 
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:6140157579a734c234937ab0e8465075a69dbb138c019ed50f229546401a485f
+FROM ghcr.io/jauderho/alpine:3.21.3@sha256:4d30faf9002da9de8e2b91f6c1fadd20d55377434596e161fa014a72a3cf4dd1
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
