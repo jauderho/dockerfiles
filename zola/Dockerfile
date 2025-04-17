@@ -24,7 +24,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:6140157579a734c234937ab0e8465075a69dbb138c019ed50f229546401a485f
+FROM ghcr.io/jauderho/alpine:3.21.3@sha256:4d30faf9002da9de8e2b91f6c1fadd20d55377434596e161fa014a72a3cf4dd1
 #FROM debian:11-slim
 #FROM rust:1.70.0-alpine3.18@sha256:74ad9d14ec89bc4e83bf2a3d007fd981513ee4b44279b40d3a90c001a6ca938c
 
