@@ -18,7 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u github.com/gdamore/tcell/v2 github.com/docker/docker github.com/docker/cli \
 	&& go get -u all \
 	&& go mod tidy \
-	&& go build -o dive-bin -v -trimpath -ldflags="-s -w" 
+	&& go build -o dive-bin -v -trimpath -ldflags="-s -w" ./cmd/dive 
 
 WORKDIR /config
 
