@@ -19,7 +19,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	#&& go get -u go.opentelemetry.io/otel/sdk/trace \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
-	#&& go mod tidy \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w" \
 	&& cp terraform /go/bin/terraform \
 	&& go clean && go clean -cache && go clean -modcache 
