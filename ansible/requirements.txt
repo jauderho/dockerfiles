@@ -23,7 +23,7 @@ jsonschema-specifications==2024.10.1
 markupsafe==3.0.2
 mitogen==0.3.22
 mypy-extensions==1.0.0
-packaging==24.2
+packaging==25.0
 pathspec==0.12.1
 persist-queue==1.0.0
 platformdirs==4.3.7
