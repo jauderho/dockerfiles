@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-ansible==11.4.0
+ansible==11.5.0
 ansible-compat==25.1.5
 ansible-core==2.18.5
 ansible-lint==25.2.1
@@ -22,7 +22,7 @@ jsonschema==4.23.0
 jsonschema-specifications==2024.10.1
 markupsafe==3.0.2
 mitogen==0.3.22
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
 packaging==25.0
 pathspec==0.12.1
 persist-queue==1.0.0
