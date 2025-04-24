@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:59a72c0e0fc4c879bcf803b0eba3ae58fc79c6d7913ddb99bea644468e96461a AS build
+FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:846548c5c614369b58b16ad8ea1fd4574949f078d7d32e731c9114b717eacc13 AS build
 
 WORKDIR /go/src/github.com/containrrr/watchtower/
 
