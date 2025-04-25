@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:64129a9b2376c40874f00bb0809a236db11232cb34c42a658f6f36ee8dade089
+FROM ghcr.io/jauderho/alpine:3.21.3@sha256:97544ae64f3bad300d3130639f26ffa5465257222c0dc58e08be0276d017df68
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
