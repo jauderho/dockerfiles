@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.2-alpine3.21@sha256:846548c5c614369b58b16ad8ea1fd4574949f078d7d32e731c9114b717eacc13 AS build
+FROM golang:1.24.2-alpine3.21@sha256:7772cb5322baa875edd74705556d08f0eeca7b9c4b5367754ce3f2f00041ccee AS build
 
 WORKDIR /go/src/github.com/multiprocessio/dsq/
 
