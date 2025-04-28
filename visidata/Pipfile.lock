@@ -137,11 +137,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:02a89390c1e15fdfdc0d7c6b25cb3e62650d0494005c97d6f148bf5b9787525e",
-                "sha256:310b41d755445d74569f993ccfc22838295d9fe005425094fad953d7f15c8580"
+                "sha256:d13b81ad223b890aa16c5471f2ac3056cf76c5f10f82d6f9292f0b415f389000",
+                "sha256:e5dd1551894c77868a30651cef00984d50e1002d06942a7101d34870c5f02afd"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==8.6.1"
+            "version": "==8.7.0"
         },
         "lxml": {
             "hashes": [
