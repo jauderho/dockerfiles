@@ -1,0 +1,31 @@
+FROM ubuntu:25.04@sha256:79efa276fdefa2ee3911db29b0608f8c0561c347ec3f4d4139980d43b168d991
+
+WORKDIR /home/testssl
+
+ARG BUILD_VERSION
+ARG DEBIAN_FRONTEND=noninteractive
+ARG ARCHIVE_URL=https://github.com/drwetter/testssl.sh/archive/
+
+RUN test -n "${BUILD_VERSION}" \
+    && apt-get update \
+    && apt-get dist-upgrade -y \
+    && DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends bash procps dnsutils coreutils libidn12 curl ca-certificates socat openssl xxd bsdextrautils \
+    && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/testssl.tar.gz \
+    && tar xzf /tmp/testssl.tar.gz --strip 1 -C /home/testssl \
+    && groupadd --system testssl \
+    && useradd --system --gid testssl --shell /bin/bash --home-dir /home/testssl testssl \
+    && ln -s /home/testssl/testssl.sh /usr/local/bin/testssl.sh \
+    && mkdir -p /home/testssl/etc /home/testssl/bin \
+    && chmod 755 /home/testssl/etc /home/testssl/bin
+
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/testssl.sh"
+LABEL org.opencontainers.image.description="testssl.sh is a free command line tool which checks a server on any port for TLS/SSL ciphers"
+
+#USER testssl
+
+ENTRYPOINT ["testssl.sh"]
+CMD ["--help"]
