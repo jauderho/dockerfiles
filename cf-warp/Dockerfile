@@ -27,7 +27,8 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 
-FROM ghcr.io/jauderho/alpine:3.21.3@sha256:97544ae64f3bad300d3130639f26ffa5465257222c0dc58e08be0276d017df68
+FROM node:23.11-alpine3.21@sha256:86703151a18fcd06258e013073508c4afea8e19cd7ed451554221dd00aea83fc AS build
+#FROM ghcr.io/jauderho/alpine:3.21.3@sha256:97544ae64f3bad300d3130639f26ffa5465257222c0dc58e08be0276d017df68
 
 WORKDIR /app
 
@@ -36,7 +37,7 @@ RUN apk update \
 	#&& apk --no-cache add --upgrade busybox ssl_client nodejs-current \
 	#&& apk --no-cache add --upgrade busybox ssl_client nodejs \
 	&& apk add --no-cache --upgrade busybox ssl_client  \
-	&& apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community nodejs-current \
+	#&& apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community nodejs-current \
 	&& rm -rf /var/cache/apk/*
 
 COPY --from=build /app .
