@@ -23,8 +23,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/opentofu/opentofu \
 	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	#&& go get -u github.com/hashicorp/go-slug \
-	&& go get -u golang.org/x/crypto golang.org/x/net  \
-	#&& go mod tidy \
+	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools \
+	&& go get -u ./... \
+	&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
