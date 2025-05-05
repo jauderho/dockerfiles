@@ -11,9 +11,9 @@ bracex==2.5.post1
 cachez==0.1.2
 certifi==2025.4.26
 cffi==1.17.1
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
 click==8.1.8
-cryptography==44.0.2
+cryptography==44.0.3
 filelock==3.18.0
 idna==3.10
 importlib-metadata==8.7.0
@@ -47,5 +47,5 @@ typing-extensions==4.13.2
 urllib3==2.4.0
 wcmatch==10.0
 xmltodict==0.14.2
-yamllint==1.37.0
+yamllint==1.37.1
 zipp==3.21.0
