@@ -1,7 +1,7 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 ### BASE ###
-#FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine3.21@sha256:e49a5ff3254720a8970810a9774d98a8b1853e5286d696b6f6ffbac282ae4e91 AS base
+#FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine3.21@sha256:3fce6771d84422e2396c77267865df61174a3e503c049f1fe242224c012fde65 AS base
 #WORKDIR /app
 #RUN apk update && apk upgrade -a
 #EXPOSE 80
@@ -31,7 +31,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 ### FINAL ###
 #FROM base AS final
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine3.21@sha256:e49a5ff3254720a8970810a9774d98a8b1853e5286d696b6f6ffbac282ae4e91
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine3.21@sha256:3fce6771d84422e2396c77267865df61174a3e503c049f1fe242224c012fde65
 WORKDIR /app
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
