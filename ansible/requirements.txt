@@ -26,7 +26,7 @@ mypy-extensions==1.1.0
 packaging==25.0
 pathspec==0.12.1
 persist-queue==1.0.0
-platformdirs==4.3.7
+platformdirs==4.3.8
 pycparser==2.22
 pyspnego==0.11.2
 python-dateutil==2.9.0.post0
