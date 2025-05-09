@@ -23,11 +23,11 @@
     "default": {
         "aiodns": {
             "hashes": [
-                "sha256:10773b905296afd92d41ef79b9ed0c97957d9af17262ffa67f405dc07f1600a4",
-                "sha256:fdf7a7d51dcab0ad7cc22bf9cf54690d9c31b06414ac41c6cdbbecf50dd75ef1"
+                "sha256:24b0ae58410530367f21234d0c848e4de52c1f16fbddc111726a4ab536ec1b2f",
+                "sha256:4da2b25f7475343f3afbb363a2bfe46afa544f2b318acb9a945065e622f4ed24"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==3.3.0"
+            "version": "==3.4.0"
         },
         "authres": {
             "hashes": [
