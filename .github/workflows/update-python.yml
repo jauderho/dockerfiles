@@ -38,7 +38,7 @@ jobs:
       fail-fast: false
       matrix:
         app: [ansible, catprinter, dkimpy, docker-autocompose, ruff, sslyze, visidata]
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
