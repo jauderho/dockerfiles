@@ -19,7 +19,7 @@ permissions: read-all
 
 jobs:
   prepare:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     outputs:
       programs: ${{ steps.set-programs.outputs.programs }}
     steps:
@@ -40,7 +40,7 @@ jobs:
       fail-fast: false
       matrix:
         image: ${{fromJson(needs.prepare.outputs.programs)}}
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Harden Runner
@@ -78,7 +78,7 @@ jobs:
       fail-fast: false
       matrix:
         image: ${{fromJson(needs.prepare.outputs.programs)}}
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     
     steps:
       - name: Harden Runner
@@ -114,7 +114,7 @@ jobs:
   #     fail-fast: false
   #     matrix:
   #      image: ${{fromJson(needs.prepare.outputs.programs)}}
-  #   runs-on: ubuntu-24.04-arm
+  #   runs-on: ubuntu-24.04
 
   #   steps:
   #     - name: Harden Runner
