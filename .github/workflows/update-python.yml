@@ -64,6 +64,16 @@ jobs:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@6b9c6063abd6010835644d4c2e1bef4cf5cd0fca # v6.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-cache: true
+#          cache-dependency-glob: |
+#            "**/requirements*.txt"
+#            "**/pyproject.toml"
+#            "**/uv.lock"
+
       - name: Setup SSH keys
         env:
           BOT_SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
