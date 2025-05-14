@@ -14,7 +14,7 @@ COPY requirements.txt .
 
 RUN apt-get update && \
 	apt-get dist-upgrade -y && \
-	build_pkgs="cargo gcc libssl-dev python3-dev git" && \
+	build_pkgs="cargo gcc libssl-dev libkrb5-dev python3-dev git" && \
 	runtime_pkgs="python3-pip openssh-client" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
