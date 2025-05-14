@@ -1,0 +1,23 @@
+[project]
+name = "ruff-project"
+dynamic = ["version"]
+description = "Project using ruff"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["ruff", "linting"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "ruff"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

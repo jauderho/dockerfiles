@@ -1,0 +1,23 @@
+[project]
+name = "dkimpy-project"
+dynamic = ["version"]
+description = "Project using dkimpy with ed25519, ARC, and asyncio extras"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["dkim", "dkimpy", "email", "ARC", "asyncio", "ed25519"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "dkimpy[ed25519,ARC,asyncio]"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

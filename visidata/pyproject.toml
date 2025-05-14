@@ -1,0 +1,27 @@
+[project]
+name = "visidata-project"
+dynamic = ["version"]
+description = "Project using visidata, python-dateutil, requests, wcwidth, and lxml"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["visidata", "data", "cli", "python-dateutil", "requests", "lxml"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "visidata",
+  "python-dateutil",
+  "requests",
+  "wcwidth",
+  "lxml"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

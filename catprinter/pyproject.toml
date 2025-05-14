@@ -1,0 +1,26 @@
+[project]
+name = "catprinter-project"
+dynamic = ["version"]
+description = "A script using catprinter, bleak, numpy, and opencv-python"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["catprinter", "bleak", "numpy", "opencv"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "bleak",
+  "numpy",
+  "opencv-python",
+  "catprinter @ git+https://github.com/jauderho/catprinter.git#egg=catprinter"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

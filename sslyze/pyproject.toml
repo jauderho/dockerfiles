@@ -1,0 +1,27 @@
+[project]
+name = "sslyze-project"
+dynamic = ["version"]
+description = "Project using sslyze, nassl, cryptography, tls-parser, and pydantic"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["sslyze", "tls", "nassl", "cryptography", "pydantic"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "sslyze",
+  "nassl",
+  "cryptography",
+  "tls-parser",
+  "pydantic"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

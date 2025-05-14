@@ -1,0 +1,26 @@
+[project]
+name = "docker-autocompose-project"
+dynamic = ["version"]
+description = "Project using docker-autocompose with pyaml, docker, and packaging"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["docker", "autocompose", "pyaml", "packaging"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "pyaml",
+  "docker",
+  "packaging",
+  "docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }

@@ -1,0 +1,38 @@
+[project]
+name = "ansible-project"
+dynamic = ["version"]
+description = "Project using Ansible, pywinrm, storops, mitogen and linting tools"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT License" }
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+keywords = ["ansible", "automation", "linting", "storops", "pywinrm"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+  "ansible",
+  "ansible-lint",
+  "jmespath",
+  "pyspnego[kerberos]",
+  "pywinrm[kerberos,credssp]",
+  "requests-kerberos",
+  "wheel",
+  "storops",
+  "mitogen",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { git = { commit = true, tags = true } }
+]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }
