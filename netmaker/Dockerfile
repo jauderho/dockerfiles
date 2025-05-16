@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.3-alpine3.21@sha256:cefea15c239d51d9d6363584d864b61be79037e5c9da9285937a2de43743f16b AS build
+FROM ghcr.io/jauderho/golang:1.24.3-alpine3.21@sha256:4b6d42f444193a96e296691ac8ddf0902aa28bddefb58a366d03b299e7ebc1d3 AS build
 
 WORKDIR /go/src/github.com/gravitl/netmaker/
 
