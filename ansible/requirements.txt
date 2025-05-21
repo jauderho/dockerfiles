@@ -12,7 +12,7 @@ cachez==0.1.2
 certifi==2025.4.26
 cffi==1.17.1
 charset-normalizer==3.4.2
-click==8.2.0
+click==8.2.1
 cryptography==45.0.2
 decorator==5.2.1
 filelock==3.18.0
