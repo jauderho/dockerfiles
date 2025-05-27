@@ -16,6 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/wagoodman/dive \
 	&& cd /go/src/github.com/wagoodman/dive \
 	&& go get -u github.com/gdamore/tcell/v2 github.com/docker/docker github.com/docker/cli \
+	&& go get -u ./... \
 	&& go get -u all \
 	&& go mod tidy \
 	&& go build -o dive-bin -v -trimpath -ldflags="-s -w" ./cmd/dive 
