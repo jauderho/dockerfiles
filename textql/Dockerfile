@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.3-alpine3.21@sha256:4b6d42f444193a96e296691ac8ddf0902aa28bddefb58a366d03b299e7ebc1d3 AS build
+FROM ghcr.io/jauderho/golang:1.24.3-alpine3.21@sha256:f1933941218af1d4f80c0f236051c17033a5b1f272ad41a00392f6fb5ce52053 AS build
 
 WORKDIR /go/src/github.com/dinedal/textql/
 

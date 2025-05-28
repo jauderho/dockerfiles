@@ -1,7 +1,7 @@
 FROM golang:1.24-alpine3.21 AS build
 #FROM ghcr.io/jauderho/golang:1.24.3-alpine3.21@sha256:cefea15c239d51d9d6363584d864b61be79037e5c9da9285937a2de43743f16b AS build
 
-#WORKDIR /go/src/github.com/opentofu/opentofu/
+WORKDIR /go/src/github.com/opentofu/opentofu
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/opentofu/opentofu/archive/
@@ -10,20 +10,23 @@ ARG GIT_URL=https://github.com/opentofu/opentofu.git
 ENV GO111MODULE on
 ENV CGO_ENABLED 1
 
-COPY . .
+#COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl git gcc build-base \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
+	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} . \
+	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
 	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/opentofu/opentofu \
-	&& cd /go/src/github.com/opentofu/opentofu \
+	#&& cd /go/src/github.com/opentofu/opentofu \
+	&& go install golang.org/x/tools/cmd/stringer@latest \
 	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	#&& go get -u github.com/hashicorp/go-slug \
-	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools \
-	&& go get -u ./... \
+	#&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools \
+	#&& go get -u ./... \
+	&& echo "meow" \
 	&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \

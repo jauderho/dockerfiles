@@ -4,6 +4,7 @@ set -e
 
 # Global variables
 DRY_RUN=false
+FORCE=false
 
 # Colors for output
 RED='\033[0;31m'
@@ -19,11 +20,15 @@ show_usage() {
     echo ""
     echo "Options:"
     echo "  --dry-run, --dryrun    Show what would be done without actually triggering workflows"
+    echo "  --force                Force trigger workflows even if they are currently running"
     echo "  -h, --help             Show this help message"
     echo ""
     echo "Description:"
     echo "  Checks the status of all GitHub workflows in the repository and restarts"
     echo "  any that have failed. Works from any directory within the git repository."
+    echo ""
+    echo "  By default, workflows that are currently running will be skipped unless"
+    echo "  --force is specified. Disabled workflows are always skipped."
     echo ""
 }
 
@@ -33,6 +38,10 @@ parse_arguments() {
         case $1 in
             --dry-run|--dryrun)
                 DRY_RUN=true
+                shift
+                ;;
+            --force)
+                FORCE=true
                 shift
                 ;;
             -h|--help)
@@ -107,6 +116,23 @@ get_workflow_name_from_file() {
     fi
     
     echo "$name"
+}
+
+# Function to check if a workflow is disabled
+is_workflow_disabled() {
+    local workflow_name=$1
+    local workflow_info
+    
+    # Get workflow info including state
+    workflow_info=$(gh workflow view "$workflow_name" --json=state 2>/dev/null || echo "")
+    
+    if [[ -z "$workflow_info" || "$workflow_info" == "{}" ]]; then
+        echo "active"  # Default to active if we can't determine state
+        return
+    fi
+    
+    local state=$(echo "$workflow_info" | jq -r '.state // "active"')
+    echo "$state"
 }
 
 # Function to get the latest run status for a workflow
@@ -191,6 +217,8 @@ main() {
     local failed_workflows=0
     local triggered_workflows=0
     local no_runs_workflows=0
+    local disabled_workflows=0
+    local running_skipped=0
     
     print_status "$BLUE" "\nChecking workflow statuses..."
     print_status "$BLUE" "=============================\n"
@@ -207,6 +235,17 @@ main() {
         workflow_name=$(get_workflow_name_from_file "$workflow_file")
         
         print_status "$BLUE" "Checking: $workflow_name"
+        
+        # Check if workflow is disabled
+        local workflow_state
+        workflow_state=$(is_workflow_disabled "$workflow_name")
+        
+        if [[ "$workflow_state" == "disabled_manually" ]]; then
+            print_status "$YELLOW" "  ⚠ Workflow is manually disabled - skipping"
+            disabled_workflows=$((disabled_workflows + 1))
+            echo
+            continue
+        fi
         
         # Get latest run status
         local run_status
@@ -235,15 +274,29 @@ main() {
                         fi
                     fi
                     ;;
-                "null")
+                ""|"null")
                     if [[ "$status" == "in_progress" || "$status" == "queued" || "$status" == "pending" ]]; then
                         print_status "$YELLOW" "  ⏳ Currently running: $status (ID: $run_id)"
+                        if [[ "$FORCE" == true ]]; then
+                            print_status "$YELLOW" "  ⚡ --force specified, will trigger anyway"
+                            # Try to trigger the workflow
+                            if trigger_workflow "$workflow_name"; then
+                                if [[ "$DRY_RUN" == true ]]; then
+                                    triggered_workflows=$((triggered_workflows + 1))
+                                else
+                                    triggered_workflows=$((triggered_workflows + 1))
+                                fi
+                            fi
+                        else
+                            print_status "$YELLOW" "  ⏸ Skipping (use --force to trigger running workflows)"
+                            running_skipped=$((running_skipped + 1))
+                        fi
                     else
-                        print_status "$YELLOW" "  ⚠ Unknown status: $status/$conclusion (ID: $run_id)"
+                        print_status "$YELLOW" "  ⚠ Unknown status: $status (conclusion: $conclusion, ID: $run_id)"
                     fi
                     ;;
                 *)
-                    print_status "$YELLOW" "  ⚠ Unknown conclusion: $conclusion (ID: $run_id)"
+                    print_status "$YELLOW" "  ⚠ Unknown conclusion: $conclusion (status: $status, ID: $run_id)"
                     ;;
             esac
         fi
@@ -262,6 +315,8 @@ main() {
         print_status "$GREEN" "Workflows triggered: $triggered_workflows"
     fi
     print_status "$YELLOW" "Workflows with no runs: $no_runs_workflows"
+    print_status "$YELLOW" "Disabled workflows skipped: $disabled_workflows"
+    print_status "$YELLOW" "Running workflows skipped: $running_skipped"
     
     if [[ $triggered_workflows -gt 0 ]]; then
         if [[ "$DRY_RUN" == true ]]; then
@@ -279,6 +334,17 @@ main() {
         print_status "$YELLOW" "  (Workflows need 'workflow_dispatch' trigger to be manually triggered)"
     else
         print_status "$GREEN" "\n✓ All workflows are in good state!"
+    fi
+    
+    # Additional guidance
+    if [[ $running_skipped -gt 0 && "$FORCE" == false ]]; then
+        print_status "$YELLOW" "\nNote: $running_skipped running workflow(s) were skipped"
+        print_status "$YELLOW" "Use --force to trigger workflows even when they are running"
+    fi
+    
+    if [[ $disabled_workflows -gt 0 ]]; then
+        print_status "$YELLOW" "\nNote: $disabled_workflows manually disabled workflow(s) were skipped"
+        print_status "$YELLOW" "Enable them in GitHub's Actions tab to include them in checks"
     fi
 }
 
