@@ -6,7 +6,7 @@ docker==7.1.0
 docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@63c9525787b26214f628770beb5791b120c213b5
 idna==3.10
 packaging==25.0
-pyaml==25.1.0
+pyaml==25.5.0
 pyyaml==6.0.2
 requests==2.32.3
 urllib3==2.4.0
