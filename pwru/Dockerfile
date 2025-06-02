@@ -15,8 +15,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-20 clang-20 golang-go gcc flex bison mold \
 	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 golang-go gcc flex bison mold libdpdk-dev \
 	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 flex bison \
-	&& ln -s /usr/bin/clang-17 /usr/bin/clang \
-	&& ln -s /usr/bin/llvm-strip-17 /usr/bin/llvm-strip \
+	&& ln -s /usr/bin/clang-20 /usr/bin/clang \
+	&& ln -s /usr/bin/llvm-strip-20 /usr/bin/llvm-strip \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
