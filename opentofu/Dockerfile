@@ -15,7 +15,7 @@ ENV CGO_ENABLED 1
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl git gcc build-base \
+	&& apk add --no-cache ca-certificates curl git gcc build-base libc-dev \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} . \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
@@ -26,8 +26,11 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u github.com/hashicorp/go-slug \
 	#&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools \
 	#&& go get -u ./... \
-	&& echo "meow" \
 	&& go mod tidy \
+	#&& go install std \
+	&& cd $(go env GOROOT)/src \  \
+	&& GOOS=linux GOARCH=$(go env GOARCH) CGO_ENABLED=1 go install -v -tags musl std \
+	&& cd - \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
