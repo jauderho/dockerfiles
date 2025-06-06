@@ -13,7 +13,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.22.0-r0"
+  BUILD_VERSION: "1.23.0-r2"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
