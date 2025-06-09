@@ -11,4 +11,4 @@ six==1.17.0
 urllib3==2.4.0
 visidata==3.1.1
 wcwidth==0.2.13
-zipp==3.22.0
+zipp==3.23.0
