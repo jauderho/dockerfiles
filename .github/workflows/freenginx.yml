@@ -44,6 +44,7 @@ jobs:
             objects.githubusercontent.com:443
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
+            release-assets.githubusercontent.com:443
             www.openssl.org:443
             umsah0twc0d25lndsc0j.blob.core.windows.net:443
 
