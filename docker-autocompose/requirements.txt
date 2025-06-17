@@ -3,7 +3,7 @@
 certifi==2025.6.15
 charset-normalizer==3.4.2
 docker==7.1.0
-docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@470e77697f7b794a01e6f620dd9f5d6cb168be13
+docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@2f15378eea982991684a409b74c6f2ce1020daaa
 idna==3.10
 packaging==25.0
 pyaml==25.5.0
