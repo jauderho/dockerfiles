@@ -22,8 +22,8 @@ RUN \
   NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   apk update && \
   apk upgrade -a && \
-  build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev" && \
-  runtime_pkgs="ca-certificates tzdata brotli-libs" && \
+  build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev libmimalloc-dev" && \
+  runtime_pkgs="ca-certificates tzdata brotli-libs libmimalloc3" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   update-ca-certificates && \
   cd /tmp && \
@@ -61,6 +61,7 @@ RUN \
     --with-http_ssl_module \
     --with-http_realip_module \
     --with-http_v2_module \
+    --with-http_v3_module \
     #--with-http_v2_hpack_enc \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
@@ -74,7 +75,7 @@ RUN \
     --with-threads \
     --add-module=/tmp/ngx_brotli \
     --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS' \
-    --with-ld-opt='-O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
+    --with-ld-opt='-lrt -lmimalloc -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
     --with-openssl-opt="enable-tfo enable-ktls no-tls-deprecated-ec enable-pie enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
     --with-pcre-jit \
