@@ -22,8 +22,8 @@ RUN \
   NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   apk update && \
   apk upgrade -a && \
-  build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev libmimalloc-dev" && \
-  runtime_pkgs="ca-certificates tzdata brotli-libs libmimalloc3" && \
+  build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev mimalloc2-dev" && \
+  runtime_pkgs="ca-certificates tzdata brotli-libs mimalloc2" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   update-ca-certificates && \
   cd /tmp && \
