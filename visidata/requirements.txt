@@ -8,6 +8,6 @@ python-dateutil==2.9.0.post0
 requests==2.32.4
 six==1.17.0
 standard-mailcap==3.13.0
-urllib3==2.4.0
+urllib3==2.5.0
 visidata==3.2
 wcwidth==0.2.13
