@@ -56,20 +56,13 @@ RUN apk update \
     rsyslog \
     tzdata \
     sudo \
-    less \
-    ed \
-    sharutils \
-    make \
     tar \
-    perl-dev \
-    perl-app-cpanminus \
     sqlite \
     perl-dbd-pg \
     perl-dbd-sqlite \
     iproute2 \
     lsblk \
     procps \
-    diffutils \
     dpkg \
     freetype \
     && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
@@ -122,7 +115,7 @@ ADD https://lpar2rrd.com/agent/lpar2rrd-agent-latest_all.deb /opt/lpar2rrd-agent
 # extract tarballs
 WORKDIR /tmp
 RUN tar xvf lpar2rrd-$LPAR_VER.tar && rm -rf lpar2rrd-$LPAR_VER.tar
-RUN dpkg -i /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && rm -rf /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb
+RUN dpkg -i /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && rm -rf /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && apk del dpkg
 
 COPY supervisord.conf /etc/
 COPY startup.sh /startup.sh
