@@ -15,7 +15,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/adguardteam/adguardhome \
 	&& cd /go/src/github.com/adguardteam/adguardhome \
-	&& go get -u golang.org/x/crypto golang.org/x/net github.com/quic-go/quic-go \
+	&& go get -u golang.org/x/crypto golang.org/x/net \
+	#&& go get -u github.com/quic-go/quic-go \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${BUILD_VERSION}" . \
 	&& cp AdGuardHome /go/bin/AdGuardHome \
 	&& go clean && go clean -cache && go clean -modcache 
