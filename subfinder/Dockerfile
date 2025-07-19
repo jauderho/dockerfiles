@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:1ee281925d91a253c035e34b04fbb7cd78177933a64432ad868abdf6421ffdbd AS build
+FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:5cbb5ac8d0f00c34bee3b18657eaf46a1582fbc8ee1f7ab0bbeffd11540f268a AS build
 
 WORKDIR /go/src/github.com/projectdiscovery/subfinder/
 
