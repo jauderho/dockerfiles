@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:5cbb5ac8d0f00c34bee3b18657eaf46a1582fbc8ee1f7ab0bbeffd11540f268a AS build
+FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:b161a1a5aeabb6b5ef08854550dbe9843f3da755440576068a0fab3e0287512a AS build
 
 WORKDIR /go/src/github.com/tailscale/tailscale
 
