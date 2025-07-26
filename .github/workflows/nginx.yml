@@ -13,7 +13,7 @@ on:
 
 env:
   BUILD_VERSION: "1.29.0"
-  OPENSSL_VERSION: "3.5.0"
+  OPENSSL_VERSION: "3.5.1"
   PCRE_VERSION: "10.45"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
@@ -44,6 +44,7 @@ jobs:
             objects.githubusercontent.com:443
             production.cloudflare.docker.com:443
             registry-1.docker.io:443
+            release-assets.githubusercontent.com:443
             www.openssl.org:443
             umsah0twc0d25lndsc0j.blob.core.windows.net:443
           
