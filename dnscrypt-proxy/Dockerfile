@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:b161a1a5aeabb6b5ef08854550dbe9843f3da755440576068a0fab3e0287512a AS build
+FROM ghcr.io/jauderho/golang:1.24.6-alpine3.22@sha256:b23ebfd210ae2da07ef6a86677256199bd7d34323188ce5d30f70cf1ec206acb AS build
 
 WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
