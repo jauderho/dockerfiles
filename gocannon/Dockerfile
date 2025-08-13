@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.24.6-alpine3.22@sha256:b23ebfd210ae2da07ef6a86677256199bd7d34323188ce5d30f70cf1ec206acb AS build
+FROM ghcr.io/jauderho/golang:1.24.6-alpine3.22@sha256:78dda75b656d7ab1b82dfcd47677e3a0771121559fc0c19981e4663ef9113b69 AS build
 
 WORKDIR /go/src/github.com/kffl/gocannon/
 
