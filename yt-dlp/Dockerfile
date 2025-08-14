@@ -26,6 +26,7 @@ RUN set -x \
         python3-dev \
         zstd-dev \
         nghttp2-dev \
+        libffi-dev \
     # Install youtube-dl
  && curl -Lo /usr/local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/yt-dlp \
  #&& curl -Lo SHA2-256SUMS https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/SHA2-256SUMS \
