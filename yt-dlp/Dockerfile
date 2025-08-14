@@ -32,7 +32,11 @@ RUN set -x \
  #&& curl -Lo SHA2-256SUMS https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/SHA2-256SUMS \
  #&& cat SHA2-256SUMS | grep yt-dlp: | awk -F: '{print $2" "$1}' | sha256sum -c \
  && chmod a+rx /usr/local/bin/yt-dlp \
- && python3 -m pip install --no-cache-dir curl_cffi --break-system-packages \
+ # Conditionally install curl_cffi only on supported arches
+ && case "$(uname -m)" in \
+       x86_64|aarch64) python3 -m pip install --no-cache-dir curl_cffi --break-system-packages ;; \
+       *) echo "Skipping curl_cffi: unsupported arch $(uname -m)" ;; \
+    esac \
     # Clean-up
  #&& rm SHA2-256SUMS \
  && apk del .build-deps \
