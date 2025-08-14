@@ -20,6 +20,7 @@ RUN set -x \
         nghttp2 \
  && apk add --no-cache --virtual .build-deps \
         curl \
+        build-base \
         gcc \
         make \
         python3-dev \
