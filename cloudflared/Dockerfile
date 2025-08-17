@@ -15,10 +15,10 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cloudflared.tar.gz \
 	&& tar xzf /tmp/cloudflared.tar.gz --strip 1 -C /go/src/github.com/cloudflare/cloudflared \
-	&& go get -u github.com/cloudflare/circl github.com/go-jose/go-jose/v3 google.golang.org/protobuf \
-	&& go get -u github.com/coredns/coredns \
+	#&& go get -u github.com/cloudflare/circl github.com/go-jose/go-jose/v3 google.golang.org/protobuf \
+	#&& go get -u github.com/coredns/coredns \
 	#&& go get -u github.com/quic-go/quic-go \
-	&& go get -u golang.org/x/crypto golang.org/x/net \
+	#&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& go mod vendor \
 	&& go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
