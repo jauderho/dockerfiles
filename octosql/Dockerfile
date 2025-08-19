@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.25.0-alpine3.22@sha256:2a69e61d4ca48c7689c0cc15f883710de1fcc1c89e6d413e478360222a8e417a AS build
+FROM ghcr.io/jauderho/golang:1.25.0-alpine3.22@sha256:1ae90e80972dd1058b79bbd887ff651e036fbcfb69c630e13b8599cbcc72083f AS build
 
 WORKDIR /go/src/github.com/cube2222/octosql/
 
