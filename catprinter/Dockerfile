@@ -1,4 +1,4 @@
-FROM ubuntu:25.10@sha256:36bbb8adc0662496d3e314bc8a25cb41c0c2e42ed25daaa07f8369d36d16f082
+FROM ubuntu:25.10@sha256:1041699615b625b6bb6fbcdb7876bb1379f52b954374ab457360d9444a05cd7d
 
 ARG BUILD_VERSION
 ARG GIT_URL=https://github.com/jauderho/catprinter.git
