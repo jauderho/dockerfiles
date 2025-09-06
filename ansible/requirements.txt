@@ -53,6 +53,6 @@ subprocess-tee==0.4.2
 urllib3==2.5.0
 wcmatch==10.1
 wheel==0.45.1
-xmltodict==0.14.2
+xmltodict==0.15.0
 yamllint==1.37.1
 zipp==3.23.0
