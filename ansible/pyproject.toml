@@ -19,7 +19,7 @@ dependencies = [
   "pyspnego[kerberos]",
   "pywinrm[kerberos,credssp]",
   "requests-kerberos",
-  "wheel",
+  #"wheel==0.46.1",
   "storops",
   "mitogen",
 ]
