@@ -11,6 +11,7 @@ RUN set -x \
  && apk upgrade -a \
  && apk add --no-cache \
         ca-certificates \
+        deno \
         dumb-init \
         ffmpeg \
         python3 \

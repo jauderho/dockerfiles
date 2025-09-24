@@ -12,6 +12,7 @@ RUN set -x \
  && apk add --no-cache \
         ca-certificates \
         curl \
+        deno \
         dumb-init \
         ffmpeg \
         python3 \
