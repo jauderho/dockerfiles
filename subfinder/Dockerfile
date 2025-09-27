@@ -39,7 +39,7 @@ RUN apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache bind-tools ca-certificates
 
-COPY --from=build /go/src/github.com/projectdiscovery/subfinder/v2/subfinder /usr/local/bin/subfinder
+COPY --from=build /go/src/github.com/projectdiscovery/subfinder/subfinder /usr/local/bin/subfinder
 COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/subfinder"]
