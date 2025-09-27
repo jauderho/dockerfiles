@@ -14,7 +14,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl gcc musl-dev \
 	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/subfinder.tar.gz \
 	&& tar xzf /tmp/subfinder.tar.gz --strip 1 -C /go/src/github.com/projectdiscovery/subfinder \
-	&& cd v2 \
 	&& go get -u github.com/quic-go/quic-go \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
