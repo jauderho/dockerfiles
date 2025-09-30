@@ -12,8 +12,8 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "1.29.1"
-  OPENSSL_VERSION: "3.5.2"
+  BUILD_VERSION: "1.29.2"
+  OPENSSL_VERSION: "3.5.4"
   PCRE_VERSION: "10.46"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
