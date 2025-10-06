@@ -6,7 +6,6 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
-open-pull-requests-limit: 15
 updates:
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
