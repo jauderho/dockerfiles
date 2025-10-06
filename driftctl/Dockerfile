@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u github.com/hashicorp/go-getter github.com/dgrijalva/jwt-go golang.org/x/net golang.org/x/crypto golang.org/x/net \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go get -u github.com/go-git/go-git/v5 github.com/hashicorp/go-slug github.com/golang-jwt/jwt/v4 \
-	#&& go mod tidy \
+	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
