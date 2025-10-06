@@ -2,9 +2,9 @@
 #    uv pip compile pyproject.toml --no-annotate
 aiodns==3.5.0
 authres==1.2.0
-cffi==1.17.1
+cffi==2.0.0
 dkimpy==1.1.8
-dnspython==2.7.0
-pycares==4.9.0
-pycparser==2.22
-pynacl==1.5.0
+dnspython==2.8.0
+pycares==4.11.0
+pycparser==2.23
+pynacl==1.6.0
