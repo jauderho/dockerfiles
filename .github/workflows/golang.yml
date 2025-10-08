@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_VERSION: "1.25.1-alpine3.22"
+  BUILD_VERSION: "1.25.2-alpine3.22"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
