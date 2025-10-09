@@ -5,7 +5,7 @@ description = "Project using sslyze, nassl, cryptography, tls-parser, and pydant
 authors = [{ name = "Jauder Ho" }]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "==3.13.*"
 keywords = ["sslyze", "tls", "nassl", "cryptography", "pydantic"]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -14,7 +14,7 @@ classifiers = [
 ]
 dependencies = [
   "sslyze",
-  "nassl>=5.3.1",
+  "nassl",
   "cryptography",
   "tls-parser",
   "pydantic"

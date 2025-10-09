@@ -1,6 +1,6 @@
 version = 1
 revision = 3
-requires-python = ">=3.13"
+requires-python = "==3.13.*"
 
 [[package]]
 name = "annotated-types"
@@ -160,7 +160,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "cryptography" },
-    { name = "nassl", specifier = ">=5.3.1" },
+    { name = "nassl" },
     { name = "pydantic" },
     { name = "sslyze" },
     { name = "tls-parser" },
