@@ -1,5 +1,5 @@
 #FROM nginx AS build
-FROM ghcr.io/jauderho/golang:1.25.2-alpine3.22@sha256:dd65a215932ec241d55d6e0c3461d9fb3a7aec167b01f5a51fa22fed9bff1fe6 AS build
+FROM ghcr.io/jauderho/golang:1.25.2-alpine3.22@sha256:c7f5a8fa3f86fb9e42d503b0f677097e082481240573d209ea96a4952828121f AS build
 
 WORKDIR /src
 COPY . .
@@ -57,7 +57,7 @@ RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev 
 
 
 #FROM nginx
-FROM ghcr.io/jauderho/alpine:3.22.1@sha256:6cedbe16d634f856346fb6224aeddf939413076aaf08bc0216a2ee1759917a56
+FROM ghcr.io/jauderho/alpine:3.22.2@sha256:04d9f90216e3b84c1919a9cd1f7f06fdb3e44091d822c203e44f1ee282cd4c3a
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
