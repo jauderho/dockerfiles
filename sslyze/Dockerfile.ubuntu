@@ -1,0 +1,34 @@
+FROM ubuntu:25.10@sha256:a61c057b4f69200ecf031519a20db79b8683837ba1dc2a59458d333eb75b174d
+#FROM python:3.14.0rc2-slim-trixie@sha256:fa837358dd91c0b38c0febc91cc37a0633be0ba1afd124c1523b0fb0381e5586
+#FROM python:3.13.0-alpine3.20@sha256:81362dd1ee15848b118895328e56041149e1521310f238ed5b2cdefe674e6dbf
+
+ARG BUILD_VERSION
+ARG DEBIAN_FRONTEND=noninteractive
+
+#ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+ENV PIP_NO_CACHE_DIR=1
+
+# requirements.txt now generated from Pipfile
+# pipenv lock -r > requirements.txt
+COPY requirements.txt . 
+
+RUN apt-get update && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip && \
+	pip3 install --no-cache-dir -r requirements.txt && \
+	apt-get autoremove -y --purge && \
+	rm -rf /var/lib/apt/lists/* && \
+	apt-get clean
+
+#	apt-get purge -y python3-dev && \
+#RUN pip install sslyze==${BUILD_VERSION}
+#RUN pip3 install --no-cache-dir -r requirements.txt
+
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/sslyze"
+LABEL org.opencontainers.image.description="SSLyze is a fast and powerful SSL/TLS scanning library"
+
+ENTRYPOINT ["sslyze"]
+CMD ["-h"]

@@ -14,7 +14,7 @@ classifiers = [
 ]
 dependencies = [
   "sslyze",
-  "nassl",
+  "nassl>=5.3.1",
   "cryptography",
   "tls-parser",
   "pydantic"
