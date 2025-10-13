@@ -2,7 +2,7 @@
 #    uv pip compile pyproject.toml --no-annotate
 certifi==2025.10.5
 charset-normalizer==3.4.3
-idna==3.10
+idna==3.11
 lxml==6.0.2
 python-dateutil==2.9.0.post0
 requests==2.32.5
