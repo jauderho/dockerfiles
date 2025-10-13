@@ -39,7 +39,7 @@ python-dateutil==2.9.0.post0
 pytokens==0.1.10
 pywinrm==0.5.0
 pyyaml==6.0.3
-referencing==0.36.2
+referencing==0.37.0
 requests==2.32.5
 requests-credssp==2.0.0
 requests-kerberos==0.15.0
