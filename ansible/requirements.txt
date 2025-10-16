@@ -11,9 +11,9 @@ bracex==2.6
 cachez==0.1.2
 certifi==2025.10.5
 cffi==2.0.0
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
 click==8.3.0
-cryptography==46.0.2
+cryptography==46.0.3
 decorator==5.2.1
 distro==1.9.0
 enum34==1.1.10
@@ -36,7 +36,7 @@ pycparser==2.23
 pykerberos==1.2.4
 pyspnego==0.12.0
 python-dateutil==2.9.0.post0
-pytokens==0.1.10
+pytokens==0.2.0
 pywinrm==0.5.0
 pyyaml==6.0.3
 referencing==0.37.0
