@@ -15,7 +15,7 @@ classifiers = [
 dependencies = [
   "bleak",
   "numpy",
-  "opencv-python",
+  "opencv-python>=4.12.0.88",
   "catprinter @ git+https://github.com/jauderho/catprinter.git#egg=catprinter"
 ]
 
