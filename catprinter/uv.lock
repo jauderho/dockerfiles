@@ -41,7 +41,6 @@ source = { virtual = "." }
 dependencies = [
     { name = "bleak" },
     { name = "catprinter" },
-    { name = "ffmpeg" },
     { name = "numpy" },
     { name = "opencv-python" },
 ]
@@ -50,7 +49,6 @@ dependencies = [
 requires-dist = [
     { name = "bleak" },
     { name = "catprinter", git = "https://github.com/jauderho/catprinter.git" },
-    { name = "ffmpeg" },
     { name = "numpy" },
     { name = "opencv-python", specifier = ">=4.12.0.88" },
 ]
@@ -69,12 +67,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/28/ae/5d9964738bc9a59c9bb01bb4e196c541ed3495895297355c09283934756b/dbus_fast-2.44.1-cp313-cp313-musllinux_1_2_i686.whl", hash = "sha256:89f2f6eccbb0e464b90e5a8741deb9d6a91873eeb41a8c7b963962b39eb1e0cd", size = 939093, upload-time = "2025-04-03T19:22:27.481Z" },
     { url = "https://files.pythonhosted.org/packages/f5/3e/1c97abdf0f19ce26ac2f7f18c141495fc7459679d016475f4ad5dedef316/dbus_fast-2.44.1-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:bb74a227b071e1a7c517bf3a3e4a5a0a2660620084162e74f15010075534c9d5", size = 915980, upload-time = "2025-04-03T19:22:29.067Z" },
 ]
-
-[[package]]
-name = "ffmpeg"
-version = "1.4"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f0/cc/3b7408b8ecf7c1d20ad480c3eaed7619857bf1054b690226e906fdf14258/ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9", size = 5055, upload-time = "2018-10-08T07:50:05.748Z" }
 
 [[package]]
 name = "numpy"
