@@ -3,5 +3,5 @@
 bleak==1.1.1
 catprinter @ git+https://github.com/jauderho/catprinter.git@ea4f976a39cad1915faeabeee9aa426c8843b184#egg=catprinter
 dbus-fast==2.44.5
-numpy==2.2.6
-opencv-python==4.12.0.88
+numpy==2.3.4
+opencv-python==4.11.0.86
