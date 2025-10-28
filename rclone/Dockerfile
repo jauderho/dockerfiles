@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.25.3-alpine3.22@sha256:5b39847a285be4e3d5ef354238286178f577836dec7c9c83c083e3feb5d7c4df AS build
+FROM ghcr.io/jauderho/golang:1.25.3-alpine3.22@sha256:44054f7622ab7a287bc8beca3bf11d3b5ee2019f1b690a3852dc9b091f5d2120 AS build
 
 WORKDIR /go/src/github.com/rclone/rclone/
 
