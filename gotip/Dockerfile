@@ -1,5 +1,5 @@
 #FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:1ee281925d91a253c035e34b04fbb7cd78177933a64432ad868abdf6421ffdbd AS build
-FROM ghcr.io/jauderho/alpine:3.22.2@sha256:04d9f90216e3b84c1919a9cd1f7f06fdb3e44091d822c203e44f1ee282cd4c3a AS build
+FROM ghcr.io/jauderho/alpine:3.22.2@sha256:087377192e01c8d243c586c54757ffebfb86928184844df199ceddf8164cba2b AS build
 
 ARG BUILD_VERSION
 

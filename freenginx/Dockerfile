@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.22.2@sha256:04d9f90216e3b84c1919a9cd1f7f06fdb3e44091d822c203e44f1ee282cd4c3a
+FROM ghcr.io/jauderho/alpine:3.22.2@sha256:087377192e01c8d243c586c54757ffebfb86928184844df199ceddf8164cba2b
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
@@ -39,7 +39,7 @@ RUN \
   cd /tmp/freenginx-${BUILD_VERSION} && \
   NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   echo "Patching..." && \
-  patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.25.1+.patch && \
+  #patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.29.2+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-1.25.3-reprioritize-chacha-openssl-1.1.1.patch && \
   patch -p1 < /tmp/patches/nginx/nginx-gzip-207-status.patch && \
