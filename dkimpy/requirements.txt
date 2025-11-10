@@ -7,4 +7,4 @@ dkimpy==1.1.8
 dnspython==2.8.0
 pycares==4.11.0
 pycparser==2.23
-pynacl==1.6.0
+pynacl==1.6.1
