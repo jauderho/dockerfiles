@@ -11,7 +11,7 @@ RUN set -x \
  && apk upgrade -a \
  && apk add --no-cache \
         ca-certificates \
-        deno \
+        #deno \
         dumb-init \
         ffmpeg \
         python3 \
@@ -19,6 +19,7 @@ RUN set -x \
         py3-pip \
         zstd \
         nghttp2 \
+ && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno \
  && apk add --no-cache --virtual .build-deps \
         curl \
         build-base \
@@ -28,7 +29,6 @@ RUN set -x \
         zstd-dev \
         nghttp2-dev \
         libffi-dev \
-    # Install youtube-dl
  && curl -Lo /usr/local/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/yt-dlp \
  #&& curl -Lo SHA2-256SUMS https://github.com/yt-dlp/yt-dlp/releases/download/${BUILD_VERSION}/SHA2-256SUMS \
  #&& cat SHA2-256SUMS | grep yt-dlp: | awk -F: '{print $2" "$1}' | sha256sum -c \
