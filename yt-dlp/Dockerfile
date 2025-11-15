@@ -19,7 +19,7 @@ RUN set -x \
         py3-pip \
         zstd \
         nghttp2 \
- && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno \
+ && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno simdutf \
  && apk add --no-cache --virtual .build-deps \
         curl \
         build-base \
