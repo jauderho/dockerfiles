@@ -10,6 +10,6 @@ RUN go get -d -v ./...
 
 RUN go build -o /go/bin/app
 
-FROM gcr.io/distroless/base-debian13@sha256:894e78799ebace28d56fc226a05d76a601685e1382421299eed8b7a95b90fa9e
+FROM gcr.io/distroless/base-debian13@sha256:cdb43eda8af166b2299779d18d3c00998e0bbf890d1fffb7c884a41fbd65e2d6
 COPY --from=build-env /go/bin/app /
 CMD ["/app"]
