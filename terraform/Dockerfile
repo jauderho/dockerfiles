@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.25.4-alpine3.22@sha256:9730dec13372a784d71d0fd8a23ff48fd2a822fdd6b5b2ae60eadabccb728f60 AS build
+FROM ghcr.io/jauderho/golang:1.25.4-alpine3.22@sha256:699015061b5d14969d0e4343dd322a3ae174de863abee48db65e7ca0a95d9f0f AS build
 #FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:1ee281925d91a253c035e34b04fbb7cd78177933a64432ad868abdf6421ffdbd AS build
 
 WORKDIR /go/src/github.com/hashicorp/terraform/
