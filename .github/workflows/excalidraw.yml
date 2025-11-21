@@ -54,7 +54,7 @@ jobs:
             yarnpkg.com:443
           
       - name: Source checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.4.2 
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v4.4.2 
  
       - name: Setup QEMU
         id: qemu
