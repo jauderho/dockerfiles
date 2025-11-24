@@ -1,5 +1,5 @@
 #FROM nginx AS build
-FROM ghcr.io/jauderho/golang:1.25.4-alpine3.22@sha256:699015061b5d14969d0e4343dd322a3ae174de863abee48db65e7ca0a95d9f0f AS build
+FROM ghcr.io/jauderho/golang:1.25.4-alpine3.22@sha256:bcd937830c0bb3496fb7bcd91f65465df766e8bab9cb10ca11192c38fa43c8f7 AS build
 
 WORKDIR /src
 COPY . .
