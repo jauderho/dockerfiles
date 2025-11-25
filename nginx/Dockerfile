@@ -95,12 +95,12 @@ RUN \
 
 #    --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed' \
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/nginx"
-LABEL org.opencontainers.image.description "nginx is a web server"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/nginx"
+LABEL org.opencontainers.image.description="nginx is a web server"
 
 COPY files/index.html /usr/share/nginx/html/
 COPY files/nginx.conf /etc/nginx/nginx.conf
