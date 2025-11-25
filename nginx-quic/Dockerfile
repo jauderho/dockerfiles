@@ -59,12 +59,12 @@ RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev 
 #FROM nginx
 FROM ghcr.io/jauderho/alpine:3.22.2@sha256:087377192e01c8d243c586c54757ffebfb86928184844df199ceddf8164cba2b
 
-LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
-LABEL org.opencontainers.image.url "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.documentation "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
-LABEL org.opencontainers.image.title "jauderho/nginx-quic"
-LABEL org.opencontainers.image.description "nginx is a web server"
+LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
+LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
+LABEL org.opencontainers.image.title="jauderho/nginx-quic"
+LABEL org.opencontainers.image.description="nginx is a web server"
 
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin
 COPY --from=build /src/files/index.html /etc/nginx/html/
