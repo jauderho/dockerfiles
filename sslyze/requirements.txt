@@ -5,7 +5,7 @@ cffi==2.0.0
 cryptography==44.0.3
 nassl==5.3.1
 pycparser==2.23
-pydantic==2.12.4
+pydantic==2.12.5
 pydantic-core==2.41.5
 sslyze==6.2.0
 tls-parser==2.0.2
