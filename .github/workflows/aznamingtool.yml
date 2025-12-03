@@ -54,7 +54,7 @@ jobs:
             westcentralus.data.mcr.microsoft.com:443
 
       - name: Source checkout
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v4.4.2 
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.4.2 
  
       - name: Setup QEMU
         id: qemu
@@ -121,7 +121,7 @@ jobs:
 
     steps:
       - name: Source checkout
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v4.4.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.4.2
         
       - name: Update DockerHub description
         uses: peter-evans/dockerhub-description@1b9a80c056b620d92cedb9d9b5a223409c68ddfa # v2
