@@ -30,7 +30,7 @@ mitogen==0.3.35
 mypy-extensions==1.1.0
 packaging==25.0
 pathspec==0.12.1
-platformdirs==4.5.0
+platformdirs==4.5.1
 pycparser==2.23
 pykerberos==1.2.4
 pyspnego==0.12.0
@@ -50,7 +50,7 @@ ruamel-yaml==0.18.16
 six==1.17.0
 storops==1.2.12
 subprocess-tee==0.4.2
-urllib3==2.5.0
+urllib3==2.6.0
 wcmatch==10.1
 xmltodict==1.0.2
 yamllint==1.37.1
