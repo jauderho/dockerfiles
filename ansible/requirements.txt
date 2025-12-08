@@ -50,7 +50,7 @@ ruamel-yaml==0.18.16
 six==1.17.0
 storops==1.2.12
 subprocess-tee==0.4.2
-urllib3==2.6.0
+urllib3==2.6.1
 wcmatch==10.1
 xmltodict==1.0.2
 yamllint==1.37.1
