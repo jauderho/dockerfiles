@@ -2,7 +2,7 @@
 #
 # VERSION               1.0
 
-FROM ghcr.io/jauderho/alpine:3.23.0@sha256:df8f76a45aada5bde7a3769b5050c0a71bd3a6567acc2db7a8c88ecf95b3255d
+FROM ghcr.io/jauderho/alpine:3.23.0@sha256:19cc27d01fd5f98eadadbd1bcb64568e5f7f1bc7f6d1704102a3af7c0120a33d
 #MAINTAINER jirka@dutka.net
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"

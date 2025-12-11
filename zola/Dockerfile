@@ -1,5 +1,5 @@
 #FROM alpine:edge@sha256:1a4c2018cfbab67566904e18fde9bf6a5c190605bf7da0e1d181b26746a15188 AS build
-#FROM ghcr.io/jauderho/alpine:3.23.0@sha256:df8f76a45aada5bde7a3769b5050c0a71bd3a6567acc2db7a8c88ecf95b3255d AS build
+#FROM ghcr.io/jauderho/alpine:3.23.0@sha256:19cc27d01fd5f98eadadbd1bcb64568e5f7f1bc7f6d1704102a3af7c0120a33d AS build
 FROM rust:1.91.1-alpine3.22@sha256:8efbfb788786eeb127adc581394349c5fb567712156e0f8c2e499acadbc23756 AS build
 
 WORKDIR /usr/src/github.com/getzola/zola/
@@ -24,7 +24,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.23.0@sha256:df8f76a45aada5bde7a3769b5050c0a71bd3a6567acc2db7a8c88ecf95b3255d
+FROM ghcr.io/jauderho/alpine:3.23.0@sha256:19cc27d01fd5f98eadadbd1bcb64568e5f7f1bc7f6d1704102a3af7c0120a33d
 #FROM debian:11-slim
 #FROM rust:1.70.0-alpine3.18@sha256:74ad9d14ec89bc4e83bf2a3d007fd981513ee4b44279b40d3a90c001a6ca938c
 
