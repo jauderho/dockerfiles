@@ -22,6 +22,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& make build \
 	&& strip /go/src/github.com/go-acme/lego/dist/lego \
 	&& cp /go/src/github.com/go-acme/lego/dist/lego /go/src/github.com/go-acme/lego-bin \
+	&& go clean && go clean -cache && go clean -modcache \
 	&& make clean 
 
 # ----------------------------------------------------------------------------
