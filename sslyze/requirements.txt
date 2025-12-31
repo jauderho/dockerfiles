@@ -7,7 +7,7 @@ nassl==5.4.0
 pycparser==2.23
 pydantic==2.12.5
 pydantic-core==2.41.5
-sslyze==6.2.0
+sslyze==6.3.0
 tls-parser==2.0.2
 typing-extensions==4.15.0
 typing-inspection==0.4.2
