@@ -47,7 +47,7 @@ resolvelib==1.2.1
 retryz==0.1.9
 rpds-py==0.30.0
 ruamel-yaml==0.19.0
-ruamel-yaml-clibz==0.3.4
+ruamel-yaml-clibz==0.3.7
 six==1.17.0
 storops==1.2.12
 subprocess-tee==0.4.2
