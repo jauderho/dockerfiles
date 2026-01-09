@@ -29,7 +29,7 @@ markupsafe==3.0.3
 mitogen==0.3.37
 mypy-extensions==1.1.0
 packaging==25.0
-pathspec==0.12.1
+pathspec==1.0.3
 platformdirs==4.5.1
 pycparser==2.23
 pykerberos==1.2.4
