@@ -53,4 +53,4 @@ subprocess-tee==0.4.2
 urllib3==2.6.3
 wcmatch==10.1
 xmltodict==1.0.2
-yamllint==1.37.1
+yamllint==1.38.0
