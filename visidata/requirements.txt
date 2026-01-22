@@ -10,4 +10,4 @@ six==1.17.0
 standard-mailcap==3.13.0
 urllib3==2.6.3
 visidata==3.3
-wcwidth==0.3.0
+wcwidth==0.3.1
