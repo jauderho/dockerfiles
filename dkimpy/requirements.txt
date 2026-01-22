@@ -6,5 +6,5 @@ cffi==2.0.0
 dkimpy==1.1.8
 dnspython==2.8.0
 pycares==5.0.1
-pycparser==2.23
+pycparser==3.0
 pynacl==1.6.2
