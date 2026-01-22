@@ -31,7 +31,7 @@ mypy-extensions==1.1.0
 packaging==25.0
 pathspec==1.0.3
 platformdirs==4.5.1
-pycparser==2.23
+pycparser==3.0
 pykerberos==1.2.4
 pyspnego==0.12.0
 python-dateutil==2.9.0.post0
