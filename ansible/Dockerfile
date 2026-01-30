@@ -21,7 +21,7 @@ RUN apt-get update && \
 	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
 	#python3 -m pip install --no-cache-dir --upgrade --ignore-installed packaging --break-system-packages && \
 	#pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	pip3 install --no-cache-dir -r requirements.txt --ignore-installed --break-system-packages && \
 	apt-get purge -y ${build_pkgs} && \
 	apt-get -y clean && \
 	apt-get autoremove -y --purge && \
