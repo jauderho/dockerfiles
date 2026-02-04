@@ -1,4 +1,4 @@
-FROM node:25.6.0-alpine3.23@sha256:09f7192862e11e31ee586e94e2b51274aafa5416e595fc847f1c5cdcfe5ef652 AS build
+FROM node:25.6.0-alpine3.23@sha256:c8d96e95e88f08f814af06415db9cfd5ab4ebcdf40721327ff2172ff25cfb997 AS build
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 
-FROM node:25.6.0-alpine3.23@sha256:09f7192862e11e31ee586e94e2b51274aafa5416e595fc847f1c5cdcfe5ef652
+FROM node:25.6.0-alpine3.23@sha256:c8d96e95e88f08f814af06415db9cfd5ab4ebcdf40721327ff2172ff25cfb997
 #FROM ghcr.io/jauderho/alpine:3.23.3@sha256:350bc73d1a938d40605f8ecd1009be511e61804d8452af018d63b8eac931fe33
 
 WORKDIR /app
