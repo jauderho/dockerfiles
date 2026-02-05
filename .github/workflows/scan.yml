@@ -64,7 +64,7 @@ jobs:
           hide-progress: false
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@b20883b0cd1f46c72ae0ba6d1090936928f9fa30
+        uses: github/codeql-action/upload-sarif@6bc82e05fd0ea64601dd4b465378bbcf57de0314
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
@@ -91,7 +91,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: anchore/scan-action@8d2fce09422cd6037e577f4130e9b925e9a37175 # v7.3.1
+        uses: anchore/scan-action@7037fa011853d5a11690026fb85feee79f4c946c # v7.3.2
         id: anchore-scan
         with:
           #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
@@ -100,7 +100,7 @@ jobs:
           severity-cutoff: high
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@b20883b0cd1f46c72ae0ba6d1090936928f9fa30
+        uses: github/codeql-action/upload-sarif@6bc82e05fd0ea64601dd4b465378bbcf57de0314
         with:
           sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
 
@@ -142,7 +142,7 @@ jobs:
   #         args: --file=${{ matrix.image }}/Dockerfile --severity-threshold=high
 
   #     - name: Upload result to GitHub Code Scanning
-  #       uses: github/codeql-action/upload-sarif@b20883b0cd1f46c72ae0ba6d1090936928f9fa30
+  #       uses: github/codeql-action/upload-sarif@6bc82e05fd0ea64601dd4b465378bbcf57de0314
   #       with:
   #         sarif_file: snyk.sarif
 
