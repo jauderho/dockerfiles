@@ -30,7 +30,7 @@ echo
 #pipenv lock && pipenv requirements > requirements.txt
 ###pipenv --python 3.12 lock && pipenv --python 3.12 requirements --exclude-markers > requirements.txt
 
-uv lock  && uv pip compile pyproject.toml --no-annotate  > requirements.txt
+uv lock -U && uv pip compile pyproject.toml --no-annotate > requirements.txt
 
 ###git add Pipfile Pipfile.lock requirements.txt && \
 git add pyproject.toml uv.lock requirements.txt && \
