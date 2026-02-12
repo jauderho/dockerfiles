@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.0-alpine3.23@sha256:27cd81db958a6786bc9285ecbcb6020c4b6010a37d0640aee8f4998c26233090 AS build
+FROM ghcr.io/jauderho/golang:1.26.0-alpine3.23@sha256:bff6043429d1a7c83b269933a98955f24932e638e1f27dba90c8d637564da172 AS build
 #FROM ghcr.io/jauderho/golang:1.24.5-alpine3.22@sha256:1ee281925d91a253c035e34b04fbb7cd78177933a64432ad868abdf6421ffdbd AS build
 
 WORKDIR /go/src/github.com/opentofu/opentofu
