@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
+        uses: aquasecurity/trivy-action@c1824fd6edce30d7ab345a9989de00bbd46ef284 # 0.34.0
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
           #image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
@@ -130,7 +130,7 @@ jobs:
   #       # Snyk can be used to break the build when it detects vulnerabilities.
   #       # In this case we want to upload the issues to GitHub Code Scanning
   #       continue-on-error: true
-  #       uses: snyk/actions/docker@7fad562681122205233d1242c3bb39598c5393da # 0.3.0
+  #       uses: snyk/actions/docker@9adf32b1121593767fc3c057af55b55db032dc04 # v1.0.0
   #       env:
   #         # In order to use the Snyk Action you will need to have a Snyk API token.
   #         # More details in https://github.com/snyk/actions#getting-your-snyk-token
