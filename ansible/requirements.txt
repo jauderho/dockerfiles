@@ -30,7 +30,7 @@ mitogen==0.3.41
 mypy-extensions==1.1.0
 packaging==26.0
 pathspec==1.0.4
-platformdirs==4.6.0
+platformdirs==4.7.0
 pycparser==3.0
 pykerberos==1.2.4
 pyspnego==0.12.0
