@@ -64,7 +64,7 @@ jobs:
         uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
 
       #      - name: Setup cache
-      #        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      #        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
       #        with:
       #          path: ~/.cache/ccache
       #          key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -97,7 +97,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
+        uses: docker/build-push-action@601a80b39c9405e50806ae38af30926f9d957c47 # v6.19.1
         with:
           push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
