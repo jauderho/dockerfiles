@@ -17,7 +17,7 @@ cryptography==46.0.5
 decorator==5.2.1
 distro==1.9.0
 enum34==1.1.10
-filelock==3.21.2
+filelock==3.23.0
 gssapi==1.11.1
 idna==3.11
 jinja2==3.1.6
@@ -30,7 +30,7 @@ mitogen==0.3.41
 mypy-extensions==1.1.0
 packaging==26.0
 pathspec==1.0.4
-platformdirs==4.7.0
+platformdirs==4.8.0
 pycparser==3.0
 pykerberos==1.2.4
 pyspnego==0.12.0
