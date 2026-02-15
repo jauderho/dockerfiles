@@ -14,8 +14,8 @@ LABEL org.opencontainers.image.description="lpar2rrd is a server performance mon
 
 ARG BUILD_VERSION
 
-ENV HOSTNAME XoruX
-ENV VI_IMAGE 1
+ENV HOSTNAME=XoruX
+ENV VI_IMAGE=1
 
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
@@ -44,43 +44,24 @@ RUN apk update \
     perl-dbd-pg \
     perl-io-tty \
     perl-want \
-    # perl-font-ttf \
-    net-tools \
-    bind-tools \
     libxml2-utils \
-    # snmp-mibs-downloader \
     openssh-client \
     ttf-dejavu \
     graphviz \
-    # vim \
     rsyslog \
     tzdata \
-    sudo \
-    less \
-    ed \
-    sharutils \
-    make \
     tar \
-    perl-dev \
-    perl-app-cpanminus \
     sqlite \
-    perl-dbd-pg \
     perl-dbd-sqlite \
     iproute2 \
     lsblk \
     procps \
-    diffutils \
-    dpkg \
     freetype \
     && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
-    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
-
-# perl-font-ttf from testing repo (needed for PDF reports)
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
-
-# install perl PDF API from CPAN
-RUN cpanm -l /usr -n PDF::API2
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli \
+    && apk add --no-cache --virtual .build-deps make perl-dev perl-app-cpanminus \
+    && cpanm -l /usr -n PDF::API2 \
+    && apk del .build-deps
 
 # setup default user
 RUN addgroup -S lpar2rrd 
@@ -102,7 +83,7 @@ RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 #ENV LPAR_VER_MIN "17"
 
 #ENV LPAR_VER "$LPAR_VER_MAJ-$LPAR_VER_MIN"
-ENV LPAR_VER "${BUILD_VERSION}"
+ENV LPAR_VER="${BUILD_VERSION}"
 
 # expose ports for SSH, HTTP, HTTPS and LPAR2RRD daemon
 EXPOSE 80 8162
@@ -122,7 +103,7 @@ ADD https://lpar2rrd.com/agent/lpar2rrd-agent-latest_all.deb /opt/lpar2rrd-agent
 # extract tarballs
 WORKDIR /tmp
 RUN tar xvf lpar2rrd-$LPAR_VER.tar && rm -rf lpar2rrd-$LPAR_VER.tar
-RUN dpkg -i /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && rm -rf /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb
+RUN apk add --no-cache dpkg && dpkg -i /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && rm -rf /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && apk del dpkg
 
 COPY supervisord.conf /etc/
 COPY startup.sh /startup.sh

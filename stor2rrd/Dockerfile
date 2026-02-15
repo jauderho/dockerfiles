@@ -14,8 +14,8 @@ LABEL org.opencontainers.image.description="stor2rrd is a storage, SAN, LAN perf
 
 ARG BUILD_VERSION
 
-ENV HOSTNAME XoruX
-ENV VI_IMAGE 1
+ENV HOSTNAME=XoruX
+ENV VI_IMAGE=1
 
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
@@ -44,43 +44,24 @@ RUN apk update \
     perl-dbd-pg \
     perl-io-tty \
     perl-want \
-    # perl-font-ttf \
-    net-tools \
-    bind-tools \
     libxml2-utils \
-    # snmp-mibs-downloader \
     openssh-client \
     ttf-dejavu \
     graphviz \
-    # vim \
     rsyslog \
     tzdata \
-    sudo \
-    less \
-    ed \
-    sharutils \
-    make \
     tar \
-    perl-dev \
-    perl-app-cpanminus \
     sqlite \
-    perl-dbd-pg \
     perl-dbd-sqlite \
     iproute2 \
     lsblk \
     procps \
-    diffutils \
-    dpkg \
     freetype \
     && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
-    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
-
-# perl-font-ttf from testing repo (needed for PDF reports)
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
-
-# install perl PDF API from CPAN
-RUN cpanm -l /usr -n PDF::API2
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli \
+    && apk add --no-cache --virtual .build-deps make perl-dev perl-app-cpanminus \
+    && cpanm -l /usr -n PDF::API2 \
+    && apk del .build-deps
 
 # setup default user
 RUN addgroup -S stor2rrd 
@@ -102,7 +83,7 @@ RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 #ENV STOR_VER_MIN "24"
 
 #ENV STOR_VER "$STOR_VER_MAJ-$STOR_VER_MIN"
-ENV STOR_VER "${BUILD_VERSION}"
+ENV STOR_VER="${BUILD_VERSION}"
 
 # expose ports for SSH, HTTP, HTTPS
 EXPOSE 80
