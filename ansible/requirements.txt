@@ -17,7 +17,7 @@ cryptography==46.0.5
 decorator==5.2.1
 distro==1.9.0
 enum34==1.1.10
-filelock==3.24.2
+filelock==3.24.3
 gssapi==1.11.1
 idna==3.11
 jinja2==3.1.6
