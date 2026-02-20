@@ -52,5 +52,17 @@ RUN apk update \
 #COPY --from=build /go/bin/ntfy /ntfy
 COPY --from=build /go/src/github.com/binwiederhier/ntfy/ntfy /usr/local/bin/ntfy
 
+# Specify the volume for ntfy configuration.
+# Users can mount their server.yml here.
+VOLUME /etc/ntfy
+
+# For server.yml configuration, especially for APNS (iOS notifications),
+# please consult the ntfy/README.md in this repository and the official ntfy documentation.
+#
+# Example APNS configuration via environment variables (VERIFY WITH NTFY DOCUMENTATION):
+# ENV NTFY_IOS_KEY_ID=your_key_id
+# ENV NTFY_IOS_TEAM_ID=your_team_id
+# ENV NTFY_IOS_PRIVATE_KEY_FILE=/path/in/container/to/AuthKey.p8
+
 ENTRYPOINT ["/usr/local/bin/ntfy"]
 
