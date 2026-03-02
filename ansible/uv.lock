@@ -507,11 +507,11 @@ wheels = [
 
 [[package]]
 name = "mitogen"
-version = "0.3.42"
+version = "0.3.43"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ab/76/0a5fc66d4786273c7bab8b2d457027f7ebd246fdd41251d4f6906842256e/mitogen-0.3.42.tar.gz", hash = "sha256:7767787e47cafac1aa674d7f6622bd2f764bd9ed0da0c63002df7161783bf46f", size = 231140, upload-time = "2026-02-20T10:24:41.965Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/82/13132f2af0269e228cfcf1be0b24eebc302d3979d31eb6e557f0b9118a05/mitogen-0.3.43.tar.gz", hash = "sha256:f540d8bc85e0552b91ae8989de7c9f4a1ef6588719c3f518ad4847126941bf82", size = 241201, upload-time = "2026-03-02T17:15:30.947Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/da/48/0ac2a50ebee2621c2318d2fe2e22279426bf39e2b8bb841a59aabfb77899/mitogen-0.3.42-py2.py3-none-any.whl", hash = "sha256:c8f90102160cc8045304e06c48e7224cbbe22bbcdfceffc07fe78473a257521f", size = 291180, upload-time = "2026-02-20T10:24:40.645Z" },
+    { url = "https://files.pythonhosted.org/packages/50/46/7a50971354fe50022f6db21b272c54ceb90aa011e4f685eaec527a6834e2/mitogen-0.3.43-py2.py3-none-any.whl", hash = "sha256:491708d39c277c00f0e917b33fed57098de01f83a26bd8378ac4018298cad665", size = 291179, upload-time = "2026-03-02T17:15:29.424Z" },
 ]
 
 [[package]]
@@ -567,15 +567,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/07/e9/ae44ea7d7605df9e5
 
 [[package]]
 name = "pyspnego"
-version = "0.12.0"
+version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cryptography" },
     { name = "sspilib", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f9/e4/8b32a91aeba6fbc6943a630c44b2fe038615e5c7dec8814316fafdcf4bf4/pyspnego-0.12.0.tar.gz", hash = "sha256:e1d9cd3520a87a1d6db8d68783b17edc4e1464eae3d51ead411a51c82dbaae67", size = 225764, upload-time = "2025-09-02T18:51:06.858Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7d/84/58577bd1b14293650879de0579ec263a1d8350f1d6d227226cf776b5a6a6/pyspnego-0.12.1.tar.gz", hash = "sha256:ff4fb6df38202a012ea2a0f43091ae9680878443f0ea61c9ea0e2e8152a4b810", size = 226027, upload-time = "2026-03-02T20:16:09.74Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/01/e9/95430b8f3b747ebd3b86a66484a79ef387167655bcb15ab416f563045565/pyspnego-0.12.0-py3-none-any.whl", hash = "sha256:84cc8dae6ad21e04b37c50c1d3c743f05f193e39498f6010cc68ec1146afd007", size = 130180, upload-time = "2025-09-02T18:51:04.938Z" },
+    { url = "https://files.pythonhosted.org/packages/dd/9f/4da6a1b9611af2397289b77d6fd08f5fe8f1f34dabc3bf85b0638d655e64/pyspnego-0.12.1-py3-none-any.whl", hash = "sha256:7237cb47985ccf5da512106ddb2731e4f9cefec00991f76c054488eb95fb1a2d", size = 130247, upload-time = "2026-03-02T20:16:08.331Z" },
 ]
 
 [package.optional-dependencies]

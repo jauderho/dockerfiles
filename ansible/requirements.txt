@@ -26,14 +26,14 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 krb5==0.9.0
 markupsafe==3.0.3
-mitogen==0.3.42
+mitogen==0.3.43
 mypy-extensions==1.1.0
 packaging==26.0
 pathspec==1.0.4
 platformdirs==4.9.2
 pycparser==3.0
 pykerberos==1.2.4
-pyspnego==0.12.0
+pyspnego==0.12.1
 python-dateutil==2.9.0.post0
 pytokens==0.4.1
 pywinrm==0.5.0
