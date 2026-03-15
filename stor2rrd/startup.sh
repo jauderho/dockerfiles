@@ -2,7 +2,7 @@
 
 if [ -f /firstrun ]; then
     # remote syslog server to docker host
-    SYSLOG=`netstat -rn|grep ^0.0.0.0|awk '{print $2}'`
+    SYSLOG=`ip route show default | awk '{print $3}'`
     echo "*.* @$SYSLOG" >> /etc/rsyslog.conf
 
     # Start syslog server to see something
