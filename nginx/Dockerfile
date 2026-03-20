@@ -74,10 +74,10 @@ RUN \
     --with-file-aio \
     --with-threads \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-fuse-ld=mold -O3 -march=native -pipe -flto -ffat-lto-objects -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection -fPIE -fexceptions --param=ssp-buffer-size=4 -grecord-gcc-switches -pie -fno-semantic-interposition -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wformat-security -Wno-error=strict-aliasing -Wextra -Wp,-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS' \
-    --with-ld-opt='-lrt -lmimalloc -O3 -Wl,-Bsymbolic-functions -Wl,-z,relro' \
+    --with-cc-opt='-O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fPIE -pie -fno-semantic-interposition -Wformat-security -Wno-error=strict-aliasing -Wno-error=vla-parameter -Wp,-D_FORTIFY_SOURCE=3' \
+    --with-ld-opt='-fuse-ld=mold -lmimalloc -O3 -march=native -flto=auto -fPIE -Wl,-pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
-    --with-openssl-opt="enable-tfo enable-ktls no-tls-deprecated-ec enable-pie enable-ec_nistp_64_gcc_128 threads no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-tests" \
+    --with-openssl-opt="enable-quic enable-tfo enable-ktls enable-pie enable-ec_nistp_64_gcc_128 threads no-tls-deprecated-ec no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-deprecated no-comp no-tests -O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fno-semantic-interposition -Wformat-security -Wp,-D_FORTIFY_SOURCE=3 -DOPENSSL_TLS_SECURITY_LEVEL=3" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
