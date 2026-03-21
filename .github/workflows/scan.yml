@@ -17,6 +17,9 @@ concurrency:
 
 permissions: read-all
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24s: true
+
 jobs:
   prepare:
     runs-on: ubuntu-24.04
