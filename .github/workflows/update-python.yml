@@ -39,6 +39,8 @@ jobs:
       matrix:
         app: [ansible, catprinter, dkimpy, docker-autocompose, ruff, sslyze, visidata]
     runs-on: ubuntu-24.04
+    permissions:
+      id-token: write
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
