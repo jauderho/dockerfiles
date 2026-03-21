@@ -47,7 +47,7 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
         with:
-          egress-policy: audit
+          egress-policy: block
           disable-sudo: false
           disable-telemetry: true
           allowed-endpoints: 
@@ -60,6 +60,7 @@ jobs:
             pkg-containers.githubusercontent.com:443
             pypi.org:443
             release-assets.githubusercontent.com:443
+            releases.astral.sh:443
             security.ubuntu.com:443
             www.piwheels.org:443
 
