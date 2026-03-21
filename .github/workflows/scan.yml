@@ -46,8 +46,21 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
         with:
-          egress-policy: audit
+          egress-policy: block
           disable-telemetry: false
+          allowed-endpoints: >
+            api.github.com:443
+            cdn.fwupd.org:443
+            check.trivy.dev:443
+            get.trivy.dev:443
+            ghcr.io:443
+            github.com:443
+            hosted-compute-watchdog-prod-eus-02.githubapp.com:443
+            mirror.gcr.io:443
+            objects.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            raw.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
           
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -84,8 +97,20 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
         with:
-          egress-policy: audit
+          egress-policy: block
           disable-telemetry: false
+          allowed-endpoints: >
+            api.github.com:443
+            cdn.fwupd.org:443
+            get.anchore.io:443
+            ghcr.io:443
+            github.com:443
+            grype.anchore.io:443
+            objects.githubusercontent.com:443
+            pkg-containers.githubusercontent.com:443
+            raw.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            toolbox-data.anchore.io:443
           
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
