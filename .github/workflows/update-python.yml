@@ -71,6 +71,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-cache: true
+          python-version: 3.13
 #          cache-dependency-glob: |
 #            "**/requirements*.txt"
 #            "**/pyproject.toml"
