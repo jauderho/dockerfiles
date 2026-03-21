@@ -2,13 +2,13 @@ FROM ghcr.io/jauderho/alpine:3.23.3@sha256:350bc73d1a938d40605f8ecd1009be511e618
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
-#ENV BUILD_VERSION 1.25.3
+#ENV BUILD_VERSION 1.29.6
 
 # https://www.openssl.org/source
-#ENV OPENSSL_VERSION 3.2.1
+#ENV OPENSSL_VERSION 3.6.1
 
 # https://www.pcre.org/
-#ENV PCRE_VERSION 10.42
+#ENV PCRE_VERSION 10.47
 
 ARG BUILD_VERSION
 ARG OPENSSL_VERSION
@@ -62,22 +62,29 @@ RUN \
     --with-http_realip_module \
     --with-http_v2_module \
     --with-http_v3_module \
-    #--with-http_v2_hpack_enc \
     --with-http_gunzip_module \
     --with-http_gzip_static_module \
     --with-http_secure_link_module \
     --with-http_slice_module \
-    --with-http_stub_status_module \
     --with-http_auth_request_module \
+    --with-stream \
+    --with-stream_ssl_module \
+    --with-stream_ssl_preread_module \
+    --with-stream_realip_module \    
     --without-http_autoindex_module \
     --without-http_ssi_module \
+    --without-http_uwsgi_module \
+    --without-http_scgi_module \
+    --without-http_empty_gif_module \
+    --without-http_browser_module \
+    --without-http_split_clients_module \    
     --with-file-aio \
     --with-threads \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fPIE -pie -fno-semantic-interposition -Wformat-security -Wno-error=strict-aliasing -Wno-error=vla-parameter -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3' \
+    --with-cc-opt='-O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fPIE -pie -fno-plt -fno-semantic-interposition -Wformat-security -Wno-error=strict-aliasing -Wno-error=vla-parameter -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3' \
     --with-ld-opt='-fuse-ld=mold -lmimalloc -O3 -march=native -flto=auto -fPIE -Wl,-pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
-    --with-openssl-opt="enable-quic enable-tfo enable-ktls enable-pie enable-ec_nistp_64_gcc_128 threads no-tls-deprecated-ec no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-deprecated no-comp no-tests -O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fno-semantic-interposition -Wformat-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -DOPENSSL_TLS_SECURITY_LEVEL=3" \
+    --with-openssl-opt="enable-quic enable-tfo enable-ktls enable-pie enable-ec_nistp_64_gcc_128 threads no-tls-deprecated-ec no-ssl no-tls1 no-tls1_1 no-weak-ssl-ciphers no-deprecated no-comp no-tests -O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fno-plt -fno-semantic-interposition -Wformat-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -DOPENSSL_TLS_SECURITY_LEVEL=3" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
