@@ -18,6 +18,7 @@ echo
 # Build dependencies
 uv lock -U && uv pip compile pyproject.toml --no-annotate > requirements.txt
 
+git pull && \
 git add pyproject.toml uv.lock requirements.txt && \
 git commit -S -s -m "Update requirements for $1 ..." && \
 git pull && \
