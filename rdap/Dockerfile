@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/openrdap/rdap/archive/
 ARG GIT_URL=https://github.com/jauderho/rdap.git
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

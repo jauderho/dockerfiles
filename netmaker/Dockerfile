@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/gravitl/netmaker/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/gravitl/netmaker/archive/refs/tags/
 
-ENV CGO_ENABLED 1
+ENV CGO_ENABLED=1
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

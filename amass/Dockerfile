@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/owasp/amass/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/owasp/amass/archive/
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

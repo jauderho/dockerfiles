@@ -7,8 +7,8 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/opentofu/opentofu/archive/
 ARG GIT_URL=https://github.com/opentofu/opentofu.git
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 1
+ENV GO111MODULE=on
+ENV CGO_ENABLED=1
 
 #COPY . .
 

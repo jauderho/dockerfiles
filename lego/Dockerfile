@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/go-acme/lego/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/go-acme/lego/archive/
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 COPY . .
 

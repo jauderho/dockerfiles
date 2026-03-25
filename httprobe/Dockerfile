@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/tomnomnom/httprobe/archive/
 ARG GIT_URL=https://github.com/tomnomnom/httprobe.git
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

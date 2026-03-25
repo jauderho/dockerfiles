@@ -3,7 +3,7 @@ FROM ghcr.io/jauderho/alpine:3.23.3@sha256:350bc73d1a938d40605f8ecd1009be511e618
 
 ARG BUILD_VERSION
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

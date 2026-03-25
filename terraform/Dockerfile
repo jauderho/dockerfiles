@@ -6,7 +6,7 @@ WORKDIR /go/src/github.com/hashicorp/terraform/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/hashicorp/terraform/archive/
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 COPY . .
 

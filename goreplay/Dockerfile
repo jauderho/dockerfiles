@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/buger/goreplay/archive/
 ARG GIT_URL=https://github.com/buger/goreplay.git
 
-ENV CGO_ENABLED 1
+ENV CGO_ENABLED=1
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
