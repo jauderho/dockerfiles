@@ -6,8 +6,8 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/wagoodman/dive/archive/
 ARG GIT_URL=https://github.com/wagoodman/dive.git
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 0
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

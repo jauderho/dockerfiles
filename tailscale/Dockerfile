@@ -5,8 +5,8 @@ WORKDIR /go/src/github.com/tailscale/tailscale
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/tailscale/tailscale/archive/
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 0
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 COPY . .
 

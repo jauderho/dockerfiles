@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/authzed/spicedb/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

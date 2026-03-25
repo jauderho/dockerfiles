@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/coredns/coredns/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/coredns/coredns/archive/
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 COPY . .
 

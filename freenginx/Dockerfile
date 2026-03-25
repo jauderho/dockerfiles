@@ -2,13 +2,13 @@ FROM ghcr.io/jauderho/alpine:3.23.3@sha256:350bc73d1a938d40605f8ecd1009be511e618
 #FROM alpine:edge@sha256:c8420124adc6f31031a88c85f53e1e78f419b1ac46b827fd1d4d0fdae2c7e3aa
 
 # https://nginx.org/en/download.html
-#ENV BUILD_VERSION 1.29.6
+#ENV BUILD_VERSION=1.29.6
 
 # https://www.openssl.org/source
-#ENV OPENSSL_VERSION 3.6.1
+#ENV OPENSSL_VERSION=3.6.1
 
 # https://www.pcre.org/
-#ENV PCRE_VERSION 10.47
+#ENV PCRE_VERSION=10.47
 
 ARG BUILD_VERSION
 ARG OPENSSL_VERSION

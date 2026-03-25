@@ -5,8 +5,8 @@ WORKDIR /go/src/github.com/projectdiscovery/httpx/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/projectdiscovery/httpx/archive/
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 0
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

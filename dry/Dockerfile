@@ -5,8 +5,8 @@ WORKDIR /go/src/github.com/moncho/dry/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/moncho/dry/archive/
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 0
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

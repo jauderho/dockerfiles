@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/StackExchange/dnscontrol/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/StackExchange/dnscontrol/archive/
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 COPY . .
 

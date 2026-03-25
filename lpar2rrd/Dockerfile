@@ -14,8 +14,8 @@ LABEL org.opencontainers.image.description="lpar2rrd is a server performance mon
 
 ARG BUILD_VERSION
 
-ENV HOSTNAME XoruX
-ENV VI_IMAGE 1
+ENV HOSTNAME=XoruX
+ENV VI_IMAGE=1
 
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
@@ -98,11 +98,11 @@ RUN sed -i 's/^User apache/User lpar2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-#ENV LPAR_VER_MAJ "${BUILD_VERSION}"
-#ENV LPAR_VER_MIN "17"
+#ENV LPAR_VER_MAJ="${BUILD_VERSION}"
+#ENV LPAR_VER_MIN="17"
 
-#ENV LPAR_VER "$LPAR_VER_MAJ-$LPAR_VER_MIN"
-ENV LPAR_VER "${BUILD_VERSION}"
+#ENV LPAR_VER="$LPAR_VER_MAJ-$LPAR_VER_MIN"
+ENV LPAR_VER="${BUILD_VERSION}"
 
 # expose ports for SSH, HTTP, HTTPS and LPAR2RRD daemon
 EXPOSE 80 8162

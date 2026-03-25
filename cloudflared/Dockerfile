@@ -5,8 +5,8 @@ WORKDIR /go/src/github.com/cloudflare/cloudflared/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/cloudflare/cloudflared/archive/
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 0
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -58,13 +58,13 @@ COPY --from=build /go/src/github.com/cloudflare/cloudflared/cloudflared /usr/loc
 
 # EXPOSE
 # Default to Cloudflare and Quad9
-ENV DNS1 1.1.1.1
-ENV DNS2 9.9.9.9
-ENV UPSTREAM1 https://${DNS1}/dns-query
-ENV UPSTREAM2 https://${DNS2}/dns-query
-ENV PORT 5454
-ENV ADDRESS 0.0.0.0
-ENV METRICS 127.0.0.1:8888
+ENV DNS1=1.1.1.1
+ENV DNS2=9.9.9.9
+ENV UPSTREAM1=https://${DNS1}/dns-query
+ENV UPSTREAM2=https://${DNS2}/dns-query
+ENV PORT=5454
+ENV ADDRESS=0.0.0.0
+ENV METRICS=127.0.0.1:8888
 # STOPSIGNAL
 HEALTHCHECK NONE
 #HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD nslookup -po=${PORT} cloudflare.com 127.0.0.1 || exit 1

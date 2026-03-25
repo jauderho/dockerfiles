@@ -14,8 +14,8 @@ LABEL org.opencontainers.image.description="stor2rrd is a storage, SAN, LAN perf
 
 ARG BUILD_VERSION
 
-ENV HOSTNAME XoruX
-ENV VI_IMAGE 1
+ENV HOSTNAME=XoruX
+ENV VI_IMAGE=1
 
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
@@ -98,11 +98,11 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-#ENV STOR_VER_MAJ "${BUILD_VERSION}"
-#ENV STOR_VER_MIN "24"
+#ENV STOR_VER_MAJ="${BUILD_VERSION}"
+#ENV STOR_VER_MIN="24"
 
-#ENV STOR_VER "$STOR_VER_MAJ-$STOR_VER_MIN"
-ENV STOR_VER "${BUILD_VERSION}"
+#ENV STOR_VER="$STOR_VER_MAJ-$STOR_VER_MIN"
+ENV STOR_VER="${BUILD_VERSION}"
 
 # expose ports for SSH, HTTP, HTTPS
 EXPOSE 80

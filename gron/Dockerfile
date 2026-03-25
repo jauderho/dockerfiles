@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/tomnomnom/gron/archive/
 ARG GIT_URL=https://github.com/tomnomnom/gron.git
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

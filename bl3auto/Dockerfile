@@ -6,7 +6,7 @@ WORKDIR /go/src/github.com/jauderho/bl3auto/
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/jauderho/bl3auto/archive/
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

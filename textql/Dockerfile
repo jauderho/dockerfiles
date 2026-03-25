@@ -6,7 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/dinedal/textql/archive/
 ARG GIT_URL=https://github.com/dinedal/textql.git
 
-ENV CGO_ENABLED 1
+ENV CGO_ENABLED=1
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

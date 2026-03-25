@@ -5,8 +5,8 @@ WORKDIR /go/src/github.com/binwiederhier/ntfy
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/binwiederhier/ntfy/archive/
 
-ENV GO111MODULE on
-ENV CGO_ENABLED 1
+ENV GO111MODULE=on
+ENV CGO_ENABLED=1
 
 COPY . .
 
