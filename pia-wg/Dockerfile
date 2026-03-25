@@ -1,4 +1,4 @@
-FROM ubuntu:26.04@sha256:fed6ddb82c61194e1814e93b59cfcb6759e5aa33c4e41bb3782313c2386ed6df
+FROM ubuntu:26.04@sha256:91832dcd7bc5e44c098ecefc0a251a5c5d596dae494b33fb248e01b6840f8ce0
 #FROM python:3.14.2-slim-trixie@sha256:9b81fe9acff79e61affb44aaf3b6ff234392e8ca477cb86c9f7fd11732ce9b6a
 
 ARG BUILD_VERSION
