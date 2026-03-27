@@ -80,7 +80,7 @@ jobs:
           hide-progress: false
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@38697555549f1db7851b81482ff19f1fa5c4fedc # v4.34.1
+        uses: github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13 # v4.35.1
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
@@ -128,7 +128,7 @@ jobs:
           severity-cutoff: high
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@38697555549f1db7851b81482ff19f1fa5c4fedc # v4.34.1
+        uses: github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13 # v4.35.1
         with:
           sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
 
