@@ -2,12 +2,12 @@
 #    uv pip compile pyproject.toml --no-annotate
 annotated-types==0.7.0
 cffi==2.0.0
-cryptography==44.0.3
+cryptography==46.0.6
 nassl==5.4.0
 pycparser==3.0
 pydantic==2.12.5
 pydantic-core==2.41.5
-sslyze==6.3.0
+sslyze==6.3.1
 tls-parser==2.0.2
 typing-extensions==4.15.0
 typing-inspection==0.4.2
