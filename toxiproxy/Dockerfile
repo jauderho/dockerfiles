@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.1-alpine3.23@sha256:a70c228dd96a68fbb6122bd346143f50d7e1dffd86b7ad03258979073f83f160 AS build
+FROM ghcr.io/jauderho/golang:1.26.1-alpine3.23@sha256:ad96314ab9df0fd61fdcf0f81096b8e7307c74775e1546b32126492ad5de688b AS build
 
 WORKDIR /go/src/github.com/shopify/toxiproxy
 
@@ -34,7 +34,7 @@ RUN cp toxiproxy-cli /go/bin/toxiproxy-cli
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.23.3@sha256:350bc73d1a938d40605f8ecd1009be511e61804d8452af018d63b8eac931fe33
+FROM ghcr.io/jauderho/alpine:3.23.3@sha256:846c7304a01ed325eb369610fb63d76afaee804431ccba8c6d113baa8d4d7fa8
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
