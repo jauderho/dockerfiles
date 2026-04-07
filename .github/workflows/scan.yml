@@ -18,7 +18,7 @@ concurrency:
 permissions: read-all
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24s: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   prepare:
