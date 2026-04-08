@@ -16,7 +16,7 @@ echo "Updating $1 ..."
 echo
 
 # Build dependencies
-uv lock -U && uv pip compile pyproject.toml --no-annotate > requirements.txt
+uv lock -U && uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 
 git pull && \
 git add pyproject.toml uv.lock requirements.txt && \
