@@ -37,7 +37,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.23.3@sha256:b5ad3f2707fbbe349baa4f825d1b41fc21c7eaddcdb4b7ff30659a993bcfb4d2
+FROM ghcr.io/jauderho/alpine:3.23.3@sha256:846c7304a01ed325eb369610fb63d76afaee804431ccba8c6d113baa8d4d7fa8
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
