@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.2-alpine3.23@sha256:5a7943df7a72f98b315b6213bb92abb7c8836a9911b86aefd8a16d8b35fd4cfc AS build
+FROM ghcr.io/jauderho/golang:1.26.2-alpine3.23@sha256:f5f8ca210ec3cad781ac8c1c0f33a315f7cb9b7ecd55715ab931a4a6624112fb AS build
 
 #COPY . /go/src/github.com/jauderho/bl3auto/
 WORKDIR /go/src/github.com/jauderho/bl3auto/
@@ -26,7 +26,7 @@ RUN cp bl3auto /go/bin/bl3auto
 # ----------------------------------------------------------------------------
 
 
-FROM ghcr.io/jauderho/alpine:3.23.3@sha256:846c7304a01ed325eb369610fb63d76afaee804431ccba8c6d113baa8d4d7fa8
+FROM ghcr.io/jauderho/alpine:3.23.3@sha256:b5ad3f2707fbbe349baa4f825d1b41fc21c7eaddcdb4b7ff30659a993bcfb4d2
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
