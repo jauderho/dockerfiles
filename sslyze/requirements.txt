@@ -6,7 +6,7 @@ cryptography==46.0.7
 nassl==5.4.0
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
 pydantic==2.12.5
-pydantic-core==2.41.5
+pydantic-core==2.46.0
 sslyze==6.3.1
 tls-parser==2.0.2
 typing-extensions==4.15.0
