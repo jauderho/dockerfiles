@@ -7,19 +7,19 @@ WORKDIR /usr/src/github.com/osrg/rustybgp/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/osrg/rustybgp/archive/
-ARG GIT_URL=https://github.com/jauderho/rustybgp.git
-#ARG GIT_URL=https://github.com/osrg/rustybgp.git
+#ARG GIT_URL=https://github.com/jauderho/rustybgp.git
+ARG GIT_URL=https://github.com/osrg/rustybgp.git
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc protoc git musl-dev mold \
+	&& apk add --no-cache ca-certificates curl gcc protoc protobuf-dev git musl-dev mold \
 	# Full git clone in order to be able to revert b61f8ac5f8caccef8b145f26c09807eb1df4472f
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
 	# revert and remove CPU requirement
-	&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
-	&& git reset HEAD . \
+	#&& git revert -n b61f8ac5f8caccef8b145f26c09807eb1df4472f \
+	#&& git reset HEAD . \
 	&& rustup component add rustfmt \
 	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/rustybgpd
