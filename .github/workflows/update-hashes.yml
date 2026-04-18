@@ -42,18 +42,15 @@ jobs:
             azure.archive.ubuntu.com:80
             auth.docker.io:443
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
-            files.pythonhosted.org:443
             github.com:443
             hub.docker.com:443
             index.docker.io:443
             objects.githubusercontent.com:443
             pkg-containers.githubusercontent.com:443
             production.cloudflare.docker.com:443
-            pypi.org:443
             raw.githubusercontent.com:443
             registry-1.docker.io:443
             release-assets.githubusercontent.com:443
-            releases.astral.sh:443
             security.ubuntu.com:443
 
       - name: Source checkout
@@ -92,5 +89,5 @@ jobs:
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" bash -x scripts/updateHashes.sh
+          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateHashes.sh
           rm -rf ~/.ssh
