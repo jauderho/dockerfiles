@@ -2,25 +2,18 @@
 #
 # This runs every hour to check if upstream repos have had a new release
 #
-name: Update Python
+name: Update Hashes
 
 on:
   push:
     branches: 
       - main
     paths:
-      - scripts/updatePythonDeps.sh
-      - .github/workflows/ansible.yml
-      - .github/workflows/catprinter.yml
-      - .github/workflows/dkimpy.yml
-      - .github/workflows/docker-autocompose.yml
-      - .github/workflows/ruff.yml
-      - .github/workflows/sslyze.yml
-      - .github/workflows/visidata.yml
-      - .github/workflows/update-python.yml
+      - scripts/updateHashes.sh
+      - .github/workflows/update-hashes.yml
   workflow_dispatch:
   schedule:
-    - cron: "30 3 * * *"
+    - cron: "0 * * * *"
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
@@ -33,14 +26,8 @@ concurrency:
 permissions: read-all
 
 jobs:
-  update-python:
-    strategy:
-      fail-fast: false
-      matrix:
-        app: [ansible, catprinter, dkimpy, docker-autocompose, ruff, sslyze, visidata]
+  update-docker:
     runs-on: ubuntu-24.04
-    permissions:
-      id-token: write
 
     steps:
       # checkout with a PAT configured with workflow access to allow the workflow to check changes back in
@@ -48,9 +35,8 @@ jobs:
         uses: step-security/harden-runner@6c3c2f2c1c457b00c10c4848d6f5491db3b629df # v2.18.0
         with:
           egress-policy: block
-          disable-sudo: false
           disable-telemetry: true
-          allowed-endpoints: > 
+          allowed-endpoints: 
             aerodent.canonical.com:443
             api.github.com:443
             azure.archive.ubuntu.com:80
@@ -70,17 +56,6 @@ jobs:
           token: ${{ secrets.UPDATE_SECRET }} 
           fetch-depth: 1
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-cache: true
-          python-version: 3.13
-#          cache-dependency-glob: |
-#            "**/requirements*.txt"
-#            "**/pyproject.toml"
-#            "**/uv.lock"
-
       - name: Setup SSH keys
         env:
           BOT_SSH_PRIVATE_KEY: ${{ secrets.JBOT_SSH_PRIVATE_KEY }}
@@ -92,7 +67,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           chmod 644 ~/.ssh/id_ed25519.pub
 
-      - name: Update dependencies (${{ matrix.app }})
+      - name: Update hashes
         run: |
           git config --global user.name "Jauder Ho Bot"
           git config --global user.email "jauderho-bot@users.noreply.github.com"
@@ -100,5 +75,5 @@ jobs:
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updatePythonDeps.sh ${{ matrix.app }}
+          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateHashes.sh
           rm -rf ~/.ssh

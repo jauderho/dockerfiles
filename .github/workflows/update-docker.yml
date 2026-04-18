@@ -49,8 +49,12 @@ jobs:
             azure.archive.ubuntu.com:80
             files.pythonhosted.org:443
             github.com:443
+            objects.githubusercontent.com:443
             pkg-containers.githubusercontent.com:443
             pypi.org:443
+            raw.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            releases.astral.sh:443
             security.ubuntu.com:443
 
       - name: Source checkout
