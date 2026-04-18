@@ -76,5 +76,5 @@ jobs:
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateHashes.sh
+          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" bash -x scripts/updateHashes.sh
           rm -rf ~/.ssh
