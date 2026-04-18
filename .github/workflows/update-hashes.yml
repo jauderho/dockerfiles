@@ -47,6 +47,7 @@ jobs:
             pkg-containers.githubusercontent.com:443
             pypi.org:443
             raw.githubusercontent.com:443
+            registry-1.docker.io:443
             release-assets.githubusercontent.com:443
             releases.astral.sh:443
             security.ubuntu.com:443
