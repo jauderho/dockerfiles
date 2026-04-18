@@ -3,7 +3,8 @@ FROM ghcr.io/jauderho/golang:1.26.2-alpine3.23@sha256:56e2b921356717efba615b8b36
 WORKDIR /go/src/github.com/authzed/spicedb/
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/
+#ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/
+ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/refs/tags/
 
 ENV CGO_ENABLED=0
 
