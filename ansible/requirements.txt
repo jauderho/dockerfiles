@@ -18,7 +18,7 @@ cryptography==46.0.7
 decorator==5.2.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
-filelock==3.28.0
+filelock==3.29.0
 gssapi==1.11.1 ; sys_platform != 'win32'
 idna==3.11
 jinja2==3.1.6
@@ -27,7 +27,7 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 krb5==0.9.0 ; sys_platform != 'win32'
 markupsafe==3.0.3
-mitogen==0.3.46
+mitogen==0.3.47
 mypy-extensions==1.1.0
 packaging==26.1
 pathspec==1.0.4
