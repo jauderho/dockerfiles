@@ -2,7 +2,7 @@
 #    uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 certifi==2026.2.25
 charset-normalizer==3.4.7
-idna==3.11
+idna==3.12
 lxml==6.1.0
 python-dateutil==2.9.0.post0
 requests==2.33.1
