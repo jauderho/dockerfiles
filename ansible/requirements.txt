@@ -2,7 +2,7 @@
 #    uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 ansible==13.5.0
 ansible-compat==26.3.0
-ansible-core==2.20.4
+ansible-core==2.20.5
 ansible-lint==26.4.0
 attrs==26.1.0
 bitmath==1.4.0.1
