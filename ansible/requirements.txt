@@ -12,7 +12,7 @@ cachez==0.1.2
 certifi==2026.2.25
 cffi==2.0.0
 charset-normalizer==3.4.7
-click==8.3.2
+click==8.3.3
 colorama==0.4.6 ; sys_platform == 'win32'
 cryptography==46.0.7
 decorator==5.2.1 ; sys_platform != 'win32'
