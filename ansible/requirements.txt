@@ -30,7 +30,7 @@ markupsafe==3.0.3
 mitogen==0.3.47
 mypy-extensions==1.1.0
 packaging==26.1
-pathspec==1.0.4
+pathspec==1.1.0
 platformdirs==4.9.6
 pycparser==3.0 ; implementation_name != 'PyPy'
 pykerberos==1.2.4 ; sys_platform != 'win32'
