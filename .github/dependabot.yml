@@ -22,6 +22,8 @@ updates:
       interval: "daily"
     commit-message:
       prefix: "python:"
+    cooldown:
+      default-days: 7
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
