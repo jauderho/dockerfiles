@@ -14,7 +14,7 @@ cffi==2.0.0
 charset-normalizer==3.4.7
 click==8.3.3
 colorama==0.4.6 ; sys_platform == 'win32'
-cryptography==46.0.7
+cryptography==47.0.0
 decorator==5.2.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
@@ -29,7 +29,7 @@ krb5==0.9.0 ; sys_platform != 'win32'
 markupsafe==3.0.3
 mitogen==0.3.47
 mypy-extensions==1.1.0
-packaging==26.1
+packaging==26.2
 pathspec==1.0.4
 platformdirs==4.9.6
 pycparser==3.0 ; implementation_name != 'PyPy'
