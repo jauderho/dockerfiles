@@ -115,9 +115,12 @@ wheels = [
 
 [[package]]
 name = "bitmath"
-version = "2.0.0"
+version = "2.0.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ac/46/081b0fe4fd2875f300236de44e599654b555253eb90e4c8f1b8bcd5bc751/bitmath-2.0.0.tar.gz", hash = "sha256:ce59a9a27dab22fcb9f996d2f65d9416ad6a07aff6a78fdf3bdbfc5b40e9a06e", size = 103005, upload-time = "2026-04-26T00:04:41.23Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ac/98/49c85f55d00ff24c03c13ef171c5a3b8aea68ab8cd0bb1ecb235e2f45d3b/bitmath-2.0.1.tar.gz", hash = "sha256:ebc87550d662f7891a481b53f25f6259dbd279bbdc85cf926202e1b7548f3dbd", size = 103187, upload-time = "2026-04-28T00:35:00.025Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/01/0f/441e365ec02653284159155357cba93b4680638cf78f74fed0b954af498f/bitmath-2.0.1-py3-none-any.whl", hash = "sha256:f7d6c1160f441429f01c2102158f3d029366c25f4908e3f833bd942dda8a14db", size = 24327, upload-time = "2026-04-28T00:34:57.582Z" },
+]
 
 [[package]]
 name = "black"
