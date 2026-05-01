@@ -52,6 +52,7 @@ jobs:
             hg.nginx.org:443
             ports.ubuntu.com:80
             production.cloudflare.docker.com:443
+            production.cloudfront.docker.com:443
             proxy.golang.org:443
             registry-1.docker.io:443
             security.ubuntu.com:80
@@ -134,6 +135,7 @@ jobs:
             pkg-containers.githubusercontent.com:443
             hg.nginx.org:443
             production.cloudflare.docker.com:443
+            production.cloudfront.docker.com:443
             proxy.golang.org:443
             registry-1.docker.io:443
           
