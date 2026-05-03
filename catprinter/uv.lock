@@ -4,7 +4,7 @@ requires-python = ">=3.13"
 
 [[package]]
 name = "bleak"
-version = "3.0.1"
+version = "3.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dbus-fast", marker = "sys_platform == 'linux'" },
@@ -21,9 +21,9 @@ dependencies = [
     { name = "winrt-windows-foundation-collections", marker = "sys_platform == 'win32'" },
     { name = "winrt-windows-storage-streams", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/87/9f/dd19d92309e4a37823210827f0f42460e69603254309b99499622b511294/bleak-3.0.1.tar.gz", hash = "sha256:c8ff077519f8c30a972fd0d22f47a54b981184b2f2a0886d02e55acadbc1045d", size = 124162, upload-time = "2026-03-25T15:43:01.769Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/16/df/05a3f80ca8e3f7f5b0dba68a9e618147c909ccdba1468f07487dc8d72a9d/bleak-3.0.2.tar.gz", hash = "sha256:c2229cb8238d5876b4bd05c74bf7a1aea1f88da39d2e51ac9dfd5cc319d5265f", size = 125293, upload-time = "2026-05-02T23:01:04.066Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d2/9c/839e4ff0393070396c656fa6616d0d2512f60b571c1263183e709db1c365/bleak-3.0.1-py3-none-any.whl", hash = "sha256:49f93f24ce96610529842da2d9856e7f46597e25966c0f1cfc737f0191566de6", size = 144735, upload-time = "2026-03-25T15:43:00.285Z" },
+    { url = "https://files.pythonhosted.org/packages/26/54/05aceb9cd80073805b3ed8522e3196e8cb22f70e741873fa51406c31f4e7/bleak-3.0.2-py3-none-any.whl", hash = "sha256:39092feb9e83f1df5ad2f88e837723c7211c982ce9e9cda6235104bc2ebe0d0d", size = 146490, upload-time = "2026-05-02T23:01:02.592Z" },
 ]
 
 [[package]]
