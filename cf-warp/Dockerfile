@@ -10,7 +10,7 @@ ADD "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" /tmp/cf-warp.tar.gz
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl \
+	&& apk add --no-cache ca-certificates curl yarn \
 	&& update-ca-certificates \
 	#&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/cf-warp.tar.gz \
 	&& tar xzf /tmp/cf-warp.tar.gz --strip 1 -C /app \

@@ -1,5 +1,4 @@
 FROM node:26.0.0-alpine3.23@sha256:30f5a66e7265ef70aac56b4753ffa7905e54eca1084bc25503893ad8e9273f05 AS build
-#FROM node:22.15.0-alpine3.21@sha256:ad1aedbcc1b0575074a91ac146d6956476c1f9985994810e4ee02efd932a68fd AS build
 
 #WORKDIR /app
 WORKDIR /opt/node_app
@@ -14,7 +13,7 @@ ARG GIT_URL=https://github.com/jauderho/excalidraw.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates git \
+	&& apk add --no-cache ca-certificates git yarn \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} .
 	#&& git clone --depth 1 ${GIT_URL} . \
