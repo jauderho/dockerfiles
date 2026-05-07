@@ -53,7 +53,7 @@ six==1.17.0
 sspilib==0.5.0 ; sys_platform == 'win32'
 storops==1.2.12
 subprocess-tee==0.4.2
-urllib3==2.6.3
+urllib3==2.7.0
 wcmatch==10.1
 winkerberos==0.13.0 ; sys_platform == 'win32'
 xmltodict==1.0.4
