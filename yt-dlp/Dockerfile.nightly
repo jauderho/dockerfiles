@@ -16,6 +16,7 @@ RUN set -x \
         ffmpeg \
         python3 \
         py3-mutagen \
+        py3-pycryptodomex \
  && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno simdutf \
  && apk add --no-cache --virtual .build-deps \
         curl \
