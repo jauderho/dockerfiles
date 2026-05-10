@@ -12,7 +12,6 @@ RUN set -x \
  && apk upgrade -a \
  && apk add --no-cache \
         ca-certificates \
-        #deno \
         dumb-init \
         ffmpeg \
         python3 \
@@ -31,9 +30,10 @@ RUN set -x \
         zstd-dev \
         nghttp2-dev \
         libffi-dev \
- && curl -Lo /usr/local/bin/yt-dlp ${RELEASE_URL}${BUILD_VERSION}/yt-dlp \
- #&& curl -Lo SHA2-256SUMS ${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS \
- #&& cat SHA2-256SUMS | grep yt-dlp: | awk -F: '{print $2" "$1}' | sha256sum -c \
+ && cd /usr/local/bin \
+ && curl -Lo yt-dlp ${RELEASE_URL}${BUILD_VERSION}/yt-dlp \
+ && curl -Lo SHA2-256SUMS ${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS \
+ && cat SHA2-256SUMS | grep "yt-dlp$" | sha256sum -csw - \
  && chmod a+rx /usr/local/bin/yt-dlp \
  # Conditionally install curl_cffi only on supported arches
  && case "$(uname -m)" in \
@@ -41,12 +41,12 @@ RUN set -x \
        *) echo "Skipping curl_cffi: unsupported arch $(uname -m)" ;; \
     esac \
  # Clean-up
- #&& rm SHA2-256SUMS \
+ && rm SHA2-256SUMS \
  && apk del .build-deps \
-    # Create directory to hold downloads.
+ # Create directory to hold downloads.
  && mkdir /downloads \
  && chmod a+rw /downloads \
-    # Sets up cache.
+ # Sets up cache.
  && mkdir /.cache \
  && chmod 777 /.cache
 
