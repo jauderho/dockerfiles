@@ -9,5 +9,5 @@ packaging==26.2
 pyaml==26.2.1
 pywin32==311 ; sys_platform == 'win32'
 pyyaml==6.0.3
-requests==2.33.1
+requests==2.34.0
 urllib3==2.7.0
