@@ -39,6 +39,7 @@ REPO=(
 	"johnkerl/miller" \
 	"slackhq/nebula" \
 	"gravitl/netmaker" \
+	"nginx/nginx" \
 	"binwiederhier/ntfy" \
 	"cube2222/octosql" \
 	"aramperes/onetun" \
