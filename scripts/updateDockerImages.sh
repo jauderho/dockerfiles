@@ -86,6 +86,12 @@ do
 			# special case for ansible and dkimpy
 			rver=$(curl -sL https://pypi.org/pypi/${prog}/json | jq -r '.info.version')
 			;;
+		"nginx/nginx")
+			# nginx tags look like "release-1.31.0"; strip the prefix so the
+			# version matches what the workflow file and download URL expect
+			rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
+			rver="${rver#release-}"
+			;;
 		*)
 			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
 			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/tags" | jq -r '.[0].name')
