@@ -8,14 +8,14 @@ resolution-markers = [
 
 [[package]]
 name = "aiodns"
-version = "4.0.3"
+version = "4.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pycares" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7f/70/2047b454e8210a19876c263b801a4a1b3649f48af044bd076be468a8bd65/aiodns-4.0.3.tar.gz", hash = "sha256:33c53dc0e83826a18d6feb3f99df7bf520c0e79ac6ede0daf9aa7af8ffe81358", size = 29036, upload-time = "2026-05-16T03:13:11.9Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9b/22/a2d928e0e42baad0471d12ec44c71152ac870486e8298dddb2893b888c29/aiodns-4.0.4.tar.gz", hash = "sha256:cb10e0c0d2591636716ad2fe402e977c16d71bdaf76bb8cb49e8a6633596f736", size = 29918, upload-time = "2026-05-20T01:54:15.557Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/ad/4823d93835c0ab2d53d41860edb57fbd83eca4cf156f57ae32504c4a4603/aiodns-4.0.3-py3-none-any.whl", hash = "sha256:9c13842cfefe638283dfc14b8ff0e545202e7acd8c6f38d38dfa2011eecb9a26", size = 12377, upload-time = "2026-05-16T03:13:10.782Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/70/72e4ab117425ccdc4d10bd523a94c1baa051a15586057d64a4c6888f9e3f/aiodns-4.0.4-py3-none-any.whl", hash = "sha256:c24dd605bac70a1676ce503f967a98483ff163507198557d8e9db16267e6cfd2", size = 12696, upload-time = "2026-05-20T01:54:14.134Z" },
 ]
 
 [[package]]
