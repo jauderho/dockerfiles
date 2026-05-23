@@ -3,8 +3,8 @@
 certifi==2026.5.20
 charset-normalizer==3.4.7
 docker==7.1.0
-docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@8a5c0fc87cd51708260417e5b96dcc66df018e49
-idna==3.15
+docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@dd6a9b3b43a1b9781aab47ebf5e9d23ffbe90f60
+idna==3.16
 packaging==26.2
 pyaml==26.2.1
 pywin32==311 ; sys_platform == 'win32'
