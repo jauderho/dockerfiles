@@ -115,11 +115,11 @@ wheels = [
 
 [[package]]
 name = "bitmath"
-version = "2.1.0"
+version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/01/b9/51e835168d9671bc3c1baf5c290f4a3e36d63fd8bb121558d72b88f498bb/bitmath-2.1.0.tar.gz", hash = "sha256:16538b82d2c264e171fcaa77d51427e5b171217c95cc841a648852bed23d1193", size = 112002, upload-time = "2026-05-25T04:29:17.736Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/c0/9e4ffd1ccfc71eb8600a7e725857601d10ca7941ace678f20cb7a211c225/bitmath-2.1.1.tar.gz", hash = "sha256:56f2cda86b1f0aa6470f4aaa90f82ef029f0e16c31b66f0fdd9d67613bc5e9f0", size = 112001, upload-time = "2026-05-25T13:24:39.279Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8d/c2/b5c71a667203b7eba0223597a3a9d6462c099479b105e6c51ece71141b1d/bitmath-2.1.0-py3-none-any.whl", hash = "sha256:b241571df41638512e683edcdca1bc2c362449a776e63d4ffcbb2ce710be6b7a", size = 25027, upload-time = "2026-05-25T04:29:15.891Z" },
+    { url = "https://files.pythonhosted.org/packages/0f/19/866aa16681edaa4b391c4bcca03defe4b93f9d3bc1d25f37d431428f1cfd/bitmath-2.1.1-py3-none-any.whl", hash = "sha256:d2c16820d167bd77285591a0ef0112f6c5feedf111055db3b8870448d17bbdfa", size = 25028, upload-time = "2026-05-25T13:24:37.502Z" },
 ]
 
 [[package]]
