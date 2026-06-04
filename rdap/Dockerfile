@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.3-alpine3.23@sha256:ef0308c5337f27b2cd14d47824fef75d377689be3bc614a42eb89d06ce8a863b AS build
+FROM ghcr.io/jauderho/golang:1.26.4-alpine3.23@sha256:5ce0672076c925afce621f2859d8f1073640aaa5d24db561c58d40db5042608e AS build
 
 WORKDIR /go/src/github.com/openrdap/rdap/
 
