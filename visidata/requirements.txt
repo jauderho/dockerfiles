@@ -10,5 +10,5 @@ six==1.17.0
 standard-mailcap==3.13.0
 urllib3==2.7.0
 visidata==3.3
-wcwidth==0.8.0
+wcwidth==0.8.1
 windows-curses==2.4.2 ; sys_platform == 'win32'
