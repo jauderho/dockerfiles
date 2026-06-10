@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.4-alpine3.23@sha256:5ce0672076c925afce621f2859d8f1073640aaa5d24db561c58d40db5042608e AS build
+FROM ghcr.io/jauderho/golang:1.26.4-alpine3.23@sha256:d893e6d165d70d6da631f70850f645edeaf426b60e7394d41dac025d71157390 AS build
 
 WORKDIR /go/src/github.com/hakluke/hakrawler/
 
