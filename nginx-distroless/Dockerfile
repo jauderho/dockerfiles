@@ -25,7 +25,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-UTC} /opt/etc/localtime
 
 #FROM gcr.io/distroless/base-debian13@sha256:894e78799ebace28d56fc226a05d76a601685e1382421299eed8b7a95b90fa9e
-FROM gcr.io/distroless/base-debian12@sha256:58695f439f772a00009c8f6be4c183f824c1f556d74b313c30900f167e4772f8
+FROM gcr.io/distroless/base-debian12@sha256:e7e678c88c59e70e105a46549bb3fbfb3d732ee3b4afd3a19fdab2e15afaa6b3
 
 COPY --from=base /opt /
 
