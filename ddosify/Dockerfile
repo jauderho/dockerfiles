@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.4-alpine3.23@sha256:d893e6d165d70d6da631f70850f645edeaf426b60e7394d41dac025d71157390 AS build
+FROM ghcr.io/jauderho/golang:1.26.4-alpine3.24@sha256:9589588fd5fda0a4aba042a5ce52f4fe60778929c29efcf70106de10cf9af8bc AS build
 
 WORKDIR /go/src/github.com/ddosify/ddosify/
 
