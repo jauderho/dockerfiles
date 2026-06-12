@@ -10,8 +10,10 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache git ca-certificates build-base clang21 llvm21 flex bison linux-headers \
+	&& apk add --no-cache git ca-certificates build-base clang22 llvm22 flex bison linux-headers \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
+	&& ln -sf /usr/bin/clang-22 /usr/bin/clang \
+	&& ln -sf /usr/bin/clang++-22 /usr/bin/clang++ \
 	&& cd /go/src/github.com/cilium/pwru \
 	&& go get -u golang.org/x/net \
 	&& go mod vendor \
