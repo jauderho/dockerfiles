@@ -49,7 +49,6 @@ RUN set -xe \
         https://imapsync.lamiral.info/prerequisites_imapsync \
         https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py \
   && chmod +x imapsync oauth2.py \
-  && apt-get purge -y pebble \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
