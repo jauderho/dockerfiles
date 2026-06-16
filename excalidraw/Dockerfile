@@ -16,12 +16,12 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates git yarn \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
-	&& sed -i 's/"18.0.0 - [0-9]+.x.x"/">=18.0.0"/g' excalidraw-app/package.json \
-	&& sed -i 's/"18.0.0 - [0-9]+.x.x"/">=18.0.0"/g' package.json \
+	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' excalidraw-app/package.json \
+	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' package.json \
 	&& yarn config set ignore-engines true \
-	&& yarn upgrade --ignore-engines \
-	&& yarn --network-timeout 600000 --ignore-engines \
-	&& NODE_ENV=production yarn build:app:docker --ignore-engines
+	&& yarn upgrade \
+	&& yarn --network-timeout 600000 \
+	&& NODE_ENV=production yarn build:app:docker
 	#&& git clone --depth 1 ${GIT_URL} . \
 	#&& yarn set version berry \
 	#&& git fetch origin 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
