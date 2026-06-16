@@ -20,6 +20,7 @@ RUN apt-get update && \
 	cp ca.rsa.4096.crt .. && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	apt-get purge -y git && \
+	apt-get purge -y pebble && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean

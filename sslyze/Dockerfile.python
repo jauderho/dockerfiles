@@ -9,5 +9,7 @@ COPY requirements.txt .
 #RUN pip install sslyze==${BUILD_VERSION}
 RUN pip3 install --no-cache-dir -r requirements.txt
 
+RUN apt-get purge -y pebble
+
 ENTRYPOINT ["sslyze"]
 CMD ["-h"]

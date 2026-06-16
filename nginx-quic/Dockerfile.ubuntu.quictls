@@ -58,6 +58,8 @@ LABEL org.opencontainers.image.source "https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title "jauderho/nginx-quic"
 LABEL org.opencontainers.image.description "nginx is a web server"
 
+RUN apt-get purge -y pebble
+
 COPY --from=build /src/openssl/libcrypto* /usr/lib/
 COPY --from=build /src/openssl/libssl* /usr/lib/
 COPY --from=build /src/nginx-quic/objs/nginx /usr/sbin/

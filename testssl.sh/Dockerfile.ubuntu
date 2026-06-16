@@ -10,6 +10,7 @@ RUN test -n "${BUILD_VERSION}" \
     && apt-get update \
     && apt-get dist-upgrade -y \
     && DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends bash procps dnsutils coreutils libidn12 curl ca-certificates socat openssl xxd bsdextrautils \
+    && apt-get purge -y pebble \
     && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/testssl.tar.gz \
     && tar xzf /tmp/testssl.tar.gz --strip 1 -C /home/testssl \
     && groupadd --system testssl \
