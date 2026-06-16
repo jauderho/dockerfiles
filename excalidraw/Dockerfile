@@ -16,7 +16,11 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache ca-certificates git yarn \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} . \
-	&& sed -i 's/"18.0.0 - 22.x.x"/">=18.0.0"/g' excalidraw-app/package.json package.json
+	&& sed -i 's/"18.0.0 - 22.x.x"/">=18.0.0"/g' excalidraw-app/package.json \
+	&& sed -i 's/"18.0.0 - 22.x.x"/">=18.0.0"/g' package.json \
+	&& yarn upgrade \
+	&& yarn --network-timeout 600000 \
+	&& NODE_ENV=production yarn build:app:docker 
 	#&& git clone --depth 1 ${GIT_URL} . \
 	#&& yarn set version berry \
 	#&& git fetch origin 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
@@ -36,12 +40,12 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& yarn --cwd ./excalidraw-app build:app:docker
 
 #RUN yarn outdated
-RUN yarn upgrade
-RUN yarn --network-timeout 600000
+#RUN yarn upgrade
+#RUN yarn --network-timeout 600000
 
-ARG NODE_ENV=production
+#ARG NODE_ENV=production
 
-RUN yarn build:app:docker
+#RUN yarn build:app:docker
 
 
 
