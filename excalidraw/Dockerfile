@@ -15,7 +15,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates git yarn \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} .
+	&& git clone --depth 1 ${GIT_URL} . \
+	&& sed -i 's/"18.0.0 - 22.x.x"/">=18.0.0"/g' excalidraw-app/package.json package.json
 	#&& git clone --depth 1 ${GIT_URL} . \
 	#&& yarn set version berry \
 	#&& git fetch origin 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
