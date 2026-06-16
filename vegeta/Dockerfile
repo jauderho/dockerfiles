@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.4-alpine3.24@sha256:9589588fd5fda0a4aba042a5ce52f4fe60778929c29efcf70106de10cf9af8bc AS build
+FROM ghcr.io/jauderho/golang:1.26.4-alpine3.24@sha256:7509b4ee6bacbcde3b2b50e4ecdbbbd031b3eb4c67586fdea3f7c04f53915feb AS build
 
 WORKDIR /go/src/github.com/tsenart/vegeta/
 
