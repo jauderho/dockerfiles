@@ -11,7 +11,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& tar xzf /tmp/snowball.tar.gz --strip 1 -C /usr/local \
 	&& rm -rf /tmp/snowball.tar.gz \
 	&& apt-get purge -y curl \
-	&& apt-get purge -y pebble \
+	&& rm -rf /usr/bin/pebble \
 	&& apt-get autoremove -y --purge \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& apt-get clean

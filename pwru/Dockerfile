@@ -51,7 +51,7 @@ LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for traci
 
 RUN apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& apt-get purge -y pebble
+	&& rm -rf /usr/bin/pebble
 
 COPY --from=build /go/src/github.com/cilium/pwru/pwru /usr/local/bin/pwru
 COPY --from=build /config /config
