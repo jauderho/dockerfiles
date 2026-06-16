@@ -62,5 +62,5 @@ ENV DEFAULT_CHOWN_APP_DIR true
 
 ENV SSL_ENABLED true
 
-RUN apt-get purge -y pebble
+RUN rm -rf /usr/bin/pebble
 
