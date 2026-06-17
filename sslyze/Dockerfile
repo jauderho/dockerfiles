@@ -17,6 +17,7 @@ RUN apt-get update && \
 	#pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	apt-get purge -y git && \
+	rm -rf /usr/bin/pebble && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get clean

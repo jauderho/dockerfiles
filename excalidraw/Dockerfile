@@ -1,5 +1,4 @@
-FROM node:25.9.0-alpine3.23@sha256:bdf2cca6fe3dabd014ea60163eca3f0f7015fbd5c7ee1b0e9ccb4ced6eb02ef4 AS build
-#FROM node:22.15.0-alpine3.21@sha256:ad1aedbcc1b0575074a91ac146d6956476c1f9985994810e4ee02efd932a68fd AS build
+FROM node:26.3.0-alpine3.24@sha256:3ad34ca6292aec4a91d8ddeb9229e29d9c2f689efd0dd242860889ac71842eba AS build
 
 #WORKDIR /app
 WORKDIR /opt/node_app
@@ -16,7 +15,13 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates git yarn \
 	&& update-ca-certificates \
-	&& git clone --depth 1 ${GIT_URL} .
+	&& git clone --depth 1 ${GIT_URL} . \
+	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' excalidraw-app/package.json \
+	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' package.json \
+	&& yarn config set ignore-engines true \
+	&& yarn upgrade \
+	&& yarn --network-timeout 600000 \
+	&& NODE_ENV=production yarn build:app:docker
 	#&& git clone --depth 1 ${GIT_URL} . \
 	#&& yarn set version berry \
 	#&& git fetch origin 0a588a880b972f4e2f15e23bc244cce1c1ff2160 \
@@ -36,12 +41,12 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& yarn --cwd ./excalidraw-app build:app:docker
 
 #RUN yarn outdated
-RUN yarn upgrade
-RUN yarn --network-timeout 600000
+#RUN yarn upgrade
+#RUN yarn --network-timeout 600000
 
-ARG NODE_ENV=production
+#ARG NODE_ENV=production
 
-RUN yarn build:app:docker
+#RUN yarn build:app:docker
 
 
 

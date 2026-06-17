@@ -25,6 +25,7 @@ RUN \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
 	curl -o /usr/local/bin/print.py https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
 	apt-get purge -y ${build_pkgs} && \
+	rm -rf /usr/bin/pebble && \
 	apt-get autoremove -y --purge && \
 	apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/* && \

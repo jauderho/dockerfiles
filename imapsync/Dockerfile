@@ -50,6 +50,7 @@ RUN set -xe \
         https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py \
   && chmod +x imapsync oauth2.py \
   && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /usr/bin/pebble \
   && apt-get clean
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
