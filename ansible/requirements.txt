@@ -9,7 +9,7 @@ bitmath==2.1.1
 black==26.5.1
 bracex==2.6
 cachez==0.1.2
-certifi==2026.5.20
+certifi==2026.6.17
 cffi==2.0.0
 charset-normalizer==3.4.7
 click==8.4.1
