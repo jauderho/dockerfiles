@@ -14,7 +14,7 @@ cffi==2.0.0
 charset-normalizer==3.4.7
 click==8.4.1
 colorama==0.4.6 ; sys_platform == 'win32'
-cryptography==49.0.0
+cryptography==48.0.1
 decorator==5.3.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
