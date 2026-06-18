@@ -13,6 +13,8 @@ on:
 
 env:
   BUILD_VERSION: "1.2.0-1554"
+  NETTY_VERSION: "4.1.135.Final"
+  BC_VERSION: "1.84"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -44,6 +46,7 @@ jobs:
             production.cloudflare.docker.com:443
             production.cloudfront.docker.com:443
             registry-1.docker.io:443
+            repo1.maven.org:443
             security.ubuntu.com:80
             snowball-client.s3.us-west-2.amazonaws.com:443
 
@@ -94,6 +97,8 @@ jobs:
           platforms: linux/amd64
           build-args: |
             BUILD_VERSION
+            NETTY_VERSION
+            BC_VERSION
           sbom: true
           provenance: true
           cache-from: type=gha, scope=${{ github.workflow }}
