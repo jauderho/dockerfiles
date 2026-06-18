@@ -40,7 +40,9 @@ RUN apk update \
     perl-net-snmp \
     net-snmp-perl \
     perl-lwp-protocol-https \
-    perl-date-format \
+    perl-timedate \
+    perl-cgi \
+    perl-json-xs \
     perl-dbd-pg \
     perl-io-tty \
     perl-want \
@@ -59,12 +61,8 @@ RUN apk update \
     less \
     ed \
     sharutils \
-    make \
     tar \
-    perl-dev \
-    perl-app-cpanminus \
     sqlite \
-    perl-dbd-pg \
     perl-dbd-sqlite \
     iproute2 \
     lsblk \
@@ -72,15 +70,10 @@ RUN apk update \
     diffutils \
     dpkg \
     freetype \
-    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf \
-    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
+    && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf perl-pdf-api2
 
-# perl-font-ttf from testing repo (needed for PDF reports)
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
-#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
-
-# install perl PDF API from CPAN
-RUN cpanm -l /usr -n PDF::API2
+# perl-font-ttf and perl-pdf-api2 from edge/community (needed for PDF reports)
+#RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf perl-pdf-api2
 
 # setup default user
 RUN addgroup -S lpar2rrd 
