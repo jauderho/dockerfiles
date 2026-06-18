@@ -15,8 +15,13 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/adguardteam/adguardhome \
 	&& cd /go/src/github.com/adguardteam/adguardhome \
+	# The web UI is embedded into the binary at compile time via //go:embed build.
+	# A fresh clone ships an empty build/ dir, so fetch the prebuilt frontend and
+	# extract it into build/ before "go build" or the UI renders a blank screen.
+	&& curl -fsSL https://github.com/AdguardTeam/AdGuardHome/releases/download/${BUILD_VERSION}/AdGuardHome_frontend.tar.gz \
+		| tar xzf - -C /go/src/github.com/adguardteam/adguardhome \
+	&& test -f /go/src/github.com/adguardteam/adguardhome/build/static/index.html \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
-	#&& go get -u github.com/quic-go/quic-go \
 	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${BUILD_VERSION}" . \
 	&& cp AdGuardHome /go/bin/AdGuardHome \
@@ -62,8 +67,6 @@ EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 853/tcp\
 	853/udp 3000/tcp 3000/udp 5443/tcp 5443/udp 6060/tcp
 
 WORKDIR /opt/adguardhome/work
-
-ADD https://github.com/AdguardTeam/AdGuardHome/releases/download/${BUILD_VERSION}/AdGuardHome_frontend.tar.gz ..
 
 ENTRYPOINT ["/opt/adguardhome/AdGuardHome"]
 
