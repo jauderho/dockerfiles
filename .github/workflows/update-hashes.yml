@@ -42,6 +42,7 @@ jobs:
             azure.archive.ubuntu.com:80
             auth.docker.io:443
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
+            ghcr.io:443
             github.com:443
             hub.docker.com:443
             index.docker.io:443
