@@ -523,11 +523,11 @@ wheels = [
 
 [[package]]
 name = "mitogen"
-version = "0.3.49"
+version = "0.3.50"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/81/9d/cef9877c316fa5fbf0b43e4e37b67906ddad86289aa7e7e0b40fca52307e/mitogen-0.3.49.tar.gz", hash = "sha256:3ef56ba1a2a78eeed35958f64b205fe01d598b2974354a4480ff620628804d52", size = 241314, upload-time = "2026-06-03T22:49:48.046Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/4d/f650e2036c328d0b752bb013d3d12b8eaf22402da1208aa75155a1971bb0/mitogen-0.3.50.tar.gz", hash = "sha256:f8a97202c624d2e4c20960210a9e479fc59aca7ca26754ab34e1e08558b65d7c", size = 242223, upload-time = "2026-06-19T13:05:32.32Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e4/f8/2b616723c7c388952e544f6d10d30720703723693f257ce11b5f6210236d/mitogen-0.3.49-py2.py3-none-any.whl", hash = "sha256:897ba7fc324a3f39d3787de7a9bcd93d055a43dad22a19c78c09b911c8fe2aa7", size = 291895, upload-time = "2026-06-03T22:49:46.576Z" },
+    { url = "https://files.pythonhosted.org/packages/64/03/c12376f894c5785399e2f3d2bc0f46c9049b436ab2938e75d5c24c9b27c3/mitogen-0.3.50-py2.py3-none-any.whl", hash = "sha256:ebd744f360f23b81f224c43ad943bd9a84ae20f9f1acdd6df021e3ee6776b2bc", size = 292758, upload-time = "2026-06-19T13:05:31.115Z" },
 ]
 
 [[package]]
