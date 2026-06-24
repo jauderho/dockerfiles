@@ -203,7 +203,10 @@ RUN apt-get update \
     openssl \
     && rm -rf /var/lib/apt/lists/* \
        /usr/share/doc/* /usr/share/man/* /usr/share/locale/* \
-       /var/cache/debconf/*-old /var/log/*
+       /var/cache/debconf/*-old /var/log/* \
+    # pebble (Canonical's service manager) ships in the ubuntu base rootfs but
+    # is unused here and unnecessary attack surface - remove it
+       /usr/bin/pebble
 
 # Node.js 24 runtime (+ npm) from the build stage
 COPY --from=build /usr/local /usr/local
