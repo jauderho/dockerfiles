@@ -109,7 +109,7 @@ RUN set -eux; \
     ; do \
         name="${spec%@*}"; \
         rm -rf "$work"; mkdir -p "$work/x"; \
-        npm pack "$spec" --silent --pack-destination "$work" >/dev/null; \
+        npm pack "$spec" --pack-destination "$work" >/dev/null; \
         tar xzf "$work"/*.tgz -C "$work/x" --strip-components=1; \
         ver="$(node -pe "require('$work/x/package.json').version")"; \
         find node_modules -type d -path "*node_modules/$name" | while read -r d; do \

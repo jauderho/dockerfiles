@@ -50,6 +50,7 @@ jobs:
             production.cloudfront.docker.com:443
             pypi.org:443
             registry-1.docker.io:443
+            registry.npmjs.org:443
             security.ubuntu.com:80
             xormon.com:443
 
