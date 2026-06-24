@@ -47,6 +47,23 @@ EOF
     rm -f /firstrun
 fi
 
+# Generate a unique self-signed TLS certificate if none is present. The image
+# ships no private key (a shared key baked into a public image is trivially
+# compromised); the app reads ssl/xormon.{key,crt} as its default cert when no
+# custom cert is configured in the UI, so this keeps HTTPS working out of the
+# box while giving every deployment its own key.
+SSLDIR="$APPDIR/server-nest/ssl"
+if [ ! -f "$SSLDIR/xormon.key" ] || [ ! -f "$SSLDIR/xormon.crt" ]; then
+    echo "Generating self-signed TLS certificate.."
+    mkdir -p "$SSLDIR"
+    openssl req -x509 -newkey rsa:2048 -nodes \
+        -keyout "$SSLDIR/xormon.key" -out "$SSLDIR/xormon.crt" \
+        -days 3650 -subj "/CN=localhost" >/dev/null 2>&1
+    chown xormon:xormon "$SSLDIR/xormon.key" "$SSLDIR/xormon.crt"
+    chmod 600 "$SSLDIR/xormon.key"
+    chmod 644 "$SSLDIR/xormon.crt"
+fi
+
 # start the application in the foreground as the xormon user.
 # npm run start:runtime = node dist/verify.js && pm2-runtime production.config.js
 exec runuser -u xormon -- bash -lc "cd '$APPDIR/server-nest' && exec npm run start:runtime"

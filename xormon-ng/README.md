@@ -47,7 +47,23 @@ the first login.
 
 ---
 
-Official images use an out of date base image with vulnerabilities hence the need for this image.
+## Security hardening
+
+Official images use an out of date base image with vulnerabilities hence the need
+for this image. On top of that, this build applies the following fixes that do not
+require recompiling upstream:
+
+- **OS packages** — `apt-get dist-upgrade` patches all base-image packages to the
+  latest security releases on every rebuild.
+- **TLS certificate** — the shipped static self-signed key is removed; a unique
+  cert is generated at container startup instead (no private key baked into the image).
+- **npm packages** — vulnerable runtime dependencies are upgraded via caret (`^`)
+  ranges, picking up the newest SemVer-compatible release (patch/minor only, no
+  major bumps). See the patch step in `Dockerfile` for the list.
+
+Not fixed here: the compiled Go binaries (`agent`, `linux-service`, `linux-router`)
+and a few major-bump-only npm packages (`nodemailer`, `pm2`, bundled `uuid` 8.x),
+which would need an upstream rebuild or a breaking version bump.
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/xormon-ng/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/xormon-ng/latest)](https://github.com/xorux/xormon-ng)

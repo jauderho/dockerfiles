@@ -59,7 +59,11 @@ RUN set -eux; \
     rm -rf server-nest/microservices/node/src; \
     # analyzer dev artifacts (notebooks, tests) - runtime keeps the .py services
     rm -rf server-nest/microservices/analyzer/tests; \
-    find server-nest/microservices/analyzer -name '*.ipynb' -delete
+    find server-nest/microservices/analyzer -name '*.ipynb' -delete; \
+    # drop the shipped static TLS keypair (a shared, publicly-known private
+    # key). A unique self-signed cert is generated at startup instead, so no
+    # private key is baked into the image.
+    rm -f server-nest/ssl/xormon.key server-nest/ssl/xormon.crt
 
 # Drop bundled devDependencies (typescript, jest, eslint, @nestjs/cli, ...);
 # pm2 and all 61 runtime deps are kept. --network=none guarantees this is an
@@ -71,6 +75,58 @@ RUN --network=none set -eux; \
     # drop docs/changelogs from the remaining runtime packages (keep LICENSE)
     find node_modules -type f \( -iname '*.md' -o -iname '*.markdown' -o -iname 'CHANGELOG*' \) -delete; \
     # drop test/example/CI dirs shipped inside packages (never imported at runtime)
+    find node_modules -type d \( -name test -o -name tests -o -name __tests__ \
+       -o -name example -o -name examples -o -name .github -o -name coverage \) \
+       -prune -exec rm -rf {} +
+
+# Patch vulnerable runtime npm packages. Each entry is a caret (^) range anchored
+# at the version upstream ships, so npm resolves the newest SemVer-COMPATIBLE
+# release at build time - patch/minor only, never a major bump (and caret locks
+# the minor for 0.x packages). Using a range instead of a hard pin means future
+# security releases are picked up automatically on rebuild without editing this
+# list. Every copy of a package compatible with the resolved version (same major,
+# or same major.minor for 0.x) is replaced in place anywhere in node_modules, with
+# its bundled node_modules/ preserved; the rest of the tree is untouched. Runs
+# after the prune above so npm sees the pristine vendored tree. Packages whose ONLY
+# fix is a major bump are left alone and tracked in README: nodemailer, pm2, uuid 8.
+RUN set -eux; \
+    cd /opt/xormon-ng/server-nest; \
+    work=/tmp/npmpatch; \
+    ckey() { case "$1" in 0.*) echo "$1" | cut -d. -f1-2;; *) echo "${1%%.*}";; esac; }; \
+    for spec in \
+        @hono/node-server@^1.19.9 @isaacs/brace-expansion@^5.0.0 \
+        @modelcontextprotocol/sdk@^1.25.2 @nestjs/core@^11.1.12 \
+        ajv@^8.17.1 axios@^1.13.2 basic-ftp@^5.1.0 \
+        brace-expansion@^1.1.12 brace-expansion@^2.0.2 diff@^4.0.2 \
+        fast-uri@^3.1.0 fast-xml-parser@^5.3.6 file-type@^21.3.0 \
+        follow-redirects@^1.15.11 form-data@^4.0.5 handlebars@^4.7.8 \
+        hono@^4.11.4 ip-address@^10.1.0 joi@^18.0.2 js-yaml@^4.1.1 \
+        lodash@^4.17.21 minimatch@^3.1.2 minimatch@^5.1.6 minimatch@^9.0.5 \
+        minimatch@^10.1.1 multer@^2.0.2 path-to-regexp@^8.3.0 picomatch@^2.3.1 \
+        qs@^6.14.1 socket.io-parser@^4.2.5 systeminformation@^5.30.5 tar@^7.5.4 \
+        tmp@^0.2.5 typeorm@^0.3.28 uuid@^11.1.0 uuid@^13.0.0 vega@^5.31.0 \
+        vega-expression@^5.1.2 vega-functions@^5.16.0 ws@^7.5.10 ws@^8.18.3 \
+    ; do \
+        name="${spec%@*}"; \
+        rm -rf "$work"; mkdir -p "$work/x"; \
+        npm pack "$spec" --silent --pack-destination "$work" >/dev/null; \
+        tar xzf "$work"/*.tgz -C "$work/x" --strip-components=1; \
+        ver="$(node -pe "require('$work/x/package.json').version")"; \
+        find node_modules -type d -path "*node_modules/$name" | while read -r d; do \
+            inst="$(node -pe "require('./$d/package.json').version" 2>/dev/null)" || continue; \
+            [ "$(ckey "$inst")" = "$(ckey "$ver")" ] || continue; \
+            [ "$inst" = "$ver" ] && continue; \
+            [ "$(printf '%s\n%s\n' "$inst" "$ver" | sort -V | head -n1)" = "$ver" ] && continue; \
+            rm -rf "$work/nm"; \
+            [ -d "$d/node_modules" ] && mv "$d/node_modules" "$work/nm"; \
+            rm -rf "$d"; mkdir -p "$d"; cp -a "$work/x/." "$d/"; \
+            [ -d "$work/nm" ] && mv "$work/nm" "$d/node_modules"; \
+            echo "npm-patch: $d $inst -> $ver"; \
+        done; \
+    done; \
+    rm -rf "$work"; \
+    # re-strip docs/tests that the freshly fetched packages re-introduce
+    find node_modules -type f \( -iname '*.md' -o -iname '*.markdown' -o -iname 'CHANGELOG*' \) -delete; \
     find node_modules -type d \( -name test -o -name tests -o -name __tests__ \
        -o -name example -o -name examples -o -name .github -o -name coverage \) \
        -prune -exec rm -rf {} +
@@ -105,8 +161,11 @@ ENV PYTHONUNBUFFERED=1
 # create file to see if this is the firstrun when started
 RUN touch /firstrun
 
-# runtime-only dependencies
+# runtime-only dependencies. dist-upgrade patches all base-image packages
+# (libc6, libxml2, libgcrypt20, util-linux, ...) to the latest security
+# releases - robust across rebuilds, no version pinning to go stale.
 RUN apt-get update \
+    && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends \
     bash \
     ca-certificates \
@@ -141,6 +200,7 @@ RUN apt-get update \
     libdbd-pg-perl \
     libdbd-odbc-perl \
     unixodbc \
+    openssl \
     && rm -rf /var/lib/apt/lists/* \
        /usr/share/doc/* /usr/share/man/* /usr/share/locale/* \
        /var/cache/debconf/*-old /var/log/*
