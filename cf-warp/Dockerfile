@@ -28,7 +28,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 FROM node:26.3.1-alpine3.24@sha256:a2dc166a387cc6ca1e62d0c8e265e49ca985d6e60abc9fe6e6c3d6ce8e63f606
-#FROM ghcr.io/jauderho/alpine:3.24.1@sha256:c43ea832c5e5df2adadaec0a6487e5939c7080376ed831db9d422067519e86d8
+#FROM ghcr.io/jauderho/alpine:3.24.1@sha256:fc6aa8bd54b01bbe7fd9e2d2e79c87837ab82abf83387a0dbb16fb6c7b17997d
 
 WORKDIR /app
 
