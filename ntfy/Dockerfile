@@ -25,7 +25,9 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go get -u github.com/golang-jwt/jwt/v4 \
 	&& go mod tidy \
-	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ntfy -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
+	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ntfy -v -trimpath \
+		-tags sqlite_omit_load_extension,osusergo,netgo \
+		-ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check
 #RUN cp ntfy /go/bin/ntfy
