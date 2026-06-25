@@ -13,7 +13,7 @@ ARG GIT_URL=https://github.com/osrg/rustybgp.git
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc protoc protobuf-dev git musl-dev mold \
+	&& apk add --no-cache build-base ca-certificates curl gcc protoc protobuf-dev git musl-dev mold \
 	# Full git clone in order to be able to revert b61f8ac5f8caccef8b145f26c09807eb1df4472f
 	&& git clone ${GIT_URL} \
 	&& cd /usr/src/github.com/osrg/rustybgp/rustybgp \
