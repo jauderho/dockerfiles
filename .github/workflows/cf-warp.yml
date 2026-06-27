@@ -12,7 +12,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "v1.4.11"
+  BUILD_VERSION: "v1.4.12"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -45,7 +45,7 @@ jobs:
             production.cloudflare.docker.com:443
             production.cloudfront.docker.com:443
             registry-1.docker.io:443
-            registry.yarnpkg.com:443
+            registry.npmjs.org:443
           
       - name: Source checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
