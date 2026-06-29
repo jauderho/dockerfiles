@@ -26,7 +26,8 @@ See `.github/workflows/adguardhome.yml` for a modern example.
 ## 3. Dockerfile Standards
 
 - **Base Images**:
-    - **Always** use image digests (e.g., `image@sha256:...`) for base images to ensure build reproducibility and security.
+    - **Always** use image digests (e.g., `image:version@sha256:...`) for base images to ensure build reproducibility and security.
+    - Prefer the use of Alpine then Ubuntu base images.
     - For **Go** applications, use `ghcr.io/jauderho/golang` as the build base.
     - For **Alpine-based** final images, use `ghcr.io/jauderho/alpine`.
 - **Optimization**:
