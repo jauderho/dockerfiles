@@ -33,7 +33,7 @@ jobs:
         id: set-programs
         run: echo "programs=$(cat scripts/PROGRAMS | jq -R -s -c 'split("\n") | map(select(length > 0))')" >> $GITHUB_OUTPUT
 
-  trivy:
+  scan:
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -51,74 +51,45 @@ jobs:
         with:
           egress-policy: block
           disable-telemetry: false
+          # Union of the endpoints required by both Trivy and Anchore/Grype.
           allowed-endpoints: >
             api.github.com:443
             cdn.fwupd.org:443
             check.trivy.dev:443
+            get.anchore.io:443
             get.trivy.dev:443
             ghcr.io:443
             github.com:443
+            grype.anchore.io:443
             hosted-compute-watchdog-prod-eus-02.githubapp.com:443
             mirror.gcr.io:443
             objects.githubusercontent.com:443
             pkg-containers.githubusercontent.com:443
             raw.githubusercontent.com:443
             release-assets.githubusercontent.com:443
-          
-      - name: Checkout code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+            toolbox-data.anchore.io:443
+
+      # No checkout: both scanners target a published ghcr.io image, not the repo.
 
       - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-          #image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
           format: 'sarif'
           output: 'trivy-${{ matrix.image }}.sarif'
           severity: 'HIGH,CRITICAL'
           hide-progress: false
 
-      - name: Upload result to GitHub Code Scanning
+      - name: Upload Trivy result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
-
-  anchore:
-    permissions:
-      contents: read # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results  
-    needs: [prepare, trivy]
-    strategy:
-      max-parallel: 25
-      fail-fast: false
-      matrix:
-        image: ${{fromJson(needs.prepare.outputs.programs)}}
-    runs-on: ubuntu-26.04
-    
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
-        with:
-          egress-policy: block
-          disable-telemetry: false
-          allowed-endpoints: >
-            api.github.com:443
-            cdn.fwupd.org:443
-            get.anchore.io:443
-            ghcr.io:443
-            github.com:443
-            grype.anchore.io:443
-            objects.githubusercontent.com:443
-            pkg-containers.githubusercontent.com:443
-            raw.githubusercontent.com:443
-            release-assets.githubusercontent.com:443
-            toolbox-data.anchore.io:443
-          
-      - name: Checkout code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+          category: 'trivy-${{ matrix.image }}'
 
       - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
+        # Run even if Trivy errored so a single tool failure does not mask the other.
+        if: ${{ !cancelled() }}
         uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
         id: anchore-scan
         with:
@@ -127,10 +98,12 @@ jobs:
           fail-build: false
           severity-cutoff: high
 
-      - name: Upload result to GitHub Code Scanning
+      - name: Upload Anchore result to GitHub Code Scanning
+        if: ${{ !cancelled() && steps.anchore-scan.outputs.sarif != '' }}
         uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
         with:
           sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
+          category: 'anchore-${{ matrix.image }}'
 
   # snyk:
   #   permissions:
