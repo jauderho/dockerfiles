@@ -101,8 +101,6 @@ jobs:
           build-args: BUILD_VERSION
           sbom: true
           provenance: true
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
@@ -124,8 +122,6 @@ jobs:
             BUILD_VERSION
           sbom: true
           provenance: true
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ matrix.distro }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           tags: |
             docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-${{ matrix.distro }}

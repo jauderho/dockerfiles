@@ -118,8 +118,6 @@ jobs:
             BUILD_VERSION
           sbom: true
           provenance: true
-          cache-from: type=gha, scope=${{ github.workflow }}-${{ env.PLATFORM_PAIR }}
-          cache-to: type=gha, scope=${{ github.workflow }}-${{ env.PLATFORM_PAIR }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           # Push untagged by digest; the merge job stitches the digests into the
           # tagged manifest lists so :latest is never overwritten per-platform.
