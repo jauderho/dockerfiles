@@ -67,6 +67,103 @@ REPO=(
 	"getzola/zola" \
 )
 
+# ---------------------------------------------------------------------------
+# Upstream version resolution
+#
+# Versions are resolved up front into VERSIONS_FILE ("<prog>\t<version>" lines),
+# consumed read-only by the update loop below. Standard GitHub repos are fetched
+# in a SINGLE GraphQL query (one request instead of one per repo); sources that
+# are not a GitHub "latest release" are handled as explicit edge cases.
+#
+# To add an edge case:
+#   - non-GitHub source  -> list it in is_special() and emit it in resolve_special()
+#   - odd tag formatting -> massage it in normalize_version()
+# Everything else flows through the GraphQL batch unchanged.
+# ---------------------------------------------------------------------------
+
+VERSIONS_FILE=$(mktemp)
+trap 'rm -f "$VERSIONS_FILE"' EXIT
+
+# PAT is passed as "<actor>/<token>"; the GraphQL API needs the bare token.
+GH_TOKEN="${PAT#*/}"
+
+# is_special: programs whose version does NOT come from GitHub latestRelease.
+# These are skipped by the GraphQL batch and resolved by resolve_special().
+is_special() {
+	case "$1" in
+		ansible | dkimpy) return 0 ;;
+		*) return 1 ;;
+	esac
+}
+
+# normalize_version: massage a raw upstream version into the string the workflow
+# file and download URLs expect. Applied to every program, special or not.
+normalize_version() {
+	local prog="$1" ver="$2"
+	case "$prog" in
+		# nginx tags look like "release-1.31.0"; strip the prefix so the
+		# version matches what the workflow file and download URL expect.
+		nginx) ver="${ver#release-}" ;;
+	esac
+	printf '%s' "$ver"
+}
+
+# resolve_special: emit "<prog>\t<version>" for a non-GitHub source.
+resolve_special() {
+	local repo="$1" prog="$2" ver=""
+	case "$repo" in
+		"ansible/ansible" | "dkimpy/dkimpy")
+			ver=$(curl -sL "https://pypi.org/pypi/${prog}/json" | jq -r '.info.version')
+			;;
+	esac
+	printf '%s\t%s\n' "$prog" "$(normalize_version "$prog" "$ver")"
+}
+
+# resolve_github_batch: fetch latestRelease.tagName for every non-special repo in
+# a single aliased GraphQL query, then emit "<prog>\t<version>" for each.
+resolve_github_batch() {
+	local query="query {" i=0 repo owner name prog
+	local idx_prog=()
+	for repo in "${REPO[@]}"; do
+		prog="${repo##*/}"
+		is_special "$prog" && continue
+		owner="${repo%%/*}"
+		name="${repo##*/}"
+		query+=" r${i}: repository(owner: \"${owner}\", name: \"${name}\") { latestRelease { tagName } }"
+		idx_prog[i]="$prog"
+		i=$((i + 1))
+	done
+	query+=" }"
+
+	local resp
+	resp=$(curl -sL -X POST \
+		-H "Authorization: bearer ${GH_TOKEN}" \
+		-H "Content-Type: application/json" \
+		-d "$(jq -n --arg q "$query" '{query: $q}')" \
+		"https://api.github.com/graphql")
+
+	local j=0 tag
+	while [ "$j" -lt "$i" ]; do
+		prog="${idx_prog[$j]}"
+		# jq indexes null leniently, so a missing repo/release yields empty.
+		tag=$(printf '%s' "$resp" | jq -r ".data.r${j}.latestRelease.tagName // empty")
+		printf '%s\t%s\n' "$prog" "$(normalize_version "$prog" "$tag")"
+		j=$((j + 1))
+	done
+}
+
+# resolve_all_versions: GitHub batch + every special source.
+resolve_all_versions() {
+	resolve_github_batch
+	local repo prog
+	for repo in "${REPO[@]}"; do
+		prog="${repo##*/}"
+		is_special "$prog" && resolve_special "$repo" "$prog"
+	done
+}
+
+resolve_all_versions > "$VERSIONS_FILE" || true
+
 # setup git
 #git config --local user.name "Jauder Ho Bot"
 #git config --local user.email "jauderho-bot@users.noreply.github.com"
@@ -80,27 +177,8 @@ do
 	prog=$(echo "$i" | sed -e "s/.*\///")
 	dver=$(grep "BUILD_VERSION:" ".github/workflows/${prog}.yml" | cut -d \" -f 2)
 
-	case $i in
-		"ansible/ansible" | \
-		"dkimpy/dkimpy")
-			# special case for ansible and dkimpy
-			rver=$(curl -sL https://pypi.org/pypi/${prog}/json | jq -r '.info.version')
-			;;
-		"nginx/nginx")
-			# nginx tags look like "release-1.31.0"; strip the prefix so the
-			# version matches what the workflow file and download URL expect
-			rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
-			rver="${rver#release-}"
-			;;
-		*)
-			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
-			#rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/tags" | jq -r '.[0].name')
-			rver=$(curl -sL -u "$PAT" "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
-			#rver=$(curl -sL "https://api.github.com/repos/${i}/releases/latest" | jq -r '.tag_name')
-			#rver=$(curl -sL "https://api.github.com/repos/${i}/releases/latest" | grep tag_name | head -1 | cut -d \" -f 4)
-			#rver="2021.02.04.1"
-			;;
-	esac
+	# Version resolved up front by resolve_all_versions (see VERSIONS_FILE above).
+	rver=$(awk -F'\t' -v p="$prog" '$1 == p { print $2; exit }' "$VERSIONS_FILE")
 
 	echo "Checking repo ... $prog"
 	echo 
