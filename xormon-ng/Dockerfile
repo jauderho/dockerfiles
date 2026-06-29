@@ -90,16 +90,17 @@ RUN --network=none set -eux; \
 # or same major.minor for 0.x) is replaced in place anywhere in node_modules, with
 # its bundled node_modules/ preserved; the rest of the tree is untouched. Runs
 # after the prune above so npm sees the pristine vendored tree. Packages whose ONLY
-# fix is a major bump are left alone and tracked in README: nodemailer, pm2, uuid 8.
+# fix is a major bump are left alone and tracked in README: nodemailer, pm2, uuid 8,
+# vega/vega-functions 5.x.
 RUN set -eux; \
     cd /opt/xormon-ng/server-nest; \
     work=/tmp/npmpatch; \
     ckey() { case "$1" in 0.*) echo "$1" | cut -d. -f1-2;; *) echo "${1%%.*}";; esac; }; \
     for spec in \
-        @hono/node-server@^1.19.9 @isaacs/brace-expansion@^5.0.0 \
+        @hono/node-server@^1.19.9 \
         @modelcontextprotocol/sdk@^1.25.2 @nestjs/core@^11.1.12 \
         ajv@^8.17.1 axios@^1.13.2 basic-ftp@^5.1.0 \
-        brace-expansion@^1.1.12 brace-expansion@^2.0.2 diff@^4.0.2 \
+        brace-expansion@^1.1.12 brace-expansion@^2.0.2 brace-expansion@^5.0.2 diff@^4.0.2 \
         fast-uri@^3.1.0 fast-xml-parser@^5.3.6 file-type@^21.3.0 \
         follow-redirects@^1.15.11 form-data@^4.0.5 handlebars@^4.7.8 \
         hono@^4.11.4 ip-address@^10.1.0 joi@^18.0.2 js-yaml@^4.1.1 \

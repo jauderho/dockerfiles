@@ -62,8 +62,9 @@ require recompiling upstream:
   major bumps). See the patch step in `Dockerfile` for the list.
 
 Not fixed here: the compiled Go binaries (`agent`, `linux-service`, `linux-router`)
-and a few major-bump-only npm packages (`nodemailer`, `pm2`, bundled `uuid` 8.x),
-which would need an upstream rebuild or a breaking version bump.
+and a few major-bump-only npm packages (`nodemailer`, `pm2`, bundled `uuid` 8.x,
+`vega`/`vega-functions` 5.x — XSS fixed only in 6.x), which would need an upstream
+rebuild or a breaking version bump.
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/xormon-ng/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/xormon-ng/latest)](https://github.com/xorux/xormon-ng)
