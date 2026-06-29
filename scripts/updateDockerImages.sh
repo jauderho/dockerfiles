@@ -186,9 +186,9 @@ do
 	echo "    Repo version is	  $rver"
 	echo
 	
-	# Skip if null
-	[ -z "$rver" ] && break
-	[[ $rver = null ]] && break
+	# Skip this repo if the version could not be resolved (don't abort the loop)
+	[ -z "$rver" ] && continue
+	[[ $rver = null ]] && continue
 
 	# Version check
 	if [ "$dver" != "$rver" ]; then
