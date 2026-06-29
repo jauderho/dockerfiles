@@ -44,12 +44,14 @@ WORKDIR /opt/xormon-ng
 RUN set -eux; \
     # source maps are not used at runtime (~257MB)
     find . -name '*.map' -delete; \
-    # keep only amd64 Go binaries (~78MB saved)
+    # keep only amd64 Go binaries (~78MB saved). Discover binaries dynamically
+    # so upstream adding/removing a binary or arch doesn't break the build:
+    # rename every *-amd64 to its base name, drop all other arch variants, then
+    # mark whatever remains executable.
     cd server-nest/microservices/linux-go/bin; \
-    mv agent-amd64 agent; \
-    mv linux-service-amd64 linux-service; \
-    rm -f agent-arm64 agent-ppc64le linux-service-arm64 linux-service-ppc64le; \
-    chmod +x agent linux-service linux-router; \
+    for f in *-amd64; do [ -e "$f" ] && mv -f "$f" "${f%-amd64}"; done; \
+    rm -f -- *-arm64 *-ppc64le *-s390x *-arm; \
+    find . -maxdepth 1 -type f -exec chmod +x {} +; \
     cd /opt/xormon-ng; \
     rm -rf server-nest/microservices/linux-go/simulator \
            server-nest/microservices/linux-go/go.mod \
