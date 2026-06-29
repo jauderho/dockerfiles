@@ -7,7 +7,7 @@ ansible-lint==26.4.0
 attrs==26.1.0
 bitmath==2.1.1
 black==26.5.1
-bracex==2.6
+bracex==2.7
 cachez==0.1.2
 certifi==2026.6.17
 cffi==2.0.0
