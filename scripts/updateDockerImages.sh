@@ -85,7 +85,12 @@ VERSIONS_FILE=$(mktemp)
 trap 'rm -f "$VERSIONS_FILE"' EXIT
 
 # PAT is passed as "<actor>/<token>"; the GraphQL API needs the bare token.
+: "${PAT:?PAT must be set as <actor>/<token>}"
 GH_TOKEN="${PAT#*/}"
+if [[ -z "$GH_TOKEN" || "$GH_TOKEN" == "$PAT" ]]; then
+	echo "ERROR: could not extract a token from PAT (expected '<actor>/<token>')." >&2
+	exit 1
+fi
 
 # is_special: programs whose version does NOT come from GitHub latestRelease.
 # These are skipped by the GraphQL batch and resolved by resolve_special().
@@ -94,6 +99,14 @@ is_special() {
 		ansible | dkimpy) return 0 ;;
 		*) return 1 ;;
 	esac
+}
+
+# is_valid_version: accept only plausible version strings — safe characters only
+# and at least one digit. This rejects garbage (empty, "null", HTML/error bodies,
+# sentinels like "git"/"nightly") AND guarantees the value is safe to drop into the
+# sed substitution below: no '/', '&', '\', '"', or whitespace can ever slip through.
+is_valid_version() {
+	[[ "$1" =~ ^[A-Za-z0-9._+~-]+$ && "$1" =~ [0-9] ]]
 }
 
 # normalize_version: massage a raw upstream version into the string the workflow
@@ -136,11 +149,31 @@ resolve_github_batch() {
 	query+=" }"
 
 	local resp
-	resp=$(curl -sL -X POST \
+	resp=$(curl -sSL -X POST \
 		-H "Authorization: bearer ${GH_TOKEN}" \
 		-H "Content-Type: application/json" \
 		-d "$(jq -n --arg q "$query" '{query: $q}')" \
-		"https://api.github.com/graphql")
+		"https://api.github.com/graphql") || {
+		echo "ERROR: GraphQL request to GitHub failed (network/curl)." >&2
+		return 1
+	}
+
+	# A response with no '.data' object is a systemic failure (bad auth, malformed
+	# query, 5xx). Surface it and bail, rather than silently treating every repo as
+	# "no release" — which would otherwise let the whole run pass having done nothing.
+	if ! printf '%s' "$resp" | jq -e '.data != null' >/dev/null 2>&1; then
+		echo "ERROR: GraphQL returned no data; aborting batch:" >&2
+		printf '%s' "$resp" | jq -r '(.errors[]?.message), (.message // empty)' >&2 2>/dev/null \
+			|| printf '  %s\n' "${resp:0:200}" >&2
+		return 1
+	fi
+
+	# Per-repo errors (e.g. a renamed/moved repo) are non-fatal: that alias just
+	# resolves empty and is skipped later. Warn so it is visible in the logs.
+	if printf '%s' "$resp" | jq -e '.errors != null' >/dev/null 2>&1; then
+		echo "WARNING: GraphQL reported partial errors (affected repos will be skipped):" >&2
+		printf '%s' "$resp" | jq -r '.errors[]?.message' >&2 2>/dev/null || true
+	fi
 
 	local j=0 tag
 	while [ "$j" -lt "$i" ]; do
@@ -154,15 +187,28 @@ resolve_github_batch() {
 
 # resolve_all_versions: GitHub batch + every special source.
 resolve_all_versions() {
-	resolve_github_batch
+	resolve_github_batch || return 1
 	local repo prog
 	for repo in "${REPO[@]}"; do
 		prog="${repo##*/}"
 		is_special "$prog" && resolve_special "$repo" "$prog"
 	done
+	# Explicit success: the loop's last command is a (frequently false) is_special
+	# test, whose status must not be mistaken for a resolution failure.
+	return 0
 }
 
-resolve_all_versions > "$VERSIONS_FILE" || true
+if ! resolve_all_versions > "$VERSIONS_FILE"; then
+	echo "ERROR: upstream version resolution failed; aborting without changes." >&2
+	exit 1
+fi
+
+# A run where not a single repo resolved to a version is a systemic failure;
+# fail loudly rather than silently updating nothing.
+if ! awk -F'\t' 'NF >= 2 && $2 != "" { ok = 1 } END { exit ok ? 0 : 1 }' "$VERSIONS_FILE"; then
+	echo "ERROR: no versions resolved for any repo; aborting without changes." >&2
+	exit 1
+fi
 
 # setup git
 #git config --local user.name "Jauder Ho Bot"
@@ -174,21 +220,33 @@ resolve_all_versions > "$VERSIONS_FILE" || true
 for i in "${REPO[@]}"
 do
 
-	prog=$(echo "$i" | sed -e "s/.*\///")
-	dver=$(grep "BUILD_VERSION:" ".github/workflows/${prog}.yml" | cut -d \" -f 2)
+	prog="${i##*/}"
+	# Current pinned version: the quoted value on the first (env-block) BUILD_VERSION
+	# line. Anchored + -m1 so a stray "BUILD_VERSION" elsewhere can never match.
+	dver=$(grep -m1 -E '^[[:space:]]*BUILD_VERSION:[[:space:]]*"' ".github/workflows/${prog}.yml" | cut -d '"' -f 2)
 
 	# Version resolved up front by resolve_all_versions (see VERSIONS_FILE above).
 	rver=$(awk -F'\t' -v p="$prog" '$1 == p { print $2; exit }' "$VERSIONS_FILE")
 
 	echo "Checking repo ... $prog"
-	echo 
+	echo
 	echo "    Dockerfile version is $dver"
 	echo "    Repo version is	  $rver"
 	echo
-	
-	# Skip this repo if the version could not be resolved (don't abort the loop)
-	[ -z "$rver" ] && continue
-	[[ $rver = null ]] && continue
+
+	# Skip workflows intentionally pinned to a non-release value (e.g. "git",
+	# "nightly"): the bumper only manages real, release-versioned BUILD_VERSIONs.
+	if ! is_valid_version "$dver"; then
+		echo "    Skipping: BUILD_VERSION '$dver' is not a managed release version"
+		continue
+	fi
+
+	# Skip if the upstream version failed to resolve or looks malformed. This is the
+	# gate that keeps an unvalidated string from ever reaching the sed substitution.
+	if ! is_valid_version "$rver"; then
+		echo "    Skipping: resolved version '$rver' is empty or not a valid version" >&2
+		continue
+	fi
 
 	# Version check
 	if [ "$dver" != "$rver" ]; then
@@ -211,7 +269,7 @@ do
 
 		echo "Updating to ${rver} ..." 
 
-		sed -i -e "s/\"$dver\"/\"$rver\"/" ".github/workflows/${prog}.yml" && \
+		sed -i -e "/^[[:space:]]*BUILD_VERSION:/ s/\"[^\"]*\"/\"${rver}\"/" ".github/workflows/${prog}.yml" && \
 		git add ".github/workflows/${prog}.yml" && \
 		git commit -S -s -m "Updated ${prog} to ${rver}" && \
 		git push
