@@ -19,7 +19,9 @@ RUN \
 	apk --no-cache add ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
 	pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	# --no-deps: requirements.txt is a complete pinned closure (uv export);
+	# overrides sslyze's cryptography<47 cap. See pyproject.toml.
+	pip3 install --no-cache-dir --no-deps -r requirements.txt --break-system-packages && \
 	apk del build-dependencies && \
 	rm -rf /var/cache/apk/* && \
 	rm -rf /root/.cache/pip && \

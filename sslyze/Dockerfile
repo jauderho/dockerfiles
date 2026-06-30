@@ -15,7 +15,11 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip git && \
 	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
 	#pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
+	# requirements.txt is a complete pinned closure (uv export). Install with
+	# --no-deps to override sslyze's upper bound on cryptography (sslyze pins
+	# cryptography<47) and pull the newer, tested-working version. See the
+	# override-dependencies entry in pyproject.toml.
+	pip3 install --no-cache-dir --no-deps -r requirements.txt --break-system-packages && \
 	apt-get purge -y git && \
 	rm -rf /usr/bin/pebble && \
 	apt-get autoremove -y --purge && \

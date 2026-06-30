@@ -7,7 +7,9 @@ ARG BUILD_VERSION
 COPY requirements.txt . 
 
 #RUN pip install sslyze==${BUILD_VERSION}
-RUN pip3 install --no-cache-dir -r requirements.txt
+# --no-deps: requirements.txt is a complete pinned closure (uv export);
+# overrides sslyze's cryptography<47 cap. See pyproject.toml.
+RUN pip3 install --no-cache-dir --no-deps -r requirements.txt
 
 RUN rm -rf /usr/bin/pebble
 

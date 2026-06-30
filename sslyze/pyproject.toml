@@ -22,6 +22,10 @@ dependencies = [
 
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+# Override sslyze's upper bound on cryptography (sslyze pins cryptography<47).
+# Tested working up to cryptography 49.x; the build installs the closure with
+# pip --no-deps to bypass the same cap at install time. See Dockerfile.
+override-dependencies = ["cryptography>=43"]
 
 [tool.uv.sources]
 pypi = { url = "https://pypi.org/simple" }
