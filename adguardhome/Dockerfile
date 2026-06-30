@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.4-alpine3.24@sha256:3db9e8c899b9a4a571f7af1c5ca8c2fb2e5f5abaf0190f08e15ab70520116586 AS build
+FROM ghcr.io/jauderho/golang:1.26.4-alpine3.24@sha256:aea122b2bd93a09369064c7b7062c2c61c88b8a9a821256684ac623838e2bdef AS build
 
 WORKDIR /go/src/github.com/adguardteam/adguardhome/
 
@@ -32,7 +32,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:fc6aa8bd54b01bbe7fd9e2d2e79c87837ab82abf83387a0dbb16fb6c7b17997d
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:f6f37f85a5fcc44f67b6f62b16b745d6e1fcb21e4cc969d4cc410196035225a9
 
 ARG BUILD_VERSION
 
