@@ -68,11 +68,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-cache: true
-          python-version: 3.14
-          cache-dependency-glob: |
-            "**/requirements*.txt"
-            "**/pyproject.toml"
-            "**/uv.lock"
+#          python-version: 3.14
+#          cache-dependency-glob: |
+#            "**/requirements*.txt"
+#            "**/pyproject.toml"
+#            "**/uv.lock"
 
       - name: Setup SSH keys
         env:
