@@ -7,7 +7,7 @@ ansible-lint==26.4.0
 attrs==26.1.0
 bitmath==2.1.1
 black==26.5.1
-bracex==2.7
+bracex==3.0
 cachez==0.1.2
 certifi==2026.6.17
 cffi==2.0.0
@@ -54,7 +54,7 @@ sspilib==0.5.0 ; sys_platform == 'win32'
 storops==1.2.12
 subprocess-tee==0.4.2
 urllib3==2.7.0
-wcmatch==10.1
+wcmatch==10.2
 winkerberos==0.13.0 ; sys_platform == 'win32'
 xmltodict==1.0.4
 yamllint==1.38.0
