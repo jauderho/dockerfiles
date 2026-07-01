@@ -195,16 +195,16 @@ wheels = [
 
 [[package]]
 name = "visidata"
-version = "3.3"
+version = "3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "python-dateutil" },
     { name = "standard-mailcap" },
     { name = "windows-curses", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/aa/c0/ab9f01fcacbfbacde960e143f7c168c4de3c4f7e450873f8fd96fa2fcfb3/visidata-3.3.tar.gz", hash = "sha256:a94f4e398477e038541849cf4df1d1f2efc399da544d77db189bdb7f2fc014c4", size = 13248725, upload-time = "2025-09-08T04:50:45.326Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/eb/dd/682ac00672daf1325a3174d5cb5f32b9d9a2aeb42d3baa18e669278308d0/visidata-3.4.tar.gz", hash = "sha256:f5afcdb6823c570760be9692f33d0642a20cd86925b4cab721d108050d0f8201", size = 13253484, upload-time = "2026-07-01T05:00:16.606Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/95/35/9dc5f6e5e3623ff2cbb2d1e0d7307bf055ef9d0ee4057b832073429cd3e5/visidata-3.3-py3-none-any.whl", hash = "sha256:e805d8ad3f3eeb9959ab9a8a1cabe897807df032cf73367a97b399ec8a2d03f5", size = 549087, upload-time = "2025-09-08T04:50:39.976Z" },
+    { url = "https://files.pythonhosted.org/packages/52/0a/23878c577da6227faa79c26ec80567e2998f8eb655d61295b18a2f163509/visidata-3.4-py3-none-any.whl", hash = "sha256:9b88473c7bfb5a1752bea5870cc6edd3474cf529ac16c0e465d3ec0014ea99fb", size = 13337076, upload-time = "2026-07-01T05:00:12.004Z" },
 ]
 
 [[package]]
