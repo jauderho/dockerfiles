@@ -29,7 +29,7 @@ wheels = [
 [[package]]
 name = "catprinter"
 version = "0.1.0"
-source = { git = "https://github.com/jauderho/catprinter.git#2ace20dc8ce9849784025da217b7854e87cfb270" }
+source = { git = "https://github.com/jauderho/catprinter.git#16892fff130a0991412f3ce7e1d42fef6fb16fe6" }
 dependencies = [
     { name = "bleak" },
     { name = "numpy" },
