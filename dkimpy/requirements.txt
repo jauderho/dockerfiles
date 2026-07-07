@@ -2,7 +2,7 @@
 #    uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 aiodns==4.0.4
 authres==1.2.0
-cffi==2.0.0
+cffi==2.1.0
 dkimpy==1.1.8
 dnspython==2.8.0
 pycares==5.0.1
