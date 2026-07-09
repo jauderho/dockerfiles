@@ -1,7 +1,7 @@
 # Copyright (c) 2018 kalaksi@users.noreply.github.com.
 # This work is licensed under the terms of the MIT license. For a copy, see <https://opensource.org/licenses/MIT>.
 
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:f6f37f85a5fcc44f67b6f62b16b745d6e1fcb21e4cc969d4cc410196035225a9
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:5c592efde24ef4bd031a296ebb3a61ff6ce3236899e28b68430b7a309481a6e9
 
 ENV TFTPD_EXTRA_ARGS=""
 
