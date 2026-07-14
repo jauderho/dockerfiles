@@ -1,5 +1,5 @@
 #FROM node:20.8-alpine3.18@sha256:37750e51d61bef92165b2e29a77da4277ba0777258446b7a9c99511f119db096 AS build
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:84db34f3fe5e58d1bf76a3fccbc2be693d4d9444870ef070811e69c0d8cbc10f
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e5a3d6b80d37ba48554e42e212f08c3c100cdcf527948853206574b7c06e209f
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/prettier/prettier/archive/
