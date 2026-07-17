@@ -19,7 +19,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' excalidraw-app/package.json \
 	&& sed -i 's/"18.0.0 - [0-9][0-9]*.x.x"/">=18.0.0"/g' package.json \
 	&& yarn config set ignore-engines true \
-	&& yarn upgrade \
+	#&& yarn upgrade \
 	&& yarn --network-timeout 600000 \
 	&& NODE_ENV=production yarn build:app:docker
 	#&& git clone --depth 1 ${GIT_URL} . \
