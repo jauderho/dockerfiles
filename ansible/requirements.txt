@@ -18,7 +18,7 @@ cryptography==49.0.0
 decorator==5.3.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
-filelock==3.30.2
+filelock==3.30.3
 gssapi==1.11.1 ; sys_platform != 'win32'
 idna==3.18
 jinja2==3.1.6
@@ -27,11 +27,11 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 krb5==0.9.0 ; sys_platform != 'win32'
 markupsafe==3.0.3
-mitogen==0.3.50
+mitogen==0.3.51
 mypy-extensions==1.1.0
 packaging==26.2
 pathspec==1.1.1
-platformdirs==4.10.0
+platformdirs==4.10.1
 pycparser==3.0 ; implementation_name != 'PyPy'
 pykerberos==1.2.4 ; sys_platform != 'win32'
 pyspnego==0.12.1
