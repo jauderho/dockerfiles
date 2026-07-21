@@ -7,7 +7,7 @@ ansible-lint==26.6.0
 attrs==26.1.0
 bitmath==2.1.1
 black==26.5.1
-bracex==3.0
+bracex==3.0.1
 cachez==0.1.2
 certifi==2026.6.17
 cffi==2.1.0
@@ -18,7 +18,7 @@ cryptography==49.0.0
 decorator==5.3.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
-filelock==3.31.1
+filelock==3.31.2
 gssapi==1.11.1 ; sys_platform != 'win32'
 idna==3.18
 jinja2==3.1.6
