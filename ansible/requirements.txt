@@ -9,7 +9,7 @@ bitmath==2.1.1
 black==26.5.1
 bracex==3.0.1
 cachez==0.1.2
-certifi==2026.6.17
+certifi==2026.7.22
 cffi==2.1.0
 charset-normalizer==3.4.9
 click==8.4.2
@@ -18,7 +18,7 @@ cryptography==49.0.0
 decorator==5.3.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
-filelock==3.31.2
+filelock==3.32.0
 gssapi==1.11.1 ; sys_platform != 'win32'
 idna==3.18
 jinja2==3.1.6
@@ -31,7 +31,7 @@ mitogen==0.3.51
 mypy-extensions==1.1.0
 packaging==26.2
 pathspec==1.1.1
-platformdirs==4.10.1
+platformdirs==4.11.0
 pycparser==3.0 ; implementation_name != 'PyPy'
 pykerberos==1.2.4 ; sys_platform != 'win32'
 pyspnego==0.12.1
