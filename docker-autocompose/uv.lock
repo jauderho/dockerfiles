@@ -76,7 +76,7 @@ wheels = [
 [[package]]
 name = "docker-autocompose"
 version = "1.3.0"
-source = { git = "https://github.com/jauderho/docker-autocompose.git#fdb705668ea9af9bf800e9154217296365d7be5e" }
+source = { git = "https://github.com/jauderho/docker-autocompose.git#9f393ccd4863a634c46cc9ef3c77ffc681e66221" }
 dependencies = [
     { name = "docker" },
     { name = "pyaml" },
