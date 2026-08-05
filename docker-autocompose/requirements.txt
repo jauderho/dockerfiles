@@ -5,7 +5,7 @@ charset-normalizer==3.4.9
 docker==7.2.0
 docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git@8de471109d4b65b9ecdb1ad1a345371adc5de995
 idna==3.18
-packaging==26.2
+packaging==26.3
 pyaml==26.7.0
 pywin32==312 ; sys_platform == 'win32'
 pyyaml==6.0.3
