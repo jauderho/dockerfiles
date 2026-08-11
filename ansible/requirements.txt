@@ -2,7 +2,7 @@
 #    uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 ansible==14.2.0
 ansible-compat==26.6.0
-ansible-core==2.21.2
+ansible-core==2.21.3
 ansible-lint==26.6.0
 attrs==26.1.0
 bitmath==2.1.1
@@ -31,7 +31,7 @@ mitogen==0.3.51
 mypy-extensions==1.1.0
 packaging==26.3
 pathspec==1.1.1
-platformdirs==4.11.1
+platformdirs==4.11.2
 pycparser==3.0 ; implementation_name != 'PyPy'
 pykerberos==1.2.4 ; sys_platform != 'win32'
 pyspnego==0.12.1
