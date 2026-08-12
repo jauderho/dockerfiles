@@ -5,10 +5,10 @@ catprinter @ git+https://github.com/jauderho/catprinter.git@16892fff130a0991412f
 dbus-fast==5.0.22 ; sys_platform == 'linux'
 numpy==2.5.2
 opencv-python==5.0.0.93
-pyobjc-core==12.2.1 ; sys_platform == 'darwin'
-pyobjc-framework-cocoa==12.2.1 ; sys_platform == 'darwin'
-pyobjc-framework-corebluetooth==12.2.1 ; sys_platform == 'darwin'
-pyobjc-framework-libdispatch==12.2.1 ; sys_platform == 'darwin'
+pyobjc-core==12.2.2 ; sys_platform == 'darwin'
+pyobjc-framework-cocoa==12.2.2 ; sys_platform == 'darwin'
+pyobjc-framework-corebluetooth==12.2.2 ; sys_platform == 'darwin'
+pyobjc-framework-libdispatch==12.2.2 ; sys_platform == 'darwin'
 typing-extensions==4.16.0 ; sys_platform == 'win32'
 winrt-runtime==3.2.1 ; sys_platform == 'win32'
 winrt-windows-devices-bluetooth==3.2.1 ; sys_platform == 'win32'
