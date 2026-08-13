@@ -1,6 +1,6 @@
 #FROM nginx AS build
 #FROM ghcr.io/jauderho/golang:1.26.5-alpine3.24@sha256:8ecb660f538cfda32a212bdac5ed51e0a9c7b5f47bf1dd0f769ea6dd6c0690b2 AS build
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e5a3d6b80d37ba48554e42e212f08c3c100cdcf527948853206574b7c06e209f AS build
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e198ded2ad4e953fa5349cd30f01ff6f7d07773254d079df4aca4a6a2dd24bf5 AS build
 #FROM alpine:edge AS build
 
 WORKDIR /src
@@ -62,7 +62,7 @@ RUN apk update && \
 
 
 #FROM nginx
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e5a3d6b80d37ba48554e42e212f08c3c100cdcf527948853206574b7c06e209f
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e198ded2ad4e953fa5349cd30f01ff6f7d07773254d079df4aca4a6a2dd24bf5
 #FROM alpine:edge
 
 LABEL org.opencontainers.image.authors "Jauder Ho <jauderho@users.noreply.github.com>"
