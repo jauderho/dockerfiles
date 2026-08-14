@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.5-alpine3.24@sha256:d1b9f2200cf58b4883ebfe264760cac1004a42b9be22ae023c603d0ebec11bb9 AS build
+FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:fbae660e5e8ec5ad83f726e098c69ca4084d311b7ca0c16bcbda9a6935479fe2 AS build
 
 WORKDIR /go/src/github.com/asciimoo/wuzz/
 
