@@ -22,6 +22,11 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go get -u github.com/go-git/go-git/v5 github.com/hashicorp/go-slug github.com/golang-jwt/jwt/v4 \
 	&& go get -u github.com/hashicorp/go-getter@v1.7.9 \
+	# google.golang.org/genproto@latest has had googleapis/cloud/asset/v1 and
+	# googleapis/identity/accesscontextmanager/type split out into separate modules,
+	# but the pinned cloud.google.com/go/asset still imports them from genproto.
+	# Pin to the last genproto pseudo-version that still contains both packages.
+	&& go get google.golang.org/genproto@v0.0.0-20260803160001-6ac0973c030d \
 	&& go mod tidy \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
