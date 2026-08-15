@@ -8,6 +8,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
+# Cap build parallelism for from-source wheels (cryptography, rpds-py, cffi, etc.)
+# to avoid OOM on emulated (QEMU) architectures during concurrent multi-platform builds.
+# ARG (not ENV) so they stay build-time only and don't land in the final image
+ARG CARGO_BUILD_JOBS=2
+ARG MAKEFLAGS=-j2
 
 # requirements.txt now generated from Pipfile
 # pipenv lock -r > requirements.txt

@@ -7,6 +7,9 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/refs/tags/
 
 ENV CGO_ENABLED=0
+# Cap Go build parallelism to avoid OOM when building 4 platforms (3 emulated
+# under QEMU) concurrently in a single job.
+ENV GOFLAGS=-p=2
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \

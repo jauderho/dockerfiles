@@ -19,7 +19,6 @@ ARG PATCHES_URL=https://github.com/jauderho/patches.git
 
 RUN \
   #build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev perl-dev lld ccache openssl zlib git" && \
-  NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   apk update && \
   apk upgrade -a && \
   build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl git mold brotli-dev mimalloc2-dev" && \
@@ -81,15 +80,15 @@ RUN \
     --with-file-aio \
     --with-threads \
     --add-module=/tmp/ngx_brotli \
-    --with-cc-opt='-O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fPIE -pie -fno-plt -fno-semantic-interposition -Wformat-security -Wno-error=strict-aliasing -Wno-error=vla-parameter -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3' \
-    --with-ld-opt='-fuse-ld=mold -lmimalloc -O3 -march=native -flto=auto -fPIE -Wl,-pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack' \
+    --with-cc-opt='-O3 -march=native -pipe -flto=2 -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fPIE -pie -fno-plt -fno-semantic-interposition -Wformat-security -Wno-error=strict-aliasing -Wno-error=vla-parameter -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3' \
+    --with-ld-opt='-fuse-ld=mold -lmimalloc -O3 -march=native -flto=2 -fPIE -Wl,-pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack' \
     --with-openssl=/tmp/openssl-${OPENSSL_VERSION} \
-    --with-openssl-opt="enable-quic enable-tfo enable-ktls enable-pie enable-ec_nistp_64_gcc_128 threads no-tls-deprecated-ec no-legacy no-engine no-tls1 no-tls1_1 no-weak-ssl-ciphers no-deprecated no-comp no-tests -O3 -march=native -pipe -flto=auto -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fno-plt -fno-semantic-interposition -Wformat-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -DOPENSSL_TLS_SECURITY_LEVEL=3" \
+    --with-openssl-opt="enable-quic enable-tfo enable-ktls enable-pie enable-ec_nistp_64_gcc_128 threads no-tls-deprecated-ec no-legacy no-engine no-tls1 no-tls1_1 no-weak-ssl-ciphers no-deprecated no-comp no-tests -O3 -march=native -pipe -flto=2 -fomit-frame-pointer -fstack-protector-strong -fstack-clash-protection --param=ssp-buffer-size=4 -grecord-gcc-switches -fno-plt -fno-semantic-interposition -Wformat-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -DOPENSSL_TLS_SECURITY_LEVEL=3" \
     --with-pcre-jit \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make -j $NB_PROC && \
+  PATH="/usr/lib/ccache:${PATH}" make -j2 && \
   ccache -s && \
   strip objs/nginx && \
   make install && \
