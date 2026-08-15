@@ -99,7 +99,7 @@ RUN set -eux; \
     for spec in \
         @hono/node-server@^1.19.9 \
         @modelcontextprotocol/sdk@^1.25.2 @nestjs/core@^11.1.12 \
-        ajv@^8.17.1 axios@^1.13.2 basic-ftp@^5.1.0 \
+        ajv@^8.17.1 axios@^1.13.2 basic-ftp@^5.1.0 body-parser@^2.3.0 \
         brace-expansion@^1.1.12 brace-expansion@^2.0.2 brace-expansion@^5.0.2 diff@^4.0.2 \
         fast-uri@^3.1.0 fast-xml-parser@^5.3.6 file-type@^21.3.0 \
         follow-redirects@^1.15.11 form-data@^4.0.5 handlebars@^4.7.8 \
