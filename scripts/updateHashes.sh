@@ -52,6 +52,31 @@ GOLANG_TARGET_TAG=""
 GOLANG_BUILD_TRIGGERED=false
 
 # ---------------------------------------------------------------------------
+# Helper: list every tag of an official Docker Hub image, one per line.
+#
+# Uses the registry v2 tags/list endpoint (with an anonymous pull token) rather
+# than hub.docker.com/v2/repositories/<repo>/tags. The Hub endpoint pages by
+# last-pushed order, so a busy upstream (golang publishes a dozen `tip-*` tags
+# every night) can push the release tags we care about off the first page,
+# leaving the caller's grep with no match and no explanation. tags/list returns
+# the complete set in one response, so detection no longer depends on how
+# recently a tag happened to be pushed.
+# ---------------------------------------------------------------------------
+list_tags() {
+	local repo="$1" token
+	token=$(curl -fsSL \
+		"https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/${repo}:pull" \
+		| jq -r '.token')
+	if [[ -z "$token" || "$token" == "null" ]]; then
+		echo "ERROR: could not obtain a registry token for library/${repo}" >&2
+		return 1
+	fi
+	curl -fsSL -H "Authorization: Bearer ${token}" \
+		"https://registry-1.docker.io/v2/library/${repo}/tags/list" \
+		| jq -r '.tags[]'
+}
+
+# ---------------------------------------------------------------------------
 # Helper: fetch the manifest digest for a fully-qualified image tag.
 # Returns the top-level manifest list digest (first Digest: line), which is
 # stable across architectures and is what belongs in a FROM pin.
@@ -102,7 +127,10 @@ check_alpine() {
 	# --- current state from Dockerfile ---
 	# Expected line: FROM alpine:3.23.4@sha256:<digest>
 	local from_line
-	from_line=$(grep "^FROM alpine:" "$dockerfile")
+	from_line=$(grep "^FROM alpine:" "$dockerfile") || {
+		echo "  ERROR: no 'FROM alpine:' line in ${dockerfile}." >&2
+		return 1
+	}
 
 	local current_ver current_digest
 	current_ver=$(echo "$from_line"    | sed 's/FROM alpine:\([^@]*\).*/\1/')
@@ -111,13 +139,13 @@ check_alpine() {
 	# --- latest version from Docker Hub ---
 	# Only match fully-qualified X.Y.Z tags to avoid catching major/minor-only
 	# tags (e.g. "3.23") which would incorrectly win the sort.
+	# `|| true` keeps set -e/pipefail from aborting the run without a diagnostic
+	# when the fetch or the grep comes up empty; the guard below reports it.
 	local latest_ver
-	latest_ver=$(curl -fsSL \
-		'https://hub.docker.com/v2/repositories/library/alpine/tags?page_size=100' \
-		| jq -r '.results[].name' \
+	latest_ver=$(list_tags alpine \
 		| grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
 		| sort -V \
-		| tail -n1)
+		| tail -n1) || true
 
 	if [[ -z "$latest_ver" ]]; then
 		echo "  ERROR: could not determine latest Alpine version." >&2
@@ -193,7 +221,10 @@ check_golang() {
 	# --- current state from Dockerfile ---
 	# Expected line: FROM golang:1.26.2-alpine3.23@sha256:<digest>
 	local from_line
-	from_line=$(grep "^FROM golang:" "$dockerfile")
+	from_line=$(grep "^FROM golang:" "$dockerfile") || {
+		echo "  ERROR: no 'FROM golang:' line in ${dockerfile}." >&2
+		return 1
+	}
 
 	local current_full_tag current_digest
 	current_full_tag=$(echo "$from_line" | sed 's/FROM golang:\([^@]*\).*/\1/')
@@ -202,13 +233,13 @@ check_golang() {
 	# --- latest full tag from Docker Hub ---
 	# Match only X.Y.Z-alpineA.B tags; sort Go version as primary key and
 	# Alpine version as secondary so both bumps are handled correctly.
+	# `|| true` keeps set -e/pipefail from aborting the run without a diagnostic
+	# when the fetch or the grep comes up empty; the guard below reports it.
 	local latest_full_tag
-	latest_full_tag=$(curl -fsSL \
-		'https://hub.docker.com/v2/repositories/library/golang/tags?page_size=100' \
-		| jq -r '.results[].name' \
+	latest_full_tag=$(list_tags golang \
 		| grep -E '^[0-9]+\.[0-9]+\.[0-9]+-alpine[0-9]+\.[0-9]+$' \
 		| sort -t- -k1,1V -k2,2V \
-		| tail -n1)
+		| tail -n1) || true
 
 	if [[ -z "$latest_full_tag" ]]; then
 		echo "  ERROR: could not determine latest Golang tag." >&2
