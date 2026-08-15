@@ -403,7 +403,15 @@ _update_ghcr() {
 	local f
 	if $DRYRUN; then
 		while IFS= read -r f; do
-			[[ -z "$f" ]] || grep -qF "$new_ref" "$f" || echo "  [dryrun] would update: $f"
+			[[ -z "$f" ]] && continue
+			# Mirror what the real run rewrites: report the file when any pin it
+			# carries differs from the target ref. Testing `grep -qF "$new_ref"`
+			# over the whole file instead would stay silent whenever an up-to-date
+			# match exists anywhere - a commented-out FROM line is enough - even
+			# though the active pin is stale and sed would rewrite it.
+			if grep -oE "$regex" "$f" | grep -qvF "$new_ref"; then
+				echo "  [dryrun] would update: $f"
+			fi
 		done <<< "$files"
 		echo
 		return 0
