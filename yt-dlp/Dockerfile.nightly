@@ -41,9 +41,17 @@ RUN set -x \
  # https://github.com/jauderho/dockerfiles/issues/7774
  && case "$(uname -m)" in \
        x86_64|aarch64) \
-            curl -Lo yt-dlp.tar.gz ${RELEASE_URL}${BUILD_VERSION}/yt-dlp.tar.gz \
+            curl -Lo yt-dlp.tar.gz --proto "=https" --proto-redir "=https" \
+                 "${RELEASE_URL}${BUILD_VERSION}/yt-dlp.tar.gz" \
          && cat SHA2-256SUMS | grep "yt-dlp.tar.gz$" | sha256sum -csw - \
-         && CURL_CFFI_REQ="$(python3 -c 'import tarfile,tomllib; t=tarfile.open("yt-dlp.tar.gz"); n=[i for i in t.getnames() if i.count("/")==1 and i.endswith("/pyproject.toml")][0]; d=tomllib.load(t.extractfile(n)); print(next(r.split(";")[0].strip() for r in d["project"]["optional-dependencies"]["curl-cffi"] if r.replace("_","-").lower().startswith("curl-cffi")))')" \
+         && CURL_CFFI_REQ="$(python3 -c 'import tarfile, tomllib; \
+                t = tarfile.open("yt-dlp.tar.gz"); \
+                n = [i for i in t.getnames() if i.count("/") == 1 \
+                     and i.endswith("/pyproject.toml")][0]; \
+                d = tomllib.load(t.extractfile(n)); \
+                e = d["project"]["optional-dependencies"]["curl-cffi"]; \
+                r = [x for x in e if x.lower().startswith("curl")][0]; \
+                print(r.split(";")[0].strip())')" \
          && echo "yt-dlp ${BUILD_VERSION} requires ${CURL_CFFI_REQ}" \
          && python3 -m pip install --no-cache-dir "${CURL_CFFI_REQ}" --break-system-packages \
          && rm yt-dlp.tar.gz ;; \
