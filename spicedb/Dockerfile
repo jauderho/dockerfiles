@@ -1,20 +1,21 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/authzed/spicedb/
 
 ARG BUILD_VERSION
 #ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/
 ARG ARCHIVE_URL=https://github.com/authzed/spicedb/archive/refs/tags/
+ARG TARGETOS
+ARG TARGETARCH
 
 ENV CGO_ENABLED=0
-# Cap Go build parallelism to avoid OOM when building 4 platforms (3 emulated
-# under QEMU) concurrently in a single job.
-ENV GOFLAGS=-p=2
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl gcc musl-dev \
+	&& apk add --no-cache ca-certificates curl \
 	&& update-ca-certificates \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/spicedb.tar.gz \
 	&& tar xzf /tmp/spicedb.tar.gz --strip 1 -C /go/src/github.com/authzed/spicedb \
