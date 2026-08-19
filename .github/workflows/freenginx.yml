@@ -85,10 +85,6 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
 
-      - name: Setup mold
-        id: mold
-        uses: rui314/setup-mold@9c9c13bf4c3f1adef0cc596abc155580bcb04444 # v1
-
       #      - name: Setup cache
       #        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
       #        with:
