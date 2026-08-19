@@ -23,7 +23,8 @@ RUN \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${build_pkgs} ${runtime_pkgs} && \
 	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
-	curl -o /usr/local/bin/print.py https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
+	curl -o /usr/local/bin/print.py --proto "=https" --proto-redir "=https" \
+		https://raw.githubusercontent.com/jauderho/catprinter/main/print.py && \
 	apt-get purge -y ${build_pkgs} && \
 	rm -rf /usr/bin/pebble && \
 	apt-get autoremove -y --purge && \

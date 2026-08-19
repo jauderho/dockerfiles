@@ -12,7 +12,8 @@ RUN test -n "${BUILD_VERSION}" \
     && runtime_pkgs="ca-certificates python3" \
     && apk add --no-cache --virtual build-dependencies ${build_pkgs} \
     && apk add --no-cache ${runtime_pkgs}  \
-    && curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ssh-audit.tar.gz \
+    && curl -L --proto "=https" --proto-redir "=https" \
+            "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ssh-audit.tar.gz \
     && tar xvzf /tmp/ssh-audit.tar.gz --strip 1 -C /home/ssh-audit \
     && addgroup ssh-audit \
     && adduser -G ssh-audit -g "ssh-audit user" -s /bin/bash -D ssh-audit \ 

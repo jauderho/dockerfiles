@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache curl gcc musl-dev \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/rclone.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/rclone.tar.gz \
 	&& tar xzf /tmp/rclone.tar.gz --strip 1 -C /go/src/github.com/rclone/rclone \
 	&& go get -u golang.org/x/net \
 	&& go get -u golang.org/x/crypto golang.org/x/net \

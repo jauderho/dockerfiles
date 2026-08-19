@@ -18,7 +18,8 @@ RUN test -n "${BUILD_VERSION}" \
 	# The web UI is embedded into the binary at compile time via //go:embed build.
 	# A fresh clone ships an empty build/ dir, so fetch the prebuilt frontend and
 	# extract it into build/ before "go build" or the UI renders a blank screen.
-	&& curl -fsSL https://github.com/AdguardTeam/AdGuardHome/releases/download/${BUILD_VERSION}/AdGuardHome_frontend.tar.gz \
+	&& curl -fsSL --proto "=https" --proto-redir "=https" \
+		https://github.com/AdguardTeam/AdGuardHome/releases/download/${BUILD_VERSION}/AdGuardHome_frontend.tar.gz \
 		| tar xzf - -C /go/src/github.com/adguardteam/adguardhome \
 	&& test -f /go/src/github.com/adguardteam/adguardhome/build/static/index.html \
 	&& go get -u golang.org/x/crypto golang.org/x/net \

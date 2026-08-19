@@ -16,7 +16,8 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/DNSCrypt/dnscrypt-proxy \
 	#&& git clone --depth 1 ${GIT_URL} /go/src/github.com/DNSCrypt/dnscrypt-proxy \
 	#&& cd /go/src/github.com/DNSCrypt/dnscrypt-proxy \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
+	&& curl -L --proto "=https" --proto-redir "=https" \
+		"${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	#&& go get -u all \
 	&& go mod download golang.org/x/sync \

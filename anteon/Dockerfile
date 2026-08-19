@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache curl gcc musl-dev \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/anteon.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/anteon.tar.gz \
 	&& tar xzf /tmp/anteon.tar.gz --strip 1 -C /go/src/github.com/getanteon/anteon \
 	&& cd ddosify_engine \
 	&& go get -u golang.org/x/net \

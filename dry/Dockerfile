@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache curl gcc musl-dev \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dry.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dry.tar.gz \
 	&& tar xzf /tmp/dry.tar.gz --strip 1 -C /go/src/github.com/moncho/dry \
 	#&& go get -u github.com/containerd/containerd@v1.6.21 \
 	#&& go get -u github.com/docker/docker@v25.0.6 github.com/docker/cli@v25.0.6 \

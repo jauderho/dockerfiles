@@ -18,7 +18,8 @@ RUN set -x \
         python3 \
     # Install youtube-dl
     # https://github.com/rg3/youtube-dl
- && curl -Lo /usr/local/bin/youtube-dl https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl \
+ && curl -Lo /usr/local/bin/youtube-dl --proto "=https" --proto-redir "=https" \
+        https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl \
  #&& curl -Lo /usr/local/bin/youtube-dl https://yt-dl.org/downloads/latest/youtube-dl \
  #&& curl -Lo youtube-dl.sig https://yt-dl.org/downloads/latest/youtube-dl.sig \
  #&& gpg --keyserver keyserver.ubuntu.com --recv-keys '7D33D762FD6C35130481347FDB4B54CBA4826A18' \
