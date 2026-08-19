@@ -31,13 +31,32 @@ RUN set -x \
         nghttp2-dev \
         libffi-dev \
  && cd /usr/local/bin \
- && curl -Lo yt-dlp ${RELEASE_URL}${BUILD_VERSION}/yt-dlp \
- && curl -Lo SHA2-256SUMS ${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS \
+ && curl -Lo yt-dlp --proto "=https" --proto-redir "=https" \
+        "${RELEASE_URL}${BUILD_VERSION}/yt-dlp" \
+ && curl -Lo SHA2-256SUMS --proto "=https" --proto-redir "=https" \
+        "${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS" \
  && cat SHA2-256SUMS | grep "yt-dlp$" | sha256sum -csw - \
  && chmod a+rx /usr/local/bin/yt-dlp \
- # Conditionally install curl_cffi only on supported arches
+ # Conditionally install curl_cffi only on supported arches, constrained to the
+ # range yt-dlp declares for its curl-cffi extra. Installing outside that range
+ # makes yt-dlp silently drop the impersonate handler.
+ # https://github.com/jauderho/dockerfiles/issues/7774
  && case "$(uname -m)" in \
-       x86_64|aarch64) python3 -m pip install --no-cache-dir curl_cffi --break-system-packages ;; \
+       x86_64|aarch64) \
+            curl -Lo yt-dlp.tar.gz --proto "=https" --proto-redir "=https" \
+                 "${RELEASE_URL}${BUILD_VERSION}/yt-dlp.tar.gz" \
+         && cat SHA2-256SUMS | grep "yt-dlp.tar.gz$" | sha256sum -csw - \
+         && CURL_CFFI_REQ="$(python3 -c 'import tarfile, tomllib; \
+                t = tarfile.open("yt-dlp.tar.gz"); \
+                n = [i for i in t.getnames() if i.count("/") == 1 \
+                     and i.endswith("/pyproject.toml")][0]; \
+                d = tomllib.load(t.extractfile(n)); \
+                e = d["project"]["optional-dependencies"]["curl-cffi"]; \
+                r = [x for x in e if x.lower().startswith("curl")][0]; \
+                print(r.split(";")[0].strip())')" \
+         && echo "yt-dlp ${BUILD_VERSION} requires ${CURL_CFFI_REQ}" \
+         && python3 -m pip install --no-cache-dir "${CURL_CFFI_REQ}" --break-system-packages \
+         && rm yt-dlp.tar.gz ;; \
        *) echo "Skipping curl_cffi: unsupported arch $(uname -m)" ;; \
     esac \
  # Clean-up
@@ -57,7 +76,16 @@ WORKDIR /downloads
 VOLUME ["/downloads"]
 
 # Basic check.
-RUN dumb-init yt-dlp --version
+RUN dumb-init yt-dlp --version \
+ # Fail loudly if the installed curl_cffi is not usable for impersonation.
+ && case "$(uname -m)" in \
+       x86_64|aarch64) \
+            dumb-init yt-dlp --list-impersonate-targets > /tmp/impersonate-targets \
+         && cat /tmp/impersonate-targets \
+         && grep curl_cffi /tmp/impersonate-targets | grep -qv "(unavailable)" \
+         && rm /tmp/impersonate-targets ;; \
+       *) echo "Skipping impersonate check: unsupported arch $(uname -m)" ;; \
+    esac
 
 ENTRYPOINT ["dumb-init", "yt-dlp"]
 CMD ["--help"]
