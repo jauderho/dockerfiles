@@ -31,8 +31,10 @@ RUN set -x \
         nghttp2-dev \
         libffi-dev \
  && cd /usr/local/bin \
- && curl -Lo yt-dlp ${RELEASE_URL}${BUILD_VERSION}/yt-dlp \
- && curl -Lo SHA2-256SUMS ${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS \
+ && curl -Lo yt-dlp --proto "=https" --proto-redir "=https" \
+        "${RELEASE_URL}${BUILD_VERSION}/yt-dlp" \
+ && curl -Lo SHA2-256SUMS --proto "=https" --proto-redir "=https" \
+        "${RELEASE_URL}${BUILD_VERSION}/SHA2-256SUMS" \
  && cat SHA2-256SUMS | grep "yt-dlp$" | sha256sum -csw - \
  && chmod a+rx /usr/local/bin/yt-dlp \
  # Conditionally install curl_cffi only on supported arches, constrained to the
