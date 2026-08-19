@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/DNSCrypt/dnscrypt-proxy/
 
@@ -6,7 +6,13 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/DNSCrypt/dnscrypt-proxy/archive/
 ARG GIT_URL=https://github.com/DNSCrypt/dnscrypt-proxy.git
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -28,7 +34,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go mod tidy \
 	&& go mod vendor \
 	#&& go mod tidy \
-	&& go build -o ./dnscrypt-proxy -v -trimpath -ldflags="-s -w" .
+	&& GOARM="${TARGETVARIANT#v}" go build -o ./dnscrypt-proxy -v -trimpath -ldflags="-s -w" .
 
 WORKDIR /config
 

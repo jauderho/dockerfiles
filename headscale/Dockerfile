@@ -1,11 +1,17 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/juanfont/headscale/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/juanfont/headscale/archive/
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -17,7 +23,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u github.com/jackc/pgx/v5 github.com/go-jose/go-jose/v3 google.golang.org/grpc google.golang.org/genproto google.golang.org/protobuf \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
-	&& go build -o ./headscale -v -trimpath -ldflags="-s -w -X github.com/juanfont/headscale/cmd/headscale/cli.Version=${BUILD_VERSION}" ./cmd/headscale 
+	&& GOARM="${TARGETVARIANT#v}" go build -o ./headscale -v -trimpath -ldflags="-s -w -X github.com/juanfont/headscale/cmd/headscale/cli.Version=${BUILD_VERSION}" ./cmd/headscale 
 
 WORKDIR /config
 

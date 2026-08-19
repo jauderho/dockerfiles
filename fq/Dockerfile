@@ -1,12 +1,18 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/wader/fq
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/wader/fq/archive/
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV GO111MODULE=on
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 COPY . .
 
@@ -18,7 +24,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/fq.tar.gz \
 	&& tar xzf /tmp/fq.tar.gz --strip 1 -C /go/src/github.com/wader/fq \ 
 	&& go get -u golang.org/x/crypto golang.org/x/net \
-	&& go build -o fq -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
+	&& GOARM="${TARGETVARIANT#v}" go build -o fq -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check
 RUN cp fq /go/bin/fq

@@ -1,12 +1,18 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/projectdiscovery/subfinder/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/projectdiscovery/subfinder/archive/
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV GO111MODULE=on
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -17,7 +23,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u github.com/quic-go/quic-go \
 	&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
-	&& go build -o subfinder -v -trimpath -ldflags="-s -w" cmd/subfinder/main.go 
+	&& GOARM="${TARGETVARIANT#v}" go build -o subfinder -v -trimpath -ldflags="-s -w" cmd/subfinder/main.go 
 
 WORKDIR /config
 

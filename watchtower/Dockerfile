@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/containrrr/watchtower/
 
@@ -6,7 +6,13 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/containrrr/watchtower/archive/
 ARG GIT_URL=https://github.com/containrrr/watchtower.git
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -17,7 +23,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u google.golang.org/protobuf github.com/docker/docker@v24.0.9 github.com/docker/cli@v24.0.9 \
 	&& go get -u google.golang.org/protobuf github.com/docker/docker@v25 github.com/docker/cli@v25 golang.org/x/net \
 	&& go mod tidy \
-	&& go build -o watchtower -v -trimpath -ldflags="-s -w -X github.com/containrrr/watchtower/internal/meta.Version=${BUILD_VERSION}" .
+	&& GOARM="${TARGETVARIANT#v}" go build -o watchtower -v -trimpath -ldflags="-s -w -X github.com/containrrr/watchtower/internal/meta.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
 

@@ -1,12 +1,18 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/cloudflare/cloudflared/
 
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/cloudflare/cloudflared/archive/
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV GO111MODULE=on
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -21,14 +27,15 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u golang.org/x/crypto golang.org/x/net \
 	&& go mod tidy \
 	&& go mod vendor \
-	&& go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
+	&& GOARM="${TARGETVARIANT#v}" go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
 	&& adduser -S cloudflared \
 	&& mkdir /etc/cloudflared
 
 # Validation check
 #RUN cp cloudflared /go/bin/cloudflared
 #RUN setcap CAP_NET_BIND_SERVICE+eip cloudflared
-RUN ./cloudflared -v
+# Cannot run the binary here: it is built for $TARGETPLATFORM, not the builder.
+#RUN ./cloudflared -v
 
 
 

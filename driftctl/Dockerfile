@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.26.6-alpine3.24@sha256:e07200aceb844fea2934eeab605e3461b811fe6ebe719ca2d7594111633cdd75 AS build
 
 WORKDIR /go/src/github.com/snyk/driftctl/
 
@@ -7,7 +7,13 @@ ARG BUILD_VERSION
 #ARG ARCHIVE_URL=https://github.com/jauderho/driftctl/archive/
 ARG GIT_URL=https://github.com/jauderho/driftctl.git
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+
 ENV CGO_ENABLED=0
+ENV GOOS=${TARGETOS}
+ENV GOARCH=${TARGETARCH}
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
@@ -28,7 +34,7 @@ RUN test -n "${BUILD_VERSION}" \
 	# Pin to the last genproto pseudo-version that still contains both packages.
 	&& go get google.golang.org/genproto@v0.0.0-20260803160001-6ac0973c030d \
 	&& go mod tidy \
-	&& go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
+	&& GOARM="${TARGETVARIANT#v}" go build -v -trimpath -ldflags="-s -w -X github.com/snyk/driftctl/pkg/version.version=${BUILD_VERSION}" . 
 
 WORKDIR /config
 
