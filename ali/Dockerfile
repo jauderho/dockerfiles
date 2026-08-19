@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ali.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/ali.tar.gz \
 	&& tar xzf /tmp/ali.tar.gz --strip 1 -C /go/src/github.com/nakabonne/ali \
 	&& go get -u golang.org/x/net \
 	&& go mod tidy -compat=1.20 \

@@ -13,7 +13,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/yggdrasil-go.tar.gz \
+	&& curl -L --proto "=https" --proto-redir "=https" \
+		"${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/yggdrasil-go.tar.gz \
 	&& tar xzf /tmp/yggdrasil-go.tar.gz --strip 1 -C /go/src/github.com/yggdrasil-network/yggdrasil-go \
 	&& go get -u golang.org/x/tools \
 	#&& go get -u github.com/quic-go/quic-go \

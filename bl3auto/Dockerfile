@@ -13,7 +13,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc build-base \
 	&& update-ca-certificates \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/bl3auto.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/bl3auto.tar.gz \
 	&& tar xzf /tmp/bl3auto.tar.gz --strip 1 -C /go/src/github.com/jauderho/bl3auto \
 	&& go get -u golang.org/x/net \
 	&& go build -v -trimpath -ldflags="-s -w" ./cmd/bl3auto.go

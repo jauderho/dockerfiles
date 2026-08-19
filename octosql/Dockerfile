@@ -12,7 +12,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk upgrade -a \
 	&& apk add --no-cache ca-certificates curl gcc musl-dev \
 	&& update-ca-certificates \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/octosql.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/octosql.tar.gz \
 	&& tar xzf /tmp/octosql.tar.gz --strip 1 -C /go/src/github.com/cube2222/octosql \
 	&& go get -u golang.org/x/net golang.org/x/crypto gopkg.in/yaml.v3 github.com/jackc/pgx google.golang.org/grpc google.golang.org/genproto github.com/mholt/archiver \
 	&& go get -u github.com/jackc/pgx/v4 \

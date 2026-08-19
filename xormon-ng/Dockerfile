@@ -26,7 +26,8 @@ RUN apt-get update \
 
 # Node.js 24 (glibc prebuilt) into /usr/local; drop C++ headers/docs (only
 # needed to compile native addons, which we never do at runtime) - saves ~63MB
-RUN curl -fsSL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" -o /tmp/node.tar.xz \
+RUN curl -fsSL --proto "=https" --proto-redir "=https" \
+        "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" -o /tmp/node.tar.xz \
     && tar xf /tmp/node.tar.xz -C /usr/local --strip-components=1 \
     && rm /tmp/node.tar.xz \
     && rm -rf /usr/local/include /usr/local/CHANGELOG.md /usr/local/README.md \

@@ -18,18 +18,22 @@ RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VE
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl \
-	&& curl -L "${TARBALL_URL}" -o /tmp/snowball.tar.gz \
+	&& curl --proto "=https" --proto-redir "=https" -L "${TARBALL_URL}" -o /tmp/snowball.tar.gz \
 	&& tar xzf /tmp/snowball.tar.gz --strip 1 -C /usr/local \
 	&& rm -rf /tmp/snowball.tar.gz \
 	&& cd /usr/local/jarfarm \
 	&& for f in netty-*-4.1.jar netty-*-4.1-*.jar; do \
 		[ -e "$f" ] || continue; \
 		rest=${f%.jar}; artifact=${rest%%-4.1*}; suffix=${rest#*-4.1}; classifier=${suffix#-}; \
-		curl -fsSL "https://repo1.maven.org/maven2/io/netty/${artifact}/${NETTY_VERSION}/${artifact}-${NETTY_VERSION}${classifier:+-$classifier}.jar" -o "$f"; \
+		jar="${artifact}-${NETTY_VERSION}${classifier:+-$classifier}.jar"; \
+		curl -fsSL --proto "=https" --proto-redir "=https" \
+			"https://repo1.maven.org/maven2/io/netty/${artifact}/${NETTY_VERSION}/${jar}" -o "$f"; \
 	done \
 	&& for a in bcprov bcpg bcpkix bcutil bcmail bctls; do \
 		rm -f "${a}-jdk18on-"*.jar; \
-		curl -fsSL "https://repo1.maven.org/maven2/org/bouncycastle/${a}-jdk18on/${BC_VERSION}/${a}-jdk18on-${BC_VERSION}.jar" -o "${a}-jdk18on-${BC_VERSION}.jar"; \
+		curl -fsSL --proto "=https" --proto-redir "=https" \
+			"https://repo1.maven.org/maven2/org/bouncycastle/${a}-jdk18on/${BC_VERSION}/${a}-jdk18on-${BC_VERSION}.jar" \
+			-o "${a}-jdk18on-${BC_VERSION}.jar"; \
 	done \
 	&& cd / \
 	&& apt-get purge -y curl \

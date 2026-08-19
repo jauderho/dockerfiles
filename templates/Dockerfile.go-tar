@@ -13,7 +13,8 @@ ENV CGO_ENABLED 0
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk add --no-cache ca-certificates curl \
-	&& curl -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
+	&& curl -L --proto "=https" --proto-redir "=https" \
+		"${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscrypt-proxy.tar.gz \
 	&& tar xzf /tmp/dnscrypt-proxy.tar.gz --strip 1 -C /go/src/github.com/DNSCrypt \
 	&& go build -v -ldflags="-s -w"
 
