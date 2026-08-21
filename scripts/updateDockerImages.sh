@@ -9,7 +9,7 @@ IFS=$'\n\t'
 # PAT is only used to avoid API rate limits
 
 REPO=( 
-	"AdguardTeam/Adguardhome" \
+	"AdguardTeam/adguardhome" \
 	"filosottile/age" \
 	"nakabonne/ali" \
 	"ansible/ansible" \
