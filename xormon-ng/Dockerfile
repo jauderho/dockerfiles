@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------
 # Stage 1: build - download Node.js + the XorMon NG tarball, prune, build venv
 # ---------------------------------------------------------------------------
-FROM ubuntu:26.04@sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03 AS build
+FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
 
 ARG BUILD_VERSION
 ARG NODE_VERSION=24.15.0
@@ -147,7 +147,7 @@ RUN python3 -m venv /opt/xormon-ng/server-nest/venv \
 # ---------------------------------------------------------------------------
 # Stage 2: runtime
 # ---------------------------------------------------------------------------
-FROM ubuntu:26.04@sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03
+FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
