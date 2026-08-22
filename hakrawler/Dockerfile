@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.0-alpine3.24@sha256:7e070021291cfb200a9a7e91029ce5f96b76d1015794fab30882689e4c586d5d AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.0-alpine3.24@sha256:acb2ce37623dc9b32cca8e204995298705b7341c4b00bfb9f22db47221ec2927 AS build
 
 WORKDIR /go/src/github.com/hakluke/hakrawler/
 
