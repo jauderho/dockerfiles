@@ -39,7 +39,7 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:e198ded2ad4e953fa5349cd30f01ff6f7d07773254d079df4aca4a6a2dd24bf5
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:ff52f2346776ea44fca133cbd5ec332e5ee10d10cef9c433bbe337e3c31c2a50
 
 ARG BUILD_VERSION
 
