@@ -22,7 +22,9 @@ RUN \
   apk update && \
   apk upgrade -a && \
   build_pkgs="build-base linux-headers openssl-dev wget perl-dev ccache openssl zlib git mold brotli-dev mimalloc2-dev" && \
-  runtime_pkgs="ca-certificates tzdata brotli-libs mimalloc2" && \
+  # libgcc: the LTO-built binary links against libgcc_s.so.1, which "apk del
+  # ${build_pkgs}" would otherwise take away with build-base.
+  runtime_pkgs="ca-certificates tzdata brotli-libs mimalloc2 libgcc" && \
   apk --no-cache add ${build_pkgs} ${runtime_pkgs} && \
   update-ca-certificates && \
   cd /tmp && \
