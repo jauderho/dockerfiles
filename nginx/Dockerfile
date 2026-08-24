@@ -39,6 +39,7 @@ RUN \
   git submodule update --init && \
   git clone --depth 1 ${PATCHES_URL} /tmp/patches && \
   cd /tmp/nginx-${BUILD_VERSION} && \
+  NB_PROC=$(grep -c ^processor /proc/cpuinfo) && \
   echo "Patching..." && \
   patch -p1 < /tmp/patches/nginx/nginx__dynamic_tls_records_1.29.2+.patch && \
   #patch -p1 < /tmp/patches/nginx/nginx_hpack_push_1.25.0.patch && \
@@ -90,8 +91,11 @@ RUN \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make -j2 && \
-  ccache -s && \
+  # ccache's compiler shims live in /usr/lib/ccache/bin; pointing PATH at the
+  # parent silently bypassed them. CCACHE_DIR stays under /tmp so the cache is
+  # removed by the rm -rf below instead of shipping in this single-stage image.
+  PATH="/usr/lib/ccache/bin:${PATH}" CCACHE_DIR=/tmp/ccache make -j ${NB_PROC} && \
+  CCACHE_DIR=/tmp/ccache ccache -s && \
   strip objs/nginx && \
   make install && \
   sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \

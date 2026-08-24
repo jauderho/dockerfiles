@@ -90,8 +90,13 @@ RUN \
     --with-pcre=/tmp/pcre2-${PCRE_VERSION} \
     --with-zlib=/tmp/zlib \
     && \
-  PATH="/usr/lib/ccache:${PATH}" make -j1 && \
-  ccache -s && \
+  # ccache's compiler shims live in /usr/lib/ccache/bin; pointing PATH at the
+  # parent silently bypassed them. CCACHE_DIR stays under /tmp so the cache is
+  # removed by the rm -rf below instead of shipping in this single-stage image.
+  # Back to parallel make: it broke here in Feb 2025 (0a12f8d23) but no longer
+  # reproduces. Revert to -j1 if this turns out to be a flaky race.
+  PATH="/usr/lib/ccache/bin:${PATH}" CCACHE_DIR=/tmp/ccache make -j ${NB_PROC} && \
+  CCACHE_DIR=/tmp/ccache ccache -s && \
   strip objs/nginx && \
   make install && \
   sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
