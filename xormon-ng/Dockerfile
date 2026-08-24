@@ -3,6 +3,14 @@
 # VERSION               1.0
 
 # ---------------------------------------------------------------------------
+# bun - build-time only. Supplies "bun audit", which generates the npm upgrade
+# list further down. Bind-mounted into that one step rather than COPYed, so the
+# 80MB binary never lands in a layer (the runtime stage copies /usr/local
+# wholesale, so anything installed there would ship).
+# ---------------------------------------------------------------------------
+FROM oven/bun:1.4.0@sha256:5ff609364c049b54eb0ff560ec96319729a972078ef2c755d758f0c6ef89c2d6 AS bun
+
+# ---------------------------------------------------------------------------
 # Stage 1: build - download Node.js + the XorMon NG tarball, prune, build venv
 # ---------------------------------------------------------------------------
 FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
@@ -74,7 +82,8 @@ RUN set -eux; \
 RUN --network=none set -eux; \
     cd /opt/xormon-ng/server-nest; \
     npm prune --omit=dev --no-audit --no-fund; \
-    rm -f package-lock.json; \
+    # package-lock.json is kept for now: the patch step below feeds it to
+    # "bun audit" and removes it afterwards.
     # drop docs/changelogs from the remaining runtime packages (keep LICENSE)
     find node_modules -type f \( -iname '*.md' -o -iname '*.markdown' -o -iname 'CHANGELOG*' \) -delete; \
     # drop test/example/CI dirs shipped inside packages (never imported at runtime)
@@ -82,36 +91,48 @@ RUN --network=none set -eux; \
        -o -name example -o -name examples -o -name .github -o -name coverage \) \
        -prune -exec rm -rf {} +
 
-# Patch vulnerable runtime npm packages. Each entry is a caret (^) range anchored
-# at the version upstream ships, so npm resolves the newest SemVer-COMPATIBLE
-# release at build time - patch/minor only, never a major bump (and caret locks
-# the minor for 0.x packages). Using a range instead of a hard pin means future
-# security releases are picked up automatically on rebuild without editing this
-# list. Every copy of a package compatible with the resolved version (same major,
-# or same major.minor for 0.x) is replaced in place anywhere in node_modules, with
+# Patch vulnerable runtime npm packages. The upgrade list is generated at build
+# time by "bun audit" instead of being maintained by hand, so new advisories are
+# picked up on rebuild without editing this file.
+#
+# "bun audit fix --dry-run --json" reads package.json + package-lock.json only:
+# it is read-only, writes no files and needs no node_modules, so the vendored
+# tree is never re-resolved. That matters - a real "bun audit fix" (or npm audit
+# fix) would reinstall, and this tarball ships prebuilt native modules (canvas,
+# cpu-features, ssh2) that cannot be rebuilt in this stage; canvas fails node-gyp
+# outright. Hence generate-then-patch rather than letting a package manager
+# rewrite the tree.
+#
+# Policy is unchanged from the hand-maintained list this replaces: apply fixes
+# that stay inside the same major (same major.minor for 0.x), as a caret range so
+# npm still resolves the newest SemVer-compatible release. bun also reports fixes
+# it declines because some dependent pins a tighter range ("blocked", e.g.
+# engine.io wanting ws@~8.20.1); those are applied too when they stay within the
+# major, which is what the manual list already did. Fixes needing a major bump are
+# skipped and tracked in README: nodemailer, pm2, uuid 8, vega/vega-functions.
+#
+# Every copy of a package compatible with the resolved version (same major, or
+# same major.minor for 0.x) is replaced in place anywhere in node_modules, with
 # its bundled node_modules/ preserved; the rest of the tree is untouched. Runs
-# after the prune above so npm sees the pristine vendored tree. Packages whose ONLY
-# fix is a major bump are left alone and tracked in README: nodemailer, pm2, uuid 8,
-# vega/vega-functions 5.x.
-RUN set -eux; \
+# after the prune above so npm sees the pristine vendored tree.
+RUN --mount=type=bind,from=bun,source=/usr/local/bin/bun,target=/usr/bin/bun \
+    set -eux; \
     cd /opt/xormon-ng/server-nest; \
     work=/tmp/npmpatch; \
     ckey() { case "$1" in 0.*) echo "$1" | cut -d. -f1-2;; *) echo "${1%%.*}";; esac; }; \
-    for spec in \
-        @hono/node-server@^1.19.9 \
-        @modelcontextprotocol/sdk@^1.25.2 @nestjs/core@^11.1.12 \
-        ajv@^8.17.1 axios@^1.13.2 basic-ftp@^5.1.0 body-parser@^2.3.0 \
-        brace-expansion@^1.1.12 brace-expansion@^2.0.2 brace-expansion@^5.0.2 diff@^4.0.2 \
-        fast-uri@^3.1.0 fast-xml-parser@^5.3.6 file-type@^21.3.0 \
-        follow-redirects@^1.15.11 form-data@^4.0.5 handlebars@^4.7.8 \
-        hono@^4.11.4 ip-address@^10.1.0 joi@^18.0.2 js-yaml@^4.1.1 \
-        lodash@^4.17.21 minimatch@^3.1.2 minimatch@^5.1.6 minimatch@^9.0.5 \
-        minimatch@^10.1.1 multer@^2.0.2 path-to-regexp@^8.3.0 picomatch@^2.3.1 \
-        qs@^6.14.1 socket.io-parser@^4.2.5 systeminformation@^5.30.5 tar@^7.5.4 \
-        tmp@^0.2.5 typeorm@^0.3.28 uuid@^11.1.0 uuid@^13.0.0 vega@^5.31.0 \
-        vega-expression@^5.1.2 vega-functions@^5.16.0 ws@^7.5.10 ws@^8.18.3 \
-    ; do \
+    # bun exits 1 whenever any advisory is left unfixed, which is the normal
+    # state here (the major-bump exclusions above), so the status is ignored.
+    # The parse below is the real guard: a network failure or a changed output
+    # format yields unusable JSON and fails the build instead of silently
+    # skipping every patch. The "migrated lockfile" notice goes to stderr, so
+    # stdout is clean JSON.
+    bun audit fix --dry-run --json 2>/dev/null > /tmp/audit.json || :; \
+    node -e 'const a=JSON.parse(require("fs").readFileSync("/tmp/audit.json","utf8"));if(!Array.isArray(a.fixes)||!Array.isArray(a.blocked))throw new Error("unexpected bun audit output");const k=v=>v.startsWith("0.")?v.split(".").slice(0,2).join("."):v.split(".")[0];const s=new Set();for(const f of a.fixes)s.add(f.name+"@^"+f.to);for(const b of a.blocked)if(k(b.from)===k(b.to))s.add(b.name+"@^"+b.to);console.log([...s].sort().join("\n"))' > /tmp/specs.txt; \
+    echo "npm-patch: bun audit proposes $(grep -c . /tmp/specs.txt || true) in-major upgrades"; \
+    for spec in $(cat /tmp/specs.txt); do \
         name="${spec%@*}"; \
+        # skip advisories against devDependencies the prune above already removed
+        find node_modules -type d -path "*node_modules/$name" | grep -q . || continue; \
         rm -rf "$work"; mkdir -p "$work/x"; \
         npm pack "$spec" --pack-destination "$work" >/dev/null; \
         tar xzf "$work"/*.tgz -C "$work/x" --strip-components=1; \
@@ -128,7 +149,8 @@ RUN set -eux; \
             echo "npm-patch: $d $inst -> $ver"; \
         done; \
     done; \
-    rm -rf "$work"; \
+    rm -rf "$work" /tmp/audit.json /tmp/specs.txt; \
+    rm -f package-lock.json; \
     # re-strip docs/tests that the freshly fetched packages re-introduce
     find node_modules -type f \( -iname '*.md' -o -iname '*.markdown' -o -iname 'CHANGELOG*' \) -delete; \
     find node_modules -type d \( -name test -o -name tests -o -name __tests__ \

@@ -57,9 +57,13 @@ require recompiling upstream:
   latest security releases on every rebuild.
 - **TLS certificate** — the shipped static self-signed key is removed; a unique
   cert is generated at container startup instead (no private key baked into the image).
-- **npm packages** — vulnerable runtime dependencies are upgraded via caret (`^`)
-  ranges, picking up the newest SemVer-compatible release (patch/minor only, no
-  major bumps). See the patch step in `Dockerfile` for the list.
+- **npm packages** — the upgrade list is generated at build time by `bun audit`
+  rather than maintained by hand, so new advisories are picked up on rebuild
+  without editing the Dockerfile. Each entry is applied as a caret (`^`) range,
+  so npm resolves the newest SemVer-compatible release (patch/minor only, no
+  major bumps). The audit is read-only — it reads `package.json` and
+  `package-lock.json` only, and never reinstalls, so the vendored tree and its
+  prebuilt native modules (`canvas`, `cpu-features`, `ssh2`) are left intact.
 
 Not fixed here: the compiled Go binaries (`agent`, `linux-service`, `linux-router`)
 and a few major-bump-only npm packages (`nodemailer`, `pm2`, bundled `uuid` 8.x,
