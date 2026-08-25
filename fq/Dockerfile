@@ -23,7 +23,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/fq.tar.gz \
 	&& tar xzf /tmp/fq.tar.gz --strip 1 -C /go/src/github.com/wader/fq \ 
-	&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u golang.org/x/crypto golang.org/x/net github.com/gopacket/gopacket \
 	&& GOARM="${TARGETVARIANT#v}" go build -o fq -v -trimpath -ldflags="-s -w -X main.version=${BUILD_VERSION}" .
 
 # Validation check
