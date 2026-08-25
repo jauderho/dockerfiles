@@ -4,7 +4,7 @@
 
 # ---------------------------------------------------------------------------
 # bun - build-time only. Supplies "bun audit", which generates the npm upgrade
-# list further down. Bind-mounted into that one step rather than COPYed, so the
+# list further down. Bind-mounted into that one step rather than COPY, so the
 # 80MB binary never lands in a layer (the runtime stage copies /usr/local
 # wholesale, so anything installed there would ship).
 # ---------------------------------------------------------------------------
