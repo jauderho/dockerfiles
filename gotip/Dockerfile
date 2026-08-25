@@ -26,6 +26,11 @@ RUN test -n "${BUILD_VERSION}" \
 	&& rm -rf /root/sdk/gotip/src \
 	&& rm -rf /root/sdk/gotip/.git \
 	&& rm -rf /usr/local/go \
+	# the golang.org/dl/gotip launcher is only needed to run "download" above.
+	# The image runs the SDK toolchain via /usr/local/bin/gotip, so the launcher
+	# is dead weight - and it is built by Alpine's go, so it drags in that
+	# toolchain's stdlib CVEs.
+	&& rm -rf /root/go \
 	&& rm -rf /var/cache/apk/*
 
 RUN gotip version
