@@ -16,7 +16,10 @@ FROM oven/bun:1.4.0@sha256:5ff609364c049b54eb0ff560ec96319729a972078ef2c755d758f
 FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
 
 ARG BUILD_VERSION
-ARG NODE_VERSION=24.15.0
+ARG NODE_VERSION=24.19.0
+# npm bundled with Node 24.19.0 (11.17.0) still vendors tar 7.5.16. npm 11.18.0+
+# vendors tar 7.5.19, which carries the fix for GHSA-23hp-3jrh-7fpw.
+ARG NPM_VERSION=^11.19.0
 ARG DEBIAN_FRONTEND=noninteractive
 
 # build-only tooling (never lands in the final image)
@@ -38,9 +41,11 @@ RUN curl -fsSL --proto "=https" --proto-redir "=https" \
         "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" -o /tmp/node.tar.xz \
     && tar xf /tmp/node.tar.xz -C /usr/local --strip-components=1 \
     && rm /tmp/node.tar.xz \
+    && npm install -g "npm@${NPM_VERSION}" --no-audit --no-fund \
     && rm -rf /usr/local/include /usr/local/CHANGELOG.md /usr/local/README.md \
        /usr/local/lib/node_modules/npm/docs /usr/local/lib/node_modules/npm/man \
-    && node -v
+    && node -v \
+    && npm -v
 
 # XorMon NG application tarball (content sits at archive root, no version dir)
 ADD https://xormon.com/download-static/xormon-ng/xormon-ng-${BUILD_VERSION}.tar.gz /tmp/xormon-ng.tar.gz
