@@ -1,5 +1,8 @@
-FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
-#FROM golang:1.25.3-trixie@sha256:7534a6264850325fcce93e47b87a0e3fddd96b308440245e6ab1325fa8a44c91 AS build
+# Go comes from the base image, not from Debian's golang-go. Ubuntu 26.04 ships
+# go1.26.0, which is affected by CVE-2026-27140 and CVE-2026-27143 (fixed in
+# 1.26.2). clang-19 matches what pwru's own release Makefile uses.
+FROM golang:1.27.0-trixie@sha256:ae28539d2ef595b9a2930dd7f031d9592376829dc0eae7cb869559f7d5812c3a AS build
+#FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -12,11 +15,11 @@ ENV CGO_ENABLED=0
 RUN test -n "${BUILD_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-22 clang-22 golang-go gcc flex bison mold \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-19 clang-19 gcc flex bison mold \
 	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 golang-go gcc flex bison mold libdpdk-dev \
 	#&& DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -q curl build-essential git ca-certificates llvm-17 clang-17 flex bison \
-	&& ln -s /usr/bin/clang-22 /usr/bin/clang \
-	&& ln -s /usr/bin/llvm-strip-22 /usr/bin/llvm-strip \
+	&& ln -s /usr/bin/clang-19 /usr/bin/clang \
+	&& ln -s /usr/bin/llvm-strip-19 /usr/bin/llvm-strip \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& cd /go/src/github.com/cilium/pwru \
