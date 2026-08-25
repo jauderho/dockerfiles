@@ -16,7 +16,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/coredns.tar.gz \
 	&& tar xzf /tmp/coredns.tar.gz --strip 1 -C /go/src/github.com/coredns/coredns \
-	&& go get -u golang.org/x/crypto golang.org/x/net google.golang.org/grpc google.golang.org/protobuf \
+	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/mod google.golang.org/grpc google.golang.org/protobuf \
 	#&& go get -u github.com/quic-go/quic-go \
 	&& go mod tidy \
 	&& make \
