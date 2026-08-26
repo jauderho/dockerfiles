@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/rclone.tar.gz \
 	&& tar xzf /tmp/rclone.tar.gz --strip 1 -C /go/src/github.com/rclone/rclone \
 	&& go get -u golang.org/x/net \
-	&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/image \
 	&& go mod tidy \
 	&& GOARM="${TARGETVARIANT#v}" go build -o rclone -v -trimpath -ldflags="-s -w" 
 
