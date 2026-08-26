@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache curl git gcc musl-dev \
 	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/wagoodman/dive \
 	&& cd /go/src/github.com/wagoodman/dive \
-	&& go get -u github.com/gdamore/tcell/v2 github.com/docker/docker github.com/docker/cli golang.org/x/net \
+	&& go get -u github.com/gdamore/tcell/v2 github.com/docker/docker github.com/docker/cli golang.org/x/net github.com/go-viper/mapstructure/v2 \
 	#&& go get -u ./... \
 	#&& go get -u all \
 	&& go mod tidy \
