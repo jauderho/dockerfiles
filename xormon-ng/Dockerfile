@@ -44,6 +44,10 @@ RUN curl -fsSL --proto "=https" --proto-redir "=https" \
     && npm install -g "npm@${NPM_VERSION}" --no-audit --no-fund \
     && rm -rf /usr/local/include /usr/local/CHANGELOG.md /usr/local/README.md \
        /usr/local/lib/node_modules/npm/docs /usr/local/lib/node_modules/npm/man \
+    # the prebuilt node binary carries its symbol table (~18MB). Nothing here
+    # profiles or debugs the runtime natively, and JS stack traces are
+    # unaffected - those come from V8, not ELF symbols.
+    && strip --strip-unneeded /usr/local/bin/node \
     && node -v \
     && npm -v
 
