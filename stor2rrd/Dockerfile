@@ -109,12 +109,11 @@ RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd:cron /var/spoo
 # ADD http://downloads.sourceforge.net/project/lpar2rrd/lpar2rrd/$LPAR_SF_DIR/lpar2rrd-$LPAR_VER.tar /home/lpar2rrd/
 # ADD http://downloads.sourceforge.net/project/stor2rrd/stor2rrd/$STOR_SF_DIR/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
-# download tarballs from official website
-ADD https://stor2rrd.com/download-static/stor2rrd/stor2rrd-$STOR_VER.tar /tmp/
-
-# extract tarballs
+# download and extract the tarball in one layer. ADD would write the ~18MB
+# archive into its own layer, and deleting it in the following RUN only masks
+# it - the bytes stay in the image. Piping straight into tar never stores it.
 WORKDIR /tmp
-RUN tar xvf stor2rrd-$STOR_VER.tar && rm -rf stor2rrd-$STOR_VER.tar
+RUN wget -qO- "https://stor2rrd.com/download-static/stor2rrd/stor2rrd-$STOR_VER.tar" | tar x
 
 COPY supervisord.conf /etc/
 COPY startup.sh /startup.sh
