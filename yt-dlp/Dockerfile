@@ -17,12 +17,14 @@ RUN set -x \
         python3 \
         py3-mutagen \
         py3-pycryptodomex \
-        py3-pip \
         zstd \
         nghttp2 \        
  && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno simdutf \
  && apk add --no-cache --virtual .build-deps \
         curl \
+        # pip only installs curl_cffi below; yt-dlp itself is a self-contained
+        # zipapp, so pip (~13MB with setuptools) has no runtime job here
+        py3-pip \
         build-base \
         gcc \
         make \
