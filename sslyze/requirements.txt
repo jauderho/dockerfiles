@@ -2,7 +2,7 @@
 #    uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
 annotated-types==0.8.0
 cffi==2.1.1 ; platform_python_implementation != 'PyPy'
-cryptography==50.0.0
+cryptography==50.0.1
 nassl==5.4.0
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
 pydantic==2.13.4
