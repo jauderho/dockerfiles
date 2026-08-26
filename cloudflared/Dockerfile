@@ -25,6 +25,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u github.com/coredns/coredns \
 	#&& go get -u github.com/quic-go/quic-go \
 	#&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u github.com/gorilla/websocket \
 	&& go mod tidy \
 	&& go mod vendor \
 	&& GOARM="${TARGETVARIANT#v}" go build -o cloudflared -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" ./cmd/cloudflared/ \
