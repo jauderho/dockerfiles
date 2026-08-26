@@ -23,7 +23,8 @@ env:
   APP: dnscrypt-proxy
   REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   snyk:

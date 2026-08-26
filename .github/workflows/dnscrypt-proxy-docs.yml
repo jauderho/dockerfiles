@@ -18,7 +18,8 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   deploy:

@@ -15,7 +15,8 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-permissions: read-all
+permissions:
+  contents: read
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true

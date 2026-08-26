@@ -8,7 +8,8 @@ on:
     - main
   #delete: {}
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   sync:

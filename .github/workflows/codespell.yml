@@ -13,7 +13,8 @@ on:
 #  group: ${{ github.workflow }}
 #  cancel-in-progress: true
 
-permissions: read-all
+permissions:
+  contents: read
 
 # Set the Job #
 jobs:

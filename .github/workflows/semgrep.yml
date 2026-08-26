@@ -12,7 +12,8 @@ on:
   - cron: '0 0 * * 0'
   workflow_call:
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   semgrep:

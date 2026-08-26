@@ -16,14 +16,14 @@ env:
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-26.04
     permissions:
       packages: write
-      id-token: write
 
     steps:
       - name: Harden Runner
