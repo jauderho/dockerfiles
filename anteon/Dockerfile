@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/anteon.tar.gz \
 	&& tar xzf /tmp/anteon.tar.gz --strip 1 -C /go/src/github.com/getanteon/anteon \
 	&& cd ddosify_engine \
-	&& go get -u golang.org/x/net \
+	&& go get -u golang.org/x/net github.com/antchfx/xpath \
 	&& go mod tidy \
 	&& GOARM="${TARGETVARIANT#v}" go build -o ddosify -v -trimpath -ldflags="-s -w" ./main.go 
 
