@@ -22,7 +22,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& cd /go/src/github.com/multiprocessio/dsq \
 	&& go get -u google.golang.org/protobuf golang.org/x/net \
 	&& go get -u github.com/snowflakedb/gosnowflake \
-	&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u golang.org/x/crypto golang.org/x/net google.golang.org/grpc github.com/xuri/excelize/v2 \
 	&& go mod tidy \
 	&& GOARM="${TARGETVARIANT#v}" go build -v -trimpath -ldflags="-s -w"
 
