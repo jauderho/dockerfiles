@@ -52,6 +52,17 @@ RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VE
 	&& mkdir -p /usr/local/jre \
 	&& tar xzf /tmp/corretto.tar.gz --strip 1 -C /usr/local/jre \
 	&& rm -f /tmp/corretto.tar.gz \
+	# Corretto ships a full JDK; the launcher above only ever runs bin/java.
+	# Drop the parts that exist solely to compile or debug (~147MB):
+	#   jmods/       - module archives, input to jlink/jmod only
+	#   lib/src.zip  - JDK sources, for stepping through in an IDE
+	#   lib/ct.sym   - historical API signatures, for javac --release
+	#   classes_nocoops.jsa - CDS archive for the -UseCompressedOops case, which
+	#                  needs a >32GB heap; classes.jsa stays, so class sharing
+	#                  still applies (java -Xshare:on reports "sharing")
+	&& rm -rf /usr/local/jre/jmods /usr/local/jre/lib/src.zip /usr/local/jre/lib/ct.sym \
+		/usr/local/jre/lib/server/classes_nocoops.jsa \
+		/usr/local/jre/include /usr/local/jre/man \
 	&& /usr/local/jre/bin/java -version \
 	&& apt-get purge -y curl \
 	&& rm -rf /usr/bin/pebble \
