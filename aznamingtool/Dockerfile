@@ -23,9 +23,17 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk add --no-cache bash git \
 	&& git clone --depth 1 ${GIT_URL} /src \
 	&& cd /src/src \
-	&& dotnet restore "AzureNamingTool.csproj" -r linux-musl-x64 /p:PublishReadyToRun=true \
-	&& dotnet build "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/build --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true \
-	&& dotnet publish "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/publish --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true \
+	# Framework-dependent publish. The final stage below is the aspnet runtime
+	# image, so it already carries the shared framework; a self-contained build
+	# bundled a second copy of it into the app (~164MB of pure duplication).
+	# --self-contained also implied PublishSingleFile, which emits a native
+	# AzureNamingTool executable and no AzureNamingTool.dll - the ENTRYPOINT
+	# below could not start it. PublishTrimmed goes with it, as trimming is
+	# only supported for self-contained output. PublishReadyToRun stays: it
+	# pre-compiles to native code, so startup is not traded away for the size.
+	&& dotnet restore "AzureNamingTool.csproj" -r linux-musl-x64 /p:SelfContained=false /p:PublishReadyToRun=true \
+	&& dotnet build "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/build --self-contained false --no-restore /p:PublishReadyToRun=true \
+	&& dotnet publish "AzureNamingTool.csproj" -r linux-musl-x64 -c Release -o /app/publish --self-contained false --no-restore /p:PublishReadyToRun=true \
 	&& apk del bash git \
 	&& rm -rf /var/cache/apk/*
 
