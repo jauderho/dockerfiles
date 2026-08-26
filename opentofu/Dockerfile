@@ -12,14 +12,17 @@ ARG ARCHIVE_URL=https://github.com/opentofu/opentofu/archive/
 ARG GIT_URL=https://github.com/opentofu/opentofu.git
 
 ENV GO111MODULE=on
-ENV CGO_ENABLED=1
+# Upstream builds all release artifacts with CGO_ENABLED=0 (see .goreleaser.yaml
+# and scripts/build.sh), so this matches the official binaries and yields a
+# fully static tofu with no libc dependency and no C toolchain in the build.
+ENV CGO_ENABLED=0
 
 #COPY . .
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl git gcc build-base libc-dev \
+	&& apk add --no-cache ca-certificates curl git \
 	&& update-ca-certificates \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} . \
 	#&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/opentofu/opentofu \
@@ -32,10 +35,6 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools golang.org/x/mod \
 	#&& go get -u ./... \
 	&& go mod tidy \
-	#&& go install std \
-	&& cd $(go env GOROOT)/src \  \
-	&& GOOS=linux GOARCH=$(go env GOARCH) CGO_ENABLED=1 go install -v -tags musl std \
-	&& cd - \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
 	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
