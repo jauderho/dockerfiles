@@ -107,14 +107,14 @@ RUN chmod 640 /var/spool/cron/crontabs/lpar2rrd && chown lpar2rrd:cron /var/spoo
 # ADD http://downloads.sourceforge.net/project/lpar2rrd/lpar2rrd/$LPAR_SF_DIR/lpar2rrd-$LPAR_VER.tar /home/lpar2rrd/
 # ADD http://downloads.sourceforge.net/project/stor2rrd/stor2rrd/$STOR_SF_DIR/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
-# download tarballs from official website
-ADD https://lpar2rrd.com/download-static/lpar2rrd/lpar2rrd-$LPAR_VER.tar /tmp/
 RUN mkdir -p /opt/lpar2rrd-agent
 ADD https://lpar2rrd.com/agent/lpar2rrd-agent-latest_all.deb /opt/lpar2rrd-agent/
 
-# extract tarballs
+# download and extract the tarball in one layer. ADD would write the ~14MB
+# archive into its own layer, and deleting it in the following RUN only masks
+# it - the bytes stay in the image. Piping straight into tar never stores it.
 WORKDIR /tmp
-RUN tar xvf lpar2rrd-$LPAR_VER.tar && rm -rf lpar2rrd-$LPAR_VER.tar
+RUN wget -qO- "https://lpar2rrd.com/download-static/lpar2rrd/lpar2rrd-$LPAR_VER.tar" | tar x
 RUN dpkg -i /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb && rm -rf /opt/lpar2rrd-agent/lpar2rrd-agent-latest_all.deb
 
 COPY supervisord.conf /etc/
