@@ -16,12 +16,18 @@ dependencies = [
   "bleak",
   "numpy",
   #"opencv-python>=4.12.0.88",
-  "opencv-python",
+  "opencv-python-headless",
   "catprinter @ git+https://github.com/jauderho/catprinter.git#egg=catprinter"
 ]
 
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+# The upstream catprinter package requires the GUI build of OpenCV, which needs
+# libGL.so.1. Pulling that into the image drags in Mesa + LLVM (~177MB) for a
+# cv2.imshow() preview that can never render in a headless container. Give the
+# transitional requirement a marker that matches nothing so it is dropped, and
+# depend on opencv-python-headless above instead - same cv2 API, no GL.
+override-dependencies = ["opencv-python ; sys_platform == 'headless-only'"]
 
 [tool.uv.sources]
 pypi = { url = "https://pypi.org/simple" }
