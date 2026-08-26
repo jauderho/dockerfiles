@@ -5,28 +5,54 @@ WORKDIR /opt/node_app
 ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/excalidraw/excalidraw/archive/
 ARG GIT_URL=https://github.com/excalidraw/excalidraw.git
-#ARG NODE_ENV=production
-#ARG NODE_OPTIONS=--openssl-legacy-provider
+ARG NODE_ENV=production
 
+# The whole build is one layer. Only excalidraw-app/build leaves this stage, so
+# splitting it gained nothing and each extra layer only kept another copy of
+# node_modules in the builder.
+#
+# Lifecycle scripts stay blocked, which is bun's default. Only @parcel/watcher,
+# core-js and protobufjs ask for one, and none is needed to build the app, so no
+# dependency postinstall runs here.
+#
+# "bun audit fix" applies the advisories that can be fixed inside the declared
+# semver ranges. It exits non-zero while any advisory is left that would need a
+# major bump, which is the normal state, so the status is ignored. The build
+# further down is the real guard: a fix that broke the tree fails there.
+#
+# "bun update" after it is not cosmetic. audit fix pins the exact minimum
+# version carrying the patch, and that release is often the least tested one.
+# lodash is the current example: the advisory is patched in 4.18.0, but 4.18.0
+# ships a template.js that calls assignWith() without importing it, so
+# lodash/template throws "assignWith is not defined" on any runtime. 4.18.1
+# fixes it, and every dependent asks for ^4.17.x, so letting the pins float to
+# the newest in-range release stays inside semver and picks that up.
+#
+# cross-env is called by build:app:docker but no workspace package declares it -
+# the name only appears inside the script string. Yarn 1 hoists every transitive
+# binary into the root node_modules/.bin so upstream gets away with it, while
+# bun links binaries only for declared dependencies. Add it explicitly, and do
+# that after the two steps above, because they are what drop the link.
+#
+# Build from the workspace root with --cwd. "cd excalidraw-app && bun run"
+# leaves the root node_modules/.bin off PATH, and the script then stops with
+# "cross-env: not found".
+#
+# Delete the source maps last. They are 125 files and ~26MB of the build output,
+# the workbox precache manifest lists none of them, and nothing fetches them
+# unless a browser has devtools open.
 RUN test -n "${BUILD_VERSION}" \
     && apk update \
     && apk upgrade -a \
     && apk add --no-cache ca-certificates git \
     && update-ca-certificates \
-    && git clone --depth 1 ${GIT_URL} .
-    #&& git clone --depth 1 ${GIT_URL} . \
-		#&& bun \
-    #&& bun build:app:docker \
-    #&& bun add cross-env react react-dom \
-    #&& bun --cwd ./excalidraw-app build:app:docker
-
-RUN bun install
-RUN bun pm untrusted
-
-ARG NODE_ENV=production
-
-#RUN bun --cwd ./excalidraw-app run build:app:docker
-RUN cd ./excalidraw-app && bun run build:app:docker
+    && git clone --depth 1 ${GIT_URL} . \
+    && bun install \
+    && (bun audit fix || true) \
+    && bun update \
+    && bun add --dev cross-env \
+    && bun run --cwd excalidraw-app build:app:docker \
+    && find excalidraw-app/build -name '*.map' -delete
 
 
 # ----------------------------------------------------------------------------
@@ -42,10 +68,19 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/excalidraw"
 LABEL org.opencontainers.image.description="Excalidraw is a virtual whiteboard for sketching hand-drawn like diagrams."
 
+# apk update leaves its package index in /var/cache/apk (~3MB). Nothing installs
+# packages at runtime, so drop it in the same layer that created it.
 RUN apk update \
-    && apk upgrade -a
+    && apk upgrade -a \
+    && rm -rf /var/cache/apk/*
 
 #COPY --from=build /opt/node_app/build /usr/share/nginx/html
 COPY --from=build /opt/node_app/excalidraw-app/build /usr/share/nginx/html
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
+
+# scratch space
+#	&& bun \
+#	&& bun build:app:docker \
+#	&& bun add cross-env react react-dom \
+#	&& bun --cwd ./excalidraw-app build:app:docker
