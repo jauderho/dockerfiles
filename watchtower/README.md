@@ -1,6 +1,6 @@
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/watchtower/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
-[![Version](https://img.shields.io/docker/v/jauderho/watchtower/latest)](https://github.com/containrrr/watchtower)
+[![Version](https://img.shields.io/docker/v/jauderho/watchtower/latest)](https://github.com/nicholas-fedor/watchtower)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jauderho/watchtower)](https://hub.docker.com/r/jauderho/watchtower/)
 [![Image Size](https://img.shields.io/docker/image-size/jauderho/watchtower/latest)](https://hub.docker.com/r/jauderho/watchtower/)
 
