@@ -15,6 +15,8 @@ env:
   BUILD_VERSION: "1.2.0-1554"
   NETTY_VERSION: "4.1.137.Final"
   BC_VERSION: "1.84"
+  # Amazon Corretto 17; 17.0.20.10.1 == OpenJDK 17.0.20.1
+  JRE_VERSION: "17.0.20.10.1"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
 
@@ -39,6 +41,7 @@ jobs:
             api.github.com:443
             archive.ubuntu.com:80
             auth.docker.io:443
+            corretto.aws:443
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
             ghcr.io:443
             github.com:443
@@ -95,6 +98,7 @@ jobs:
             BUILD_VERSION
             NETTY_VERSION
             BC_VERSION
+            JRE_VERSION
           sbom: true
           provenance: true
           labels: ${{ steps.docker_meta.outputs.labels }}

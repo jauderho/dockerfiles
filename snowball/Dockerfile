@@ -14,7 +14,16 @@ ARG TARBALL_URL=https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowba
 ARG NETTY_VERSION
 ARG BC_VERSION
 
+# The tarball also bundles a custom OpenJDK build under jre/ that Amazon does
+# not refresh with the quarterly CPUs. Replace it with stock Amazon Corretto,
+# the same lineage, so the JDK CVEs track upstream. Corretto omits the Amazon
+# Corretto Crypto Provider that Amazon's build registers as security.provider.1;
+# nothing in jarfarm/ asks for that provider by name (only netty-handler, which
+# probes for it and falls back), so JCE falls back to SUN/SunJCE.
+ARG JRE_VERSION
+
 RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VERSION}" \
+	&& test -n "${JRE_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl \
@@ -36,6 +45,14 @@ RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VE
 			-o "${a}-jdk18on-${BC_VERSION}.jar"; \
 	done \
 	&& cd / \
+	&& curl -fsSL --proto "=https" --proto-redir "=https" \
+		"https://corretto.aws/downloads/resources/${JRE_VERSION}/amazon-corretto-${JRE_VERSION}-linux-x64.tar.gz" \
+		-o /tmp/corretto.tar.gz \
+	&& rm -rf /usr/local/jre \
+	&& mkdir -p /usr/local/jre \
+	&& tar xzf /tmp/corretto.tar.gz --strip 1 -C /usr/local/jre \
+	&& rm -f /tmp/corretto.tar.gz \
+	&& /usr/local/jre/bin/java -version \
 	&& apt-get purge -y curl \
 	&& rm -rf /usr/bin/pebble \
 	&& apt-get autoremove -y --purge \
