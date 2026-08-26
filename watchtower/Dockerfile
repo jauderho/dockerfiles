@@ -18,7 +18,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
 	&& apk add --no-cache git ca-certificates tzdata \ 
-	&& git clone --depth 1 ${GIT_URL} /go/src/github.com/nicholas-fedor/watchtower \
+	&& git clone --depth 1 --branch ${BUILD_VERSION} ${GIT_URL} /go/src/github.com/nicholas-fedor/watchtower \
 	&& cd /go/src/github.com/nicholas-fedor/watchtower \
 	# Upstream tracks the moby modules. Only docker/cli is left to upgrade here.
 	&& go get -u google.golang.org/protobuf github.com/docker/cli golang.org/x/net \

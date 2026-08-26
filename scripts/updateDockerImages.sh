@@ -60,6 +60,7 @@ REPO=(
 	"trufflesecurity/trufflehog" \
 	"tsenart/vegeta" \
 	"saulpw/visidata" \
+	"nicholas-fedor/watchtower" \
 	"likexian/whois" \
 	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
