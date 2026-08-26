@@ -20,6 +20,8 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/trufflehog.tar.gz \
 	&& tar xzf /tmp/trufflehog.tar.gz --strip 1 -C /go/src/github.com/trufflesecurity/trufflehog \
+	&& go get -u google.golang.org/grpc github.com/Azure/go-ntlmssp \
+	&& go mod tidy \
 	&& GOARM="${TARGETVARIANT#v}" go build -o ./trufflehog -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" .
 
 WORKDIR /config
