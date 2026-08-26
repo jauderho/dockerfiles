@@ -27,6 +27,21 @@ RUN apt-get update && \
 	#python3 -m pip install --no-cache-dir --upgrade --ignore-installed packaging --break-system-packages && \
 	#pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
 	pip3 install --no-cache-dir -r requirements.txt --ignore-installed --break-system-packages && \
+	collections=$(python3 -c 'import ansible_collections;print(ansible_collections.__path__[0])') && \
+	# The ansible metapackage ships ~93 collections whole. Three parts of that
+	# tree are never read when running playbooks or linting (~165MB combined):
+	#   tests/       - only consumed by ansible-test
+	#   changelogs/  - release notes and their fragments
+	#   __pycache__/ - the bulk of it, ~158MB. Modules are shipped to the target
+	#                  by AnsiballZ rather than imported locally, so almost none
+	#                  of this bytecode is ever loaded; what is gets recompiled
+	#                  at no measurable cost (measured: <1% on playbook runtime)
+	# Depth is pinned to <namespace>/<collection>/ so the plugins/test/ trees
+	# that hold Jinja test plugins are left alone.
+	find "${collections}" -mindepth 3 -maxdepth 3 -type d \( -name tests -o -name changelogs \) -prune -exec rm -rf {} + && \
+	find "${collections}" -depth -type d -name __pycache__ -exec rm -rf {} + && \
+	# storops ships its own test suite as a separate top-level package (~11MB)
+	rm -rf "$(dirname "${collections}")/storops_test" && \
 	apt-get purge -y ${build_pkgs} && \
 	rm -rf /usr/bin/pebble && \
 	apt-get -y clean && \

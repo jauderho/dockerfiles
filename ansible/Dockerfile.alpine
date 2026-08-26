@@ -26,6 +26,13 @@ RUN test -n "${BUILD_VERSION}" && \
   pip3 install --no-cache-dir ansible==${BUILD_VERSION} --break-system-packages && \
   pip3 install --no-cache-dir ansible-lint --break-system-packages && \
   pip3 install --no-cache-dir --upgrade pywinrm --break-system-packages && \
+  collections=$(python3 -c 'import ansible_collections;print(ansible_collections.__path__[0])') && \
+  # tests/ is only read by ansible-test and changelogs/ only holds release
+  # notes; neither is touched when running playbooks or linting (~12MB - the
+  # bytecode that dominates the ubuntu variant is already stripped below).
+  # Depth is pinned to <namespace>/<collection>/ so the plugins/test/ trees
+  # that hold Jinja test plugins are left alone.
+  find "${collections}" -mindepth 3 -maxdepth 3 -type d \( -name tests -o -name changelogs \) -prune -exec rm -rf {} + && \
   apk del build-dependencies && \
   rm -rf /var/cache/apk/* && \
   rm -rf /root/.cache/pip && \
