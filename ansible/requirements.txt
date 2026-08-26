@@ -14,7 +14,7 @@ cffi==2.1.1
 charset-normalizer==3.5.1
 click==8.4.2
 colorama==0.4.6 ; sys_platform == 'win32'
-cryptography==50.0.0
+cryptography==50.0.1
 decorator==5.3.1 ; sys_platform != 'win32'
 distro==1.9.0
 enum34==1.1.10
@@ -27,7 +27,7 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 krb5==0.10.0 ; sys_platform != 'win32'
 markupsafe==3.0.3
-mitogen==0.3.51
+mitogen==0.3.52
 mypy-extensions==1.1.0
 packaging==26.3
 pathspec==1.1.1
