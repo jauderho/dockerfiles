@@ -13,13 +13,22 @@ COPY entrypoint.sh .
 
 RUN apt-get update && \
 	apt-get dist-upgrade -y && \
-	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3-pip git qrencode wireguard-tools && \
+	# python3 is listed explicitly so purging python3-pip below cannot take it
+	# with it - apt would otherwise autoremove it as an orphaned dependency,
+	# and entrypoint.sh runs pia-wg/generate-config.py.
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3 python3-pip git qrencode wireguard-tools && \
 	python3 -m pip install --no-cache-dir --upgrade pip --ignore-installed --break-system-packages && \
 	git clone --depth 1 ${GIT_URL} && \
 	cd pia-wg && \
 	cp ca.rsa.4096.crt .. && \
 	pip3 install --no-cache-dir -r requirements.txt --break-system-packages && \
-	apt-get purge -y git && \
+	# pip is build-only here. Two copies ship otherwise (~26MB): the
+	# python3-pip package, and the newer one the upgrade above puts in
+	# /usr/local.
+	rm -rf /usr/local/lib/python3*/dist-packages/pip \
+		/usr/local/lib/python3*/dist-packages/pip-*.dist-info \
+		/usr/local/bin/pip /usr/local/bin/pip3* && \
+	apt-get purge -y python3-pip git && \
 	rm -rf /usr/bin/pebble && \
 	apt-get autoremove -y --purge && \
 	rm -rf /var/lib/apt/lists/* && \
