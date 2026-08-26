@@ -54,7 +54,11 @@ LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for traci
 
 RUN apt-get update \
 	&& apt-get dist-upgrade -y \
-	&& rm -rf /usr/bin/pebble
+	&& rm -rf /usr/bin/pebble \
+	# the package index apt-get update wrote is ~40MB and is dead weight once
+	# dist-upgrade has run; nothing in this image installs packages at runtime
+	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get clean
 
 COPY --from=build /go/src/github.com/cilium/pwru/pwru /usr/local/bin/pwru
 COPY --from=build /config /config
