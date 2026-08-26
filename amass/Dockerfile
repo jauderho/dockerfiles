@@ -21,7 +21,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/amass.tar.gz \
 	&& tar xzf /tmp/amass.tar.gz --strip 1 -C /go/src/github.com/owasp/amass \
 	&& go get -u github.com/jackc/pgx/v5 google.golang.org/protobuf github.com/golang/glog \
-	&& go get -u golang.org/x/crypto golang.org/x/net \
+	&& go get -u golang.org/x/crypto golang.org/x/net google.golang.org/grpc \
 	&& go mod tidy \
 	&& GOARM="${TARGETVARIANT#v}" go build -v -trimpath -ldflags="-s -w" ./cmd/amass 
 
