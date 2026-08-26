@@ -32,7 +32,7 @@ RUN test -n "${BUILD_VERSION}" \
 	#&& go get -u github.com/hashicorp/go-getter github.com/cloudflare/circl google.golang.org/protobuf golang.org/x/net \
 	#&& go get -u github.com/hashicorp/go-slug \
 	#&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools \
-	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools golang.org/x/mod \
+	&& go get -u golang.org/x/crypto golang.org/x/net golang.org/x/tools golang.org/x/mod google.golang.org/grpc go.opentelemetry.io/otel/sdk go.opentelemetry.io/otel/log go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc go.opentelemetry.io/otel/exporters/stdout/stdoutlog go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp github.com/aws/aws-sdk-go-v2/service/s3 github.com/Azure/go-ntlmssp \
 	#&& go get -u ./... \
 	&& go mod tidy \
 	&& go generate ./... \
