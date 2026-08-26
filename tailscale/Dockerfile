@@ -37,7 +37,7 @@ RUN cp tailscaled /go/bin/tailscaled
 # ----------------------------------------------------------------------------
 
 
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:ef5927339b32bb8cf4a75ae37951bfc27979be5183802ac1f3446abf4279be42
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:f310f8a4fad676899731a97c5eaf004c9cb9e822018a2ad7d23c3aeda3a7d773
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
