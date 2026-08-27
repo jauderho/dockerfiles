@@ -2,7 +2,7 @@ name: dnscontrol
 
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - dnscontrol/*
@@ -14,14 +14,30 @@ on:
 env:
   BUILD_VERSION: "v5.0.0"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+  REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
-    runs-on: ubuntu-26.04
+  build:
+    # Build each platform on its own native runner so they run in parallel and
+    # without emulation. dnscontrol has no 32-bit support upstream (v5 fails to
+    # compile on arm/v7: math.MaxUint32 overflows a 32-bit int), so amd64 and
+    # arm64 are the only targets and neither needs QEMU.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-26.04
+          - platform: linux/arm64
+            runner: ubuntu-26.04-arm
+    runs-on: ${{ matrix.runner }}
     permissions:
       packages: write
 
@@ -31,8 +47,7 @@ jobs:
         with:
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints: 
-            95s5acprodeus1file6.blob.core.windows.net:443
+          allowed-endpoints:
             api.github.com:443
             artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
@@ -49,14 +64,17 @@ jobs:
             registry-1.docker.io:443
             storage.googleapis.com:443
             sum.golang.org:443
-          
+            zrdfepirv2dm3prdstr08.blob.core.windows.net:443
+            zrdfepirv2bn4prdstr02.blob.core.windows.net:443
+
       - name: Source checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
- 
-      - name: Setup QEMU
-        id: qemu
-        uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0
-      
+
+      - name: Prepare platform name
+        run: |
+          platform="${{ matrix.platform }}"
+          echo "PLATFORM_PAIR=${platform//\//-}" >> "$GITHUB_ENV"
+
       - name: Setup Buildx
         id: buildx
         uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
@@ -79,28 +97,95 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: DockerHub login
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}      
-
-      - name: Build and push
+      - name: Build and push by digest
+        id: build
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
-          push: ${{ github.event_name != 'pull_request' }}
           context: ${{ github.workflow }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: ${{ matrix.platform }}
           build-args: |
             BUILD_VERSION
           sbom: true
           provenance: true
           labels: ${{ steps.docker_meta.outputs.labels }}
-          tags: |
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
-            docker.io/${{ env.REPOSITORY }}:latest
-            ghcr.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}
-            docker.io/${{ env.REPOSITORY }}:${{ env.BUILD_VERSION }}-alpine
-            ghcr.io/${{ env.REPOSITORY }}:latest
+          # Push untagged by digest; the merge job stitches the digests into the
+          # tagged manifest lists so :latest is never overwritten per-platform.
+          outputs: type=image,name=ghcr.io/${{ env.REPOSITORY }},push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' }}
+
+      - name: Export digest
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: digests-${{ env.PLATFORM_PAIR }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    needs: build
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-26.04
+    permissions:
+      packages: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints:
+            api.github.com:443
+            auth.docker.io:443
+            ghcr.io:443
+            github.com:443
+            pkg-containers.githubusercontent.com:443
+            production.cloudflare.docker.com:443
+            production.cloudfront.docker.com:443
+            registry-1.docker.io:443
+            zrdfepirv2dm3prdstr08.blob.core.windows.net:443
+            zrdfepirv2bn4prdstr02.blob.core.windows.net:443
+
+      - name: Download digests
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Setup Buildx
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+
+      - name: GitHub login
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DockerHub login
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Create and push manifest lists
+        working-directory: /tmp/digests
+        run: |
+          for reg in docker.io ghcr.io; do
+            docker buildx imagetools create \
+              -t "${reg}/${REPOSITORY}:${BUILD_VERSION}" \
+              -t "${reg}/${REPOSITORY}:${BUILD_VERSION}-alpine" \
+              -t "${reg}/${REPOSITORY}:latest" \
+              $(printf "ghcr.io/${REPOSITORY}@sha256:%s " *)
+          done
+
+      - name: Inspect image
+        run: docker buildx imagetools inspect "ghcr.io/${REPOSITORY}:latest"
