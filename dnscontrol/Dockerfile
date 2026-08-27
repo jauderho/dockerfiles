@@ -16,12 +16,14 @@ RUN test -n "${BUILD_VERSION}" \
 	&& update-ca-certificates \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/dnscontrol.tar.gz \
 	&& tar xzf /tmp/dnscontrol.tar.gz --strip 1 -C /go/src/github.com/StackExchange/dnscontrol \
-	&& go build -v -trimpath -ldflags="-s -w -X main.Version=${BUILD_VERSION}" \
+	&& go build -v -trimpath -ldflags="-s -w -X github.com/DNSControl/dnscontrol/v5/pkg/version.version=${BUILD_VERSION}" \
 	&& cp dnscontrol /go/bin/dnscontrol \
 	&& go clean && go clean -cache && go clean -modcache 
 
 # Validation check
-RUN dnscontrol version
+# Assert the version ldflag actually landed. The symbol path carries the module
+# major version, so it must be bumped in step with BUILD_VERSION (v5 -> v6 ...).
+RUN dnscontrol version | grep -q "${BUILD_VERSION}"
 
 
 
@@ -38,8 +40,10 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dnscontrol"
 LABEL org.opencontainers.image.description="DNSControl is an opinionated platform for seamlessly managing your DNS configuration"
 
+# tzdata is a runtime dependency of Go time for some providers (eg TRANSIP)
 RUN apk update \
-	&& apk upgrade -a
+	&& apk upgrade -a \
+	&& apk --no-cache add tzdata
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/dnscontrol /usr/local/bin
