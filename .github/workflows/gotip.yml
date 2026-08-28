@@ -28,7 +28,7 @@ jobs:
   build:
     # Build each platform on its own runner so they run in parallel instead of
     # contending for a single runner's CPUs. amd64/arm64 build natively; only
-    # arm/v7 (Ampere arm64 runners cannot run 32-bit code) and s390x emulate.
+    # s390x emulates.
     strategy:
       fail-fast: false
       matrix:
@@ -39,9 +39,6 @@ jobs:
           - platform: linux/arm64
             runner: ubuntu-26.04-arm
             qemu: false
-          - platform: linux/arm/v7
-            runner: ubuntu-26.04
-            qemu: true
           - platform: linux/s390x
             runner: ubuntu-26.04
             qemu: true
