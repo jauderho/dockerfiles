@@ -32,7 +32,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints: 
+          allowed-endpoints: >
             api.github.com:443
             auth.docker.io:443
             cpanmetadb.plackperl.org:80

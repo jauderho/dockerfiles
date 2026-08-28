@@ -32,7 +32,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints:
+          allowed-endpoints: >
             acghubeus1.actions.githubusercontent.com:443
             api.github.com:443
             archive.ubuntu.com:80

@@ -32,7 +32,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints: 
+          allowed-endpoints: >
             github.com:443
           
       - name: Checkout Code

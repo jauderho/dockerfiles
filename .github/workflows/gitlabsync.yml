@@ -21,7 +21,7 @@ jobs:
       with:
         egress-policy: block
         disable-telemetry: true
-        allowed-endpoints: 
+        allowed-endpoints: >
           github.com:443
           gitlab.com:443
         

@@ -35,7 +35,7 @@ jobs:
       with:
         egress-policy: block
         disable-telemetry: true
-        allowed-endpoints: 
+        allowed-endpoints: >
           github.com:443
           semgrep.dev:443
           

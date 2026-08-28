@@ -31,7 +31,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints:
+          allowed-endpoints: >
             api.github.com:443
             api.osv.dev:443
             api.scorecard.dev:443

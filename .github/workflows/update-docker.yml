@@ -44,7 +44,7 @@ jobs:
         with:
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints: 
+          allowed-endpoints: >
             aerodent.canonical.com:443
             api.github.com:443
             azure.archive.ubuntu.com:80

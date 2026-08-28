@@ -48,7 +48,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints:
+          allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
             archive.ubuntu.com:80
@@ -151,7 +151,7 @@ jobs:
           disable-sudo: true
           egress-policy: block
           disable-telemetry: true
-          allowed-endpoints:
+          allowed-endpoints: >
             95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
             auth.docker.io:443
