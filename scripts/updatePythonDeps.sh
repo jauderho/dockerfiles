@@ -16,10 +16,18 @@ echo "Updating $1 ..."
 echo
 
 # Build dependencies
-uv lock -U && uv export --no-hashes --no-annotate --no-emit-workspace -o requirements.txt
+#
+# uv.lock is the single source of truth; the Dockerfiles install it with
+# "uv sync --frozen" and no requirements.txt is generated any more.
+#
+# UV_CONFIG_FILE points at an empty file on purpose. A user-level
+# ~/.config/uv/uv.toml applies to local lock runs but not to CI, and an
+# "exclude-newer" setting there silently resolves to downgrades.
+: > /tmp/empty-uv.toml
+UV_CONFIG_FILE=/tmp/empty-uv.toml uv lock -U
 
 git pull && \
-git add pyproject.toml uv.lock requirements.txt && \
+git add pyproject.toml uv.lock && \
 git commit -S -s -m "Update requirements for $1 ..." && \
 git pull && \
 git push

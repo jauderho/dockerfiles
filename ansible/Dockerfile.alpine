@@ -1,44 +1,52 @@
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547 AS build
 
 WORKDIR /ansible
 
 ARG BUILD_VERSION
 
-#ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-ENV PIP_NO_CACHE_DIR=1
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv \
+	UV_NO_CACHE=1 \
+	UV_LINK_MODE=copy \
+	UV_PYTHON_DOWNLOADS=never
 
-# requirements.txt now generated from Pipfile
-# pipenv lock -r > requirements.txt
-COPY requirements.txt .
+COPY pyproject.toml uv.lock ./
 
-# workaround needed to prevent conflicts for six and packaging
 RUN test -n "${BUILD_VERSION}" && \
-  apk update && \
-  apk upgrade -a && \
-  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
-  runtime_pkgs="ca-certificates openssl openssh-client python3" && \
-  apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
-  apk --no-cache add ${runtime_pkgs} && \
-  python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
-  #python3 -m pip install --no-cache-dir --upgrade --ignore-installed packaging --break-system-packages && \
-  pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-  pip3 install --no-cache-dir --upgrade cryptography cffi certifi --break-system-packages && \
-  pip3 install --no-cache-dir ansible==${BUILD_VERSION} --break-system-packages && \
-  pip3 install --no-cache-dir ansible-lint --break-system-packages && \
-  pip3 install --no-cache-dir --upgrade pywinrm --break-system-packages && \
-  collections=$(python3 -c 'import ansible_collections;print(ansible_collections.__path__[0])') && \
-  # tests/ is only read by ansible-test and changelogs/ only holds release
-  # notes; neither is touched when running playbooks or linting (~12MB - the
-  # bytecode that dominates the ubuntu variant is already stripped below).
-  # Depth is pinned to <namespace>/<collection>/ so the plugins/test/ trees
-  # that hold Jinja test plugins are left alone.
-  find "${collections}" -mindepth 3 -maxdepth 3 -type d \( -name tests -o -name changelogs \) -prune -exec rm -rf {} + && \
-  apk del build-dependencies && \
-  rm -rf /var/cache/apk/* && \
-  rm -rf /root/.cache/pip && \
-	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
-	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf && \
-  rm -rf /root/.cargo
+	apk update && \
+	apk upgrade -a && \
+	# krb5-dev: pyspnego[kerberos] and requests-kerberos build C extensions
+	# against it. git: uv fetches nothing from git here today, but the lock is
+	# shared with the ubuntu variant which does.
+	build_pkgs="uv cargo build-base libffi-dev openssl-dev python3-dev krb5-dev git" && \
+	apk --no-cache add python3 ${build_pkgs} && \
+	# --no-install-project: this project only declares dependencies, there is
+	# no package here to build. --frozen installs uv.lock exactly as written.
+	# This variant previously pip-installed unpinned ansible/ansible-lint/
+	# pywinrm and ignored requirements.txt entirely, so it now ships the same
+	# locked closure as the ubuntu variant.
+	uv sync --frozen --no-install-project --no-dev --python /usr/bin/python3 && \
+	collections=$(/opt/venv/bin/python3 -c 'import ansible_collections;print(ansible_collections.__path__[0])') && \
+	# tests/ is only read by ansible-test and changelogs/ only holds release
+	# notes; neither is touched when running playbooks or linting.
+	# Depth is pinned to <namespace>/<collection>/ so the plugins/test/ trees
+	# that hold Jinja test plugins are left alone.
+	find "${collections}" -mindepth 3 -maxdepth 3 -type d \( -name tests -o -name changelogs \) -prune -exec rm -rf {} + && \
+	find "${collections}" -depth -type d -name __pycache__ -exec rm -rf {} + && \
+	find /opt/venv -name '__pycache__' -print0 | xargs -0 -n1 rm -rf
+
+
+# ----------------------------------------------------------------------------
+
+
+# Same digest as the build stage: the venv hardcodes lib/python3.X, so a
+# different Python minor version here would silently break it.
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547
+
+WORKDIR /ansible
+
+COPY --from=build /opt/venv /opt/venv
+
+ENV PATH="/opt/venv/bin:${PATH}"
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -47,19 +55,24 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/ansible"
 LABEL org.opencontainers.image.description="Ansible is a radically simple IT automation platform"
 
-RUN mkdir -p /etc/ansible && \
-  echo 'localhost' > /etc/ansible/hosts
+# Runtime install, smoke test and bytecode strip share one layer. A strip in a
+# later layer reclaims nothing - the bytecode still sits in the apk layer - and
+# running the smoke test after the strip would write __pycache__ back.
+# krb5-libs is the runtime half of krb5-dev, needed by the pyspnego and
+# requests-kerberos extensions built above.
+RUN \
+	apk update && \
+	apk upgrade -a && \
+	runtime_pkgs="ca-certificates openssl openssh-client python3 krb5-libs libffi" && \
+	apk --no-cache add ${runtime_pkgs} && \
+	mkdir -p /etc/ansible && \
+	echo 'localhost' > /etc/ansible/hosts && \
+	ansible-playbook --version && \
+	ansible-lint --version && \
+	python3 -c 'import ansible, jmespath, winrm, mitogen; print(ansible.__version__)' && \
+	rm -rf /var/cache/apk/* && \
+	find /opt/venv -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
+	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
+	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
 CMD [ "ansible-playbook", "--version" ]
-
-# scratch space
-#	pip3 install --no-cache-dir six packaging --ignore-installed && \
-# pip3 install --no-cache-dir --upgrade pywinrm[credssp,kerberos] && \
-#  apk update && \
-#  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip" && \
-#  runtime_pkgs="ca-certificates sshpass git openssh-client" && \
-#  pip3 install --no-cache-dir ansible==${BUILD_VERSION} && \
-#  build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip musl-dev gcc libressl-dev" && \
-#  runtime_pkgs="ca-certificates sshpass git openssh-client sudo python3 openssl" && \
-#  pip3 install --no-cache-dir ansible-core==2.11.5 && \
-

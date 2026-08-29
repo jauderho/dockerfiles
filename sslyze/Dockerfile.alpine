@@ -1,33 +1,38 @@
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547 AS build
 #FROM python:3.14.6-alpine3.24@sha256:003970a263347645cd23d4f90929ad16ba7ce7d808ee4674ffcc93cb21cc289f
 
 ARG BUILD_VERSION
 
-#ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-ENV PIP_NO_CACHE_DIR=1
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv \
+	UV_NO_CACHE=1 \
+	UV_LINK_MODE=copy \
+	UV_PYTHON_DOWNLOADS=never
 
-# requirements.txt now generated from Pipfile
-# pipenv lock -r > requirements.txt
-COPY requirements.txt . 
+COPY pyproject.toml uv.lock ./
 
 RUN \
 	apk update && \
 	apk upgrade -a && \
-	build_pkgs="cargo build-base libffi-dev openssl-dev python3-dev py3-pip git" && \
-	runtime_pkgs="ca-certificates openssl python3" && \
-	apk --no-cache add --virtual build-dependencies ${build_pkgs} && \
-	apk --no-cache add ${runtime_pkgs} && \
-	python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
-	pip3 install --no-cache-dir --upgrade wheel --break-system-packages && \
-	# --no-deps: requirements.txt is a complete pinned closure (uv export);
-	# overrides sslyze's cryptography<47 cap. See pyproject.toml.
-	pip3 install --no-cache-dir --no-deps -r requirements.txt --break-system-packages && \
-	apk del build-dependencies && \
-	rm -rf /var/cache/apk/* && \
-	rm -rf /root/.cache/pip && \
-	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
-	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf && \
-	rm -rf /root/.cargo
+	build_pkgs="uv cargo build-base libffi-dev openssl-dev python3-dev git" && \
+	apk --no-cache add python3 ${build_pkgs} && \
+	# --no-install-project: this project only declares dependencies, there is
+	# no package here to build. --frozen installs uv.lock exactly as written,
+	# which already encodes the override-dependencies entry lifting sslyze's
+	# cryptography<47 cap - so the pip --no-deps trick is no longer needed.
+	uv sync --frozen --no-install-project --no-dev --python /usr/bin/python3 && \
+	find /opt/venv -name '__pycache__' -print0 | xargs -0 -n1 rm -rf
+
+
+# ----------------------------------------------------------------------------
+
+
+# Same digest as the build stage: the venv hardcodes lib/python3.X, so a
+# different Python minor version here would silently break it.
+FROM ghcr.io/jauderho/alpine:3.24.1@sha256:10b76ac1c893c93b8db0c741d0439cf2eee48cff9de40879ed735178e2fc1547
+
+COPY --from=build /opt/venv /opt/venv
+
+ENV PATH="/opt/venv/bin:${PATH}"
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -35,6 +40,21 @@ LABEL org.opencontainers.image.documentation="https://github.com/jauderho/docker
 LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/sslyze"
 LABEL org.opencontainers.image.description="SSLyze is a fast and powerful SSL/TLS scanning library"
+
+# Runtime install, smoke test and bytecode strip share one layer. A strip in a
+# later layer reclaims nothing - the bytecode still sits in the apk layer - and
+# running the smoke test after the strip would write __pycache__ back.
+RUN \
+	apk update && \
+	apk upgrade -a && \
+	runtime_pkgs="ca-certificates openssl python3" && \
+	apk --no-cache add ${runtime_pkgs} && \
+	sslyze -h > /dev/null && \
+	python3 -c 'import sslyze, cryptography; print(cryptography.__version__)' && \
+	rm -rf /var/cache/apk/* && \
+	find /opt/venv -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
+	find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
+	find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
 ENTRYPOINT ["sslyze"]
 CMD ["-h"]
