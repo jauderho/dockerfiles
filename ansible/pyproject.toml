@@ -1,12 +1,12 @@
 [project]
 name = "ansible-project"
 dynamic = ["version"]
-description = "Project using Ansible, pywinrm, storops, mitogen and linting tools"
+description = "Project using Ansible, pywinrm, mitogen and linting tools"
 readme = "README.md"
 requires-python = ">=3.13"
 license = { text = "MIT License" }
 authors = [{ name = "Your Name", email = "your.email@example.com" }]
-keywords = ["ansible", "automation", "linting", "storops", "pywinrm"]
+keywords = ["ansible", "automation", "linting", "pywinrm"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,7 +20,6 @@ dependencies = [
   "pywinrm[kerberos,credssp]",
   "requests-kerberos",
   #"wheel==0.46.1",
-  "storops",
   "mitogen",
 ]
 

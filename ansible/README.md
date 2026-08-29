@@ -14,7 +14,6 @@ Container contents of Ubuntu image:
 * ansible
 * ansible-lint
 * pywinrm
-* storops
 * mitogen
 
 ---

@@ -89,7 +89,6 @@ dependencies = [
     { name = "pyspnego", extra = ["kerberos"] },
     { name = "pywinrm", extra = ["credssp", "kerberos"] },
     { name = "requests-kerberos" },
-    { name = "storops" },
 ]
 
 [package.metadata]
@@ -101,7 +100,6 @@ requires-dist = [
     { name = "pyspnego", extras = ["kerberos"] },
     { name = "pywinrm", extras = ["credssp", "kerberos"] },
     { name = "requests-kerberos" },
-    { name = "storops" },
 ]
 
 [[package]]
@@ -111,15 +109,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/9a/8e/82a0fe20a541c03148528be8cac2408564a6c9a0cc7e9171802bc1d26985/attrs-26.1.0.tar.gz", hash = "sha256:d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32", size = 952055, upload-time = "2026-03-19T14:22:25.026Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl", hash = "sha256:c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309", size = 67548, upload-time = "2026-03-19T14:22:23.645Z" },
-]
-
-[[package]]
-name = "bitmath"
-version = "2.1.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b3/c0/9e4ffd1ccfc71eb8600a7e725857601d10ca7941ace678f20cb7a211c225/bitmath-2.1.1.tar.gz", hash = "sha256:56f2cda86b1f0aa6470f4aaa90f82ef029f0e16c31b66f0fdd9d67613bc5e9f0", size = 112001, upload-time = "2026-05-25T13:24:39.279Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0f/19/866aa16681edaa4b391c4bcca03defe4b93f9d3bc1d25f37d431428f1cfd/bitmath-2.1.1-py3-none-any.whl", hash = "sha256:d2c16820d167bd77285591a0ef0112f6c5feedf111055db3b8870448d17bbdfa", size = 25028, upload-time = "2026-05-25T13:24:37.502Z" },
 ]
 
 [[package]]
@@ -156,15 +145,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ac/01/5f394b8bcd6e5b92f73130990960423bbb19711f906bd9fe9ea5557c667c/bracex-3.0.1.tar.gz", hash = "sha256:4e38e32392e4a4780fe15d644bfc7c8514057cfc3861e060b11814ce829c25e4", size = 44019, upload-time = "2026-07-20T13:43:00.335Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b8/8f/6f7273a7adb8d73fc8d21ede4376a3e475e52f98435c6007f69100dec8ca/bracex-3.0.1-py3-none-any.whl", hash = "sha256:6523ad83aeb5098a4ee597cff0f964442ff74e460bd3fafaffab6a013ff2288c", size = 11940, upload-time = "2026-07-20T13:42:59.268Z" },
-]
-
-[[package]]
-name = "cachez"
-version = "0.1.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c5/3e/67c7ce94d258cf0070f62aed6ef705ce83314e7e72eb40d881b5cc90642a/cachez-0.1.2.tar.gz", hash = "sha256:3ebc0b052d56755902b8068a4ed0d642325f96b0070862288abaad77c9d3c282", size = 11214, upload-time = "2017-05-16T07:51:07.149Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/4c/e7/3ebd5990d7d2140a138f70ce2ff5bfdc9f813ba545fbd0cd9a6857940784/cachez-0.1.2-py2.py3-none-any.whl", hash = "sha256:0322d0032d6ed02b83b64a947ee10c7848e98261af5f9d7846a89e6abdc49b22", size = 8377, upload-time = "2017-05-16T07:51:10.181Z" },
 ]
 
 [[package]]
@@ -442,15 +422,6 @@ wheels = [
 ]
 
 [[package]]
-name = "enum34"
-version = "1.1.10"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/11/c4/2da1f4952ba476677a42f25cd32ab8aaf0e1c0d0e00b89822b835c7e654c/enum34-1.1.10.tar.gz", hash = "sha256:cce6a7477ed816bd2542d03d53db9f0db935dd013b70f336a95c73979289f248", size = 28187, upload-time = "2020-03-10T17:48:00.865Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/f6/ccb1c83687756aeabbf3ca0f213508fcfb03883ff200d201b3a4c60cedcc/enum34-1.1.10-py3-none-any.whl", hash = "sha256:c3858660960c984d6ab0ebad691265180da2b43f07e061c0f8dca9ef3cffd328", size = 11224, upload-time = "2020-03-10T17:48:03.174Z" },
-]
-
-[[package]]
 name = "filelock"
 version = "3.32.4"
 source = { registry = "https://pypi.org/simple" }
@@ -679,18 +650,6 @@ kerberos = [
 ]
 
 [[package]]
-name = "python-dateutil"
-version = "2.9.0.post0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3", size = 342432, upload-time = "2024-03-01T18:36:20.211Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427", size = 229892, upload-time = "2024-03-01T18:36:18.57Z" },
-]
-
-[[package]]
 name = "pytokens"
 version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -853,15 +812,6 @@ wheels = [
 ]
 
 [[package]]
-name = "retryz"
-version = "0.1.9"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/39/2b/9acb4ee95954db400cfa056d2d7f06860f12902c33db9f3bc149f1d657b1/retryz-0.1.9.tar.gz", hash = "sha256:d8a138009ca66032e6bd39e1bc0a5d8f3bc0f272763c8646ad73d1b6faf37915", size = 10319, upload-time = "2017-05-21T15:19:52.135Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/eb/f52955956596f857ff64cc4c689b5d4c77bc2aaec7f86f5ff5d87d013826/retryz-0.1.9-py2.py3-none-any.whl", hash = "sha256:8f4598c7fe02492789b05ecf59074908775bb0e3ce6486c17edc6b5710e1f19c", size = 10131, upload-time = "2017-05-21T15:19:55.48Z" },
-]
-
-[[package]]
 name = "rpds-py"
 version = "2026.6.3"
 source = { registry = "https://pypi.org/simple" }
@@ -980,15 +930,6 @@ wheels = [
 ]
 
 [[package]]
-name = "six"
-version = "1.17.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
-]
-
-[[package]]
 name = "sspilib"
 version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1003,26 +944,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/89/b2/68ae0e965f0d4ad6cab30291adb490d73a5a898735452b3c99158d98bfbb/sspilib-0.6.0-cp315-cp315t-win32.whl", hash = "sha256:03335e14f8563e350506b47a15887a99f08102a80cfb6bd715ad83ab1c2c89ae", size = 589548, upload-time = "2026-08-24T06:44:11.251Z" },
     { url = "https://files.pythonhosted.org/packages/d0/4f/1d3c64284faf9fa9b7d5ec2b4b9152cbcd59d0bf260883bd485be5d58551/sspilib-0.6.0-cp315-cp315t-win_amd64.whl", hash = "sha256:071e4e2a617a39a33e31de2c1f313427533879acabe475fedea31f129f7970bb", size = 707549, upload-time = "2026-08-24T06:44:12.826Z" },
     { url = "https://files.pythonhosted.org/packages/82/9d/26db0d0998bf4b20bc14809e30c20845b9ef34eb6114e9fe39541c7ee0a8/sspilib-0.6.0-cp315-cp315t-win_arm64.whl", hash = "sha256:97bb2e9d4d916d4d6f566888a81997bb3ab0e05ac41549fa0fbebabac66de0e8", size = 555718, upload-time = "2026-08-24T06:44:14.359Z" },
-]
-
-[[package]]
-name = "storops"
-version = "1.2.12"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "bitmath" },
-    { name = "cachez" },
-    { name = "enum34" },
-    { name = "python-dateutil" },
-    { name = "pyyaml" },
-    { name = "requests" },
-    { name = "retryz" },
-    { name = "six" },
-    { name = "urllib3" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e1/8c/469012c01ebcab33cb9976f1f2500ddbd1190a139f14300fe398d71cd2b1/storops-1.2.12.tar.gz", hash = "sha256:8b9dc5e03dc1daf45b898ca7a0500cf52011709783fa3d159da115bb1e125e83", size = 739742, upload-time = "2025-07-30T03:17:09.937Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/45/61/e1d8b7960818c20712659467cc21f4cf681fbac3fc06ce4bb724a973f79a/storops-1.2.12-py2.py3-none-any.whl", hash = "sha256:6e5f7abd9b18d02c5c9acda7a276720f893bb9082b1c77d428fb24e5d7b2e3f3", size = 1444604, upload-time = "2025-07-30T03:17:08.051Z" },
 ]
 
 [[package]]
