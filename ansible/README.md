@@ -26,5 +26,4 @@ Container contents of Alpine image:
 ---
 
 TODO:
-* Convert to use virtualenv/pipenv inside container?
 * Define alternate user?

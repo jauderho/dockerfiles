@@ -6,10 +6,6 @@ ARG ARCHIVE_URL=https://github.com/psf/black/archive/
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
 
-# requirements.txt now generated from Pipfile
-# pipenv lock -r > requirements.txt
-#COPY requirements.txt . 
-
 RUN test -n "${BUILD_VERSION}" && \
 	apk update && \
 	apk upgrade -a && \
