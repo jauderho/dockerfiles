@@ -1,7 +1,7 @@
 # Go comes from the base image, not from Debian's golang-go. Ubuntu 26.04 ships
 # go1.26.0, which is affected by CVE-2026-27140 and CVE-2026-27143 (fixed in
 # 1.26.2). clang-19 matches what pwru's own release Makefile uses.
-FROM golang:1.27.0-trixie@sha256:ae28539d2ef595b9a2930dd7f031d9592376829dc0eae7cb869559f7d5812c3a AS build
+FROM golang:1.27.0-trixie@sha256:df98008ecd2b0ecc9f0a94d1b07e3564a9c92b555369b33d9b5f60d0765b2db7 AS build
 #FROM ubuntu:26.04@sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
