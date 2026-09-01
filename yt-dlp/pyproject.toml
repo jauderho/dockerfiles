@@ -1,0 +1,38 @@
+[project]
+name = "yt-dlp-project"
+dynamic = ["version"]
+description = "Project supplying the curl_cffi impersonation backend for yt-dlp"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["yt-dlp", "curl-cffi", "impersonate"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+# yt-dlp itself is fetched as a self-contained zipapp and is not installed from
+# an index, so it is deliberately not a dependency here.
+#
+# curl_cffi is deliberately absent too. Its acceptable range is whatever the
+# yt-dlp release being built declares for its curl-cffi extra, and installing
+# outside that range makes yt-dlp silently drop the impersonate handler
+# (https://github.com/jauderho/dockerfiles/issues/7774). The Dockerfile reads
+# that range out of the release tarball and installs curl_cffi into this same
+# venv afterwards, so the constraint never has to be tracked by hand here.
+#
+# mutagen and pycryptodomex arrived as the py3-mutagen and py3-pycryptodomex
+# apk packages before. yt-dlp is a zipapp run by one interpreter, so everything
+# it imports has to live in the same environment as curl_cffi - declaring them
+# here keeps the installed set identical while moving it into the lock.
+dependencies = [
+  "mutagen",
+  "pycryptodomex",
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }
