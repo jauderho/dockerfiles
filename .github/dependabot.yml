@@ -18,8 +18,15 @@ updates:
       default-days: 7
 
   # Maintain dependencies for Python
-  - package-ecosystem: "pip"
-    directory: /
+  #
+  # uv, not pip: every Python image installs from a pyproject.toml + uv.lock
+  # pair and no requirements.txt is left in the tree. The manifests live one
+  # level down, one per image, so this matches the same glob the docker
+  # ecosystem uses rather than the repository root.
+  - package-ecosystem: "uv"
+    directories:
+      - "/*"
+    open-pull-requests-limit: 25
     schedule:
       interval: "daily"
     commit-message:
