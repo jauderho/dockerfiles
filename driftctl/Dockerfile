@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.1-alpine3.24@sha256:a404a30fcc7c7537f7215efb6fff6545eccc5d9f474cb49f6daa984f6eaf7683 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.1-alpine3.24@sha256:c0602f4fc233e306e5a48560962564d65a31c537161ed479c630c99d1d2b9898 AS build
 
 WORKDIR /go/src/github.com/snyk/driftctl/
 
