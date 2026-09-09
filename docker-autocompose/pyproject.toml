@@ -1,0 +1,37 @@
+[project]
+name = "docker-autocompose-project"
+dynamic = ["version"]
+description = "Project using docker-autocompose"
+authors = [{ name = "Jauder Ho" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.13"
+keywords = ["docker", "autocompose", "compose", "yaml"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+# Only the project itself is listed. It is a real package and declares docker
+# and pyaml itself, so repeating them here would just be a second copy of a
+# list that upstream already owns. The Dockerfile clones the same URL and syncs
+# from upstream's own lock; this lock exists so "uv lock -U" has something to
+# resolve and surfaces upstream drift.
+dependencies = [
+  "docker-autocompose @ git+https://github.com/jauderho/docker-autocompose.git"
+]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
+# Mirrors upstream's own constraint-dependencies. A git dependency's [tool.uv]
+# table is ignored - only the workspace root's applies - so the security floors
+# it sets have to be repeated here for this lock to match what the image gets.
+constraint-dependencies = [
+  "certifi>=2026.7.22",
+  "idna>=3.15",
+  "requests>=2.33.0",
+  "urllib3>=2.7.0",
+]
+
+[tool.uv.sources]
+pypi = { url = "https://pypi.org/simple" }
