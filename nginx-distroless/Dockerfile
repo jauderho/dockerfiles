@@ -16,6 +16,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/ld-* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libpcre* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libz.so.* /opt && \
+    cp -a --parents /lib/$(uname -m)-linux-gnu/libzstd.so.* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libc* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libdl* /opt && \
     cp -a --parents /lib/$(uname -m)-linux-gnu/libpthread* /opt && \
