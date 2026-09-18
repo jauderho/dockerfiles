@@ -29,7 +29,7 @@ WORKDIR /config
 
 
 #FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.1@sha256:25905f8ffed480ca0d26ea5794b758543513b45ac586e25d192074d2b83db979
+FROM ghcr.io/jauderho/alpine:3.24.2@sha256:a1192a21955909e6f8d3ad5fe9b24c5c848c2567809d543e18e09ab68881bfea
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
