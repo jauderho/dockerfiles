@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.1-alpine3.24@sha256:7d39b005c002f13a9ed524bd23960f4d6a9303307acbd53a9fa93681b41e4b8b AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.1-alpine3.24@sha256:f42cbce2b1e4592ed4ac9531589b3730f78be7ad00bb3415268ff0e64569124a AS build
 
 WORKDIR /go/src/github.com/slackhq/nebula/
 
