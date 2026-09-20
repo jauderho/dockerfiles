@@ -13,20 +13,20 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp -a --parents /etc/group /opt && \
     cp -a --parents /usr/sbin/nginx /opt && \
     cp -a --parents /usr/sbin/nginx-debug /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/ld-* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libpcre* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libz.so.* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libzstd.so.* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libc* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libdl* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libpthread* /opt && \
-    cp -a --parents /lib/$(uname -m)-linux-gnu/libcrypt* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/ld-* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libpcre* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libz.so.* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libzstd.so.* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libc* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libdl* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libpthread* /opt && \
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libcrypt* /opt && \
     cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libssl.so.* /opt && \
-    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libcrypto.so.* /opt && \   
+    cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libcrypto.so.* /opt && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-UTC} /opt/etc/localtime
 
-#FROM gcr.io/distroless/base-debian13@sha256:894e78799ebace28d56fc226a05d76a601685e1382421299eed8b7a95b90fa9e
-FROM gcr.io/distroless/base-debian12@sha256:fabbf1c0c357a3d42550111351daed089b20a2c954df13ee2fcff60602515e84
+FROM gcr.io/distroless/base-debian13@sha256:894e78799ebace28d56fc226a05d76a601685e1382421299eed8b7a95b90fa9e
+#FROM gcr.io/distroless/base-debian12@sha256:fabbf1c0c357a3d42550111351daed089b20a2c954df13ee2fcff60602515e84
 
 COPY --from=base /opt /
 
