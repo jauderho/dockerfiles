@@ -213,8 +213,8 @@ if ! awk -F'\t' 'NF >= 2 && $2 != "" { ok = 1 } END { exit ok ? 0 : 1 }' "$VERSI
 fi
 
 # setup git
-#git config --local user.name "Jauder Ho Bot"
-#git config --local user.email "jauderho-bot@users.noreply.github.com"
+#git config --local user.name "Gromit Bot"
+#git config --local user.email "gromit-bot@users.noreply.github.com"
 #git config --local pull.rebase false
 
 # Fetch the latest version from GitHub and if there is a newer version, update GitHub Action to trigger a new build
