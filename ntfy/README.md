@@ -8,13 +8,36 @@ Up to date multi-platform images are built an hour after upstream release and re
 
 ## iOS Push Notifications
 
-iOS push notifications require relaying through ntfy.sh's APNs gateway. Without this, messages will not be delivered to iOS devices when the app is backgrounded.
+A self-hosted server cannot talk to APNs directly, so it must forward `poll_request` messages
+through an APNs-connected upstream server (normally ntfy.sh). Only the message ID is forwarded;
+the message body stays on your server.
 
-Add the following to your `server.yml`:
+Both settings below are required. ntfy refuses to start if `upstream-base-url` is set without
+`base-url`, and `base-url` must match the URL your clients subscribe to, because the upstream
+topic is derived from the topic URL.
 
 ```yaml
-upstream-base-url: "https://ntfy.sh"
+# /etc/ntfy/server.yml
+base-url: "https://ntfy.example.com"    # your public URL, no trailing slash, no path
+upstream-base-url: "https://ntfy.sh"    # must differ from base-url
+#upstream-access-token: "tk_..."        # only if you exceed ntfy.sh rate limits
 ```
 
-See the [ntfy documentation](https://docs.ntfy.sh/config/#ios-instant-notifications) for details.
+The config file is read from `/etc/ntfy/server.yml` by default:
+
+```
+docker run -p 80:80 -v /path/to/server.yml:/etc/ntfy/server.yml:ro jauderho/ntfy serve
+```
+
+The same settings can be passed as environment variables instead:
+
+```
+docker run -p 80:80 \
+	-e NTFY_BASE_URL=https://ntfy.example.com \
+	-e NTFY_UPSTREAM_BASE_URL=https://ntfy.sh \
+	jauderho/ntfy serve
+```
+
+Without `upstream-base-url`, iOS messages still arrive, but delivery is delayed. See the
+[ntfy documentation](https://docs.ntfy.sh/config/#ios-instant-notifications) for details.
 
