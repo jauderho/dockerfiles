@@ -25,7 +25,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp -a --parents /usr/lib/$(uname -m)-linux-gnu/libcrypto.so.* /opt && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-UTC} /opt/etc/localtime
 
-FROM gcr.io/distroless/base-debian13@sha256:0ebad3510af52aefe45045cc01b07564570be4feecf8d9f93d3a05d1b5f2f93b
+FROM gcr.io/distroless/base-debian13@sha256:389cad21f73e4c37b94ffe5b13736d5a92bd5bd3c6c6b38c2be1c881e14ba2bd
 #FROM gcr.io/distroless/base-debian12@sha256:fabbf1c0c357a3d42550111351daed089b20a2c954df13ee2fcff60602515e84
 
 COPY --from=base /opt /
