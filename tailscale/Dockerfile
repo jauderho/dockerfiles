@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.1-alpine3.24@sha256:2b5d01f55ac560830af278b7fa949cbe7a3c8e7711b4c7397fe572f8e9338a50 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:7e5536c239da1446a5bb798f89db127801d1ec75f1ec533bd8ed2c262369faa7 AS build
 
 WORKDIR /go/src/github.com/tailscale/tailscale
 
