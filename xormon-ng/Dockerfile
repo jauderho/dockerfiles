@@ -33,7 +33,17 @@ RUN apt-get update \
     python3-dev \
     build-essential \
     libpq-dev \
+    libdbi-perl \
+    unixodbc-dev \
+    libcrypt-dev \
+    cpanminus \
     && rm -rf /var/lib/apt/lists/*
+
+# DBD::ODBC (SQL Server monitoring) was dropped from the Ubuntu 26.10 archive.
+# Build it from CPAN into /usr/local (default site perl dir), which the runtime
+# stage copies wholesale. Links libodbc.so.2, provided by runtime unixodbc.
+RUN cpanm --notest DBD::ODBC@1.61 \
+    && rm -rf /root/.cpanm /usr/local/man /usr/local/lib/*/perl/*/perllocal.pod
 
 # Node.js 24 (glibc prebuilt) into /usr/local; drop C++ headers/docs (only
 # needed to compile native addons, which we never do at runtime) - saves ~63MB
@@ -205,35 +215,34 @@ RUN apt-get update \
     bash \
     ca-certificates \
     curl \
-    wget \
     tzdata \
     procps \
-    net-tools \
     iproute2 \
+    iputils-ping \
     openssh-client \
     python3 \
     libgomp1 \
     libatomic1 \
     snmp \
-    libsnmp-base \
+    libsnmp-perl \
     sblim-wbemcli \
-    ldap-utils \
     libaio1t64 \
     perl \
     libtimedate-perl \
     libxml-simple-perl \
     libxml-sax-perl \
     libxml-libxml-perl \
-    libcgi-pm-perl \
+    libxml-parser-perl \
     liblwp-protocol-https-perl \
     libwww-perl \
-    libio-tty-perl \
     libjson-perl \
     libjson-xs-perl \
-    libnet-snmp-perl \
     libdbi-perl \
     libdbd-pg-perl \
-    libdbd-odbc-perl \
+    libarchive-zip-perl \
+    libtext-template-perl \
+    libterm-readkey-perl \
+    libuuid-perl \
     unixodbc \
     openssl \
     && rm -rf /var/lib/apt/lists/* \
