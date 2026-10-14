@@ -2,8 +2,8 @@
 # linux/arm64 in internal/tofu/evaluate.go ("can't find source for ..." in
 # (*evaluationStateData).GetResource). Do not bump to 1.26.6 until this is fixed
 # upstream; revisit when Go 1.26.7 ships.
-FROM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:0b3d9da361d98efa0c0dcfc678942f4f0e956c1a1addfbf6fbc52286ca6558d6 AS build
-#FROM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:0b3d9da361d98efa0c0dcfc678942f4f0e956c1a1addfbf6fbc52286ca6558d6 AS build
+FROM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:d2934a6f48720b8842359a951d63f943831677b67c669bc328e3e2234be993c4 AS build
+#FROM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:d2934a6f48720b8842359a951d63f943831677b67c669bc328e3e2234be993c4 AS build
 
 WORKDIR /go/src/github.com/opentofu/opentofu
 
