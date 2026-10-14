@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:7e5536c239da1446a5bb798f89db127801d1ec75f1ec533bd8ed2c262369faa7 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:d2934a6f48720b8842359a951d63f943831677b67c669bc328e3e2234be993c4 AS build
 
 WORKDIR /go/src/github.com/openrdap/rdap/
 
