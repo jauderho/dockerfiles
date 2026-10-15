@@ -6,6 +6,8 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/binwiederhier/ntfy/archive/
 
 ENV GO111MODULE=on
+# ntfy keeps its message cache in sqlite (go-sqlite3 is a stub with CGO_ENABLED=0),
+# so it is built with cgo and linked statically against musl for scratch.
 ENV CGO_ENABLED=1
 
 COPY . .
@@ -27,7 +29,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go mod tidy \
 	&& CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -o ntfy -v -trimpath \
 		-tags sqlite_omit_load_extension,osusergo,netgo \
-		-ldflags="-s -w -X main.version=${BUILD_VERSION}" .
+		-ldflags="-s -w -linkmode external -extldflags '-static' -X main.version=${BUILD_VERSION}" .
 
 # Validation check
 #RUN cp ntfy /go/bin/ntfy
@@ -38,8 +40,14 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN mkdir -p -m 1777 /rootfs/tmp
+
+
+# ----------------------------------------------------------------------------
+
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -48,8 +56,8 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/ntfy"
 LABEL org.opencontainers.image.description="ntfy is a simple HTTP-based pub-sub notification service"
 
-RUN apk update \
-	&& apk upgrade -a
+COPY --from=rootfs /rootfs/ /
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 #COPY --from=build /go/bin/ntfy /ntfy
 COPY --from=build /go/src/github.com/binwiederhier/ntfy/ntfy /usr/local/bin/ntfy
