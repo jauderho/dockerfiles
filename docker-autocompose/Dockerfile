@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:7605f8e78ecf9d3e5a7630b80c90274b4a153fa0849130aa51c79092b829a486 AS build
+FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf AS build
 
 ARG BUILD_VERSION
 ARG GIT_URL=https://github.com/jauderho/docker-autocompose.git
@@ -31,7 +31,7 @@ RUN \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:7605f8e78ecf9d3e5a7630b80c90274b4a153fa0849130aa51c79092b829a486
+FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
 
 COPY --from=build /opt/venv /opt/venv
 
