@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:d2934a6f48720b8842359a951d63f943831677b67c669bc328e3e2234be993c4 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:ee535094907559d9e9905106dec7d88faa0dba2a99624a99ef6853f7f2a72e3b AS build
 
 WORKDIR /go/src/github.com/yggdrasil-network/yggdrasil-go/
 
