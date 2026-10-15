@@ -34,13 +34,17 @@ RUN cp toxiproxy /go/bin/toxiproxy
 RUN cp toxiproxy-cli /go/bin/toxiproxy-cli
 
 
+# ----------------------------------------------------------------------------
+
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN set -e; \
+	mkdir -p -m 1777 /rootfs/tmp
+
 
 # ----------------------------------------------------------------------------
 
-
-
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -49,11 +53,8 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/toxiproxy"
 LABEL org.opencontainers.image.description="toxiproxy is a framework for simulating network conditions"
 
-RUN apk update \
-	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/cache/apk/*
+COPY --from=rootfs /rootfs/ /
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /go/bin/toxiproxy /toxiproxy
 COPY --from=build /go/bin/toxiproxy-cli /toxiproxy-cli
@@ -65,4 +66,3 @@ EXPOSE 8474
 ENTRYPOINT ["/toxiproxy"]
 CMD ["-host=0.0.0.0"]
 #CMD ["toxiproxy"]
-

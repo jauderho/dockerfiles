@@ -42,13 +42,17 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go clean && go clean -cache && go clean -modcache 
 
 
+# ----------------------------------------------------------------------------
+
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN set -e; \
+	mkdir -p -m 1777 /rootfs/tmp
+
 
 # ----------------------------------------------------------------------------
 
-
-
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -57,8 +61,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/opentofu"
 LABEL org.opencontainers.image.description="opentofu is a tool for building, changing, and versioning infrastructure safely and efficiently"
 
-RUN apk update \
-	&& apk upgrade -a 
+COPY --from=rootfs /rootfs/ /
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/tofu /usr/local/bin/tofu
@@ -66,4 +69,3 @@ COPY --from=build /go/bin/tofu /usr/local/bin/tofu
 #RUN opentofu --version
 
 ENTRYPOINT [ "/usr/local/bin/tofu" ]
-

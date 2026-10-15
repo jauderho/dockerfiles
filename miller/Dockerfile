@@ -27,9 +27,15 @@ WORKDIR /config
 
 # ----------------------------------------------------------------------------
 
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN set -e; \
+	mkdir -p -m 1777 /rootfs/tmp
 
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+
+# ----------------------------------------------------------------------------
+
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -38,11 +44,11 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/miller"
 LABEL org.opencontainers.image.description="Miller is like awk, sed, cut, join, and sort for data formats such as CSV, TSV, tabular JSON and positionally-indexed"
 
-RUN apk update \
-	&& apk upgrade -a
+COPY --from=rootfs /rootfs/ /
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
+
 	
 COPY --from=build /go/src/github.com/johnkerl/miller/mlr /usr/local/bin/mlr
 COPY --from=build /config /config
 
 ENTRYPOINT ["/usr/local/bin/mlr"]
-

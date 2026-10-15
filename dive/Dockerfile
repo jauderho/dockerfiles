@@ -33,15 +33,25 @@ RUN test -n "${BUILD_VERSION}" \
 WORKDIR /config
 
 
+# ----------------------------------------------------------------------------
+
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+ARG DOCKER_CLI_VERSION
+ARG TARGETARCH
+ARG TARGETVARIANT
+RUN set -e; \
+	apk add --no-cache curl; \
+	mkdir -p -m 1777 /rootfs/tmp; \
+	mkdir -p -m 700 /rootfs/root/.config; \
+	case "${TARGETARCH}${TARGETVARIANT}" in amd64*) a=x86_64;; arm64*) a=aarch64;; armv7) a=armhf;; armv6) a=armel;; ppc64le*) a=ppc64le;; s390x*) a=s390x;; *) echo "unsupported arch" >&2; exit 1;; esac; \
+	mkdir -p /rootfs/usr/local/bin; \
+	curl --proto "=https" --proto-redir "=https" -fsSL "https://download.docker.com/linux/static/stable/${a}/docker-${DOCKER_CLI_VERSION}.tgz" | tar -xzf - -C /rootfs/usr/local/bin --strip-components=1 docker/docker
+
 
 # ----------------------------------------------------------------------------
 
-
-
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
-
-ARG DOCKER_CLI_VERSION
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -50,26 +60,20 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dive"
 LABEL org.opencontainers.image.description="A tool for exploring a docker image, layer contents, and discovering ways to shrink your image size"
 
-RUN apk update \
-	&& apk upgrade -a
+COPY --from=rootfs /rootfs/ /
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
-#RUN echo $(uname -m)
-#RUN echo ${DOCKER_CLI_VERSION}
+ENV HOME=/root
 
-# Include a workaround for arch naming mismatch
-RUN wget -O- https://download.docker.com/linux/static/stable/$(uname -m | sed -e s/armv7l/armhf/)/docker-${DOCKER_CLI_VERSION}.tgz | \
-	tar -xzf - docker/docker --strip-component=1 && \
-	mv docker /usr/local/bin
 
 COPY --from=build /go/src/github.com/wagoodman/dive/dive-bin /usr/local/bin/dive
-COPY --from=build --chown=nobody:nogroup /config /config
+COPY --from=build --chown=65534:65534 /config /config
 
 # EXPOSE
 # ENV
 # STOPSIGNAL
 HEALTHCHECK NONE
-USER root
+USER 0
 
 ENTRYPOINT ["/usr/local/bin/dive"]
 CMD ["--help"]
-

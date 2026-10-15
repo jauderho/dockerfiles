@@ -6,6 +6,7 @@ ARG BUILD_VERSION
 ARG ARCHIVE_URL=https://github.com/StackExchange/dnscontrol/archive/
 
 ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 COPY . .
 
@@ -26,12 +27,19 @@ RUN test -n "${BUILD_VERSION}" \
 RUN dnscontrol version | grep -q "${BUILD_VERSION}"
 
 
+# ----------------------------------------------------------------------------
+
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN set -e; \
+	apk add --no-cache tzdata; \
+	mkdir -p -m 1777 /rootfs/tmp; \
+	mkdir -p /rootfs/usr/share && cp -a /usr/share/zoneinfo /rootfs/usr/share/zoneinfo
+
 
 # ----------------------------------------------------------------------------
 
-
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -40,16 +48,14 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/dnscontrol"
 LABEL org.opencontainers.image.description="DNSControl is an opinionated platform for seamlessly managing your DNS configuration"
 
+COPY --from=rootfs /rootfs/ /
+
 # tzdata is a runtime dependency of Go time for some providers (eg TRANSIP)
-RUN apk update \
-	&& apk upgrade -a \
-	&& apk --no-cache add tzdata
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
-COPY --from=build /go/bin/dnscontrol /usr/local/bin
+COPY --from=build /go/bin/dnscontrol /usr/local/bin/dnscontrol
 
 WORKDIR /dns
 
 ENTRYPOINT ["/usr/local/bin/dnscontrol"]
 CMD ["-h"]
-

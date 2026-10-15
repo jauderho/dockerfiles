@@ -29,9 +29,15 @@ WORKDIR /config
 
 # ----------------------------------------------------------------------------
 
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN set -e; \
+	mkdir -p -m 1777 /rootfs/tmp
 
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+
+# ----------------------------------------------------------------------------
+
+FROM scratch
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -40,8 +46,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/wuzz"
 LABEL org.opencontainers.image.description="wuzz is an interactive cli tool for HTTP inspection"
 
-RUN apk update \
-	&& apk upgrade -a 
+COPY --from=rootfs /rootfs/ /
 
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
@@ -50,6 +55,4 @@ COPY --from=build /config /config
 
 #ENTRYPOINT ["/usr/local/bin/wuzz"]
 
-# wuzz does not want to start up consistently unless sleep 1 is used.It would be better if we could just directly enter into the binary
-ENTRYPOINT ["sh", "-c", "sleep 1 ; /usr/local/bin/wuzz"]
-
+ENTRYPOINT ["/usr/local/bin/wuzz"]

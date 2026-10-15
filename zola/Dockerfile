@@ -11,10 +11,10 @@ ARG ARCHIVE_URL=https://github.com/getzola/zola/archive/
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
 	&& apk upgrade -a \
-	&& apk add --no-cache ca-certificates curl openssl-dev g++ build-base musl-dev make mold \
+	&& apk add --no-cache ca-certificates curl openssl-dev openssl-libs-static g++ build-base musl-dev make mold \
 	&& curl --proto "=https" --proto-redir "=https" -L "${ARCHIVE_URL}${BUILD_VERSION}.tar.gz" -o /tmp/zola.tar.gz \
 	&& tar xzf /tmp/zola.tar.gz --strip 1 -C /usr/src/github.com/getzola/zola \
-	&& RUSTFLAGS="-C link-arg=-fuse-ld=mold -C target-feature=-crt-static" cargo build --release \
+	&& OPENSSL_STATIC=1 RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release \
 	&& strip target/release/zola
 
 WORKDIR /config
@@ -23,8 +23,14 @@ WORKDIR /config
 # ----------------------------------------------------------------------------
 
 
-#FROM scratch
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+# Files the alpine base used to provide (and that scratch lacks)
+FROM build AS rootfs
+RUN mkdir -p -m 1777 /rootfs/tmp
+
+
+# ----------------------------------------------------------------------------
+
+FROM scratch
 #FROM debian:11-slim
 #FROM rust:1.70.0-alpine3.18@sha256:74ad9d14ec89bc4e83bf2a3d007fd981513ee4b44279b40d3a90c001a6ca938c
 
@@ -35,14 +41,11 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/zola"
 LABEL org.opencontainers.image.description="zola is a fast static site generator in a single binary with everything built-in"
 
+COPY --from=rootfs /rootfs/ /
 COPY --from=build /etc/ssl/certs /etc/ssl/certs
 
 COPY --from=build /usr/src/github.com/getzola/zola/target/release/zola /usr/local/bin/zola
 COPY --from=build /config /config
-
-RUN apk update \
-	&& apk upgrade -a \
-	&& apk add --no-cache libgcc libstdc++
 
 #RUN /usr/local/bin/zola --help
 
