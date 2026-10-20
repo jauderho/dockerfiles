@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.2-alpine3.24@sha256:ee535094907559d9e9905106dec7d88faa0dba2a99624a99ef6853f7f2a72e3b AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
 
 WORKDIR /go/src/github.com/tomnomnom/httprobe/
 
