@@ -102,11 +102,13 @@ RUN set -eux; \
     rm -f server-nest/ssl/xormon.key server-nest/ssl/xormon.crt
 
 # Drop bundled devDependencies (typescript, jest, eslint, @nestjs/cli, ...);
-# pm2 and all 61 runtime deps are kept. --network=none guarantees this is an
-# offline, registry-free operation (fails the build otherwise).
-RUN --network=none set -eux; \
+# pm2 and all 61 runtime deps are kept. Needs registry access: npm 11 fetches
+# packuments for entries it flags invalid (debug, ws, ...) even when they are
+# already installed, so a --network=none prune fails with EAI_AGAIN. The tree is
+# not modified by the fetches; --prefer-offline keeps them to the minimum.
+RUN set -eux; \
     cd /opt/xormon-ng/server-nest; \
-    npm prune --omit=dev --no-audit --no-fund; \
+    npm prune --omit=dev --prefer-offline --no-audit --no-fund; \
     # package-lock.json is kept for now: the patch step below feeds it to
     # "bun audit" and removes it afterwards.
     # drop docs/changelogs from the remaining runtime packages (keep LICENSE)
