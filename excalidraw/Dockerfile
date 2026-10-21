@@ -1,4 +1,7 @@
 FROM node:26.11.1-alpine3.24@sha256:143494b1da2945f061539253adc65e4f1569ddf07da2d384c022c791a9d90a4a AS build
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 
 #WORKDIR /app
 WORKDIR /opt/node_app
@@ -56,6 +59,9 @@ RUN test -n "${BUILD_VERSION}" \
 
 # cgr.dev/chainguard/nginx:1.25.1@sha256:183318178aac1c4692a3de76d4fdece9d0c78329a3f91eded9949edbbb27d994
 FROM nginx:1.31.6-alpine3.24@sha256:df221db836e1754089190208cee7eeda94f233197056426eda74a43ab1abeac2
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

@@ -1,5 +1,8 @@
 #FROM rust:bullseye AS build
 FROM rust:1.99.0-alpine3.24@sha256:0cce0a5e0e8ba67b455257a3a02a1d99005f382748789d6464460028810f1627 AS build
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 #FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf AS build
 
 WORKDIR /usr/src/github.com/osrg/rustybgp/

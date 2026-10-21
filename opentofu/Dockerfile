@@ -3,6 +3,9 @@
 # (*evaluationStateData).GetResource). Do not bump to 1.26.6 until this is fixed
 # upstream; revisit when Go 1.26.7 ships.
 FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 #FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
 
 WORKDIR /go/src/github.com/opentofu/opentofu

@@ -1,4 +1,7 @@
 FROM oven/bun:1.4.3-alpine@sha256:629e17411f1f129dbec3af78d5af9c9f2a937435c80349437206c6b0b7422373 AS build
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 
 WORKDIR /opt/node_app
 
@@ -60,6 +63,9 @@ RUN test -n "${BUILD_VERSION}" \
 
 
 FROM nginx:1.31.6-alpine3.24@sha256:df221db836e1754089190208cee7eeda94f233197056426eda74a43ab1abeac2
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

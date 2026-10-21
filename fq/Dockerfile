@@ -1,4 +1,7 @@
 FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
+# Refresh the CA bundle to the latest the distro publishes
+RUN apk add --no-cache --upgrade ca-certificates \
+	&& update-ca-certificates
 
 WORKDIR /go/src/github.com/wader/fq
 
@@ -45,6 +48,7 @@ LABEL org.opencontainers.image.source="https://github.com/jauderho/dockerfiles"
 LABEL org.opencontainers.image.title="jauderho/fq"
 LABEL org.opencontainers.image.description="fq is a tool for inspecting binary data"
 
+COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/bin/fq /fq
 
 ENTRYPOINT ["/fq"]
