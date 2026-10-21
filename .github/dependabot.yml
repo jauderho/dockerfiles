@@ -15,7 +15,7 @@ updates:
     commit-message:
       prefix: "gha:"
     cooldown:
-      default-days: 7
+      default-days: 1
 
   # Maintain dependencies for Python
   #
@@ -32,7 +32,7 @@ updates:
     commit-message:
       prefix: "python:"
     cooldown:
-      default-days: 7
+      default-days: 1
 
   # Maintain dependencies for Docker
   - package-ecosystem: "docker"
@@ -45,4 +45,4 @@ updates:
     commit-message:
       prefix: "docker:"
     cooldown:
-      default-days: 7
+      default-days: 1
