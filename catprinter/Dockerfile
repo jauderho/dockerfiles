@@ -3,11 +3,6 @@
 FROM ghcr.io/astral-sh/uv:0.13.4@sha256:9f130421e930bfbdc563c00740466603f8723158e90297d07957c2294640262b AS uv
 
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
@@ -47,11 +42,6 @@ RUN \
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -76,7 +66,7 @@ RUN \
 	# tiny. libglx-mesa0 was here for the GUI build's libGL.so.1, which drags in
 	# libllvm21 + mesa-libgallium (~177MB) - and it never actually provided
 	# libGL.so.1, so cv2 could not be imported at all.
-	runtime_pkgs="python3 bluez libxcb1" && \
+	runtime_pkgs="python3 bluez libxcb1 ca-certificates" && \
 	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends ${runtime_pkgs} && \
 	python3 -c 'import cv2, numpy, bleak, catprinter; print(cv2.__version__)' && \
 	python3 /usr/local/bin/print.py -h > /dev/null && \

@@ -3,11 +3,6 @@
 # curl -s https://hub.docker.com/v2/repositories/jauderho/imapsync/ | jq '.pull_count'
 
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 ARG BUILD_VERSION
 

@@ -3,11 +3,6 @@
 FROM ghcr.io/astral-sh/uv:0.13.4@sha256:9f130421e930bfbdc563c00740466603f8723158e90297d07957c2294640262b AS uv
 
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
@@ -40,11 +35,6 @@ RUN apt-get update && \
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -63,7 +53,7 @@ LABEL org.opencontainers.image.description="SSLyze is a fast and powerful SSL/TL
 # smoke test after a separate strip would write __pycache__ straight back.
 RUN apt-get update && \
 	apt-get dist-upgrade -y && \
-	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3 && \
+	DEBIAN_FRONTEND=${DEBIAN_FRONTEND} apt-get install -y --no-install-recommends python3 ca-certificates && \
 	sslyze -h > /dev/null && \
 	python3 -c 'import sslyze, cryptography; print(cryptography.__version__)' && \
 	rm -rf /usr/bin/pebble && \

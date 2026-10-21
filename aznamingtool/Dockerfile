@@ -9,9 +9,6 @@
 
 ### BUILD ###
 FROM mcr.microsoft.com/dotnet/sdk:11.0-alpine3.24@sha256:6bd5660fc4e5a9d1992eec9f3705346e866c609c2decc02d786feb073e582cb1 AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 WORKDIR /src
 
 ARG BUILD_VERSION
@@ -43,9 +40,6 @@ RUN test -n "${BUILD_VERSION}" \
 ### FINAL ###
 #FROM base AS final
 FROM mcr.microsoft.com/dotnet/aspnet:11.0-alpine3.24@sha256:9928cd451fef4fb35319eac3a5d7e48da7ce3f87c1018baac1a68ea5d5f8491c
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 WORKDIR /app
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"

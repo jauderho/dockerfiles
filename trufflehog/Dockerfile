@@ -1,7 +1,4 @@
 FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 
 WORKDIR /go/src/github.com/trufflesecurity/trufflehog/
 
@@ -35,9 +32,6 @@ WORKDIR /config
 
 #FROM scratch
 FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"

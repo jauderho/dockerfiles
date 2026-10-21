@@ -1,7 +1,4 @@
 FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 
 WORKDIR /go/src/github.com/cilium/pwru/
 
@@ -13,7 +10,7 @@ ENV CGO_ENABLED 0
 
 RUN test -n "${BUILD_VERSION}" \
 	&& apk update \
-	&& apk add --no-cache git ca-certificates build-base clang22 llvm22 flex bison linux-headers \
+	&& apk add --no-cache --upgrade git ca-certificates build-base clang22 llvm22 flex bison linux-headers \
 	&& git clone --depth 1 ${GIT_URL} --branch ${BUILD_VERSION} /go/src/github.com/cilium/pwru \
 	&& ln -sf /usr/bin/clang-22 /usr/bin/clang \
 	&& ln -sf /usr/bin/clang++-22 /usr/bin/clang++ \

@@ -1,14 +1,11 @@
 #FROM nginx AS build
 FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:eb4fb7ca7697ba2a12c8aa96dab198c419746c269d59a74abc17f53c058a5218 AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apk add --no-cache --upgrade ca-certificates \
-	&& update-ca-certificates
 
 WORKDIR /src
 COPY . .
 
 RUN apk update && \
-    apk add --no-cache git gcc make g++ cmake perl libunwind-dev ca-certificates linux-headers build-base && \
+    apk add --no-cache --upgrade git gcc make g++ cmake perl libunwind-dev ca-certificates linux-headers build-base && \
     git clone --depth 1 https://boringssl.googlesource.com/boringssl && \
     mkdir boringssl/build && \
     cd boringssl/build && \

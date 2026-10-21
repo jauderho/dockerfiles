@@ -2,11 +2,6 @@
 # go1.26.0, which is affected by CVE-2026-27140 and CVE-2026-27143 (fixed in
 # 1.26.2). clang-19 matches what pwru's own release Makefile uses.
 FROM golang:1.27.2-trixie@sha256:47667934874913a449b96faa7ef4777fa285d9ec29126ee80ed61c45b7cccf0e AS build
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 #FROM ubuntu:26.04@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78 AS build
 
 WORKDIR /go/src/github.com/cilium/pwru/
@@ -49,11 +44,6 @@ WORKDIR /config
 
 #FROM scratch
 FROM ubuntu:26.10@sha256:ee126c2fa0249079a7e24ae3a3d29b04783ef93ab33c868751c9a1289d3fffff
-# Refresh the CA bundle to the latest the distro publishes
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
-	&& update-ca-certificates \
-	&& rm -rf /var/lib/apt/lists/*
 
 LABEL org.opencontainers.image.authors="Jauder Ho <jauderho@users.noreply.github.com>"
 LABEL org.opencontainers.image.url="https://github.com/jauderho/dockerfiles"
@@ -64,6 +54,7 @@ LABEL org.opencontainers.image.description="pwru is an eBPF-based tool for traci
 
 RUN apt-get update \
 	&& apt-get dist-upgrade -y \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
 	&& rm -rf /usr/bin/pebble \
 	# the package index apt-get update wrote is ~40MB and is dead weight once
 	# dist-upgrade has run; nothing in this image installs packages at runtime
