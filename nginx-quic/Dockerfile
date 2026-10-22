@@ -57,7 +57,7 @@ RUN apk add --no-cache mercurial perl-dev pcre2-dev zlib-dev libxslt-dev gd-dev 
 
 
 #FROM nginx
-FROM ghcr.io/jauderho/alpine:3.24.2@sha256:915b1f8d78d9dd6e8cecad779f8cb676ac85dd5f0ae54297e5efab5f93590fdf
+FROM ghcr.io/jauderho/alpine:3.24.2@sha256:9cc37c0d65331ea184ce3cc77cb5035a5ab760d761b83610b334f35b980e1646
 # Refresh the CA bundle to the latest the distro publishes
 RUN apk add --no-cache --upgrade ca-certificates \
 	&& update-ca-certificates
