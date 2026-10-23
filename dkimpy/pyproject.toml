@@ -5,7 +5,7 @@ description = "Project using dkimpy with ed25519, ARC, and asyncio extras"
 authors = [{ name = "Jauder Ho" }]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 keywords = ["dkim", "dkimpy", "email", "ARC", "asyncio", "ed25519"]
 classifiers = [
   "Programming Language :: Python :: 3",

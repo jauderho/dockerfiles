@@ -5,7 +5,7 @@ description = "Project supplying the curl_cffi impersonation backend for yt-dlp"
 authors = [{ name = "Jauder Ho" }]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 keywords = ["yt-dlp", "curl-cffi", "impersonate"]
 classifiers = [
   "Programming Language :: Python :: 3",

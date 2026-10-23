@@ -1,6 +1,6 @@
 version = 1
-revision = 3
-requires-python = ">=3.13"
+revision = 5
+requires-python = ">=3.14"
 
 [[package]]
 name = "mutagen"
@@ -17,15 +17,6 @@ version = "3.24.1"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f4/e7/50e72301e32acb73a314e663c2014e1ddefc019d5f434ff14ec89861d664/pycryptodomex-3.24.1.tar.gz", hash = "sha256:09081666ffc599976c0b8b29caf2cf82212c0f05bed233c8f8ed53e4f6e1d356", size = 4934627, upload-time = "2026-10-11T19:26:49.624Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/86/2a/1129e2245c474edc9dde1eb3ee5dacc100b896977339117b30e29078784d/pycryptodomex-3.24.1-cp313-cp313t-macosx_10_13_universal2.whl", hash = "sha256:5966f829f64c833cc72a8694cfee05ad50446a44167842c92dec4ebf6b84d72c", size = 2477074, upload-time = "2026-10-11T19:25:36.458Z" },
-    { url = "https://files.pythonhosted.org/packages/2d/5e/147a034ada6ecfb38effd375b55c27523851f18509a8312bc617bd0de7de/pycryptodomex-3.24.1-cp313-cp313t-macosx_10_13_x86_64.whl", hash = "sha256:7f30261641dac5ae60e0af2fb11ad7c87200575b0ce403f7531576b0f38a52be", size = 1644417, upload-time = "2026-10-11T19:25:38.567Z" },
-    { url = "https://files.pythonhosted.org/packages/19/49/49fc9000d594fd76f9cfe15b6bbf0f9e8d0550202f5a7fa8ddf16846f965/pycryptodomex-3.24.1-cp313-cp313t-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:03e2027f81fe6b700e7ff614d79111559bfb05ed8c4a9de9d2152d1a0a0768de", size = 2195698, upload-time = "2026-10-11T19:25:40.313Z" },
-    { url = "https://files.pythonhosted.org/packages/85/40/f64fb00b5bac898d40b1806c4fdb0c6a40e4977a7b5178a38818adcf6043/pycryptodomex-3.24.1-cp313-cp313t-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:c20fb5e8cf874dc182091d6df122b8b588501d23e7b500acf662c49899afdd0f", size = 2281501, upload-time = "2026-10-11T19:25:42.037Z" },
-    { url = "https://files.pythonhosted.org/packages/96/74/15119b835617b9dc02e78f4706b366e941959b535776b588f1e46ac569bb/pycryptodomex-3.24.1-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:147c742f73bbe8791d8c454b9972330d7ea501de94e8172957af375f9bdb4a7f", size = 2187040, upload-time = "2026-10-11T19:25:43.795Z" },
-    { url = "https://files.pythonhosted.org/packages/3b/c5/d0a7b0613bc3cd9632c5ee9bd85b8458312a217d4c38c8477527eddf7592/pycryptodomex-3.24.1-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:cdec09935db4cbd74da5b577ea7d9959c73374060b22abf7d505429c0da7ed63", size = 2279237, upload-time = "2026-10-11T19:25:45.724Z" },
-    { url = "https://files.pythonhosted.org/packages/3c/3d/da0548d495dc2ccf8118e3902d321ed0fa025ff8a7319e9e97716d0d522c/pycryptodomex-3.24.1-cp313-cp313t-win32.whl", hash = "sha256:6159dc74824c591b4c294f8f96b74a71c3b5e9f637dab2f2da14cfa32dc24d47", size = 1793507, upload-time = "2026-10-11T19:25:47.825Z" },
-    { url = "https://files.pythonhosted.org/packages/9b/4a/ddd59bff4eb0a62a5c484b3ad7335b2c8de4399c45d2b49bfba44268d0ac/pycryptodomex-3.24.1-cp313-cp313t-win_amd64.whl", hash = "sha256:edc1deb28fceab6b78e12bae506eaef62ee2fc1b3cabc96f7932f0d51e368acd", size = 1826054, upload-time = "2026-10-11T19:25:50.031Z" },
-    { url = "https://files.pythonhosted.org/packages/e1/c0/a9c5270bdaeadc7b0e4674ffb993aadd6aaada37230bbc362423f75cff5a/pycryptodomex-3.24.1-cp313-cp313t-win_arm64.whl", hash = "sha256:5b37b86a3771d6aa21cccf9f8448460e4be11e68bb8e699133ce632cb986f521", size = 1760465, upload-time = "2026-10-11T19:25:51.871Z" },
     { url = "https://files.pythonhosted.org/packages/48/3b/aeef17f479f6c7e367a9f6ad9974866ea311719b2f976e8b26cecd1b27de/pycryptodomex-3.24.1-cp314-cp314t-macosx_10_15_universal2.whl", hash = "sha256:514d685de4b0227d35d7114047fbd575bf162bff373e07af665aa41eee089dd0", size = 2477998, upload-time = "2026-10-11T19:25:53.619Z" },
     { url = "https://files.pythonhosted.org/packages/18/c1/d26287bf0e1f8c62ed7d448320a0d6704ddbb27f26506e66ffb4431e8ec5/pycryptodomex-3.24.1-cp314-cp314t-macosx_10_15_x86_64.whl", hash = "sha256:7a81e9be7084af3591912475b22c5d0646a9160f3974b6b7300138781fffdc0d", size = 1646567, upload-time = "2026-10-11T19:25:55.45Z" },
     { url = "https://files.pythonhosted.org/packages/82/a6/cf6db80b637d9480f7429797002779d5b57ecbeefb91169e0a70826359ca/pycryptodomex-3.24.1-cp314-cp314t-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:e87928d8f37952ba53d215836cb3d89c63c1367f037d055c3a5b3f4403f4c6b6", size = 2195699, upload-time = "2026-10-11T19:25:57.591Z" },
