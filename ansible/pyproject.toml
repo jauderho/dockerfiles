@@ -33,6 +33,9 @@ cache-keys = [
     { git = { commit = true, tags = true } }
 ]
 
+# Floor for the CA bundle if it enters the dependency graph (adds no package).
+constraint-dependencies = ["certifi>=2026.10.23"]
+
 [tool.uv.sources]
 pypi = { url = "https://pypi.org/simple" }
 piwheels = { url = "https://www.piwheels.org/simple" }

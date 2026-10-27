@@ -29,5 +29,8 @@ cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true 
 # depend on opencv-python-headless above instead - same cv2 API, no GL.
 override-dependencies = ["opencv-python ; sys_platform == 'headless-only'"]
 
+# Floor for the CA bundle if it enters the dependency graph (adds no package).
+constraint-dependencies = ["certifi>=2026.10.23"]
+
 [tool.uv.sources]
 pypi = { url = "https://pypi.org/simple" }

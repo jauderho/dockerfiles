@@ -27,7 +27,7 @@ cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true 
 # table is ignored - only the workspace root's applies - so the security floors
 # it sets have to be repeated here for this lock to match what the image gets.
 constraint-dependencies = [
-  "certifi>=2026.7.22",
+  "certifi>=2026.10.23",
   "idna>=3.15",
   "requests>=2.33.0",
   "urllib3>=2.7.0",

@@ -27,5 +27,8 @@ cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true 
 # pip --no-deps to bypass the same cap at install time. See Dockerfile.
 override-dependencies = ["cryptography>=43"]
 
+# Floor for the CA bundle if it enters the dependency graph (adds no package).
+constraint-dependencies = ["certifi>=2026.10.23"]
+
 [tool.uv.sources]
 pypi = { url = "https://pypi.org/simple" }

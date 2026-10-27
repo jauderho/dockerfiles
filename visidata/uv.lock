@@ -2,6 +2,9 @@ version = 1
 revision = 5
 requires-python = ">=3.14"
 
+[manifest]
+constraints = [{ name = "certifi", specifier = ">=2026.10.23" }]
+
 [[package]]
 name = "certifi"
 version = "2026.10.23"
