@@ -1,5 +1,5 @@
 #FROM nginx AS build
-#FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:a79e7d5dc64ceb20fdc346d5dcabbbda8c3c8a82e1cc5e087935a0cf407d0f00 AS build
+#FROM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:00b83dd8fd49e99981cd6aa834e3621e6eb72ce9179b77a8d7f67edc7bfc57a0 AS build
 FROM ghcr.io/jauderho/alpine:3.24.3@sha256:cf34fcc38a39ca6a643149949fa6c1892960e9909762f8a2dc6f184e28b3e599 AS build
 #FROM alpine:edge AS build
 

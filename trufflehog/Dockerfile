@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:a79e7d5dc64ceb20fdc346d5dcabbbda8c3c8a82e1cc5e087935a0cf407d0f00 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:00b83dd8fd49e99981cd6aa834e3621e6eb72ce9179b77a8d7f67edc7bfc57a0 AS build
 
 WORKDIR /go/src/github.com/trufflesecurity/trufflehog/
 
