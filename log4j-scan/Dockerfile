@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.24.3@sha256:c85c1b5d16375e7dd60d7a1cce4078438281af24cebbf4a8b92880509a361c33 AS build
+FROM ghcr.io/jauderho/alpine:3.24.3@sha256:cf34fcc38a39ca6a643149949fa6c1892960e9909762f8a2dc6f184e28b3e599 AS build
 
 ARG BUILD_VERSION
 #ARG GIT_URL=https://github.com/fullhunt/log4j-scan.git
@@ -31,7 +31,7 @@ RUN \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
-FROM ghcr.io/jauderho/alpine:3.24.3@sha256:c85c1b5d16375e7dd60d7a1cce4078438281af24cebbf4a8b92880509a361c33
+FROM ghcr.io/jauderho/alpine:3.24.3@sha256:cf34fcc38a39ca6a643149949fa6c1892960e9909762f8a2dc6f184e28b3e599
 
 WORKDIR /opt/log4j-scan
 
