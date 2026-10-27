@@ -67,6 +67,26 @@ RUN curl -fsSL --proto "=https" --proto-redir "=https" \
     && node -v \
     && npm -v
 
+# npm bundles its own copies of undici and ip-address, which trail their security
+# fixes (both are flagged in the image scan, and neither npm 11.21 nor 12.2 ships
+# the patched releases). Swap in the newest release of the same major so the
+# bundled tree stays API-compatible, then check npm still runs.
+RUN set -eux; \
+    nm=/usr/local/lib/node_modules/npm/node_modules; \
+    work="$(mktemp -d)"; \
+    for pkg in undici ip-address; do \
+        major="$(node -p "require('$nm/$pkg/package.json').version.split('.')[0]")"; \
+        rm -rf "$work/pkg" "$work"/*.tgz; mkdir "$work/pkg"; \
+        (cd "$work" && npm pack "$pkg@^$major" --silent >/dev/null && tar xzf ./*.tgz -C pkg --strip-components=1); \
+        old="$(node -p "require('$nm/$pkg/package.json').version")"; \
+        new="$(node -p "require('$work/pkg/package.json').version")"; \
+        rm -rf "$nm/$pkg"; mkdir "$nm/$pkg"; cp -a "$work/pkg/." "$nm/$pkg/"; \
+        echo "npm-patch: $pkg $old -> $new"; \
+    done; \
+    rm -rf "$work" /root/.npm; \
+    npm -v; \
+    npm view lodash version
+
 # XorMon NG application tarball (content sits at archive root, no version dir)
 ADD https://xormon.com/download-static/xormon-ng/xormon-ng-${BUILD_VERSION}.tar.gz /tmp/xormon-ng.tar.gz
 RUN mkdir -p /opt/xormon-ng \
@@ -87,6 +107,11 @@ RUN set -eux; \
     rm -f -- *-arm64 *-ppc64le *-s390x *-arm; \
     find . -maxdepth 1 -type f -exec chmod +x {} +; \
     cd /opt/xormon-ng; \
+    # post-upgrade.js copies otel-exporter-<arch> to otel-exporter at start-up,
+    # so only the amd64 variant is needed (and scanned) here.
+    rm -f -- server-nest/microservices/otel-exporter/bin/*-arm64 \
+             server-nest/microservices/otel-exporter/bin/*-ppc64le \
+             server-nest/microservices/otel-exporter/bin/*-s390x; \
     rm -rf server-nest/microservices/linux-go/simulator \
            server-nest/microservices/linux-go/go.mod \
            server-nest/microservices/linux-go/go.sum; \

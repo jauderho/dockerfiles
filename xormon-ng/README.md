@@ -64,10 +64,18 @@ require recompiling upstream:
   major bumps). The audit is read-only — it reads `package.json` and
   `package-lock.json` only, and never reinstalls, so the vendored tree and its
   prebuilt native modules (`canvas`, `cpu-features`, `ssh2`) are left intact.
+- **npm's own dependencies** — the `undici` and `ip-address` copies bundled inside
+  npm are replaced with the newest release of the same major, because the npm
+  releases themselves trail those fixes.
+- **Unused architectures** — the arm64/ppc64le/s390x `otel-exporter` binaries are
+  dropped along with the other non-amd64 binaries (this image is amd64-only).
 
-Not fixed here: the compiled Go binaries (`agent`, `linux-service`, `linux-router`)
-and a few major-bump-only npm packages (`nodemailer`, `pm2`, bundled `uuid` 8.x,
-`vega`/`vega-functions` 5.x — XSS fixed only in 6.x), which would need an upstream
+Not fixed here: the compiled Go binaries (`agent`, `agent-aix-ppc64`, `linux-service`,
+`linux-router`, `otel-exporter`; upstream ships binaries only, so the Go standard
+library and `golang.org/x/*` versions they embed cannot be bumped), the copies of
+`urllib3`/`msgpack`/`setuptools` vendored inside `pip` (pip is kept because the
+analyzer runs `pip freeze`; they clear when pip updates its vendored set), and the
+major-bump-only npm packages (`vega`/`vega-functions` 5.x — XSS fixed only in 6.x), which would need an upstream
 rebuild or a breaking version bump.
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/xormon-ng/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
