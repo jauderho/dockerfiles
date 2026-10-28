@@ -3,6 +3,7 @@ revision = 5
 requires-python = ">=3.14"
 
 [manifest]
+constraints = [{ name = "certifi", specifier = ">=2026.10.23" }]
 overrides = [{ name = "opencv-python", marker = "sys_platform == 'headless-only'" }]
 
 [[package]]
