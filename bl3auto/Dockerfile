@@ -49,7 +49,9 @@ COPY --from=build /etc/ssl/certs /etc/ssl/certs
 COPY --from=build /go/src/github.com/jauderho/bl3auto/bl3auto /usr/local/bin/
 
 # EXPOSE
-# ENV
+# scratch has no /etc/passwd, so HOME would default to /; pin it so
+# os.UserConfigDir() resolves to /root/.config, where the codes volume is mounted.
+ENV HOME=/root
 # STOPSIGNAL
 HEALTHCHECK NONE
 #USER bl3auto
