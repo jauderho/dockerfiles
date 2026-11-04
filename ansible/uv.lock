@@ -133,11 +133,11 @@ wheels = [
 
 [[package]]
 name = "bracex"
-version = "3.2"
+version = "3.2.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/fb/37/adf8dd2cde958c2d086bdd87fc36b532fd824bf38f10be6348d65da0c8f9/bracex-3.2.tar.gz", hash = "sha256:0a3d40bfae4caae4d3bfd0ea715874799fab711c38fd4012cc35343e815405cd", size = 29771, upload-time = "2026-10-22T00:28:49.508Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4d/fc/137095eb2f24ccf0b4db196abd9f5cfe74398a834af51d4bc4876e0beaf0/bracex-3.2.1.tar.gz", hash = "sha256:07a9b2100ceecc0c24afa1a1714bf8d4a6abb43d592939455f662b682ac9baa4", size = 32694, upload-time = "2026-11-03T14:13:43.53Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/42/65/8030b03de8137d1aab7dd6ecfecdba2fc22fc849fa35959b024f62293a99/bracex-3.2-py3-none-any.whl", hash = "sha256:8f3e908a452f66707e1d6d91b3d7d7d4c649d248df18537c0dc710aeb9c30d87", size = 12019, upload-time = "2026-10-22T00:28:48.233Z" },
+    { url = "https://files.pythonhosted.org/packages/47/ae/30dd8b027b4032b27e81364de5b74bfbef50b3c84c6aa0ead351bbb3749c/bracex-3.2.1-py3-none-any.whl", hash = "sha256:e8622d46b60ef6062b4091033f97a304e1b205e70c0285743c5038b73886a47e", size = 12527, upload-time = "2026-11-03T14:13:42.032Z" },
 ]
 
 [[package]]
@@ -394,11 +394,11 @@ wheels = [
 
 [[package]]
 name = "filelock"
-version = "4.2.7"
+version = "4.2.8"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e0/14/73688a22e91cfcfc6837a011ffa572e2ba3c348765f7bd482d8436fa9b6f/filelock-4.2.7.tar.gz", hash = "sha256:31f6f7e3a8b6f0bd89114d30c5d5218ea1cfb63e5c4aa695b7559314a209bc7f", size = 661450, upload-time = "2026-11-02T16:09:15.119Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c8/51/6619729344deb33a55ead1fbf50ac6435f43e33d6d57e56acd1495b24233/filelock-4.2.8.tar.gz", hash = "sha256:23df640ac0c3351f8d15c9739072d63be9078758b7d102a2183277ceb96605a3", size = 662554, upload-time = "2026-11-04T07:46:45.354Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/1a/1fcf0d3886bad15b92459a0e529dd86a1ec4d9ef30e789df48044fd3698c/filelock-4.2.7-py3-none-any.whl", hash = "sha256:d08972bbca2b8767ee552aff877b091dd111ffb1d22de7de885766ea7d719d5e", size = 164345, upload-time = "2026-11-02T16:09:13.588Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/ee/69ac34614c54831e0c4d34b92554d4df5b7ae71173d308040d44c432351f/filelock-4.2.8-py3-none-any.whl", hash = "sha256:c2be657e2c279cb032af8e4ea8ce2e20aa982e540be77fcaa34910d068ac2510", size = 164577, upload-time = "2026-11-04T07:46:43.907Z" },
 ]
 
 [[package]]
@@ -578,11 +578,11 @@ wheels = [
 
 [[package]]
 name = "mypy-extensions"
-version = "1.1.0"
+version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a2/6e/371856a3fb9d31ca8dac321cda606860fa4548858c0cc45d9d1d4ca2628b/mypy_extensions-1.1.0.tar.gz", hash = "sha256:52e68efc3284861e772bbcd66823fde5ae21fd2fdb51c62a211403730b916558", size = 6343, upload-time = "2025-04-22T14:54:24.164Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d0/6f/43edf3be2748d0e40974a5ee046a8bb4c9961a4bdd3e7d5c6dcbf32d1af6/mypy_extensions-1.2.0.tar.gz", hash = "sha256:c6e275a07f1c2fc096b62940452d0eaa3f3af7de45d704787866240a7c6d5a51", size = 6566, upload-time = "2026-11-03T16:26:33.692Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl", hash = "sha256:1be4cccdb0f2482337c4743e60421de3a356cd97508abadd57d47403e94f5505", size = 4963, upload-time = "2025-04-22T14:54:22.983Z" },
+    { url = "https://files.pythonhosted.org/packages/b5/99/7b1adac7e97ce7bbda34792dc6e9b2f5cc5cffd1875883f78a818b2a2687/mypy_extensions-1.2.0-py3-none-any.whl", hash = "sha256:993e7a20aa5671eb41a7132cf555af30062da99729601601b9a8382b11cae768", size = 5114, upload-time = "2026-11-03T16:26:32.731Z" },
 ]
 
 [[package]]
@@ -605,11 +605,11 @@ wheels = [
 
 [[package]]
 name = "platformdirs"
-version = "4.14.3"
+version = "4.14.4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9a/6e/886dc7c9d21e2d95aceb696f1e31271742033aeef3661f6e9c8921493592/platformdirs-4.14.3.tar.gz", hash = "sha256:021add1ab113483edbcd4694f5fbb2d688b893ea30d35e1155bb371cf4be0be8", size = 71124, upload-time = "2026-11-01T16:27:32.928Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a1/f1/602599e5879fce55f44b8021d28bd3817d87198a6be63e5c9d7e31891f0d/platformdirs-4.14.4.tar.gz", hash = "sha256:edb4a4aea570d69eb83e6b0973b588bbf868fb0dde2894106d6667739f017751", size = 71235, upload-time = "2026-11-04T07:38:46.024Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/41/f0aa003909ee77a9e7e55f8659abb635ca23ab0d022a449bbb18da87a1ef/platformdirs-4.14.3-py3-none-any.whl", hash = "sha256:cba2d05fe5e18b26b1fa6f376b8e6234c012abe1f8696c486fface7d0054e931", size = 35276, upload-time = "2026-11-01T16:27:31.498Z" },
+    { url = "https://files.pythonhosted.org/packages/01/7c/562ddff1940562f7701a7e8b0a90a900be606af334cc5f69543293e2293a/platformdirs-4.14.4-py3-none-any.whl", hash = "sha256:89c1bfa30434b2dcc08655bcfb1789e1a6f97602c11ff990615d09a4b823d6be", size = 35357, upload-time = "2026-11-04T07:38:44.794Z" },
 ]
 
 [[package]]
@@ -905,14 +905,14 @@ wheels = [
 
 [[package]]
 name = "wcmatch"
-version = "11.2"
+version = "12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bracex" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bd/07/b7a9162a804bc0f7d03fe84c93e374d3e1c4d828043d5f9b797f7d4e30e0/wcmatch-11.2.tar.gz", hash = "sha256:1605bde546fbde4c063628c7d89eda486909fd4337e51d73a873987fbcb2554c", size = 134939, upload-time = "2026-10-22T00:37:57.622Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/60/81/eb96ce41e8def4ff3b02cec7d1d92e3682597de5064d8687ac88d1734f18/wcmatch-12.0.tar.gz", hash = "sha256:80ebfdf510d5fef580c4fc662b9eba76b331cff20d7913fc6e722edcb199cbe6", size = 161277, upload-time = "2026-11-03T14:23:48.017Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/34/96/b6cebd4bd75320743a291fed494c79f07c01b58fa9b187d12aeb5110f002/wcmatch-11.2-py3-none-any.whl", hash = "sha256:952bab83c75c233836007a69550a3a8753cf06964c1eb3b84ff11ad5bff1c272", size = 44361, upload-time = "2026-10-22T00:37:56.293Z" },
+    { url = "https://files.pythonhosted.org/packages/22/8d/fb9b889e282a73e4423bd10f1ac358dd68b3e78fd099fab17f270a482157/wcmatch-12.0-py3-none-any.whl", hash = "sha256:46f7965313cfe65d8be049ab91095a5908be96ebb43e5d16da608b158825113c", size = 50558, upload-time = "2026-11-03T14:23:46.592Z" },
 ]
 
 [[package]]
