@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:94c1235fb708c42681f8cc9244f0bde2b42ef3f366c51543acf3f4df7a251e61 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:4edde21ceafef71af5a2045fbbd07ecb311fe035381aa8cf03204153a47228ce AS build
 
 WORKDIR /go/src/github.com/johnkerl/miller/
 
