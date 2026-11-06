@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:4edde21ceafef71af5a2045fbbd07ecb311fe035381aa8cf03204153a47228ce AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.3-alpine3.24@sha256:d668dc1abbace7207cc93511d47c360df27ed88ed4a57a51a8dc7391afad3796 AS build
 
 WORKDIR /go/src/github.com/authzed/spicedb/
 
