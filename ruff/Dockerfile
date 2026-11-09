@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.24.4@sha256:dad350eaeb3e08220270bc790fb66eac9d5820cded2bcd1e35d64a87c63298d5 AS build
+FROM ghcr.io/jauderho/alpine:3.24.4@sha256:835901013b6b16fb72368244b88776efef08c6d56fbc607a3fa8f749d1f7f876 AS build
 #FROM python:3.14.6-alpine3.24@sha256:003970a263347645cd23d4f90929ad16ba7ce7d808ee4674ffcc93cb21cc289f
 
 ARG BUILD_VERSION
@@ -27,7 +27,7 @@ RUN \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version in this stage would silently break it.
-FROM ghcr.io/jauderho/alpine:3.24.4@sha256:dad350eaeb3e08220270bc790fb66eac9d5820cded2bcd1e35d64a87c63298d5
+FROM ghcr.io/jauderho/alpine:3.24.4@sha256:835901013b6b16fb72368244b88776efef08c6d56fbc607a3fa8f749d1f7f876
 
 COPY --from=build /opt/venv /opt/venv
 
