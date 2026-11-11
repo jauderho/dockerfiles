@@ -8,7 +8,7 @@
 #EXPOSE 443
 
 ### BUILD ###
-FROM mcr.microsoft.com/dotnet/sdk:11.0-alpine3.24@sha256:a2aea624e4adcad2b7f4df801fc271e1235fe1225f1396c19d2a8207a399465d AS build
+FROM mcr.microsoft.com/dotnet/sdk:11.0-alpine3.24@sha256:52556c0fb9d0f609ae9aeab9efeeba96f4acc2f7038f7696f2235ccbdbb8e290 AS build
 WORKDIR /src
 
 ARG BUILD_VERSION
