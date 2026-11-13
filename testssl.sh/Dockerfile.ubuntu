@@ -4,7 +4,7 @@ WORKDIR /home/testssl
 
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
-ARG ARCHIVE_URL=https://github.com/drwetter/testssl.sh/archive/
+ARG ARCHIVE_URL=https://github.com/testssl/testssl.sh/archive/
 
 RUN test -n "${BUILD_VERSION}" \
     && apt-get update \

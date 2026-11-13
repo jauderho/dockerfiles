@@ -3,7 +3,7 @@ FROM ghcr.io/jauderho/alpine:3.24.4@sha256:835901013b6b16fb72368244b88776efef08c
 WORKDIR /home/testssl
 
 ARG BUILD_VERSION
-ARG ARCHIVE_URL=https://github.com/drwetter/testssl.sh/archive/
+ARG ARCHIVE_URL=https://github.com/testssl/testssl.sh/archive/
 
 RUN test -n "${BUILD_VERSION}" \
     && apk update \

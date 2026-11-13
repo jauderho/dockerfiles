@@ -55,7 +55,7 @@ REPO=(
 	"projectdiscovery/subfinder" \
 	"tailscale/tailscale" \
 	"hashicorp/terraform" \
-	"drwetter/testssl.sh" \
+	"testssl/testssl.sh" \
 	"shopify/toxiproxy" \
 	"trufflesecurity/trufflehog" \
 	"tsenart/vegeta" \
