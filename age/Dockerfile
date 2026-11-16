@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:db404f32e8118b0be007dde5050f288928945f9f591168c344ffb0bf5d5a3ff4 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:a84a366e38221d736822e6db154c02371264650eeaf43db97f1705003ebbf924 AS build
 
 WORKDIR /go/src/github.com/FiloSottile/age/
 
