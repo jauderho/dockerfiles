@@ -20,6 +20,10 @@ permissions:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  # Must match the Grype release that anchore/scan-action installs by default,
+  # because the vulnerability DB schema is tied to the Grype version.
+  GRYPE_VERSION: v0.118.0
+  GRYPE_DB_CACHE_DIR: /tmp/grype-db
 
 jobs:
   prepare:
@@ -34,11 +38,66 @@ jobs:
         id: set-programs
         run: echo "programs=$(cat scripts/PROGRAMS | jq -R -s -c 'split("\n") | map(select(length > 0))')" >> $GITHUB_OUTPUT
 
+  # Download the Grype vulnerability DB once and share it with every scan job,
+  # instead of each of the matrix jobs downloading its own copy.
+  grype-db:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: block
+          disable-telemetry: true
+          allowed-endpoints: >
+            *.blob.core.windows.net:443
+            95s5acprodeus1file6.blob.core.windows.net:443
+            actions-results-receiver-production.githubapp.com:443
+            github.com:443
+            grype.anchore.io:443
+            hosted-compute-watchdog-prod-eus-02.githubapp.com:443
+            objects.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            results-receiver.actions.githubusercontent.com:443
+            toolbox-data.anchore.io:443
+
+      - name: Install Grype
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          base="https://github.com/anchore/grype/releases/download/${GRYPE_VERSION}"
+          tarball="grype_${GRYPE_VERSION#v}_linux_amd64.tar.gz"
+          checksums="grype_${GRYPE_VERSION#v}_checksums.txt"
+          curl --proto "=https" --proto-redir "=https" -fsSL -O "${base}/${tarball}" -O "${base}/${checksums}"
+          grep " ${tarball}\$" "${checksums}" | sha256sum -c -
+          tar xzf "${tarball}" grype
+          sudo install -m 0755 grype /usr/local/bin/grype
+
+      - name: Download the Grype vulnerability DB
+        run: grype db update
+
+      # The imported DB is about 3.4 GB but compresses roughly 5x, so share a
+      # zstd archive rather than the raw files.
+      - name: Pack the Grype vulnerability DB
+        run: tar -C "${GRYPE_DB_CACHE_DIR}" -I 'zstd -T0 -3' -cf "${RUNNER_TEMP}/grype-db.tar.zst" .
+
+      - name: Share the Grype vulnerability DB
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: grype-db
+          path: ${{ runner.temp }}/grype-db.tar.zst
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+
   scan:
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-    needs: prepare
+    needs: [prepare, grype-db]
+    # A failed grype-db job must not skip the scans: each one falls back to
+    # downloading its own DB.
+    if: ${{ !cancelled() && needs.prepare.result == 'success' }}
     strategy:
       max-parallel: 25
       fail-fast: false
@@ -55,6 +114,9 @@ jobs:
           disable-telemetry: true
           # Union of the endpoints required by both Trivy and Anchore/Grype.
           allowed-endpoints: >
+            *.blob.core.windows.net:443
+            95s5acprodeus1file6.blob.core.windows.net:443
+            actions-results-receiver-production.githubapp.com:443
             api.github.com:443
             cdn.fwupd.org:443
             check.trivy.dev:443
@@ -69,7 +131,27 @@ jobs:
             pkg-containers.githubusercontent.com:443
             raw.githubusercontent.com:443
             release-assets.githubusercontent.com:443
+            results-receiver.actions.githubusercontent.com:443
             toolbox-data.anchore.io:443
+
+      # If the shared DB cannot be fetched or unpacked, Grype updates its own DB
+      # as before (see GRYPE_DB_AUTO_UPDATE on the Anchore step).
+      - name: Fetch the shared Grype vulnerability DB
+        id: grype-db-fetch
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: grype-db
+          path: ${{ runner.temp }}/grype-db-archive
+
+      - name: Unpack the shared Grype vulnerability DB
+        id: grype-db
+        if: ${{ steps.grype-db-fetch.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          mkdir -p "${GRYPE_DB_CACHE_DIR}"
+          tar -C "${GRYPE_DB_CACHE_DIR}" -I zstd -xf "${RUNNER_TEMP}/grype-db-archive/grype-db.tar.zst"
+          rm -rf "${RUNNER_TEMP}/grype-db-archive"
 
       # No checkout: both scanners target a published ghcr.io image, not the repo.
 
@@ -89,9 +171,12 @@ jobs:
           - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
             uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
             id: anchore-scan
+            env:
+              GRYPE_DB_AUTO_UPDATE: ${{ steps.grype-db.outcome == 'success' && 'false' || 'true' }}
             with:
               #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
               image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+              grype-version: ${{ env.GRYPE_VERSION }}
               fail-build: false
               severity-cutoff: high
 
