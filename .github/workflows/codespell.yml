@@ -24,6 +24,7 @@ jobs:
     name: Codespell
     # Set the agent to run on
     runs-on: ubuntu-26.04
+    timeout-minutes: 10
 
     # Load all steps #
     steps:
