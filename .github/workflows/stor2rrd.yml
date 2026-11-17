@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - stor2rrd/*
+      - stor2rrd/**
       - .github/workflows/stor2rrd.yml
   workflow_dispatch:
   schedule:

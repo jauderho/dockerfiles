@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - freenginx/*
+      - freenginx/**
       - .github/workflows/freenginx.yml
   workflow_dispatch:
   schedule:

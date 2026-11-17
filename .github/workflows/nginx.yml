@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - nginx/*
+      - nginx/**
       - .github/workflows/nginx.yml
   workflow_dispatch:
   schedule:

@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - lpar2rrd/*
+      - lpar2rrd/**
       - .github/workflows/lpar2rrd.yml
   workflow_dispatch:
   schedule:

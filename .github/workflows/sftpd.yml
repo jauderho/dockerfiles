@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - sftpd/*
+      - sftpd/**
       - .github/workflows/sftpd.yml
   workflow_dispatch:
   schedule:

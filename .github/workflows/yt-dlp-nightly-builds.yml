@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - yt-dlp/Dockerfile.nightly
+      - yt-dlp/pyproject.toml
+      - yt-dlp/uv.lock
       - .github/workflows/yt-dlp-nightly-builds.yml
   workflow_dispatch:
   schedule:
