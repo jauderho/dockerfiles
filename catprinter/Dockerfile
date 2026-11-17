@@ -2,7 +2,7 @@
 # two platforms; anything wider needs the release tarball per TARGETARCH.
 FROM ghcr.io/astral-sh/uv:0.13.9@sha256:d3b601f0c7b118bc1753febf7c41cc80981df678445e0254284eecf84db79a7d AS uv
 
-FROM ubuntu:26.10@sha256:b5194b8e58989da0865ebc80078bf9f5f8742ec6a867c53f6ae699f6036756f7 AS build
+FROM ubuntu:26.10@sha256:c4ca31b6e93261c5dd773826f789738a49e414ca04fc094b1ccd0f91e07329a2 AS build
 
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
@@ -41,7 +41,7 @@ RUN \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
-FROM ubuntu:26.10@sha256:b5194b8e58989da0865ebc80078bf9f5f8742ec6a867c53f6ae699f6036756f7
+FROM ubuntu:26.10@sha256:c4ca31b6e93261c5dd773826f789738a49e414ca04fc094b1ccd0f91e07329a2
 
 ARG DEBIAN_FRONTEND=noninteractive
 
