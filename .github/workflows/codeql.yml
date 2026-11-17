@@ -1,0 +1,51 @@
+#
+# Run CodeQL on a weekly schedule only. This replaces the code-scanning
+# "default setup", which also ran on every push to main and on pull requests.
+#
+name: CodeQL
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (actions)
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      security-events: write # for github/codeql-action/analyze to upload SARIF results
+      packages: read # for github/codeql-action/init to fetch CodeQL packs
+      actions: read
+      contents: read
+
+    steps:
+      # Audit mode until the endpoint list has been confirmed from a real run.
+      - name: Harden Runner
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+          disable-telemetry: true
+
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: actions
+          build-mode: none
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: "/language:actions"
