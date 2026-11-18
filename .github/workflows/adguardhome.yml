@@ -50,6 +50,7 @@ jobs:
             production.cloudfront.docker.com:443
             proxy.golang.org:443
             registry-1.docker.io:443
+            release-assets.githubusercontent.com:443
             sum.golang.org:443
           
       - name: Source checkout
