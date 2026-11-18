@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - freenginx/*
+      - freenginx/**
       - .github/workflows/freenginx.yml
   workflow_dispatch:
   schedule:
@@ -17,6 +17,10 @@ env:
   PCRE_VERSION: "10.49"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

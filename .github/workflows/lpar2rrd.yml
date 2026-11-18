@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - lpar2rrd/*
+      - lpar2rrd/**
       - .github/workflows/lpar2rrd.yml
   workflow_dispatch:
   schedule:
@@ -15,6 +15,10 @@ env:
   BUILD_VERSION: "8.07"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

@@ -2,7 +2,7 @@
 # linux/arm64 in internal/tofu/evaluate.go ("can't find source for ..." in
 # (*evaluationStateData).GetResource). Do not bump to 1.26.6 until this is fixed
 # upstream; revisit when Go 1.26.7 ships.
-FROM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:68bb773c4d1830b87afbd3af0a959c94a6a1ae58fb4ec7ca845626060fd0cc04 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:68bb773c4d1830b87afbd3af0a959c94a6a1ae58fb4ec7ca845626060fd0cc04 AS build
 #FROM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:68bb773c4d1830b87afbd3af0a959c94a6a1ae58fb4ec7ca845626060fd0cc04 AS build
 
 WORKDIR /go/src/github.com/opentofu/opentofu
@@ -16,6 +16,11 @@ ENV GO111MODULE=on
 # and scripts/build.sh), so this matches the official binaries and yields a
 # fully static tofu with no libc dependency and no C toolchain in the build.
 ENV CGO_ENABLED=0
+
+# Build tools (stringer, go generate, protobuf-compile) run on the build
+# platform; only the final go build targets the image platform.
+ARG TARGETOS
+ARG TARGETARCH
 
 #COPY . .
 
@@ -37,7 +42,7 @@ RUN test -n "${BUILD_VERSION}" \
 	&& go mod tidy \
 	&& go generate ./... \
 	&& go run ./tools/protobuf-compile . \
-	&& go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
+	&& GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -trimpath -ldflags="-s -w -X github.com/opentofu/opentofu/version.dev=no -X main.experimentsAllowed=yes" ./cmd/tofu \
 	&& cp tofu /go/bin/tofu \
 	&& go clean && go clean -cache && go clean -modcache 
 

@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - nginx-quic/*
+      - nginx-quic/**
       - .github/workflows/nginx-quic.yml
   workflow_dispatch:
   schedule:

@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - yt-dlp/Dockerfile.nightly
+      - yt-dlp/pyproject.toml
+      - yt-dlp/uv.lock
       - .github/workflows/yt-dlp-nightly-builds.yml
   workflow_dispatch:
   schedule:
@@ -15,6 +17,10 @@ env:
   BUILD_VERSION: "2026.11.16.232655"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.actor }}/yt-dlp-nightly-builds
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

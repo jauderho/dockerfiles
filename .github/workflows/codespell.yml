@@ -3,9 +3,11 @@ name: Codespell
 # Documentation:
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-# Start the job on all push #
+# Start the job on push to main and on pull requests #
 on:
   push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -22,6 +24,7 @@ jobs:
     name: Codespell
     # Set the agent to run on
     runs-on: ubuntu-26.04
+    timeout-minutes: 10
 
     # Load all steps #
     steps:
