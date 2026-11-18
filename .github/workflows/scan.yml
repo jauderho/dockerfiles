@@ -20,9 +20,6 @@ permissions:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  # Must match the Grype release that anchore/scan-action installs by default,
-  # because the vulnerability DB schema is tied to the Grype version.
-  GRYPE_VERSION: v0.118.0
   GRYPE_DB_CACHE_DIR: /tmp/grype-db
 
 jobs:
@@ -39,7 +36,9 @@ jobs:
         run: echo "programs=$(cat scripts/PROGRAMS | jq -R -s -c 'split("\n") | map(select(length > 0))')" >> $GITHUB_OUTPUT
 
   # Download the Grype vulnerability DB once and share it with every scan job,
-  # instead of each of the matrix jobs downloading its own copy.
+  # instead of each of the matrix jobs downloading its own copy. The DB schema
+  # is tied to the Grype version, so this job gets Grype from the same
+  # anchore/scan-action as the scan jobs: a scan-action bump moves both together.
   grype-db:
     runs-on: ubuntu-26.04
     timeout-minutes: 10
@@ -53,28 +52,29 @@ jobs:
             *.blob.core.windows.net:443
             95s5acprodeus1file6.blob.core.windows.net:443
             actions-results-receiver-production.githubapp.com:443
+            api.github.com:443
+            get.anchore.io:443
             github.com:443
             grype.anchore.io:443
             hosted-compute-watchdog-prod-eus-02.githubapp.com:443
             objects.githubusercontent.com:443
+            raw.githubusercontent.com:443
             release-assets.githubusercontent.com:443
             results-receiver.actions.githubusercontent.com:443
             toolbox-data.anchore.io:443
 
-      - name: Install Grype
-        run: |
-          set -euo pipefail
-          cd "$RUNNER_TEMP"
-          base="https://github.com/anchore/grype/releases/download/${GRYPE_VERSION}"
-          tarball="grype_${GRYPE_VERSION#v}_linux_amd64.tar.gz"
-          checksums="grype_${GRYPE_VERSION#v}_checksums.txt"
-          curl --proto "=https" --proto-redir "=https" -fsSL -O "${base}/${tarball}" -O "${base}/${checksums}"
-          grep " ${tarball}\$" "${checksums}" | sha256sum -c -
-          tar xzf "${tarball}" grype
-          sudo install -m 0755 grype /usr/local/bin/grype
+      # Scanning an empty directory installs Grype and downloads the DB into
+      # GRYPE_DB_CACHE_DIR; the scan result itself is not used.
+      - name: Create an empty directory to scan
+        run: mkdir "${RUNNER_TEMP}/empty"
 
       - name: Download the Grype vulnerability DB
-        run: grype db update
+        uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+        with:
+          path: ${{ runner.temp }}/empty
+          fail-build: false
+          output-format: table
+          output-file: ${{ runner.temp }}/grype-db-warmup.txt
 
       # The imported DB is about 3.4 GB but compresses roughly 5x, so share a
       # zstd archive rather than the raw files.
@@ -176,7 +176,6 @@ jobs:
             with:
               #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
               image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
-              grype-version: ${{ env.GRYPE_VERSION }}
               fail-build: false
               severity-cutoff: high
 
