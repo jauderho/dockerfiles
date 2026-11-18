@@ -16,9 +16,10 @@ FROM oven/bun:1.4.4@sha256:1d22548f177f4ff38e0c15baa3c2c46c6c2060ba2d1bc573bb472
 FROM ubuntu:26.10@sha256:c4ca31b6e93261c5dd773826f789738a49e414ca04fc094b1ccd0f91e07329a2 AS build
 
 ARG BUILD_VERSION
-ARG NODE_VERSION=24.19.0
-# npm bundled with Node 24.19.0 (11.17.0) still vendors tar 7.5.16. npm 11.18.0+
-# vendors tar 7.5.19, which carries the fix for GHSA-23hp-3jrh-7fpw.
+ARG NODE_VERSION=24.22.3
+# npm is upgraded past the version bundled with Node: older bundles (11.17.0)
+# vendor tar 7.5.16, while npm 11.18.0+ vendors tar 7.5.19, which carries the
+# fix for GHSA-23hp-3jrh-7fpw.
 ARG NPM_VERSION=^11.19.0
 ARG DEBIAN_FRONTEND=noninteractive
 
