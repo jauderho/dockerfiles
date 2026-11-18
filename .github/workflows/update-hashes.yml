@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 jobs:
-  update-docker:
+  update-hashes:
     runs-on: ubuntu-26.04
 
     steps:
