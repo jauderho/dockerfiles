@@ -53,7 +53,6 @@ jobs:
           egress-policy: block
           disable-telemetry: true
           allowed-endpoints: >
-            95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
             archive.ubuntu.com:80
             artifactcache.actions.githubusercontent.com:443
@@ -157,7 +156,6 @@ jobs:
           egress-policy: block
           disable-telemetry: true
           allowed-endpoints: >
-            95s5acprodeus1file6.blob.core.windows.net:443
             api.github.com:443
             auth.docker.io:443
             ghcr.io:443
