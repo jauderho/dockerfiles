@@ -50,7 +50,6 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: >
             *.blob.core.windows.net:443
-            95s5acprodeus1file6.blob.core.windows.net:443
             actions-results-receiver-production.githubapp.com:443
             api.github.com:443
             get.anchore.io:443
@@ -115,7 +114,6 @@ jobs:
           # Union of the endpoints required by both Trivy and Anchore/Grype.
           allowed-endpoints: >
             *.blob.core.windows.net:443
-            95s5acprodeus1file6.blob.core.windows.net:443
             actions-results-receiver-production.githubapp.com:443
             api.github.com:443
             cdn.fwupd.org:443
