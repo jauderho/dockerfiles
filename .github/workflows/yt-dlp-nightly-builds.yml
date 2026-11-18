@@ -55,6 +55,7 @@ jobs:
             proxy.golang.org:443
             pypi.org:443
             registry-1.docker.io:443
+            release-assets.githubusercontent.com:443
           
       - name: Source checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
