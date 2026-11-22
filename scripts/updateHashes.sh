@@ -1,15 +1,19 @@
 #!/bin/bash
 #
-# Script to check and start new image builds if the source repos have new releases.
-# Also checks for new Golang and Alpine Linux base image versions in ./templates/.
+# Keep the shared Alpine and Golang base images current.
 #
-# Usage: PAT=<github_pat> ./updateDockerImages.sh [--dryrun]
+#   1. Check the official alpine and golang images on Docker Hub (tag and
+#      digest). On a change, update templates/alpine or templates/golang and
+#      the matching workflow, then commit and push; that push starts the
+#      rebuild of ghcr.io/jauderho/alpine or ghcr.io/jauderho/golang.
+#   2. Point every Dockerfile that uses ghcr.io/jauderho/alpine or
+#      ghcr.io/jauderho/golang at the tag and digest ghcr.io now publishes,
+#      then commit and push.
+#
+# Usage: scripts/updateHashes.sh [--dryrun]
 #
 # Switches:
 #   --dryrun   Show what would be updated without making any changes or git commits
-#
-# Environment variables:
-#   PAT        GitHub Personal Access Token (reduces API rate limits for repo checks)
 #
 # Dependencies: curl, jq, docker (with buildx plugin), git
 #
@@ -34,9 +38,6 @@ for arg in "$@"; do
 			;;
 	esac
 done
-
-# $PAT variable needs to be passed into the script as an env variable
-# PAT is only used to avoid API rate limits
 
 # ---------------------------------------------------------------------------
 # State shared between the check_* and update_ghcr_* phases.
