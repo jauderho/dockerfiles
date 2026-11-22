@@ -1,3 +1,10 @@
+# deno runs yt-dlp's YouTube JavaScript challenges. Alpine's deno package
+# (edge too) is stuck at 2.7.4, whose bundled Rust crates carry most of this
+# image's fixable alerts, so the official build is taken from Deno's Alpine
+# image instead: the glibc binary, rpath-patched to a private copy of glibc in
+# /usr/local/lib/glibc that musl programs never load.
+FROM denoland/deno:alpine-2.9.8@sha256:75749604f68aea01d39bead15fd1c86343639e44eb8c58ab051da8a924799d01 AS deno
+
 FROM ghcr.io/jauderho/alpine:3.24.4@sha256:afd0b70e71846b4efdac68e902f5bca4139009d3e653fa8e5023ad8bacef6d22 AS build
 
 ARG BUILD_VERSION
@@ -81,6 +88,10 @@ ARG DUMB_INIT_VERSION=1.2.5
 
 COPY --from=build /opt/venv /opt/venv
 COPY --from=build /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp
+COPY --from=deno /bin/deno /usr/local/bin/deno
+COPY --from=deno /usr/local/lib/glibc /usr/local/lib/glibc
+COPY --from=deno /lib/ld-linux-* /lib/
+COPY --from=deno /lib64 /lib64
 
 # The zipapp runs under "env python3", so the venv has to be ahead of
 # /usr/bin on PATH for it to see curl_cffi, mutagen and pycryptodomex.
@@ -96,7 +107,6 @@ RUN set -x \
         python3 \
         zstd \
         nghttp2 \
- && apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/community deno simdutf \
  # Create directory to hold downloads.
  && mkdir /downloads \
     # 0750, not world-writable: root is the only account that writes
@@ -119,6 +129,9 @@ VOLUME ["/downloads"]
 
 # Basic check.
 RUN dumb-init yt-dlp --version \
+ && deno --version \
+ && deno eval 'console.log("deno OK")' \
+ && rm -rf /root/.cache/deno \
  && python3 -c 'import mutagen, Cryptodome, curl_cffi; print("deps OK")' \
  # Fail loudly if the installed curl_cffi is not usable for impersonation.
  && case "$(uname -m)" in \
