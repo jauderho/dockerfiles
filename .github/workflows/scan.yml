@@ -152,47 +152,120 @@ jobs:
           rm -rf "${RUNNER_TEMP}/grype-db-archive"
 
       # No checkout: both scanners target a published ghcr.io image, not the repo.
+      # The image owner is the repository owner, never github.actor: a push by
+      # dependabot[bot] would otherwise scan "ghcr.io/dependabot[bot]/...", an
+      # invalid reference, and fail every job.
 
-      # Trivy and Anchore are independent, so scan concurrently. Both run to
-      # completion even if one fails, so a single tool failure does not mask the other.
+      # Trivy and Anchore are independent, so scan concurrently. A first attempt
+      # may fail on a transient error (registry stream reset, scanner install or
+      # DB download); continue-on-error lets the retry below run instead.
       - parallel:
           - name: Run Trivy to check ${{ matrix.image }} Docker image for vulnerabilities
+            id: trivy
+            continue-on-error: true
             uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
             with:
               #image-ref: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-              image-ref: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+              image-ref: 'ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:latest'
               format: 'sarif'
               output: 'trivy-${{ matrix.image }}.sarif'
               severity: 'HIGH,CRITICAL'
               hide-progress: false
 
           - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
-            uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
             id: anchore-scan
+            continue-on-error: true
+            uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
             env:
               GRYPE_DB_AUTO_UPDATE: ${{ steps.grype-db.outcome == 'success' && 'false' || 'true' }}
             with:
               #image: 'docker.io/${{ github.actor }}/${{ matrix.image }}:latest'
-              image: 'ghcr.io/${{ github.actor }}/${{ matrix.image }}:latest'
+              image: 'ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:latest'
               fail-build: false
               severity-cutoff: high
 
-      # The group's implicit wait fails the job if either scan failed, so the
-      # uploads need !cancelled() to still publish whichever result exists.
+      # One retry per failed scanner. These have no continue-on-error: a scanner
+      # that fails twice fails the job. The Grype retry always fetches its own
+      # DB, in case the shared one was the problem.
       - parallel:
-          - name: Upload Trivy result to GitHub Code Scanning
-            if: ${{ !cancelled() && hashFiles(format('trivy-{0}.sarif', matrix.image)) != '' }}
-            uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+          - name: Retry Trivy for ${{ matrix.image }}
+            id: trivy-retry
+            if: ${{ steps.trivy.outcome == 'failure' }}
+            uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
             with:
-              sarif_file: 'trivy-${{ matrix.image }}.sarif'
-              category: 'trivy-${{ matrix.image }}'
+              image-ref: 'ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:latest'
+              format: 'sarif'
+              output: 'trivy-${{ matrix.image }}.sarif'
+              severity: 'HIGH,CRITICAL'
+              hide-progress: false
 
-          - name: Upload Anchore result to GitHub Code Scanning
-            if: ${{ !cancelled() && steps.anchore-scan.outputs.sarif != '' }}
-            uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+          - name: Retry Anchore for ${{ matrix.image }}
+            id: anchore-retry
+            if: ${{ steps.anchore-scan.outcome == 'failure' }}
+            uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+            env:
+              GRYPE_DB_AUTO_UPDATE: 'true'
             with:
-              sarif_file: ${{ steps.anchore-scan.outputs.sarif }}
-              category: 'anchore-${{ matrix.image }}'
+              image: 'ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:latest'
+              fail-build: false
+              severity-cutoff: high
+
+      # Upload only a result that parses as SARIF. A failed scanner can leave an
+      # empty or partial file, which would only add an "Invalid SARIF" failure.
+      - name: Check SARIF results
+        id: sarif
+        if: ${{ !cancelled() }}
+        env:
+          TRIVY_SARIF: trivy-${{ matrix.image }}.sarif
+          ANCHORE_SARIF: ${{ steps.anchore-retry.outputs.sarif || steps.anchore-scan.outputs.sarif }}
+        run: |
+          check() {
+            if [[ -n "$2" && -s "$2" ]] && jq -e '.runs | type == "array"' "$2" >/dev/null 2>&1; then
+              echo "$1=$2" >> "$GITHUB_OUTPUT"
+            else
+              echo "::warning::No valid $1 SARIF result to upload (${2:-no file})"
+            fi
+          }
+          check trivy "$TRIVY_SARIF"
+          check anchore "$ANCHORE_SARIF"
+
+      # Uploads run one after another, not in a parallel group: two
+      # upload-sarif steps started together intermittently crash with
+      # "SyntaxError: Unexpected end of JSON input" while loading the workflow
+      # event file. Each upload gets one retry for transient API errors.
+      # The categories (and the job name "scan") must stay as they are:
+      # changing either orphans the existing code scanning alerts.
+      - name: Upload Trivy result to GitHub Code Scanning
+        id: upload-trivy
+        if: ${{ !cancelled() && steps.sarif.outputs.trivy != '' }}
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: ${{ steps.sarif.outputs.trivy }}
+          category: 'trivy-${{ matrix.image }}'
+
+      - name: Retry Trivy upload
+        if: ${{ !cancelled() && steps.upload-trivy.outcome == 'failure' }}
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: ${{ steps.sarif.outputs.trivy }}
+          category: 'trivy-${{ matrix.image }}'
+
+      - name: Upload Anchore result to GitHub Code Scanning
+        id: upload-anchore
+        if: ${{ !cancelled() && steps.sarif.outputs.anchore != '' }}
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: ${{ steps.sarif.outputs.anchore }}
+          category: 'anchore-${{ matrix.image }}'
+
+      - name: Retry Anchore upload
+        if: ${{ !cancelled() && steps.upload-anchore.outcome == 'failure' }}
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: ${{ steps.sarif.outputs.anchore }}
+          category: 'anchore-${{ matrix.image }}'
 
   # snyk:
   #   permissions:
