@@ -239,14 +239,14 @@ jobs:
         id: upload-trivy
         if: ${{ !cancelled() && steps.sarif.outputs.trivy != '' }}
         continue-on-error: true
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
         with:
           sarif_file: ${{ steps.sarif.outputs.trivy }}
           category: 'trivy-${{ matrix.image }}'
 
       - name: Retry Trivy upload
         if: ${{ !cancelled() && steps.upload-trivy.outcome == 'failure' }}
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
         with:
           sarif_file: ${{ steps.sarif.outputs.trivy }}
           category: 'trivy-${{ matrix.image }}'
@@ -255,14 +255,14 @@ jobs:
         id: upload-anchore
         if: ${{ !cancelled() && steps.sarif.outputs.anchore != '' }}
         continue-on-error: true
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
         with:
           sarif_file: ${{ steps.sarif.outputs.anchore }}
           category: 'anchore-${{ matrix.image }}'
 
       - name: Retry Anchore upload
         if: ${{ !cancelled() && steps.upload-anchore.outcome == 'failure' }}
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
         with:
           sarif_file: ${{ steps.sarif.outputs.anchore }}
           category: 'anchore-${{ matrix.image }}'
