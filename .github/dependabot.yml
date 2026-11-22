@@ -39,6 +39,17 @@ updates:
     directories:
       - "/*"
       - "/templates/*"
+    # nginx-distroless/Dockerfile.stable is built FROM nginx stable (even minor
+    # version). Dependabot cannot tell stable from mainline and would move it to
+    # mainline, so scripts/updateDockerImages.sh owns that file instead: it sets
+    # the nginx stable tag and digest, and copies the distroless base line from
+    # nginx-distroless/Dockerfile, which Dependabot still updates. Both patterns
+    # are listed because the docs say paths are relative to the directory and
+    # the changelog says relative to the repository root; it is the only
+    # Dockerfile.stable in the repository.
+    exclude-paths:
+      - "nginx-distroless/Dockerfile.stable"
+      - "Dockerfile.stable"
     open-pull-requests-limit: 25
     schedule:
       interval: "daily"

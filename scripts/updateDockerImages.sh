@@ -912,6 +912,46 @@ while IFS=$'\t' read -r kind ver digest; do
 	echo
 done < "${WORKDIR}/nginx-distroless"
 
+# Dependabot does not update nginx-distroless/Dockerfile.stable (see
+# .github/dependabot.yml), so copy the distroless runtime base it keeps current
+# in nginx-distroless/Dockerfile.
+distroless_from() {
+	sed -nE 's#^FROM[[:space:]]+(gcr\.io/distroless/[^@[:space:]]+@sha256:[0-9a-f]{64}).*#\1#p' "$1" | head -n1
+}
+
+echo "Checking nginx-distroless stable distroless base ..."
+df_main="nginx-distroless/Dockerfile"
+df_stable="nginx-distroless/Dockerfile.stable"
+base=$(distroless_from "$df_main")
+cur_base=$(distroless_from "$df_stable")
+echo
+echo "    ${df_stable##*/} is FROM ${cur_base:-<unknown>}"
+echo "    ${df_main##*/} is FROM ${base:-<unknown>}"
+echo
+if [[ -z "$base" || -z "$cur_base" ]]; then
+	echo "    ERROR: cannot read the distroless FROM line in ${df_main} or ${df_stable}" >&2
+	FAILURES=$((FAILURES + 1))
+elif [[ "$base" == "$cur_base" ]]; then
+	echo "No update needed ..."
+elif (( DRYRUN )); then
+	dry "would set FROM ${base} in ${df_stable}; commit 'Updated nginx-distroless stable distroless base'"
+else
+	echo "Updating to ${base} ..."
+	if sed -i.bak -E "s#^(FROM[[:space:]]+)gcr\.io/distroless/[^@[:space:]]+@sha256:[0-9a-f]{64}#\1${base}#" "$df_stable" \
+		&& rm -f "${df_stable}.bak" \
+		&& [[ "$(distroless_from "$df_stable")" == "$base" ]]; then
+		commit_paths "Updated nginx-distroless stable distroless base" "$df_stable" \
+			|| FAILURES=$((FAILURES + 1))
+	else
+		echo "    ERROR: could not update ${df_stable}; restoring it" >&2
+		restore_paths "$df_stable"
+		FAILURES=$((FAILURES + 1))
+	fi
+fi
+echo
+echo
+echo
+
 # Final push: retry any commit whose push failed above.
 if (( DRYRUN )); then
 	echo "Dry run: ${DRY_CHANGES} change(s) would be committed; nothing was edited, committed or pushed."
