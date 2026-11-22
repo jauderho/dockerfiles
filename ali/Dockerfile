@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:9feef5080ab24dd809529a9d1b0a99283174f849f08ec38d6d6985f36e0362b3 AS build
+FROM --platform=$BUILDPLATFORM ghcr.io/jauderho/golang:1.27.4-alpine3.24@sha256:3639a8b3e4cc482b070661c2b0e342ed633fd4a982c083b92738f168d9a9b273 AS build
 
 WORKDIR /go/src/github.com/nakabonne/ali/
 
