@@ -48,8 +48,10 @@ jobs:
             aerodent.canonical.com:443
             api.github.com:443
             azure.archive.ubuntu.com:80
+            dl-cdn.alpinelinux.org:443
             files.pythonhosted.org:443
             github.com:443
+            lpar2rrd.com:443
             objects.githubusercontent.com:443
             pkg-containers.githubusercontent.com:443
             pypi.org:443
@@ -57,6 +59,7 @@ jobs:
             release-assets.githubusercontent.com:443
             releases.astral.sh:443
             security.ubuntu.com:443
+            stor2rrd.com:443
 
       - name: Source checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
