@@ -16,7 +16,7 @@ env:
   OPENSSL_VERSION: "4.1.0"
   PCRE_VERSION: "10.49"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+  REPOSITORY: ${{ github.repository_owner }}/${{ github.workflow }} 
 
 concurrency:
   group: ${{ github.workflow }}

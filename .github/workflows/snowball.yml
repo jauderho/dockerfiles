@@ -20,7 +20,7 @@ env:
   # are vulnerable on AVX-512 VBMI hosts.
   JRE_VERSION: "17.0.21.1.2"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+  REPOSITORY: ${{ github.repository_owner }}/${{ github.workflow }} 
 
 concurrency:
   group: ${{ github.workflow }}

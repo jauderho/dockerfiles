@@ -16,7 +16,7 @@ on:
 env:
   BUILD_VERSION: "2026.11.21.232659"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/yt-dlp-nightly-builds
+  REPOSITORY: ${{ github.repository_owner }}/yt-dlp-nightly-builds
 
 concurrency:
   group: ${{ github.workflow }}

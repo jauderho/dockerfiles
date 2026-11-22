@@ -16,7 +16,7 @@ on:
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/dnscrypt-proxy
+  REPOSITORY: ${{ github.repository_owner }}/dnscrypt-proxy
 
 permissions:
   contents: read

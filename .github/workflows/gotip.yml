@@ -14,7 +14,7 @@ on:
 env:
   BUILD_VERSION: "nightly"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }}
+  REPOSITORY: ${{ github.repository_owner }}/${{ github.workflow }}
   UPSTREAM_REPO: https://github.com/golang/go.git
 
 concurrency:

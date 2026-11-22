@@ -14,7 +14,7 @@ on:
 env:
   BUILD_VERSION: "10.3_p1-r2"
   DOCKER_CLI_EXPERIMENTAL: enabled
-  REPOSITORY: ${{ github.actor }}/${{ github.workflow }} 
+  REPOSITORY: ${{ github.repository_owner }}/${{ github.workflow }} 
 
 concurrency:
   group: ${{ github.workflow }}

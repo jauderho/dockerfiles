@@ -36,6 +36,6 @@ jobs:
         target-url: https://gitlab.com/${{ github.repository }}.git
         # Such as wangchucheng
         #target-username: ${{ secrets.GITLAB_USERNAME }}
-        target-username: ${{ github.actor }}
+        target-username: ${{ github.repository_owner }}
         # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as ${{ secrets.ACCESS\_TOKEN }}
         target-token: ${{ secrets.GITLAB_TOKEN }}
