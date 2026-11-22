@@ -13,8 +13,8 @@ on:
 
 env:
   BUILD_VERSION: "1.2.0-1554"
-  NETTY_VERSION: "4.1.137.Final"
-  BC_VERSION: "1.84"
+  NETTY_VERSION: "4.1.141.Final"
+  BC_VERSION: "1.87"
   # Amazon Corretto 17; 17.0.21.1.2 == OpenJDK 17.0.21.1+2, which includes the
   # Java4Shell (CVE-2026-114938) fix, JDK-8393212. Earlier 17.0.x builds (17.0.6+)
   # are vulnerable on AVX-512 VBMI hosts.
