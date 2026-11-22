@@ -97,6 +97,9 @@ jobs:
         env:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
           DISPATCH_PYTHON_DEPS: ${{ inputs.python_deps }}
+          # Passed through env, not as an inline expression in the script, so the token
+          # never appears in the generated step script.
+          PAT: ${{ secrets.UPDATE_SECRET }}
         run: |
           git config --global user.name "Gromit Bot"
           git config --global user.email "gromit-bot@users.noreply.github.com"
@@ -108,5 +111,5 @@ jobs:
           if [[ "$EVENT_SCHEDULE" == "30 3 * * *" || "$DISPATCH_PYTHON_DEPS" == "true" ]]; then
             args+=(--python-deps)
           fi
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh "${args[@]}"
+          scripts/updateDockerImages.sh "${args[@]}"
           rm -rf ~/.ssh

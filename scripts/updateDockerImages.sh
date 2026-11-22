@@ -2,7 +2,7 @@
 #
 # Script to check and start new image builds if the source repos have new releases
 #
-# Usage: PAT=<actor>/<token> scripts/updateDockerImages.sh [options]
+# Usage: PAT=<token> scripts/updateDockerImages.sh [options]
 #
 #   --python-deps  Also refresh uv.lock for every Python image (PYTHON_APPS),
 #                  even when the app itself has no new release, so that
@@ -19,7 +19,9 @@
 #   -h, --help     Show this help and exit.
 #
 # Environment:
-#   PAT            "<actor>/<token>"; the token is used for GitHub API calls.
+#   PAT            GitHub token, used for GitHub API calls. The older
+#                  "<actor>/<token>" form is still accepted; the part before
+#                  the "/" is ignored.
 #
 set -euo pipefail
 IFS=$'\n\t'
@@ -152,11 +154,12 @@ VERSIONS_FILE="${WORKDIR}/versions"
 UV_EMPTY_CONFIG="${WORKDIR}/empty-uv.toml"
 : > "$UV_EMPTY_CONFIG"
 
-# PAT is passed as "<actor>/<token>"; the GraphQL API needs the bare token.
-: "${PAT:?PAT must be set as <actor>/<token>}"
-GH_TOKEN="${PAT#*/}"
-if [[ -z "$GH_TOKEN" || "$GH_TOKEN" == "$PAT" ]]; then
-	echo "ERROR: could not extract a token from PAT (expected '<actor>/<token>')." >&2
+# PAT is a bare GitHub token or the older "<actor>/<token>" form. GitHub tokens
+# never contain "/", so dropping everything up to the last "/" handles both.
+: "${PAT:?PAT must be set to a GitHub token}"
+GH_TOKEN="${PAT##*/}"
+if [[ -z "$GH_TOKEN" ]]; then
+	echo "ERROR: PAT holds no token (expected '<token>' or '<actor>/<token>')." >&2
 	exit 1
 fi
 
