@@ -2,7 +2,7 @@
 # two platforms; anything wider needs the release tarball per TARGETARCH.
 FROM ghcr.io/astral-sh/uv:0.13.9@sha256:d3b601f0c7b118bc1753febf7c41cc80981df678445e0254284eecf84db79a7d AS uv
 
-FROM ubuntu:26.10@sha256:c4ca31b6e93261c5dd773826f789738a49e414ca04fc094b1ccd0f91e07329a2 AS build
+FROM ubuntu:26.10@sha256:1c2a84ae3f2a24aeb97cded5b41f0211b441662f1a188cbd2e139e7625f6f1d6 AS build
 
 WORKDIR /ansible
 
@@ -52,7 +52,7 @@ RUN apt-get update && \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
-FROM ubuntu:26.10@sha256:c4ca31b6e93261c5dd773826f789738a49e414ca04fc094b1ccd0f91e07329a2
+FROM ubuntu:26.10@sha256:1c2a84ae3f2a24aeb97cded5b41f0211b441662f1a188cbd2e139e7625f6f1d6
 
 WORKDIR /ansible
 
