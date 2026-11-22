@@ -2,8 +2,58 @@
 #
 # Script to check and start new image builds if the source repos have new releases
 #
+# Usage: PAT=<actor>/<token> scripts/updateDockerImages.sh [options]
+#
+#   --python-deps  Also refresh uv.lock for every Python image (PYTHON_APPS),
+#                  even when the app itself has no new release, so that
+#                  dependency-only updates are picked up. The daily run uses it.
+#                  Without it, a Python image is only refreshed when its app
+#                  has a new release.
+#   -n, --dryrun   Resolve versions and report every change the run would make
+#                  (pins, uv.lock refreshes, commit messages) without editing,
+#                  committing or pushing anything. Network lookups still run,
+#                  so PAT is still required.
+#   -v, --verbose  Also log each step: lookups and their results, the Alpine
+#                  branch, the resolved version table, discovered pin files,
+#                  uv.lock results and git operations. Logs go to stderr.
+#   -h, --help     Show this help and exit.
+#
+# Environment:
+#   PAT            "<actor>/<token>"; the token is used for GitHub API calls.
+#
 set -euo pipefail
 IFS=$'\n\t'
+
+PYTHON_DEPS=0
+DRYRUN=0
+VERBOSE=0
+while (( $# > 0 )); do
+	case "$1" in
+		--python-deps) PYTHON_DEPS=1 ;;
+		-n | --dryrun) DRYRUN=1 ;;
+		-v | --verbose) VERBOSE=1 ;;
+		-h | --help) sed -n '2,/^set -euo/{/^#/s/^# \{0,1\}//p;}' "$0"; exit 0 ;;
+		*) echo "ERROR: unknown option '$1' (see --help)" >&2; exit 2 ;;
+	esac
+	shift
+done
+
+# vlog MSG...: step-level progress, only with --verbose (stderr, so it never
+# mixes into captured function output).
+vlog() {
+	if (( VERBOSE )); then
+		printf '[verbose] %s\n' "$*" >&2
+	fi
+}
+
+# dry MSG...: report a change that --dryrun skipped.
+DRY_CHANGES=0
+dry() {
+	printf '[dryrun] %s\n' "$*"
+	DRY_CHANGES=$((DRY_CHANGES + 1))
+}
+
+vlog "options: python-deps=${PYTHON_DEPS} dryrun=${DRYRUN}"
 
 # $PAT variable needs to be passed into the script as an env variable
 # PAT is only used to avoid API rate limits
@@ -95,6 +145,12 @@ WORKDIR=$(mktemp -d)
 trap 'rm -rf "$WORKDIR"' EXIT
 VERSIONS_FILE="${WORKDIR}/versions"
 
+# UV_EMPTY_CONFIG is an empty uv config on purpose. A user-level
+# ~/.config/uv/uv.toml applies to local lock runs but not to CI, and an
+# "exclude-newer" setting there silently resolves to downgrades.
+UV_EMPTY_CONFIG="${WORKDIR}/empty-uv.toml"
+: > "$UV_EMPTY_CONFIG"
+
 # PAT is passed as "<actor>/<token>"; the GraphQL API needs the bare token.
 : "${PAT:?PAT must be set as <actor>/<token>}"
 GH_TOKEN="${PAT#*/}"
@@ -152,6 +208,7 @@ normalize_version() {
 # (the body is still printed, for diagnostics), so callers that check the
 # status never parse an error page as a version.
 fetch() {
+	vlog "GET ${*: -1}"
 	curl -sSL --fail-with-body --connect-timeout 10 --max-time 60 \
 		--retry 3 --retry-delay 2 --retry-all-errors "$@"
 }
@@ -206,6 +263,7 @@ resolve_alpine() {
 	[[ -n "$spec" ]] || return 0
 	branch=$(sed -nE 's|^FROM[[:space:]]+alpine:([0-9]+)\.([0-9]+).*|v\1.\2|p' templates/alpine/Dockerfile | head -n1)
 	[[ -n "$branch" ]] || return 0
+	vlog "alpine: $prog -> ${spec} on ${branch}"
 	index=$(apkindex "$branch" "${spec%%/*}") || return 0
 	awk -v pkg="${spec#*/}" '/^P:/ { p = substr($0, 3) } /^V:/ && p == pkg && v == "" { v = substr($0, 3) } END { if (v != "") print v }' "$index"
 }
@@ -288,6 +346,7 @@ resolve_github_batch() {
 		i=$((i + 1))
 	done
 	query+=" }"
+	vlog "github: one GraphQL query for ${i} repos"
 
 	local resp
 	if ! resp=$(fetch -X POST \
@@ -367,9 +426,20 @@ resolve_all_versions() {
 	cat "${WORKDIR}"/out.*
 }
 
+vlog "resolving upstream versions in parallel (workdir ${WORKDIR})"
+RESOLVE_START=$SECONDS
 if ! resolve_all_versions > "$VERSIONS_FILE"; then
 	echo "ERROR: upstream version resolution failed; aborting without changes." >&2
 	exit 1
+fi
+vlog "resolved $(wc -l < "$VERSIONS_FILE" | tr -d ' ') versions in $((SECONDS - RESOLVE_START))s"
+if (( VERBOSE )); then
+	sort "$VERSIONS_FILE" | while IFS=$'\t' read -r p v; do
+		vlog "  ${p} = ${v:-<unresolved>}"
+	done
+	for pin in "${DEP_PINS[@]}"; do
+		vlog "  ${pin%%:*} = $(cat "${WORKDIR}/dep.${pin%%:*}")"
+	done
 fi
 
 # A run where not a single repo resolved to a version is a systemic failure;
@@ -397,7 +467,9 @@ read_pin() {
 # push_changes: push local commits. If the push is rejected (someone pushed
 # while this run was working), rebase onto upstream once and retry.
 push_changes() {
+	vlog "git push"
 	git push --quiet && return 0
+	vlog "push rejected; rebasing onto upstream and retrying"
 	if git pull --rebase --quiet && git push --quiet; then
 		return 0
 	fi
@@ -405,26 +477,162 @@ push_changes() {
 	return 1
 }
 
-# bump_pin WORKFLOW VAR VERSION MESSAGE: set VAR's quoted value in WORKFLOW,
-# verify it, then commit and push. If the edit or commit fails, the file is
-# restored so a half-done change can never leak into the next commit. A failed
-# push keeps the commit; the final push at the end retries it.
-bump_pin() {
-	local wf="$1" var="$2" ver="$3" msg="$4"
+# restore_paths PATH...: undo uncommitted edits (staged or not) to PATHs.
+restore_paths() {
+	local f
+	for f in "$@"; do rm -f "${f}.bak"; done
+	git reset --quiet -- "$@" 2>/dev/null || true
+	git checkout --quiet -- "$@" 2>/dev/null || true
+}
+
+# set_pin WORKFLOW VAR VERSION: set VAR's quoted value in WORKFLOW; verify it.
+set_pin() {
+	local wf="$1" var="$2" ver="$3"
 	# -i.bak + rm: the one in-place form that works with GNU and BSD sed.
-	if sed -i.bak -e "/^[[:space:]]*${var}:/ s/\"[^\"]*\"/\"${ver}\"/" "$wf" \
+	sed -i.bak -e "/^[[:space:]]*${var}:/ s/\"[^\"]*\"/\"${ver}\"/" "$wf" \
 		&& rm -f "${wf}.bak" \
-		&& [[ "$(read_pin "$wf" "$var")" == "$ver" ]] \
-		&& git add "$wf" \
-		&& git commit -S -s --quiet -m "$msg"; then
+		&& [[ "$(read_pin "$wf" "$var")" == "$ver" ]]
+}
+
+# commit_paths MESSAGE PATH...: commit PATHs as ONE commit, then push. If the
+# commit fails, PATHs are restored so a half-done change can never leak into
+# the next commit. A failed push keeps the commit; the final push retries it.
+commit_paths() {
+	local msg="$1"
+	shift
+	vlog "git commit '${msg}': $*"
+	if git add -- "$@" && git commit -S -s --quiet -m "$msg"; then
 		push_changes || echo "WARNING: push failed; the final push will retry it" >&2
 		return 0
 	fi
-	echo "ERROR: could not update ${var} in ${wf}; restoring the file" >&2
-	rm -f "${wf}.bak"
-	git reset --quiet -- "$wf" 2>/dev/null || true
-	git checkout --quiet -- "$wf" 2>/dev/null || true
+	echo "ERROR: could not commit $*; restoring" >&2
+	restore_paths "$@"
 	return 1
+}
+
+# bump_pin WORKFLOW VAR VERSION MESSAGE: set VAR in WORKFLOW and commit it.
+bump_pin() {
+	local wf="$1" var="$2" ver="$3" msg="$4"
+	if (( DRYRUN )); then
+		dry "would set ${var} to \"${ver}\" in ${wf} and commit '${msg}'"
+		return 0
+	fi
+	if ! set_pin "$wf" "$var" "$ver"; then
+		echo "ERROR: could not update ${var} in ${wf}; restoring the file" >&2
+		restore_paths "$wf"
+		return 1
+	fi
+	commit_paths "$msg" "$wf"
+}
+
+# ---------------------------------------------------------------------------
+# Python images
+#
+# Each image in PYTHON_APPS installs its app and dependencies from <app>/uv.lock
+# ("uv sync --frozen"). The lock is therefore what the image really contains,
+# and BUILD_VERSION is only its tag. update_python_app refreshes the lock and
+# sets BUILD_VERSION from it in the SAME commit, so:
+#   - an app release lands as one commit (and one image build) whose tag
+#     matches what the image installs;
+#   - a dependency-only change lands as a "requirements" commit.
+# The hourly run refreshes an app only when its upstream has a new release;
+# --python-deps (the daily run) refreshes all of them.
+# ---------------------------------------------------------------------------
+
+PYTHON_APPS=( "ansible" "catprinter" "dkimpy" "docker-autocompose" "ruff" "sslyze" "visidata" )
+
+# in_list ITEM LIST...: true if ITEM is one of LIST.
+in_list() {
+	local item="$1" x
+	shift
+	for x in "$@"; do
+		[[ "$x" == "$item" ]] && return 0
+	done
+	return 1
+}
+
+is_python_app() {
+	in_list "$1" "${PYTHON_APPS[@]}"
+}
+
+# locked_version DIR PKG: the version of package PKG in DIR/uv.lock, or empty.
+locked_version() {
+	awk -v pkg="$2" '
+		/^\[\[package\]\]/ { n = "" }
+		/^name = /    { n = $3; gsub(/"/, "", n) }
+		/^version = / && n == pkg { v = $3; gsub(/"/, "", v); print v; exit }
+	' "$1/uv.lock" 2>/dev/null || true
+}
+
+# update_python_app APP: refresh APP's uv.lock, set BUILD_VERSION to the app
+# version now in the lock, and commit both as one commit. No change, no commit.
+# uv runs on a copy in WORKDIR (so --dryrun writes nothing and no build
+# artifacts land in the repo); the new lock is copied back only when applied.
+update_python_app() {
+	local app="$1" wf=".github/workflows/$1.yml" tmp="${WORKDIR}/py/$1"
+	local cur locked new="" msg lock_changed=0
+
+	echo "Refreshing python dependencies for $app ..."
+	if ! command -v uv >/dev/null 2>&1; then
+		echo "    ERROR: uv is not installed" >&2
+		return 1
+	fi
+	mkdir -p "$tmp"
+	cp "$app/pyproject.toml" "$app/uv.lock" "$tmp/"
+	vlog "uv lock -U for $app in $tmp"
+	if ! (cd "$tmp" && UV_CONFIG_FILE="$UV_EMPTY_CONFIG" uv lock -U --quiet); then
+		echo "    ERROR: uv lock failed for $app" >&2
+		return 1
+	fi
+	cmp -s "$tmp/uv.lock" "$app/uv.lock" || lock_changed=1
+
+	# Only a managed release pin follows the lock; "git" pins stay as they are.
+	# If upstream released but PyPI does not serve it yet, the lock (and so the
+	# tag) keeps the old version and a later run picks the release up.
+	cur=$(read_pin "$wf" BUILD_VERSION)
+	locked=$(locked_version "$tmp" "$app")
+	vlog "$app: pinned ${cur:-<none>}, locked ${locked:-<none>}, lock changed: ${lock_changed}"
+	if is_valid_version "$cur" && is_valid_version "$locked"; then
+		# Keep the pin's style: visidata pins "v3.5" for lock version "3.5".
+		if [[ "$cur" == v* && "$locked" != v* ]]; then
+			locked="v${locked}"
+		fi
+		if [[ "$cur" != "$locked" ]]; then
+			if version_lt "$locked" "$cur"; then
+				echo "    Not changing BUILD_VERSION: locked $locked is older than pinned $cur" >&2
+			else
+				new="$locked"
+			fi
+		fi
+	fi
+
+	if (( ! lock_changed )) && [[ -z "$new" ]]; then
+		echo "No update needed ..."
+		return 0
+	fi
+	if [[ -n "$new" ]]; then
+		msg="Updated ${app} to ${new}"
+	else
+		msg="Update requirements for ${app} ..."
+	fi
+
+	if (( DRYRUN )); then
+		dry "would commit '${msg}'${new:+ (BUILD_VERSION ${cur} -> ${new})}$( (( lock_changed )) && printf ' with a refreshed %s' "$app/uv.lock")"
+		return 0
+	fi
+
+	if [[ -n "$new" ]]; then
+		echo "Updating to ${new} ..."
+	else
+		echo "Updating requirements ..."
+	fi
+	cp "$tmp/uv.lock" "$app/uv.lock"
+	if [[ -n "$new" ]] && ! set_pin "$wf" BUILD_VERSION "$new"; then
+		echo "    ERROR: could not update BUILD_VERSION in $wf; restoring its files" >&2
+		restore_paths "$wf" "$app/uv.lock"
+		return 1
+	fi
+	commit_paths "$msg" "$wf" "$app/uv.lock"
 }
 
 # check_pin LABEL CURRENT LATEST: print the comparison and decide. Returns 0 only
@@ -465,6 +673,9 @@ check_pin() {
 #git config --local user.email "gromit-bot@users.noreply.github.com"
 #git config --local pull.rebase false
 
+# Python apps already refreshed by the BUILD_VERSION pass (skipped below).
+PYTHON_DONE=()
+
 # BUILD_VERSION pass: bump each image whose upstream has a newer release.
 for i in "${REPO[@]}"
 do
@@ -485,37 +696,39 @@ do
 	rver=$(awk -F'\t' -v p="$prog" '$1 == p { print $2; exit }' "$VERSIONS_FILE")
 
 	if check_pin "BUILD_VERSION" "$dver" "$rver"; then
-
-		# Update python requirements first; never bump the version without them.
-		case $i in
-			"ansible/ansible" | \
-			"dkimpy/dkimpy" | \
-			"astral-sh/ruff" | \
-			"nabla-c0d3/sslyze" | \
-			"saulpw/visidata")
-				echo
-				echo "Checking python dependencies ..."
-				if ! scripts/updatePythonDeps.sh "$prog"; then
-					echo "    ERROR: python dependency update failed; not bumping $prog" >&2
-					FAILURES=$((FAILURES + 1))
-					echo; echo; echo
-					continue
-				fi
-				;;
-			*)
-				# not a Python program
-				;;
-		esac
-
-		echo "Updating to ${rver} ..."
-		bump_pin "$wf" BUILD_VERSION "$rver" "Updated ${prog} to ${rver}" \
-			|| FAILURES=$((FAILURES + 1))
+		if is_python_app "$prog"; then
+			# The lock, not the upstream API, decides the new version: one
+			# commit with the refreshed lock and the matching BUILD_VERSION.
+			PYTHON_DONE+=( "$prog" )
+			update_python_app "$prog" || FAILURES=$((FAILURES + 1))
+		else
+			echo "Updating to ${rver} ..."
+			bump_pin "$wf" BUILD_VERSION "$rver" "Updated ${prog} to ${rver}" \
+				|| FAILURES=$((FAILURES + 1))
+		fi
 	fi
 
 	echo
 	echo
 	echo
 done
+
+# Python pass (--python-deps): refresh every Python image not refreshed above,
+# so dependency-only updates (and app releases that only the lock shows, e.g.
+# for "git" pins) are picked up.
+if (( PYTHON_DEPS )); then
+	for app in "${PYTHON_APPS[@]}"
+	do
+		if in_list "$app" ${PYTHON_DONE[@]+"${PYTHON_DONE[@]}"}; then
+			continue
+		fi
+		echo "Checking python dependencies for ... $app"
+		update_python_app "$app" || FAILURES=$((FAILURES + 1))
+		echo
+		echo
+		echo
+	done
+fi
 
 # Dependency-pin pass: for each DEP_PINS entry, bump VAR in every workflow that
 # sets it. It runs after the BUILD_VERSION loop and edits only the VAR line, so
@@ -527,6 +740,7 @@ do
 	rest="${pin#*:}"
 	label="${rest#*:}"
 	new=$(cat "${WORKDIR}/dep.${var}")
+	vlog "${var}: latest ${new:-<unresolved>}; pinned in: $(grep -lE "^[[:space:]]*${var}:[[:space:]]*\"" .github/workflows/*.yml | tr '\n' ' ' || true)"
 
 	while IFS= read -r wf; do
 		prog=$(basename "$wf" .yml)
@@ -546,7 +760,9 @@ do
 done
 
 # Final push: retry any commit whose push failed above.
-if [[ -n "$(git log --oneline '@{upstream}..' 2>/dev/null || true)" ]]; then
+if (( DRYRUN )); then
+	echo "Dry run: ${DRY_CHANGES} change(s) would be committed; nothing was edited, committed or pushed."
+elif [[ -n "$(git log --oneline '@{upstream}..' 2>/dev/null || true)" ]]; then
 	echo "Pushing commits left over from failed pushes ..."
 	if ! push_changes; then
 		echo "ERROR: could not push local commits" >&2

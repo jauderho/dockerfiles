@@ -1,6 +1,12 @@
 # updatebot
 #
-# This runs every hour to check if upstream repos have had a new release
+# This runs every hour to check if upstream repos have had a new release.
+# Once a day (the "30 3 * * *" schedule) it also refreshes the uv.lock of every
+# Python image, so dependency-only updates are picked up (--python-deps).
+#
+# The Python app workflows (ansible.yml, ruff.yml, ...) are deliberately NOT
+# push triggers: this run commits to them itself, and with cancel-in-progress
+# its own push would cancel it mid-run.
 #
 name: Update Docker
 
@@ -10,17 +16,16 @@ on:
       - main
     paths:
       - scripts/updateDockerImages.sh
-      - .github/workflows/ansible.yml
-      - .github/workflows/catprinter.yml
-      - .github/workflows/dkimpy.yml
-      - .github/workflows/docker-autocompose.yml
-      - .github/workflows/ruff.yml
-      - .github/workflows/sslyze.yml
-      - .github/workflows/visidata.yml
       - .github/workflows/update-docker.yml
   workflow_dispatch:
+    inputs:
+      python_deps:
+        description: "Also refresh the uv.lock of every Python image"
+        type: boolean
+        default: true
   schedule:
     - cron: "0 * * * *"
+    - cron: "30 3 * * *"
 
 env:
   DOCKER_CLI_EXPERIMENTAL: enabled
@@ -88,6 +93,9 @@ jobs:
           chmod 644 ~/.ssh/id_ed25519.pub
 
       - name: Update dependencies
+        env:
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          DISPATCH_PYTHON_DEPS: ${{ inputs.python_deps }}
         run: |
           git config --global user.name "Gromit Bot"
           git config --global user.email "gromit-bot@users.noreply.github.com"
@@ -95,5 +103,9 @@ jobs:
           git config --global user.signingkey ~/.ssh/id_ed25519.pub
           git config --global gpg.format ssh
           git config --global commit.gpgsign true
-          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh
+          args=()
+          if [[ "$EVENT_SCHEDULE" == "30 3 * * *" || "$DISPATCH_PYTHON_DEPS" == "true" ]]; then
+            args+=(--python-deps)
+          fi
+          PAT="${{ github.actor }}/${{ secrets.UPDATE_SECRET }}" scripts/updateDockerImages.sh "${args[@]}"
           rm -rf ~/.ssh
