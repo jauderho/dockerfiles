@@ -1,4 +1,4 @@
-FROM ghcr.io/jauderho/alpine:3.24.4@sha256:a21b5da74130a467f3194cd6870a960cee0e5098e477351c981adaa2b9fc261f AS build
+FROM ghcr.io/jauderho/alpine:3.24.4@sha256:afd0b70e71846b4efdac68e902f5bca4139009d3e653fa8e5023ad8bacef6d22 AS build
 
 ARG BUILD_VERSION
 #ARG ARCHIVE_URL=https://github.com/yt-dlp/yt-dlp/archive/
@@ -74,7 +74,7 @@ RUN set -x \
 
 # Same digest as the build stage: the venv hardcodes lib/python3.X, so a
 # different Python minor version here would silently break it.
-FROM ghcr.io/jauderho/alpine:3.24.4@sha256:a21b5da74130a467f3194cd6870a960cee0e5098e477351c981adaa2b9fc261f
+FROM ghcr.io/jauderho/alpine:3.24.4@sha256:afd0b70e71846b4efdac68e902f5bca4139009d3e653fa8e5023ad8bacef6d22
 
 # https://github.com/Yelp/dumb-init/releases
 ARG DUMB_INIT_VERSION=1.2.5
