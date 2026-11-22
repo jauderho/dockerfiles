@@ -66,6 +66,7 @@ jobs:
             releases.astral.sh:443
             security.ubuntu.com:443
             stor2rrd.com:443
+            xormon.com:443
 
       - name: Source checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

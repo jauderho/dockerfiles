@@ -119,6 +119,7 @@ REPO=(
 	"saulpw/visidata" \
 	"nicholas-fedor/watchtower" \
 	"likexian/whois" \
+	"xorux/xormon-ng" \
 	"yggdrasil-network/yggdrasil-go" \
 	"ytdl-org/youtube-dl" \
 	"yt-dlp/yt-dlp" \
@@ -163,7 +164,7 @@ fi
 # These are skipped by the GraphQL batch and resolved by resolve_special().
 is_special() {
 	case "$1" in
-		ansible | dkimpy | lpar2rrd | stor2rrd) return 0 ;;
+		ansible | dkimpy | lpar2rrd | stor2rrd | xormon-ng) return 0 ;;
 		dhcp-helper | sftpd | tftpd | unbound) return 0 ;;
 		freenginx) return 0 ;;
 		*) return 1 ;;
@@ -268,13 +269,19 @@ resolve_alpine() {
 	awk -v pkg="${spec#*/}" '/^P:/ { p = substr($0, 3) } /^V:/ && p == pkg && v == "" { v = substr($0, 3) } END { if (v != "") print v }' "$index"
 }
 
-# resolve_xormon: XoruX products (lpar2rrd, stor2rrd) have no GitHub releases.
-# Scrape the "<prog>-X.YY.tar" link from the download page; keep the highest.
+# resolve_xormon: XoruX products (lpar2rrd, stor2rrd, xormon-ng) have no GitHub
+# releases. Scrape the "<prog>-X.Y[.Z].tar[.gz]" link from the product's
+# download page and keep the highest. The pattern requires the version to be
+# followed directly by ".tar", so "xormon-ng-X.Y.Z-source.tar.gz" never matches.
 resolve_xormon() {
-	local prog="$1" page
-	page=$(fetch "https://${prog}.com/download.php") || return 0
-	grep -oE "${prog}-[0-9]+(\.[0-9]+)+\.tar" <<<"$page" \
-		| sed -E "s/^${prog}-//; s/\.tar$//" \
+	local prog="$1" site page
+	case "$prog" in
+		xormon-ng) site="xormon.com" ;;
+		*) site="${prog}.com" ;;
+	esac
+	page=$(fetch "https://${site}/download.php") || return 0
+	grep -oE "${prog}-[0-9]+(\.[0-9]+)+\.tar(\.gz)?" <<<"$page" \
+		| sed -E "s/^${prog}-//; s/\.tar(\.gz)?$//" \
 		| max_version || true
 }
 
