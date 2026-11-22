@@ -231,6 +231,23 @@ resolve_openssl() {
 		| max_version || true
 }
 
+# resolve_docker_cli: highest final Docker CLI release from moby/moby. That repo
+# also publishes "client/", "api/" and old-scheme "v25.0.x" maintenance
+# releases; only final "docker-vX.Y.Z" releases count. Workflows download the
+# static CLI from download.docker.com, which can lag the GitHub release, so a
+# version is only accepted once its tarball is published there.
+resolve_docker_cli() {
+	local json ver
+	json=$(gh_rest "repos/moby/moby/releases?per_page=100") || return 0
+	ver=$(jq -r '.[] | select(.draft == false and .prerelease == false) | .tag_name' <<<"$json" 2>/dev/null \
+		| sed -nE 's/^docker-v([0-9]+\.[0-9]+\.[0-9]+)$/\1/p' \
+		| max_version || true)
+	[[ -n "$ver" ]] || return 0
+	fetch -o /dev/null --head "https://download.docker.com/linux/static/stable/x86_64/docker-${ver}.tgz" \
+		|| return 0
+	printf '%s\n' "$ver"
+}
+
 # resolve_freenginx: highest "release-X.Y.Z" tag of freenginx/nginx. Several
 # trains are tagged in parallel (e.g. 1.30.x stable, 1.31.x mainline); the
 # newest train always holds the highest version, so the max across all tags is
@@ -311,11 +328,19 @@ resolve_github_batch() {
 		done
 }
 
+# DEP_PINS: dependency pins, as "<VAR>:<resolver>:<label>". These are not an
+# image's BUILD_VERSION: each is resolved once and applied to EVERY workflow
+# that sets VAR in its env block, found at run time (no per-file list to keep).
+DEP_PINS=(
+	"OPENSSL_VERSION:resolve_openssl:OpenSSL"
+	"DOCKER_CLI_VERSION:resolve_docker_cli:Docker CLI"
+)
+
 # resolve_all_versions: run the GitHub batch, every special source, and the
-# OpenSSL lookup in parallel, each into its own file, then merge. Alpine images
+# dependency-pin lookups in parallel, each into its own file, then merge. Alpine images
 # run in one job, in order, so they share each downloaded APKINDEX.
 resolve_all_versions() {
-	local repo prog gh_pid alpine=()
+	local repo prog gh_pid pin rest alpine=()
 	resolve_github_batch > "${WORKDIR}/out.github" &
 	gh_pid=$!
 	for repo in "${REPO[@]}"; do
@@ -331,7 +356,10 @@ resolve_all_versions() {
 			resolve_special "$repo" "${repo##*/}"
 		done
 	) > "${WORKDIR}/out.alpine" &
-	resolve_openssl > "${WORKDIR}/openssl" &
+	for pin in "${DEP_PINS[@]}"; do
+		rest="${pin#*:}"
+		"${rest%%:*}" > "${WORKDIR}/dep.${pin%%:*}" &
+	done
 
 	# The GitHub batch is the only fatal source; wait for it, then the rest.
 	wait "$gh_pid" || { wait; return 1; }
@@ -350,11 +378,6 @@ if ! awk -F'\t' 'NF >= 2 && $2 != "" { ok = 1 } END { exit ok ? 0 : 1 }' "$VERSI
 	echo "ERROR: no versions resolved for any repo; aborting without changes." >&2
 	exit 1
 fi
-
-# OPENSSL_VERSION is a dependency pin, not an image BUILD_VERSION, so it is
-# resolved with the rest above and applied by its own pass after the main loop.
-OPENSSL_WORKFLOWS=( "nginx" "freenginx" )
-openssl_ver=$(cat "${WORKDIR}/openssl")
 
 # ---------------------------------------------------------------------------
 # Updating
@@ -494,24 +517,32 @@ do
 	echo
 done
 
-# OpenSSL pass: bump OPENSSL_VERSION in the nginx-family workflows. It runs after
-# the BUILD_VERSION loop and edits only the OPENSSL_VERSION line, so a freenginx
-# BUILD_VERSION bump and an OpenSSL bump never collide: each is its own commit.
-for prog in "${OPENSSL_WORKFLOWS[@]}"
+# Dependency-pin pass: for each DEP_PINS entry, bump VAR in every workflow that
+# sets it. It runs after the BUILD_VERSION loop and edits only the VAR line, so
+# a BUILD_VERSION bump and a dependency bump in the same file never collide:
+# each is its own commit.
+for pin in "${DEP_PINS[@]}"
 do
-	wf=".github/workflows/${prog}.yml"
-	echo "Checking OpenSSL for ... $prog"
+	var="${pin%%:*}"
+	rest="${pin#*:}"
+	label="${rest#*:}"
+	new=$(cat "${WORKDIR}/dep.${var}")
 
-	dver=$(read_pin "$wf" OPENSSL_VERSION)
-	if check_pin "OPENSSL_VERSION" "$dver" "$openssl_ver"; then
-		echo "Updating OpenSSL to ${openssl_ver} ..."
-		bump_pin "$wf" OPENSSL_VERSION "$openssl_ver" "Updated ${prog} OpenSSL to ${openssl_ver}" \
-			|| FAILURES=$((FAILURES + 1))
-	fi
+	while IFS= read -r wf; do
+		prog=$(basename "$wf" .yml)
+		echo "Checking ${label} for ... $prog"
 
-	echo
-	echo
-	echo
+		dver=$(read_pin "$wf" "$var")
+		if check_pin "$var" "$dver" "$new"; then
+			echo "Updating ${label} to ${new} ..."
+			bump_pin "$wf" "$var" "$new" "Updated ${prog} ${label} to ${new}" \
+				|| FAILURES=$((FAILURES + 1))
+		fi
+
+		echo
+		echo
+		echo
+	done < <(grep -lE "^[[:space:]]*${var}:[[:space:]]*\"" .github/workflows/*.yml || true)
 done
 
 # Final push: retry any commit whose push failed above.

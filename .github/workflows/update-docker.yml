@@ -49,6 +49,7 @@ jobs:
             api.github.com:443
             azure.archive.ubuntu.com:80
             dl-cdn.alpinelinux.org:443
+            download.docker.com:443
             files.pythonhosted.org:443
             github.com:443
             lpar2rrd.com:443
