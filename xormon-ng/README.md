@@ -64,9 +64,19 @@ require recompiling upstream:
   major bumps). The audit is read-only — it reads `package.json` and
   `package-lock.json` only, and never reinstalls, so the vendored tree and its
   prebuilt native modules (`canvas`, `cpu-features`, `ssh2`) are left intact.
+- **glob major upgrade** — `glob` 10 (under `typeorm`) and 13 (under `rimraf`)
+  move to 14, the only release with the fix for GHSA-3g3m-2fjr-6pw4: an npm
+  override for `typeorm`, and an in-range `rimraf` update (6.1.4+ uses glob 14).
+  The build checks that typeorm's entity, subscriber and migration globs find the
+  same files and classes before and after; startup, all migrations and the web UI
+  were also checked against a TimescaleDB to behave the same as before.
 - **npm's own dependencies** — the `undici` and `ip-address` copies bundled inside
   npm are replaced with the newest release of the same major, because the npm
-  releases themselves trail those fixes.
+  releases themselves trail those fixes. Its `minimatch` 10 and `glob` 13 move to
+  11 and 14 (GHSA-g3hv-75wg-m249, GHSA-3g3m-2fjr-6pw4), which npm only calls
+  through APIs the new majors keep; the build runs npm workspace, pack, query,
+  run and cache commands afterwards. npm stays in the image because the app runs
+  `npm run typeorm:migration:run` at startup and on upgrade.
 - **Unused architectures** — the arm64/ppc64le/s390x `otel-exporter` binaries are
   dropped along with the other non-amd64 binaries (this image is amd64-only).
 
@@ -75,8 +85,11 @@ Not fixed here: the compiled Go binaries (`agent`, `agent-aix-ppc64`, `linux-ser
 library and `golang.org/x/*` versions they embed cannot be bumped), the copies of
 `urllib3`/`msgpack`/`setuptools` vendored inside `pip` (pip is kept because the
 analyzer runs `pip freeze`; they clear when pip updates its vendored set), and the
-major-bump-only npm packages (`vega`/`vega-functions` 5.x — XSS fixed only in 6.x), which would need an upstream
-rebuild or a breaking version bump.
+`vega`/`vega-functions` 5.x (XSS fixed only in 6.x). vega 6 uses top-level
+`await`, so the app's `require("vega")` (alert e-mail charts) fails with
+`ERR_REQUIRE_ASYNC_MODULE`; it needs an upstream change to `import()`. Both
+advisories need user-supplied Vega specs in a browser, while this app builds its
+specs on the server.
 
 [![Build Status](https://github.com/jauderho/dockerfiles/workflows/xormon-ng/badge.svg)](https://github.com/jauderho/dockerfiles/actions)
 [![Version](https://img.shields.io/docker/v/jauderho/xormon-ng/latest)](https://github.com/xorux/xormon-ng)

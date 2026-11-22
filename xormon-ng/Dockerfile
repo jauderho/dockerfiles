@@ -88,6 +88,48 @@ RUN set -eux; \
     npm -v; \
     npm view lodash version
 
+# npm's bundled minimatch 10 (GHSA-g3hv-75wg-m249) and glob 13
+# (GHSA-3g3m-2fjr-6pw4) are fixed only in minimatch 11 and glob 14, which no npm
+# release bundles yet. npm calls only minimatch(), minimatch.match(),
+# Minimatch#match, glob() and globSync(), which both new majors keep. Each is
+# installed with its own dependencies nested under it, so nothing else in npm's
+# tree changes. The npm commands after the swap exercise every caller:
+# workspaces (map-workspaces, get-workspaces), pack (ignore-walk, bin directory
+# normalization), query (arborist), cache verify (cacache) and run.
+RUN set -eux; \
+    nm=/usr/local/lib/node_modules/npm/node_modules; \
+    for spec in "minimatch@^11.0.9" "glob@^14.0.6"; do \
+        pkg="${spec%@*}"; \
+        work="$(mktemp -d)"; \
+        npm install --prefix "$work" "$spec" --ignore-scripts --no-audit --no-fund --silent; \
+        old="$(node -p "require('$nm/$pkg/package.json').version")"; \
+        rm -rf "$nm/$pkg"; \
+        mv "$work/node_modules/$pkg" "$nm/$pkg"; \
+        rm -rf "$work/node_modules/.bin" "$work/node_modules/.package-lock.json"; \
+        mkdir "$nm/$pkg/node_modules"; \
+        mv "$work/node_modules/"* "$nm/$pkg/node_modules/"; \
+        echo "npm-patch: $pkg $old -> $(node -p "require('$nm/$pkg/package.json').version")"; \
+        rm -rf "$work" /root/.npm; \
+    done; \
+    cd "$(mktemp -d)"; \
+    printf '{"name":"t","version":"1.0.0","workspaces":["packages/*"]}' > package.json; \
+    mkdir -p packages/a/bin; \
+    printf '{"name":"a","version":"1.0.0","files":["*.js","bin"],"directories":{"bin":"bin"},"scripts":{"t":"echo ok"}}' > packages/a/package.json; \
+    echo 'module.exports=1' > packages/a/index.js; echo x > packages/a/skip.txt; \
+    printf '#!/usr/bin/env node\n' > packages/a/bin/a-cli; \
+    npm pack -w a --dry-run > out.txt 2>&1; \
+    grep -q 'index.js' out.txt; \
+    grep -q 'bin/a-cli' out.txt; \
+    ! grep -q 'skip.txt' out.txt; \
+    npm run t -w a > out.txt; \
+    grep -q ok out.txt; \
+    npm install --ignore-scripts --no-audit --no-fund --silent; \
+    npm query '.workspace' > out.txt; \
+    grep -q '"name": "a"' out.txt; \
+    npm view lodash version; \
+    npm cache verify; \
+    cd /; rm -rf /root/.npm /tmp/tmp.*
+
 # XorMon NG application tarball (content sits at archive root, no version dir)
 ADD https://xormon.com/download-static/xormon-ng/xormon-ng-${BUILD_VERSION}.tar.gz /tmp/xormon-ng.tar.gz
 RUN mkdir -p /opt/xormon-ng \
@@ -144,6 +186,49 @@ RUN set -eux; \
        -o -name example -o -name examples -o -name .github -o -name coverage \) \
        -prune -exec rm -rf {} +
 
+# glob 10/13 -> 14 (GHSA-3g3m-2fjr-6pw4, fixed only in 14), a major upgrade
+# the in-major policy below does not make. typeorm calls glob.sync() only, which
+# 14 keeps; rimraf moves to 14 itself from 6.1.4. typeorm's is done with an npm
+# override, not a hand swap: npm re-resolves only that glob against
+# package-lock.json and drops what it no longer needs, and --ignore-scripts
+# keeps it from rebuilding the prebuilt native modules. The override applies
+# only while typeorm still declares an older glob.
+# vega/vega-functions stay on 5: vega 6 uses top-level await, so the app's
+# require("vega") throws ERR_REQUIRE_ASYNC_MODULE (see README).
+RUN set -eux; \
+    cd /opt/xormon-ng/server-nest; \
+    node -e ' \
+        const fs = require("fs"); \
+        const j = JSON.parse(fs.readFileSync("package.json", "utf8")); \
+        const t = JSON.parse(fs.readFileSync("node_modules/typeorm/package.json", "utf8")); \
+        const g = (t.dependencies || {}).glob; \
+        if (g && Number(g.replace(/^[^0-9]*/, "").split(".")[0]) < 14) { \
+            j.overrides = { ...j.overrides, typeorm: { ...(j.overrides || {}).typeorm, glob: "^14.0.6" } }; \
+            fs.writeFileSync("package.json", JSON.stringify(j, null, 2) + "\n"); }'; \
+    # The app's dataSource entity/subscriber/migration globs must find the same
+    # files and classes with the new glob as with the old one.
+    chk=' \
+        const { importClassesFromDirectories: load } = require("./node_modules/typeorm/util/DirectoryExportedClassesLoader"); \
+        const { glob } = require("./node_modules/typeorm/node_modules/glob"); \
+        const d = process.cwd() + "/dist"; \
+        (async () => { for (const p of [d + "/**/**.entity{.ts,.js}", d + "/**/*.subscriber{.ts,.js}", \
+                                        d + "/**/*.migration{.ts,.js}", "dist/entity/**/*.entity.js"]) { \
+            const f = glob.sync(p).sort(), c = await load({ log() {} }, [p]); \
+            if (!f.length) throw new Error("no files for " + p); \
+            console.log(p, f.length, c.length, f.join(",")); } })() \
+            .catch(e => { console.error(e); process.exit(1); });'; \
+    node -e "$chk" > /tmp/glob-before.txt; \
+    npm install --omit=dev --ignore-scripts --prefer-offline --no-audit --no-fund; \
+    # rimraf 6.1.4+ depends on glob 14, so an in-range update moves the
+    # top-level glob 13 (rimraf's) to 14 the same way.
+    npm update rimraf --omit=dev --ignore-scripts --prefer-offline --no-audit --no-fund; \
+    echo "npm-major: rimraf $(node -p 'require("./node_modules/rimraf/package.json").version')"; \
+    echo "npm-major: typeorm glob $(node -p 'require("./node_modules/typeorm/node_modules/glob/package.json").version')"; \
+    node -e "$chk" > /tmp/glob-after.txt; \
+    cmp /tmp/glob-before.txt /tmp/glob-after.txt; \
+    rm -f /tmp/glob-before.txt /tmp/glob-after.txt; \
+    rm -rf /root/.npm
+
 # Patch vulnerable runtime npm packages. The upgrade list is generated at build
 # time by "bun audit" instead of being maintained by hand, so new advisories are
 # picked up on rebuild without editing this file.
@@ -163,6 +248,7 @@ RUN set -eux; \
 # engine.io wanting ws@~8.20.1); those are applied too when they stay within the
 # major, which is what the manual list already did. Fixes needing a major bump are
 # skipped and tracked in README: nodemailer, pm2, uuid 8, vega/vega-functions.
+# The glob majors are made in the step above.
 #
 # Every copy of a package compatible with the resolved version (same major, or
 # same major.minor for 0.x) is replaced in place anywhere in node_modules, with
