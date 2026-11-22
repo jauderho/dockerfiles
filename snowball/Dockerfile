@@ -13,6 +13,10 @@ ARG TARBALL_URL=https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowba
 #   gh api /repos/jauderho/dockerfiles/code-scanning/alerts
 ARG NETTY_VERSION
 ARG BC_VERSION
+# jackson-core, -databind and -annotations are replaced together: databind
+# needs core and annotations of the same major.minor. Annotations releases
+# carry only major.minor (2.21), so their version comes from JACKSON_VERSION.
+ARG JACKSON_VERSION
 
 # The tarball also bundles a custom OpenJDK build under jre/ that Amazon does
 # not refresh with the quarterly CPUs. Replace it with stock Amazon Corretto,
@@ -23,7 +27,7 @@ ARG BC_VERSION
 ARG JRE_VERSION
 
 RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VERSION}" \
-	&& test -n "${JRE_VERSION}" \
+	&& test -n "${JRE_VERSION}" && test -n "${JACKSON_VERSION}" \
 	&& apt-get update \
 	&& apt-get dist-upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl \
@@ -43,6 +47,13 @@ RUN test -n "${BUILD_VERSION}" && test -n "${NETTY_VERSION}" && test -n "${BC_VE
 		curl -fsSL --proto "=https" --proto-redir "=https" \
 			"https://repo1.maven.org/maven2/org/bouncycastle/${a}-jdk18on/${BC_VERSION}/${a}-jdk18on-${BC_VERSION}.jar" \
 			-o "${a}-jdk18on-${BC_VERSION}.jar"; \
+	done \
+	&& for a in core databind annotations; do \
+		v="${JACKSON_VERSION}"; [ "$a" = annotations ] && v="${JACKSON_VERSION%.*}"; \
+		rm -f "jackson-${a}-"*.jar; \
+		curl -fsSL --proto "=https" --proto-redir "=https" \
+			"https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-${a}/${v}/jackson-${a}-${v}.jar" \
+			-o "jackson-${a}-${v}.jar"; \
 	done \
 	&& cd / \
 	&& curl -fsSL --proto "=https" --proto-redir "=https" \
