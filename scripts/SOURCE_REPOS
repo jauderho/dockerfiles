@@ -42,6 +42,7 @@ cilium/pwru
 rclone/rclone
 astral-sh/ruff
 alpine/sftpd
+aws/snowball
 authzed/spicedb
 jtesta/ssh-audit
 nabla-c0d3/sslyze

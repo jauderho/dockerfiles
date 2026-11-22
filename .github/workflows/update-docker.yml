@@ -52,6 +52,7 @@ jobs:
           allowed-endpoints: >
             aerodent.canonical.com:443
             api.github.com:443
+            auth.docker.io:443
             azure.archive.ubuntu.com:80
             dl-cdn.alpinelinux.org:443
             download.docker.com:443
@@ -63,8 +64,10 @@ jobs:
             pypi.org:443
             raw.githubusercontent.com:443
             release-assets.githubusercontent.com:443
+            registry-1.docker.io:443
             releases.astral.sh:443
             security.ubuntu.com:443
+            snowball-client.s3.us-west-2.amazonaws.com:443
             stor2rrd.com:443
             xormon.com:443
 

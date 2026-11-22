@@ -105,6 +105,7 @@ REPO=(
 	"rclone/rclone" \
 	"astral-sh/ruff" \
 	"alpine/sftpd" \
+	"aws/snowball" \
 	"authzed/spicedb" \
 	"jtesta/ssh-audit" \
 	"nabla-c0d3/sslyze" \
@@ -169,7 +170,7 @@ is_special() {
 	case "$1" in
 		ansible | dkimpy | lpar2rrd | stor2rrd | xormon-ng) return 0 ;;
 		dhcp-helper | sftpd | tftpd | unbound) return 0 ;;
-		freenginx) return 0 ;;
+		freenginx | snowball) return 0 ;;
 		*) return 1 ;;
 	esac
 }
@@ -316,6 +317,80 @@ resolve_docker_cli() {
 	printf '%s\n' "$ver"
 }
 
+# resolve_pcre: highest final PCRE2 release. Uses published, non-draft,
+# non-prerelease GitHub releases ("pcre2-X.Y"): the nginx Dockerfiles download
+# the tarball from releases/download, which exists only once the release is out.
+resolve_pcre() {
+	local json
+	json=$(gh_rest "repos/PCRE2Project/pcre2/releases?per_page=100") || return 0
+	jq -r '.[] | select(.draft == false and .prerelease == false) | .tag_name' <<<"$json" 2>/dev/null \
+		| sed -nE 's/^pcre2-([0-9]+\.[0-9]+)$/\1/p' \
+		| max_version || true
+}
+
+# resolve_snowball: the AWS Snowball client has no version listing; it is
+# published only as a "latest" tarball (~450 MB). The tarball's first entry is
+# its top directory, "snowball-client-linux-<version>/", so reading the first
+# 64 KB is enough to get the version without downloading the whole file.
+resolve_snowball() {
+	local part="${WORKDIR}/snowball.part"
+	fetch -r 0-65535 -o "$part" \
+		"https://snowball-client.s3.us-west-2.amazonaws.com/latest/snowball-client-linux.tar.gz" \
+		|| return 0
+	tar -tzf "$part" 2>/dev/null | head -n1 \
+		| sed -nE 's|^snowball-client-linux-([0-9][0-9A-Za-z.-]*)/?$|\1|p' || true
+}
+
+# dockerhub_token IMAGE: anonymous pull token for library/IMAGE on Docker Hub.
+dockerhub_token() {
+	local json
+	json=$(fetch "https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/$1:pull") || return 0
+	jq -r '.token // empty' <<<"$json" 2>/dev/null || true
+}
+
+# dockerhub_digest IMAGE TAG TOKEN: the multi-arch index digest of
+# library/IMAGE:TAG (the "@sha256:..." that pins it). A HEAD request; it does
+# not count against Docker Hub pull limits.
+dockerhub_digest() {
+	local headers
+	headers=$(fetch -I -H "Authorization: Bearer $3" \
+		-H "Accept: application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json" \
+		"https://registry-1.docker.io/v2/library/$1/manifests/$2") || return 0
+	local d
+	d=$(tr -d '\r' <<<"$headers" | awk -F': ' 'tolower($1) == "docker-content-digest" { d = $2 } END { print d }')
+	if [[ "$d" =~ ^sha256:[0-9a-f]{64}$ ]]; then
+		printf '%s\n' "$d"
+	fi
+}
+
+# resolve_nginx_distroless: the newest nginx mainline and stable images on Docker
+# Hub, as "<kind>\t<version>\t<digest>" lines (kind = mainline or stable).
+# Mainline is the newest X.Y.Z tag with an odd minor version, stable the newest
+# with an even one. Each is cross-checked against Docker Hub's own "mainline"
+# and "stable" tags: if they do not point at the same image (e.g. mid-release),
+# that line is skipped this run.
+resolve_nginx_distroless() {
+	local tok json rel kind want ver digest alias
+	tok=$(dockerhub_token nginx)
+	[[ -n "$tok" ]] || return 0
+	json=$(fetch -H "Authorization: Bearer $tok" \
+		"https://registry-1.docker.io/v2/library/nginx/tags/list?n=10000") || return 0
+	rel=$(jq -r '.tags[]?' <<<"$json" 2>/dev/null | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' || true)
+	for kind in mainline stable; do
+		want=1
+		[[ "$kind" == "stable" ]] && want=0
+		ver=$(awk -F. -v w="$want" '$2 % 2 == w' <<<"$rel" | max_version || true)
+		[[ -n "$ver" ]] || continue
+		digest=$(dockerhub_digest nginx "$ver" "$tok")
+		alias=$(dockerhub_digest nginx "$kind" "$tok")
+		if [[ -z "$digest" || "$digest" != "$alias" ]]; then
+			echo "WARNING: nginx ${ver} and Docker Hub's '${kind}' tag differ; skipping nginx-distroless ${kind} this run" >&2
+			continue
+		fi
+		printf '%s\t%s\t%s\n' "$kind" "$ver" "$digest"
+	done
+}
+
 # resolve_freenginx: highest "release-X.Y.Z" tag of freenginx/nginx. Several
 # trains are tagged in parallel (e.g. 1.30.x stable, 1.31.x mainline); the
 # newest train always holds the highest version, so the max across all tags is
@@ -337,6 +412,7 @@ resolve_special() {
 		alpine/*) ver=$(resolve_alpine "$prog") ;;
 		xorux/*) ver=$(resolve_xormon "$prog") ;;
 		"freenginx/freenginx") ver=$(resolve_freenginx) ;;
+		"aws/snowball") ver=$(resolve_snowball) ;;
 	esac
 	printf '%s\t%s\n' "$prog" "$(normalize_version "$prog" "$ver")"
 }
@@ -403,6 +479,7 @@ resolve_github_batch() {
 DEP_PINS=(
 	"OPENSSL_VERSION:resolve_openssl:OpenSSL"
 	"DOCKER_CLI_VERSION:resolve_docker_cli:Docker CLI"
+	"PCRE_VERSION:resolve_pcre:PCRE2"
 )
 
 # resolve_all_versions: run the GitHub batch, every special source, and the
@@ -429,6 +506,7 @@ resolve_all_versions() {
 		rest="${pin#*:}"
 		"${rest%%:*}" > "${WORKDIR}/dep.${pin%%:*}" &
 	done
+	resolve_nginx_distroless > "${WORKDIR}/nginx-distroless" &
 
 	# The GitHub batch is the only fatal source; wait for it, then the rest.
 	wait "$gh_pid" || { wait; return 1; }
@@ -768,6 +846,71 @@ do
 		echo
 	done < <(grep -lE "^[[:space:]]*${var}:[[:space:]]*\"" .github/workflows/*.yml || true)
 done
+
+# nginx-distroless pass. Its versions come from Docker Hub (not REPO), and the
+# pins must match the nginx the image is built FROM, so each update rewrites
+# the workflow pin AND the Dockerfile's "FROM nginx:<version>@<digest>" line in
+# one commit: BUILD_VERSION with Dockerfile (mainline), BUILD_STABLE_VERSION
+# with Dockerfile.stable (stable). A Docker Hub rebuild of the same tag (new
+# digest) refreshes the FROM line alone. Only nginx-distroless is handled here.
+nginx_from() {
+	sed -nE 's/^FROM[[:space:]]+nginx:([^@[:space:]]+@sha256:[0-9a-f]{64}).*/\1/p' "$1" | head -n1
+}
+
+while IFS=$'\t' read -r kind ver digest; do
+	wf=".github/workflows/nginx-distroless.yml"
+	if [[ "$kind" == "stable" ]]; then
+		var="BUILD_STABLE_VERSION"
+		df="nginx-distroless/Dockerfile.stable"
+		label="nginx-distroless stable"
+	else
+		var="BUILD_VERSION"
+		df="nginx-distroless/Dockerfile"
+		label="nginx-distroless"
+	fi
+	echo "Checking ${label} ..."
+
+	cur=$(read_pin "$wf" "$var")
+	cur_from=$(nginx_from "$df")
+	echo
+	echo "    Workflow ${var} is ${cur}; ${df##*/} is FROM nginx:${cur_from:-<unknown>}"
+	echo "    Docker Hub ${kind} is ${ver}@${digest}"
+	echo
+
+	if ! is_valid_version "$cur" || ! is_valid_version "$ver" || [[ -z "$cur_from" ]]; then
+		echo "    ERROR: cannot read ${var} in ${wf} or the FROM nginx line in ${df}" >&2
+		FAILURES=$((FAILURES + 1))
+	elif [[ "$cur" == "$ver" && "$cur_from" == "${ver}@${digest}" ]]; then
+		echo "No update needed ..."
+	elif version_lt "$ver" "$cur"; then
+		echo "    Skipping: Docker Hub ${kind} ${ver} is older than pinned ${cur} (no downgrade)" >&2
+	else
+		if [[ "$cur" == "$ver" ]]; then
+			msg="Updated ${label} base image digest"
+		else
+			msg="Updated ${label} to ${ver}"
+		fi
+		if (( DRYRUN )); then
+			dry "would set ${var} to \"${ver}\" in ${wf} and FROM nginx:${ver}@${digest} in ${df}; commit '${msg}'"
+		else
+			echo "Updating to ${ver}@${digest} ..."
+			if set_pin "$wf" "$var" "$ver" \
+				&& sed -i.bak -E "s#^(FROM[[:space:]]+)nginx:[^@[:space:]]+@sha256:[0-9a-f]{64}#\1nginx:${ver}@${digest}#" "$df" \
+				&& rm -f "${df}.bak" \
+				&& [[ "$(nginx_from "$df")" == "${ver}@${digest}" ]]; then
+				commit_paths "$msg" "$wf" "$df" || FAILURES=$((FAILURES + 1))
+			else
+				echo "    ERROR: could not update ${wf} and ${df}; restoring them" >&2
+				restore_paths "$wf" "$df"
+				FAILURES=$((FAILURES + 1))
+			fi
+		fi
+	fi
+
+	echo
+	echo
+	echo
+done < "${WORKDIR}/nginx-distroless"
 
 # Final push: retry any commit whose push failed above.
 if (( DRYRUN )); then
