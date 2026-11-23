@@ -32,7 +32,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     mkdir -p /opt/etc/ssl/certs && \
     cp /etc/ssl/certs/ca-certificates.crt /opt/etc/ssl/certs/ca-certificates.crt
 
-FROM gcr.io/distroless/base-debian13@sha256:0e48b9bcd868bce9fa872cee10b52961d9e32677823da4bf68eefb44f38e7b9d
+FROM gcr.io/distroless/base-debian13@sha256:8bf71f4e1ba0d0ed5d48a06441ffcee930a456e04b3b613614c43b4270a16d89
 #FROM gcr.io/distroless/base-debian12@sha256:fabbf1c0c357a3d42550111351daed089b20a2c954df13ee2fcff60602515e84
 
 COPY --from=base /opt /
