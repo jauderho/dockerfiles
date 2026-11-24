@@ -14,7 +14,7 @@ on:
     - cron: "0 8 * * 1"
 
 env:
-  BUILD_VERSION: "2026.11.22.232654"
+  BUILD_VERSION: "2026.11.23.232705"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.repository_owner }}/yt-dlp-nightly-builds
 
