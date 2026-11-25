@@ -13,7 +13,7 @@ on:
 
 env:
   BUILD_VERSION: "1.31.9"
-  BUILD_STABLE_VERSION: "1.30.7"
+  BUILD_STABLE_VERSION: "1.30.8"
   DOCKER_CLI_EXPERIMENTAL: enabled
   REPOSITORY: ${{ github.repository_owner }}/${{ github.workflow }} 
 
