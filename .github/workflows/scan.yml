@@ -212,12 +212,20 @@ jobs:
 
       # Upload only a result that parses as SARIF. A failed scanner can leave an
       # empty or partial file, which would only add an "Invalid SARIF" failure.
+      #
+      # Grype has no output severity filter (severity-cutoff only sets the exit
+      # code), so its result is cut to high and critical here, as Trivy's is by
+      # its severity input. The filter uses each rule's security-severity score,
+      # the value GitHub derives the alert severity from (7.0+ is high, 9.0+ is
+      # critical), not the SARIF level, which Grype does not keep in step with
+      # the score.
       - name: Check SARIF results
         id: sarif
         if: ${{ !cancelled() }}
         env:
           TRIVY_SARIF: trivy-${{ matrix.image }}.sarif
           ANCHORE_SARIF: ${{ steps.anchore-retry.outputs.sarif || steps.anchore-scan.outputs.sarif }}
+          ANCHORE_FILTERED: anchore-${{ matrix.image }}.sarif
         run: |
           check() {
             if [[ -n "$2" && -s "$2" ]] && jq -e '.runs | type == "array"' "$2" >/dev/null 2>&1; then
@@ -227,7 +235,15 @@ jobs:
             fi
           }
           check trivy "$TRIVY_SARIF"
-          check anchore "$ANCHORE_SARIF"
+          if [[ -n "$ANCHORE_SARIF" && -s "$ANCHORE_SARIF" ]]; then
+            jq '.runs |= map(
+                  ((.tool.driver.rules // [])
+                    | map({key: .id, value: ((.properties["security-severity"] // "0") | tonumber? // 0)})
+                    | from_entries) as $score
+                  | .results |= map(select(($score[.ruleId] // 0) >= 7.0)))' \
+              "$ANCHORE_SARIF" > "$ANCHORE_FILTERED" || rm -f "$ANCHORE_FILTERED"
+          fi
+          check anchore "$ANCHORE_FILTERED"
 
       # Uploads run one after another, not in a parallel group: two
       # upload-sarif steps started together intermittently crash with
