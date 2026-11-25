@@ -17,10 +17,9 @@ FROM oven/bun:1.4.5@sha256:3aa040e5445efa09d75bb428a64ba50db13e2b3ac9b6b0c7f1456
 # modules, so they are replaced with ones built by the current toolchain and
 # with golang.org/x/net and golang.org/x/text at their latest release. Upstream
 # does not ship the generated protobuf code, so it is generated here the same
-# way xormon.sh does. The binaries are static (CGO off); the build runs on the
-# build host's architecture and cross-compiles for linux/amd64.
+# way xormon.sh does. The binaries are static (CGO off) and built for linux/amd64.
 # ---------------------------------------------------------------------------
-FROM --platform=$BUILDPLATFORM golang:1.27.4@sha256:5f1b98fa02fe396ebce2a0227a0e08309e11792915b9dd2e1f71053d7e7e6666 AS GOBUILD
+FROM golang:1.27.4@sha256:5f1b98fa02fe396ebce2a0227a0e08309e11792915b9dd2e1f71053d7e7e6666 AS GOBUILD
 
 ARG BUILD_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
