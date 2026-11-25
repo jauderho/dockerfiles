@@ -4,7 +4,8 @@ These notes add to the repository root `AGENTS.md`. Read `Dockerfile` and `READM
 
 ## Facts
 
-- Upstream ships a closed tarball: `https://xormon.com/download-static/xormon-ng/xormon-ng-<ver>.tar.gz`. It has no GitHub releases and no source for the Node `dist/` code or the Go binaries.
+- Upstream ships a closed tarball: `https://xormon.com/download-static/xormon-ng/xormon-ng-<ver>.tar.gz`. It has no GitHub releases and no source for the Node `dist/` code. The Go source is in a second tarball, `xormon-ng-<ver>-source.tar.gz` (same directory; the download page links it through a registration form, but the static URL works). The `GOBUILD` stage rebuilds the Go binaries from it.
+- The source tarball has no generated protobuf code and its `go.sum` files are incomplete. `GOBUILD` runs `protoc` (as `xormon.sh` does) and `go mod tidy`. If upstream adds a Go module or changes how `xormon.sh` builds, change `GOBUILD` to match.
 - `BUILD_VERSION` is set in `.github/workflows/xormon-ng.yml`. `scripts/updateDockerImages.sh` (`resolve_xormon`) updates it by reading `xormon.com/download.php`.
 - The image is amd64 only. It uses Ubuntu (glibc) and the official Node 24 tarball, not Alpine. The prebuilt native modules (`canvas`, `cpu-features`, `ssh2`) need glibc and cannot be rebuilt.
 - At startup, `startup.sh` runs `npm run start:runtime`, which runs `node dist/verify.js` (TypeORM migrations) and then `pm2-runtime`. So npm must stay in the image.
@@ -27,7 +28,7 @@ These notes add to the repository root `AGENTS.md`. Read `Dockerfile` and `READM
 - **vega / vega-functions 6:**
   - vega 6 is ESM with top-level `await`, so `require("vega")` fails. Node 24 gives `ERR_REQUIRE_ASYNC_MODULE`, and Bun 1.4.5 fails too.
   - It needs an upstream change to `import()`.
-- **Go binaries** (`linux-go/bin/*`, `otel-exporter`): these embed an old Go stdlib and old `golang.org/x/*` modules. Upstream must rebuild them.
+- **`agent-aix-ppc64`:** the AIX binary keeps its old Go stdlib. It is not rebuilt here.
 - **nodemailer, pm2, uuid 8:** these need a major upgrade and have not been tested.
 - **pip's vendored urllib3/msgpack/setuptools:** pip must stay because the analyzer runs `pip freeze`.
 
@@ -55,4 +56,4 @@ For any change beyond a same-major upgrade, also run a runtime test. Run it agai
 
 ## Code scanning
 
-The alert categories are `anchore-xormon-ng` (Grype) and `trivy-xormon-ng`. Scans run daily from `scan.yml`, so alert counts change only after a scan that runs after the image is pushed. Most Grype alerts are on Ubuntu packages (`/var/lib/dpkg/status`) that have no fixed release yet. `dist-upgrade` clears them once Ubuntu ships a fix. The rest are on the Go binaries, which cannot be fixed here, and on npm `package.json` files.
+The alert categories are `anchore-xormon-ng` (Grype) and `trivy-xormon-ng`. Scans run daily from `scan.yml`, so alert counts change only after a scan that runs after the image is pushed. Most Grype alerts are on Ubuntu packages (`/var/lib/dpkg/status`) that have no fixed release yet. `dist-upgrade` clears them once Ubuntu ships a fix. The rest are on npm `package.json` files (vega). The Go binary alerts (stdlib, `golang.org/x/net`, `golang.org/x/text`) clear once the `GOBUILD` rebuild is published and scanned.

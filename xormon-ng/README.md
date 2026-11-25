@@ -77,12 +77,18 @@ require recompiling upstream:
   through APIs the new majors keep; the build runs npm workspace, pack, query,
   run and cache commands afterwards. npm stays in the image because the app runs
   `npm run typeorm:migration:run` at startup and on upgrade.
-- **Unused architectures** — the arm64/ppc64le/s390x `otel-exporter` binaries are
-  dropped along with the other non-amd64 binaries (this image is amd64-only).
+- **Go binaries** — `linux-router`, `linux-service`, `agent` and `otel-exporter`
+  are rebuilt from the upstream source tarball (`xormon-ng-<ver>-source.tar.gz`)
+  in a `GOBUILD` stage on the pinned `golang:1.27.4` image, replacing the
+  prebuilt ones that embed an old Go standard library. The build generates the
+  protobuf code the tarball does not ship (as `xormon.sh` does), moves
+  `golang.org/x/net` and `golang.org/x/text` to their latest release, and builds
+  static binaries (`CGO_ENABLED=0`, linux/amd64). Grype reports nothing for them.
+- **Unused architectures** — the prebuilt Go binaries of every architecture are
+  dropped (this image is amd64-only).
 
-Not fixed here: the compiled Go binaries (`agent`, `agent-aix-ppc64`, `linux-service`,
-`linux-router`, `otel-exporter`; upstream ships binaries only, so the Go standard
-library and `golang.org/x/*` versions they embed cannot be bumped), the copies of
+Not fixed here: the AIX agent `agent-aix-ppc64` (it cannot be rebuilt here, and it
+is only a download for AIX hosts), the copies of
 `urllib3`/`msgpack`/`setuptools` vendored inside `pip` (pip is kept because the
 analyzer runs `pip freeze`; they clear when pip updates its vendored set), and the
 `vega`/`vega-functions` 5.x (XSS fixed only in 6.x). vega 6 uses top-level

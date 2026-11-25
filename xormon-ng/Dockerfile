@@ -11,6 +11,75 @@
 FROM oven/bun:1.4.5@sha256:3aa040e5445efa09d75bb428a64ba50db13e2b3ac9b6b0c7f145615f62b2ee18 AS bun
 
 # ---------------------------------------------------------------------------
+# GOBUILD - rebuild the Go binaries (linux-router, linux-service, agent,
+# otel-exporter) from the upstream source tarball. The prebuilt ones in the
+# application tarball embed an old Go standard library and old golang.org/x/*
+# modules, so they are replaced with ones built by the current toolchain and
+# with golang.org/x/net and golang.org/x/text at their latest release. Upstream
+# does not ship the generated protobuf code, so it is generated here the same
+# way xormon.sh does. The binaries are static (CGO off); the build runs on the
+# build host's architecture and cross-compiles for linux/amd64.
+# ---------------------------------------------------------------------------
+FROM --platform=$BUILDPLATFORM golang:1.27.4@sha256:5f1b98fa02fe396ebce2a0227a0e08309e11792915b9dd2e1f71053d7e7e6666 AS GOBUILD
+
+ARG BUILD_VERSION
+ARG DEBIAN_FRONTEND=noninteractive
+# protobuf generators, matching the google.golang.org/protobuf version in the
+# upstream go.mod files (protoc-gen-go) and the newest protoc-gen-go-grpc
+ARG PROTOC_GEN_GO_VERSION=v1.36.12
+ARG PROTOC_GEN_GO_GRPC_VERSION=v1.6.2
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends protobuf-compiler libprotobuf-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && go install "google.golang.org/protobuf/cmd/protoc-gen-go@${PROTOC_GEN_GO_VERSION}" \
+    && go install "google.golang.org/grpc/cmd/protoc-gen-go-grpc@${PROTOC_GEN_GO_GRPC_VERSION}"
+
+# Source tarball: content sits at the archive root. Only the Go trees are used.
+ADD https://xormon.com/download-static/xormon-ng/xormon-ng-${BUILD_VERSION}-source.tar.gz /tmp/xormon-ng-source.tar.gz
+RUN mkdir /src /out \
+    && tar xzf /tmp/xormon-ng-source.tar.gz -C /src \
+       server-nest/microservices/linux-go server-nest/src/otel-exporter \
+    && rm /tmp/xormon-ng-source.tar.gz
+
+# linux-router, linux-service and agent (three modules; the last two replace
+# linux-go with the root module, whose linux-grpc package is generated here).
+# "go get" moves x/net and x/text to their latest release and updates go.sum;
+# the build fails if the result does not compile.
+WORKDIR /src/server-nest/microservices/linux-go
+RUN set -eux; \
+    protoc -I . --experimental_allow_proto3_optional \
+        --go_out=. --go_opt=paths=source_relative \
+        --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+        linux-grpc/linux.proto linux-grpc/metadata.proto; \
+    for m in . linux-service agent; do \
+        (cd "$m" && go get golang.org/x/net golang.org/x/text && go mod tidy); \
+    done; \
+    export CGO_ENABLED=0 GOOS=linux GOARCH=amd64; \
+    go build -trimpath -ldflags "-s -w" -o /out/linux-router router.go; \
+    (cd linux-service && go build -trimpath -ldflags "-s -w" -o /out/linux-service .); \
+    (cd agent && go build -trimpath -ldflags "-s -w" -o /out/agent .)
+
+# otel-exporter (named otel-exporter-amd64 like upstream; post-upgrade.js copies
+# it to otel-exporter at start-up)
+WORKDIR /src/server-nest/src/otel-exporter
+RUN set -eux; \
+    pb=otel-exporter/internal/otlppb; \
+    protoc -I otel-proto --experimental_allow_proto3_optional \
+        --go_out=. --go_opt=module=otel-exporter \
+        --go_opt=Mopentelemetry/proto/common/v1/common.proto="$pb/common/v1" \
+        --go_opt=Mopentelemetry/proto/resource/v1/resource.proto="$pb/resource/v1" \
+        --go_opt=Mopentelemetry/proto/metrics/v1/metrics.proto="$pb/metrics/v1" \
+        --go_opt=Mopentelemetry/proto/collector/metrics/v1/metrics_service.proto="$pb/collector/metrics/v1" \
+        otel-proto/opentelemetry/proto/common/v1/common.proto \
+        otel-proto/opentelemetry/proto/resource/v1/resource.proto \
+        otel-proto/opentelemetry/proto/metrics/v1/metrics.proto \
+        otel-proto/opentelemetry/proto/collector/metrics/v1/metrics_service.proto; \
+    go get golang.org/x/text && go mod tidy; \
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+        go build -trimpath -ldflags "-s -w" -o /out/otel-exporter-amd64 .
+
+# ---------------------------------------------------------------------------
 # Stage 1: build - download Node.js + the XorMon NG tarball, prune, build venv
 # ---------------------------------------------------------------------------
 FROM ubuntu:26.10@sha256:1c2a84ae3f2a24aeb97cded5b41f0211b441662f1a188cbd2e139e7625f6f1d6 AS build
@@ -141,18 +210,18 @@ WORKDIR /opt/xormon-ng
 RUN set -eux; \
     # source maps are not used at runtime (~257MB)
     find . -name '*.map' -delete; \
-    # keep only amd64 Go binaries (~78MB saved). Discover binaries dynamically
-    # so upstream adding/removing a binary or arch doesn't break the build:
-    # rename every *-amd64 to its base name, drop all other arch variants, then
-    # mark whatever remains executable.
+    # drop the prebuilt Go binaries of every architecture (~78MB saved): the
+    # amd64 ones are replaced by the GOBUILD rebuilds copied in below. Discover
+    # binaries dynamically so upstream adding/removing a binary or arch doesn't
+    # break the build, then mark whatever remains (agent-aix-ppc64) executable.
     cd server-nest/microservices/linux-go/bin; \
-    for f in *-amd64; do [ -e "$f" ] && mv -f "$f" "${f%-amd64}"; done; \
-    rm -f -- *-arm64 *-ppc64le *-s390x *-arm; \
+    rm -f -- *-amd64 *-arm64 *-ppc64le *-s390x *-arm; \
     find . -maxdepth 1 -type f -exec chmod +x {} +; \
     cd /opt/xormon-ng; \
     # post-upgrade.js copies otel-exporter-<arch> to otel-exporter at start-up,
     # so only the amd64 variant is needed (and scanned) here.
-    rm -f -- server-nest/microservices/otel-exporter/bin/*-arm64 \
+    rm -f -- server-nest/microservices/otel-exporter/bin/*-amd64 \
+             server-nest/microservices/otel-exporter/bin/*-arm64 \
              server-nest/microservices/otel-exporter/bin/*-ppc64le \
              server-nest/microservices/otel-exporter/bin/*-s390x; \
     rm -rf server-nest/microservices/linux-go/simulator \
@@ -168,6 +237,10 @@ RUN set -eux; \
     # key). A unique self-signed cert is generated at startup instead, so no
     # private key is baked into the image.
     rm -f server-nest/ssl/xormon.key server-nest/ssl/xormon.crt
+
+# Go binaries rebuilt in GOBUILD (see above)
+COPY --from=GOBUILD --chmod=755 /out/linux-router /out/linux-service /out/agent /opt/xormon-ng/server-nest/microservices/linux-go/bin/
+COPY --from=GOBUILD --chmod=755 /out/otel-exporter-amd64 /opt/xormon-ng/server-nest/microservices/otel-exporter/bin/
 
 # Drop bundled devDependencies (typescript, jest, eslint, @nestjs/cli, ...);
 # pm2 and all 61 runtime deps are kept. Needs registry access: npm 11 fetches
