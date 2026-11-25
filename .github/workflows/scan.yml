@@ -68,7 +68,7 @@ jobs:
         run: mkdir "${RUNNER_TEMP}/empty"
 
       - name: Download the Grype vulnerability DB
-        uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+        uses: anchore/scan-action@11983a512817154c80a9db660c1a184be7513ed6 # v7.4.3
         with:
           path: ${{ runner.temp }}/empty
           fail-build: false
@@ -175,7 +175,7 @@ jobs:
           - name: Run Anchore to check ${{ matrix.image }} Docker image for vulnerabilities
             id: anchore-scan
             continue-on-error: true
-            uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+            uses: anchore/scan-action@11983a512817154c80a9db660c1a184be7513ed6 # v7.4.3
             env:
               GRYPE_DB_AUTO_UPDATE: ${{ steps.grype-db.outcome == 'success' && 'false' || 'true' }}
             with:
@@ -202,7 +202,7 @@ jobs:
           - name: Retry Anchore for ${{ matrix.image }}
             id: anchore-retry
             if: ${{ steps.anchore-scan.outcome == 'failure' }}
-            uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+            uses: anchore/scan-action@11983a512817154c80a9db660c1a184be7513ed6 # v7.4.3
             env:
               GRYPE_DB_AUTO_UPDATE: 'true'
             with:
