@@ -56,6 +56,7 @@ jobs:
             api.github.com:443
             artifactcache.actions.githubusercontent.com:443
             auth.docker.io:443
+            authzd-production.service.iad.github.net:443
             dl-cdn.alpinelinux.org:443
             docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com:443
             docker-images-prod.s3.dualstack.us-east-1.amazonaws.com:443
